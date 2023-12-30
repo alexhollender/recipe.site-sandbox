@@ -5,7 +5,7 @@ export default Sanity.defineType({
   name: 'tag',
   title: 'Tag',
   type: 'document',
-  icon: Icons.Recipe,
+  icon: Icons.Tag,
   preview: {
     select: {
       title: 'title',

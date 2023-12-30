@@ -19,18 +19,12 @@ const structure: StructureResolver = (S, _context) => {
         .icon(Icons.Ingredient)
         .child(S.documentTypeList('ingredient')),
       S.listItem().title('Equipment').icon(Icons.Equipment).child(S.documentTypeList('equipment')),
-      S.listItem()
-        .title('Ingredient Units')
-        .icon(Icons.IngredientUnit)
-        .child(S.documentTypeList('ingredientUnit')),
-      S.listItem()
-        .title('Yield Units')
-        .icon(Icons.YieldUnit)
-        .child(S.documentTypeList('yieldUnit')),
+      S.listItem().title('Units').icon(Icons.Unit).child(S.documentTypeList('unit')),
       S.listItem()
         .title('Preparations')
         .icon(Icons.Preparation)
         .child(S.documentTypeList('preparation')),
+      S.listItem().title('Tags').icon(Icons.Tag).child(S.documentTypeList('tag')),
     ]);
 };
 

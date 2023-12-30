@@ -12,6 +12,25 @@ export default Sanity.defineType({
       media: 'image',
     },
   },
+  fieldsets: [
+    {
+      name: 'media',
+      title: 'Media',
+      options: {
+        collapsible: false,
+        columns: 2,
+      },
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      options: {
+        collapsible: true,
+        collapsed: true,
+        columns: 2,
+      },
+    },
+  ],
   validation: (Rule) =>
     Rule.custom((fields) => {
       if (!fields?.image && !fields?.video) return 'You must have an Image or Video present.';
@@ -24,11 +43,29 @@ export default Sanity.defineType({
       name: 'image',
       title: 'Image',
       type: 'image',
+      fieldset: 'media',
     },
     {
       name: 'video',
       title: 'Video',
       type: 'file',
+      fieldset: 'media',
+    },
+    {
+      name: 'alternateText',
+      title: 'Alt Text',
+      description:
+        "This is used for non-visual users in the alt-text attribute. We'll fallback to the image description if one is not defined here.",
+      type: 'text',
+      rows: 1,
+      fieldset: 'description',
+    },
+    {
+      name: 'caption',
+      title: 'Caption',
+      type: 'text',
+      rows: 1,
+      fieldset: 'description',
     },
   ],
 });

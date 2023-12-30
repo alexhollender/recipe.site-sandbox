@@ -54,23 +54,10 @@ export default Sanity.defineType({
       type: 'richtextSimple',
     },
     {
-      name: 'weightToVolumeConversion',
-      title: 'Weight to Volume Conversion',
-      type: 'object',
-      fields: [
-        {
-          name: 'weightGrams',
-          title: 'Weight (grams)',
-          type: 'number',
-          validation: (Rule) => Rule.required(),
-        },
-        {
-          name: 'volumeCups',
-          title: 'Volume (cups)',
-          type: 'number',
-          validation: (Rule) => Rule.required(),
-        },
-      ],
+      name: 'gramsPerCup',
+      title: 'Grams Per Cup (g/cup)',
+      description: 'Mostly for dry ingredients. To convert between volume and weight measurements.',
+      type: 'number',
     },
   ],
 });

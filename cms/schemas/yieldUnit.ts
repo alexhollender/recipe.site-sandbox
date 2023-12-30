@@ -5,7 +5,7 @@ export default Sanity.defineType({
   name: 'yieldUnit',
   title: 'Yield Unit',
   type: 'document',
-  icon: Icons.YieldUnit,
+  icon: Icons.Unit,
   preview: {
     select: {
       title: 'title',

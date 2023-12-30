@@ -13,12 +13,13 @@
 // const BaseStyles: Partial<PortableTextReactComponents> = {
 //   block: {
 //     normal: ({ children }) => <Text.Detail className="mb-12">{children}</Text.Detail>,
-//     h1: ({ children }) => <Text.Heading className="mt-16 mb-4">{children}</Text.Heading>,
+//     h1: ({ children }) => <Text.Heading className>{children}</Text.Heading>,
 //     h2: ({ children }) => <Text.Body className="mt-12 mb-4">{children}</Text.Body>,
 //     h3: ({ children }) => <Text.Eyebrow className="mt-8 mb-4">{children}</Text.Eyebrow>,
 //   },
 //   marks: {
 //     em: ({ children }) => <em className="italic font-normal">{children}</em>,
+//     ingredientMention: ({ children, value }) => {},
 //     link: ({ children, value }) => {
 //       return (
 //         <Link

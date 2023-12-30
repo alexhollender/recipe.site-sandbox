@@ -9,6 +9,7 @@ import { MdCategory } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
 
 export const Author = LuChefHat;
+export const Cuisine = BiWorld;
 export const Equipment = GiCookingPot;
 export const Media = GrMultimedia;
 export const Ingredient = FaCarrot;
@@ -16,6 +17,5 @@ export const IngredientUnit = GiWeight;
 export const Preparation = PiKnife;
 export const Recipe = FaPlateWheat;
 export const RecipeCategory = MdCategory;
-export const RecipeCuisine = BiWorld;
 export const Site = CgWebsite;
 export const YieldUnit = GiSlicedBread;

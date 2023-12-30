@@ -9,7 +9,7 @@ export default Sanity.defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'slug.current',
+      media: 'image',
     },
   },
   validation: (Rule) =>

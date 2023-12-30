@@ -2,10 +2,10 @@ import * as Icons from '../lib/icons';
 import * as Sanity from 'sanity';
 
 export default Sanity.defineType({
-  name: 'recipeCuisine',
+  name: 'cuisine',
   title: 'Cuisine',
   type: 'document',
-  icon: Icons.RecipeCuisine,
+  icon: Icons.Cuisine,
   preview: {
     select: {
       title: 'title',

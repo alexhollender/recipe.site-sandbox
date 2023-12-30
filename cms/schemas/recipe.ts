@@ -44,27 +44,27 @@ const Recipe = Sanity.defineType({
       },
     },
     {
-      name: 'recipeCategories',
-      title: 'Recipe Categories',
+      name: 'categories',
+      title: 'Categories',
       type: 'array',
       of: [
         {
           type: 'reference',
-          title: 'Recipe Category',
+          title: 'Category',
           to: [{ type: 'recipeCategory' }],
         },
       ],
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'recipeCuisine',
-      title: 'Recipe Cuisines',
+      name: 'cuisines',
+      title: 'Cuisines',
       type: 'array',
       of: [
         {
           type: 'reference',
-          title: 'Recipe Cuisine',
-          to: [{ type: 'recipeCuisine' }],
+          title: 'Cuisine',
+          to: [{ type: 'cuisine' }],
         },
       ],
       validation: (Rule) => Rule.required(),
@@ -131,23 +131,25 @@ const Recipe = Sanity.defineType({
           name: 'quantity',
           title: 'Quantity',
           type: 'number',
+          validation: (Rule) => Rule.required(),
         },
         {
           name: 'unit',
           title: 'Unit',
           type: 'reference',
           to: [{ type: 'yieldUnit' }],
+          validation: (Rule) => Rule.required(),
         },
       ],
     },
     {
-      name: 'equipment',
-      title: 'Equipment',
+      name: 'equipmentUsed',
+      title: 'Equipment Used',
       type: 'array',
       of: [
         {
-          name: 'equipment',
-          title: 'Equipment',
+          name: 'recipeEquipment',
+          title: 'Recipe Equipment',
           type: 'object',
           preview: {
             select: {
@@ -162,6 +164,7 @@ const Recipe = Sanity.defineType({
               title: 'Equipment',
               type: 'reference',
               to: [{ type: 'equipment' }],
+              validation: (Rule) => Rule.required(),
             },
             {
               name: 'note',
@@ -203,6 +206,7 @@ const Recipe = Sanity.defineType({
               name: 'ingredients',
               title: 'Ingredients',
               type: 'array',
+              validation: (Rule) => Rule.required(),
               of: [
                 {
                   name: 'ingredientApplication',
@@ -269,12 +273,12 @@ const Recipe = Sanity.defineType({
       ],
     },
     {
-      name: 'storeExcerpt',
+      name: 'storyExcerpt',
       title: 'Story Excerpt',
       type: 'richtext',
     },
     {
-      name: 'storeMore',
+      name: 'storyMore',
       title: 'Story More',
       type: 'richtext',
     },

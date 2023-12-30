@@ -169,7 +169,6 @@ const Recipe = Sanity.defineType({
           to: [{ type: 'tag' }],
         },
       ],
-      validation: (Rule) => Rule.required(),
       group: 'meta',
     },
     {
@@ -242,6 +241,11 @@ const Recipe = Sanity.defineType({
               type: 'image',
             },
             {
+              name: 'equipmentTitleOverride',
+              title: 'Equipment Title Override',
+              type: 'string',
+            },
+            {
               name: 'link',
               title: 'Link',
               type: 'url',
@@ -311,31 +315,46 @@ const Recipe = Sanity.defineType({
               type: 'string',
             },
             {
-              name: 'instruction',
-              title: 'Instruction',
-              type: 'object',
-              fields: [
+              name: 'instructions',
+              title: 'Instructions',
+              type: 'array',
+              validation: (Rule) => Rule.required(),
+              of: [
                 {
-                  name: 'content',
-                  title: 'Content',
-                  type: 'richtextRecipe',
-                  validation: (Rule) => Rule.required(),
-                },
-                {
-                  name: 'timerMinutes',
-                  title: 'Timer (minutes)',
-                  type: 'number',
-                },
-                {
-                  name: 'note',
-                  title: 'Note',
-                  type: 'richtextSimple',
-                },
-                {
-                  name: 'media',
-                  title: 'Media',
-                  type: 'array',
-                  of: [{ type: 'media' }],
+                  name: 'instruction',
+                  title: 'Instruction',
+                  type: 'object',
+                  preview: {
+                    select: {
+                      title: 'content',
+                      subtitle: 'note',
+                      media: 'media.0',
+                    },
+                  },
+                  fields: [
+                    {
+                      name: 'content',
+                      title: 'Content',
+                      type: 'richtextRecipe',
+                      validation: (Rule) => Rule.required(),
+                    },
+                    {
+                      name: 'timerMinutes',
+                      title: 'Timer (minutes)',
+                      type: 'number',
+                    },
+                    {
+                      name: 'note',
+                      title: 'Note',
+                      type: 'richtextSimple',
+                    },
+                    {
+                      name: 'media',
+                      title: 'Media',
+                      type: 'array',
+                      of: [{ type: 'media' }],
+                    },
+                  ],
                 },
               ],
             },

@@ -60,30 +60,30 @@ export const RichtextRecipe = Sanity.defineType({
             type: 'reference',
             to: [{ type: 'ingredientUsage' }],
             icon: Icons.Ingredient,
-            options: {
-              filter: async ({ document, getClient }) => {
-                const client = getClient({ apiVersion: '2023-12-30' });
+            // options: {
+            //   filter: async ({ document, getClient }) => {
+            //     const client = getClient({ apiVersion: '2023-12-30' });
 
-                /*
-                TODO: Fix why we need the last [0]. Something is wrong there.
-                */
-                const ingredientUsageIds = await client.fetch(
-                  `*[_type == 'recipe' && _id == $recipeId][0] {
-                    "ingredientUsageGroups": ingredientUsageGroups[] {
-                      "ingredientUsages": ingredientUsages[] -> { _id }._id
-                    }.ingredientUsages
-                  }.ingredientUsageGroups[0]`,
-                  {
-                    recipeId: document._id,
-                  },
-                );
+            //     /*
+            //     TODO: Fix why we need the last [0]. Something is wrong there.
+            //     */
+            //     const ingredientUsageIds = await client.fetch(
+            //       `*[_type == 'recipe' && _id == $recipeId][0] {
+            //         "ingredientUsageGroups": ingredientUsageGroups[] {
+            //           "ingredientUsages": ingredientUsages[] -> { _id }._id
+            //         }.ingredientUsages
+            //       }.ingredientUsageGroups`,
+            //       {
+            //         recipeId: document._id,
+            //       },
+            //     );
 
-                return {
-                  filter: '_id in $ingredientUsageIds',
-                  params: { ingredientUsageIds: ingredientUsageIds },
-                };
-              },
-            },
+            //     return {
+            //       filter: '_id in $ingredientUsageIds',
+            //       params: { ingredientUsageIds: ingredientUsageIds },
+            //     };
+            //   },
+            // },
           },
           {
             name: 'measurement',

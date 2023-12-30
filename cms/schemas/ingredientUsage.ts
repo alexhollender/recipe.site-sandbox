@@ -6,6 +6,16 @@ export default Sanity.defineType({
   title: 'Ingredient Usage',
   type: 'document',
   icon: Icons.Ingredient,
+  fieldsets: [
+    {
+      name: 'quantities',
+      title: 'Quantities',
+      options: {
+        collapsible: false,
+        columns: 2,
+      },
+    },
+  ],
   preview: {
     select: {
       ingredientTitle: 'ingredient.title',
@@ -32,10 +42,22 @@ export default Sanity.defineType({
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'ingredientTitleOverride',
+      title: 'Ingredient Title Override',
+      type: 'string',
+    },
+    {
+      name: 'link',
+      title: 'Link',
+      type: 'url',
+      validation: (Rule) => Rule.uri({ allowRelative: true, scheme: ['http', 'https', 'mailto'] }),
+    },
+    {
       name: 'quantityMin',
       title: 'Quantity (default or min)',
       description: 'Default quantity and used as minimum in a range if Max Quantity is provided',
       type: 'number',
+      fieldset: 'quantities',
     },
     {
       name: 'quantityMax',
@@ -47,6 +69,7 @@ export default Sanity.defineType({
             return 'A min quantity must be provided to define a range';
           return true;
         }),
+      fieldset: 'quantities',
     },
     {
       name: 'unit',

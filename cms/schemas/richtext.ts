@@ -57,33 +57,35 @@ export const RichtextRecipe = Sanity.defineType({
           {
             name: 'ingredientUsageReference',
             title: 'Ingredient Usage Reference',
-            type: 'reference',
-            to: [{ type: 'ingredientUsage' }],
+            type: 'object',
             icon: Icons.Ingredient,
-            // options: {
-            //   filter: async ({ document, getClient }) => {
-            //     const client = getClient({ apiVersion: '2023-12-30' });
+            fields: [
+              {
+                name: 'ingredientUsage',
+                title: 'Ingredient Usage',
+                type: 'reference',
+                to: [{ type: 'ingredientUsage' }],
+                options: {
+                  filter: async ({ document, getClient }) => {
+                    const client = getClient({ apiVersion: '2023-12-30' });
 
-            //     /*
-            //     TODO: Fix why we need the last [0]. Something is wrong there.
-            //     */
-            //     const ingredientUsageIds = await client.fetch(
-            //       `*[_type == 'recipe' && _id == $recipeId][0] {
-            //         "ingredientUsageGroups": ingredientUsageGroups[] {
-            //           "ingredientUsages": ingredientUsages[] -> { _id }._id
-            //         }.ingredientUsages
-            //       }.ingredientUsageGroups`,
-            //       {
-            //         recipeId: document._id,
-            //       },
-            //     );
+                    const ingredientUsageIds = await client.fetch(
+                      `*[_type == 'recipe' && _id == $recipeId][0]
+                    .ingredientUsageGroups[]
+                    .ingredientUsages[]->._id`,
+                      {
+                        recipeId: document._id,
+                      },
+                    );
 
-            //     return {
-            //       filter: '_id in $ingredientUsageIds',
-            //       params: { ingredientUsageIds: ingredientUsageIds },
-            //     };
-            //   },
-            // },
+                    return {
+                      filter: '_id in $ingredientUsageIds',
+                      params: { ingredientUsageIds: ingredientUsageIds },
+                    };
+                  },
+                },
+              },
+            ],
           },
           {
             name: 'measurement',

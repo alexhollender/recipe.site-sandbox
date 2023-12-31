@@ -281,11 +281,47 @@ const Recipe = Sanity.defineType({
                 {
                   type: 'reference',
                   to: [{ type: 'ingredientUsage' }],
-                  /*
-                  TODO: Filter these references by:
-                  - Is referred to in instruction content
-                  - Is not currently referred above
-                  */
+                  options: {
+                    filter: async ({ document, getClient }) => {
+                      const client = getClient({ apiVersion: '2023-12-30' });
+
+                      const ingredientUsageIdsInInstructionsQuery = client.fetch<string[]>(
+                        `*[_type == 'recipe' && _id == $recipeId][0]
+                        .instructionGroups[]
+                        .instructions[]
+                        .content[]
+                        .markDefs[_type == 'ingredientUsageReference']
+                        .ingredientUsage
+                        ._ref
+                       `,
+                        {
+                          recipeId: document._id,
+                        },
+                      );
+
+                      const ingredientUsageIdsQuery = client.fetch<string[]>(
+                        `*[_type == 'recipe' && _id == $recipeId][0]
+                        .ingredientUsageGroups[]
+                        .ingredientUsages[]
+                        ._ref`,
+                        {
+                          recipeId: document._id,
+                        },
+                      );
+
+                      const [ingredientUsageIdsInInstructions, ingredientUsageIds] =
+                        await Promise.all([
+                          ingredientUsageIdsInInstructionsQuery,
+                          ingredientUsageIdsQuery,
+                        ]);
+
+                      return {
+                        filter:
+                          '(_id in $ingredientUsageIdsInInstructions) && !(_id in $ingredientUsageIds)',
+                        params: { ingredientUsageIds, ingredientUsageIdsInInstructions },
+                      };
+                    },
+                  },
                 },
               ],
             },

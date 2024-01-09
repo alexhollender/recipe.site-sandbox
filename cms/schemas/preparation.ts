@@ -1,5 +1,5 @@
-import * as Icons from '../lib/icons'
-import * as Sanity from 'sanity'
+import * as Icons from '../lib/icons';
+import * as Sanity from 'sanity';
 
 export default Sanity.defineType({
   name: 'preparation',
@@ -21,6 +21,12 @@ export default Sanity.defineType({
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'pastTense',
+      title: 'Past Tense',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -35,4 +41,4 @@ export default Sanity.defineType({
       type: 'image',
     },
   ],
-})
+});

@@ -25,6 +25,10 @@ const Recipe = Sanity.defineType({
       title: 'Equipment',
     },
     {
+      name: 'notes',
+      title: 'Notes',
+    },
+    {
       name: 'meta',
       title: 'Meta',
     },
@@ -398,6 +402,12 @@ const Recipe = Sanity.defineType({
         },
       ],
       group: 'instructions',
+    },
+    {
+      name: 'note',
+      title: 'Note',
+      type: 'richtextSimple',
+      group: 'notes',
     },
   ],
 });

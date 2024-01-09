@@ -60,5 +60,38 @@ export default Sanity.defineType({
         },
       ],
     },
+    {
+      name: 'featuredRecipes',
+      title: 'Featured Recipes',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {
+              title: 'Recipe',
+              type: 'recipe',
+            },
+          ],
+          options: {
+            filter: async ({ document, getClient }) => {
+              const client = getClient({ apiVersion: '2023-12-30' });
+
+              const recipeIds = await client.fetch(
+                `*[_type == 'site' && _id == $siteId][0].recipes[]->._id`,
+                {
+                  siteId: document._id,
+                },
+              );
+
+              return {
+                filter: '_id in $recipeIds',
+                params: { recipeIds },
+              };
+            },
+          },
+        },
+      ],
+    },
   ],
 });

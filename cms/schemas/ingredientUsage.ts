@@ -1,3 +1,4 @@
+import * as Components from '../lib/components';
 import * as Icons from '../lib/icons';
 import * as Sanity from 'sanity';
 
@@ -47,17 +48,12 @@ export default Sanity.defineType({
       type: 'string',
     },
     {
-      name: 'link',
-      title: 'Link',
-      type: 'url',
-      validation: (Rule) => Rule.uri({ allowRelative: true, scheme: ['http', 'https', 'mailto'] }),
-    },
-    {
       name: 'quantityMin',
       title: 'Quantity (default or min)',
       description: 'Default quantity and used as minimum in a range if Max Quantity is provided',
       type: 'number',
       fieldset: 'quantities',
+      initialValue: 1,
     },
     {
       name: 'quantityMax',
@@ -84,9 +80,33 @@ export default Sanity.defineType({
       to: [{ type: 'preparation' }],
     },
     {
+      name: 'preperationModifier',
+      title: 'Preperation Modifier',
+      type: 'text',
+      rows: 1,
+    },
+    {
+      name: 'link',
+      title: 'Link',
+      type: 'url',
+      validation: (Rule) => Rule.uri({ allowRelative: true, scheme: ['http', 'https', 'mailto'] }),
+    },
+    {
       name: 'note',
       title: 'Note',
       type: 'richtextSimple',
     },
+    // {
+    //   name: 'ingredientTitle',
+    //   title: 'Ingredient Title',
+    //   description: 'For internal search purposes',
+    //   type: 'string',
+    //   components: {
+    //     input: Components.ProxyStringInput,
+    //   },
+    //   options: {
+    //     field: 'ingredient',
+    //   },
+    // },
   ],
 });

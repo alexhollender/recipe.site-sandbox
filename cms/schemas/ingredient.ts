@@ -54,9 +54,25 @@ export default Sanity.defineType({
       type: 'richtextSimple',
     },
     {
+      name: 'ingredientType',
+      title: 'Ingredient Type',
+      type: 'string',
+      options: {
+        list: ['solid', 'liquid'],
+      },
+      initialValue: 'solid',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'gramsPerCup',
       title: 'Grams Per Cup (g/cup)',
       description: 'Mostly for dry ingredients. To convert between volume and weight measurements.',
+      type: 'number',
+    },
+    {
+      name: 'mlPerCup',
+      title: 'Millileters Per Cup (ml/cup)',
+      description: 'Mostly for wet ingredients. To convert between volume and weight measurements.',
       type: 'number',
     },
   ],

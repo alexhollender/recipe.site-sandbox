@@ -21,7 +21,7 @@ const SitesShow: Next.NextPage<Props> = async ({ params }) => {
       <ul>
         {site.recipes.map((recipe) => (
           <li key={recipe.slug}>
-            <Link href={`/${site.slug}/${recipe.slug}`}>{recipe.title}</Link>
+            <Link href={`/${recipe.slug}`}>{recipe.title}</Link>
           </li>
         ))}
       </ul>

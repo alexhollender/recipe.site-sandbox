@@ -43,11 +43,6 @@ export default Sanity.defineType({
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'ingredientTitleOverride',
-      title: 'Ingredient Title Override',
-      type: 'string',
-    },
-    {
       name: 'quantityMin',
       title: 'Quantity (default or min)',
       description: 'Default quantity and used as minimum in a range if Max Quantity is provided',
@@ -60,9 +55,15 @@ export default Sanity.defineType({
       title: 'Quantity (max)',
       type: 'number',
       validation: (Rule) =>
-        Rule.custom((quantityMax, context) => {
-          if (!!quantityMax && !context?.document?.quantityMin)
+        Rule.custom((quantityMax: null | number, context) => {
+          if (quantityMax === null) return true;
+
+          if (!context?.document?.quantityMin)
             return 'A min quantity must be provided to define a range';
+
+          if (quantityMax <= (context.document.quantityMin as number))
+            return 'A max quantity must be greater than the min quantity';
+
           return true;
         }),
       fieldset: 'quantities',
@@ -77,6 +78,8 @@ export default Sanity.defineType({
       name: 'preparation',
       title: 'Preparation',
       type: 'reference',
+      description:
+        'Only use for simple preperations, especially ones where you could buy it in that prepared form, e.g. shredded cheese',
       to: [{ type: 'preparation' }],
     },
     {
@@ -84,6 +87,11 @@ export default Sanity.defineType({
       title: 'Preperation Modifier',
       type: 'text',
       rows: 1,
+    },
+    {
+      name: 'ingredientTitleOverride',
+      title: 'Ingredient Title Override',
+      type: 'string',
     },
     {
       name: 'link',

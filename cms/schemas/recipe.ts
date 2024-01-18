@@ -406,7 +406,7 @@ const Recipe = Sanity.defineType({
     {
       name: 'note',
       title: 'Note',
-      type: 'richtextSimple',
+      type: 'richtext',
       group: 'notes',
     },
   ],

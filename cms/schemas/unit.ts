@@ -39,6 +39,11 @@ export default Sanity.defineType({
       },
     },
     {
+      name: 'pluralTitle',
+      title: 'Plural Title',
+      type: 'string',
+    },
+    {
       name: 'conversions',
       title: 'Conversions',
       type: 'array',

@@ -55,8 +55,8 @@ export default Sanity.defineType({
       title: 'Quantity (max)',
       type: 'number',
       validation: (Rule) =>
-        Rule.custom((quantityMax: null | number, context) => {
-          if (quantityMax === null) return true;
+        Rule.custom((quantityMax: undefined | null | number, context) => {
+          if (quantityMax === null || quantityMax === undefined) return true;
 
           if (!context?.document?.quantityMin)
             return 'A min quantity must be provided to define a range';

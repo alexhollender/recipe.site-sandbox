@@ -54,7 +54,12 @@ const Recipe = Sanity.defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'slug.current',
+      slug: 'slug.current',
+      legacyRecipeData: 'legacyRecipeData',
+    },
+    prepare: ({ title, slug, legacyRecipeData }) => {
+      if (legacyRecipeData) return { title, subtitle: `[LEGACY] ${slug}` };
+      return { title, subtitle: slug };
     },
   },
   fields: [
@@ -408,6 +413,45 @@ const Recipe = Sanity.defineType({
       title: 'Note',
       type: 'richtext',
       group: 'notes',
+    },
+    {
+      name: 'legacyRecipeData',
+      title: 'Legacy Recipe Data',
+      type: 'object',
+      readOnly: true,
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+      fields: [
+        {
+          name: 'featuredImage',
+          title: 'Featured Image',
+          type: 'object',
+          fields: [
+            {
+              name: 'src',
+              title: 'Source',
+              type: 'url',
+            },
+            {
+              name: 'width',
+              title: 'Width',
+              type: 'number',
+            },
+            {
+              name: 'height',
+              title: 'Height',
+              type: 'number',
+            },
+          ],
+        },
+        {
+          name: 'content',
+          title: 'Content',
+          type: 'string',
+        },
+      ],
     },
   ],
 });

@@ -93,5 +93,47 @@ export default Sanity.defineType({
         },
       ],
     },
+    {
+      name: 'collections',
+      title: 'Collections',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {
+              type: 'collection',
+              title: 'Collection',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'socialMediaLinks',
+      title: 'Social Media Links',
+      type: 'array',
+      of: [
+        {
+          name: 'socialMediaLink',
+          title: 'Social Media Link',
+          type: 'object',
+          fields: [
+            {
+              name: 'plaform',
+              title: 'Platform',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'url',
+              title: 'URL',
+              type: 'url',
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
+      ],
+    },
   ],
 });

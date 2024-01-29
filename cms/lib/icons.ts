@@ -7,8 +7,10 @@ import { GrMultimedia } from 'react-icons/gr';
 import { PiKnife } from 'react-icons/pi';
 import { MdCategory } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
+import { HiCollection } from 'react-icons/hi';
 
 export const Author = LuChefHat;
+export const Collection = HiCollection;
 export const Cuisine = BiWorld;
 export const Equipment = GiCookingPot;
 export const Media = GrMultimedia;

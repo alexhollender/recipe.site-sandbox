@@ -1,8 +1,8 @@
 import Author from './author';
+import Collection from './collection';
 import Cuisine from './cuisine';
 import Equipment from './equipment';
 import Ingredient from './ingredient';
-
 import ingredientUsage from './ingredientUsage';
 import Preparation from './preparation';
 import Media from './media';
@@ -15,6 +15,7 @@ import Unit from './unit';
 
 export const schemaTypes = [
   Author,
+  Collection,
   Cuisine,
   Equipment,
   Ingredient,

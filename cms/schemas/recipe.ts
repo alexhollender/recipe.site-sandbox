@@ -437,28 +437,6 @@ const Recipe = Sanity.defineType({
       },
       fields: [
         {
-          name: 'featuredImage',
-          title: 'Featured Image',
-          type: 'object',
-          fields: [
-            {
-              name: 'src',
-              title: 'Source',
-              type: 'url',
-            },
-            {
-              name: 'width',
-              title: 'Width',
-              type: 'number',
-            },
-            {
-              name: 'height',
-              title: 'Height',
-              type: 'number',
-            },
-          ],
-        },
-        {
           name: 'content',
           title: 'Content',
           type: 'string',

@@ -120,7 +120,7 @@ export default Sanity.defineType({
           type: 'object',
           fields: [
             {
-              name: 'plaform',
+              name: 'platform',
               title: 'Platform',
               type: 'string',
               validation: (Rule) => Rule.required(),

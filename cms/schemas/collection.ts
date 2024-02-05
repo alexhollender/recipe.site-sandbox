@@ -30,6 +30,23 @@ export default Sanity.defineType({
       },
     },
     {
+      name: 'recipes',
+      title: 'Recipes',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {
+              type: 'recipe',
+              title: 'Recipe',
+            },
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'description',
       title: 'Description',
       type: 'richtextSimple',
@@ -45,23 +62,6 @@ export default Sanity.defineType({
       name: 'color',
       title: 'Color',
       type: 'color',
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: 'recipes',
-      title: 'Recipes',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {
-              type: 'recipe',
-              title: 'Recipe',
-            },
-          ],
-        },
-      ],
       validation: (Rule) => Rule.required(),
     },
   ],

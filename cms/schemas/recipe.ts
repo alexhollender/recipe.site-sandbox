@@ -219,6 +219,7 @@ const Recipe = Sanity.defineType({
       name: 'difficultyLevel',
       title: 'Difficulty Level',
       type: 'string',
+      group: 'meta',
       options: {
         list: [
           { title: 'Easy', value: 'easy' },

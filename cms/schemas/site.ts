@@ -45,22 +45,6 @@ export default Sanity.defineType({
       ],
     },
     {
-      name: 'recipes',
-      title: 'Recipes',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {
-              title: 'Recipe',
-              type: 'recipe',
-            },
-          ],
-        },
-      ],
-    },
-    {
       name: 'featuredRecipes',
       title: 'Featured Recipes',
       type: 'array',
@@ -130,6 +114,22 @@ export default Sanity.defineType({
               title: 'URL',
               type: 'url',
               validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'recipes',
+      title: 'Recipes',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {
+              title: 'Recipe',
+              type: 'recipe',
             },
           ],
         },

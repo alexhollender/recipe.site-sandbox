@@ -1,4 +1,5 @@
 import * as Types from '@/lib/types';
+import * as Ui from '@/ui';
 
 import { PortableText, PortableTextReactComponents } from '@portabletext/react';
 
@@ -10,10 +11,10 @@ type RichtextProps = {
 
 const RichtextComponents: Partial<PortableTextReactComponents> = {
   block: {
-    normal: ({ children }) => <p className="mb-12">{children}</p>,
-    h1: ({ children }) => <p>{children}</p>,
-    h2: ({ children }) => <p className="mt-12 mb-4">{children}</p>,
-    h3: ({ children }) => <p className="mt-8 mb-4">{children}</p>,
+    normal: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
+    h1: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
+    h2: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
+    h3: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
   },
   marks: {
     em: ({ children }) => <em className="italic font-normal">{children}</em>,
@@ -44,8 +45,27 @@ const RichtextComponents: Partial<PortableTextReactComponents> = {
   },
 };
 
-const Richtext: React.FC<RichtextProps> = ({ content }) => {
-  return <PortableText value={content} components={RichtextComponents} />;
+export const Styled: React.FC<RichtextProps> = ({ content }) => {
+  return (
+    <div className="space-y-4">
+      <PortableText value={content} components={RichtextComponents} />
+    </div>
+  );
 };
 
-export default Richtext;
+export const Inherited: React.FC<RichtextProps> = ({ content }) => {
+  return (
+    <PortableText
+      value={content}
+      components={{
+        block: {
+          normal: ({ children }) => <span>{children}</span>,
+        },
+        marks: {
+          em: ({ children }) => <em className="italic">{children}</em>,
+          strong: ({ children }) => <strong className="font-heavy">{children}</strong>,
+        },
+      }}
+    />
+  );
+};

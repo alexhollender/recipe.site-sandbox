@@ -3,7 +3,7 @@ import * as NextNavigation from 'next/navigation';
 import * as React from 'react';
 import * as Chef from '@/lib/chef';
 import * as SitesShow from '@/app/[site]/page';
-import * as Ui from '@/ui';
+import * as Views from '@/views';
 
 type RecipesShowProps = {
   params: SitesShow.Props['params'] & {
@@ -18,29 +18,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = async ({ params }) => {
   ]);
   if (!site || !recipe) return NextNavigation.notFound();
 
-  return (
-    <div>
-      <h1>{recipe.title}</h1>
-      {recipe.description && <Ui.Richtext content={recipe.description} />}
-      {recipe.instructionGroups &&
-        recipe.instructionGroups.map((instructionGroup) => {
-          return (
-            <div key={instructionGroup.title}>
-              <h2>{instructionGroup.title}</h2>
-              <ol>
-                {instructionGroup.instructions.map((instruction) => {
-                  return (
-                    <li key={instruction._key}>
-                      <Ui.Richtext content={instruction.content} />
-                    </li>
-                  );
-                })}
-              </ol>
-            </div>
-          );
-        })}
-    </div>
-  );
+  return <Views.RecipesShow site={site} recipe={recipe} />;
 };
 
 export default RecipesShow;

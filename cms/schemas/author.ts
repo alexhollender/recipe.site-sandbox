@@ -8,8 +8,16 @@ export default Sanity.defineType({
   icon: Icons.Author,
   preview: {
     select: {
-      title: 'name',
-      subtitle: 'slug.current',
+      name: 'name',
+      slug: 'slug.current',
+      avatar: 'avatar',
+    },
+    prepare({ name, slug, avatar }) {
+      return {
+        title: name,
+        subtitle: slug,
+        media: avatar,
+      };
     },
   },
   fields: [
@@ -27,6 +35,12 @@ export default Sanity.defineType({
       options: {
         source: 'title',
       },
+    },
+    {
+      name: 'avatar',
+      title: 'Avatar',
+      type: 'image',
+      // validation: (Rule) => Rule.required(),
     },
   ],
 });

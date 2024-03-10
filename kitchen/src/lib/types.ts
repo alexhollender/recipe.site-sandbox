@@ -8,6 +8,7 @@ export type Author = {
   _id: string;
   name: string;
   slug: string;
+  avatar: Image | null;
 };
 
 export type RecipeCategory = {
@@ -148,6 +149,7 @@ export type Recipe = {
   tags: Tag[];
   description: PortableText | null;
   featuredMedia: Media;
+  media: Media[];
   prepTimeMinutes: number | null;
   cookTimeMinutes: number | null;
   timing: string | null;

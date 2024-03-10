@@ -3,12 +3,32 @@ import * as Types from '@/lib/types';
 
 import groq from 'groq';
 
+const IMAGE_QUERY = groq`
+  {
+    asset -> {
+      _id,
+      _type,
+      metadata {
+        lqip,
+        dimensions {
+          aspectRatio,
+          width,
+          height
+        }
+      }
+    },
+    caption,
+    crop
+  }
+`;
+
 const AUTHOR_QUERY = groq`
   {
     _type,
     _id,
     name,
-    "slug": slug.current
+    "slug": slug.current,
+    avatar ${IMAGE_QUERY}
   }
 `;
 
@@ -39,25 +59,6 @@ const TAG_QUERY = groq`
   }
 `;
 
-const IMAGE_QUERY = groq`
-  {
-    asset -> {
-      _id,
-      _type,
-      metadata {
-        lqip,
-        dimensions {
-          aspectRatio,
-          width,
-          height
-        }
-      }
-    },
-    caption,
-    crop
-  }
-`;
-
 const FILE_QUERY = groq`
   {
     _type,
@@ -74,7 +75,7 @@ const MEDIA_QUERY = groq`
     _type,
     _key,
     "image": image ${IMAGE_QUERY},
-    "video": file ${FILE_QUERY},
+    "video": video ${FILE_QUERY},
     alternateText,
     caption
   }
@@ -115,7 +116,7 @@ const UNIT_QUERY = groq`
   }
 `;
 
-const PREPARTION_QUERY = groq`
+const PREPARATION_QUERY = groq`
   {
     _type,
     _id,
@@ -135,7 +136,7 @@ const INGREDIENT_USAGE_QUERY = groq`
   link,
   preperationModifier,
   "unit": unit -> ${UNIT_QUERY},
-  "preparation": preparation -> ${PREPARTION_QUERY},
+  "preparation": preparation -> ${PREPARATION_QUERY},
   note
 }
 `;

@@ -37,10 +37,10 @@ type TextStyle = {
   boldWeight: string;
 };
 
-const TextStyle = (props: TextProps, style: TextStyle) => {
+const TextStyle = ({ bold, ...props }: TextProps, style: TextStyle) => {
   return (
     <Base
-      defaultClasses={`${style.family} ${style.size} ${props.bold ? style.boldWeight : style.baseWeight}`}
+      defaultClasses={`${style.family} ${style.size} ${bold ? style.boldWeight : style.baseWeight}`}
       {...props}
     />
   );

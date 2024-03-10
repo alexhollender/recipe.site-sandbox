@@ -1,3 +1,5 @@
+export { default as pluralize } from 'pluralize';
+
 const addClass = (base: string, newClass: string) => {
   if (!newClass) return base;
   if (base === '') return newClass;
@@ -55,4 +57,29 @@ export const formatDate = (isoDateString: string): string => {
     day: 'numeric',
   };
   return date.toLocaleDateString('en-US', options);
+};
+
+const unitMap: Record<string, string> = {
+  cup: 'cups',
+  piece: 'pieces',
+  serving: 'servings',
+  block: 'blocks',
+  fillet: 'fillets',
+  clove: 'cloves',
+  bunch: 'bunches',
+  handful: 'handfuls',
+  knob: 'knobs',
+};
+
+// Returns the pluralized version of the unit
+export const pluralizeUnit = (unit: string, min: number, max: number | null): string => {
+  // Check if the unit exists in the unitMap and the quantity is greater than one
+  if (unitMap[unit] && (min > 1 || (max !== null && max > 1))) {
+    // Return the pluralized form of the unit
+    return unitMap[unit];
+  }
+
+  // If the unit is not in the unitMap or the quantity is not greater than one,
+  // return the original unit
+  return unit;
 };

@@ -129,6 +129,7 @@ const PREPARATION_QUERY = groq`
 
 const INGREDIENT_USAGE_QUERY = groq`
 {
+  _id,
   "ingredient": ingredient -> ${INGREDIENT_QUERY},
   ingredientTitleOverride,
   quantityMin,

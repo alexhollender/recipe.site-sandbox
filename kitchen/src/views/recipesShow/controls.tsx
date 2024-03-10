@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import * as Types from '@/lib/types';
-import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import * as Ui from '@/ui';
 
 type RecipeProps = {
@@ -19,14 +18,12 @@ const Controls: React.FC<RecipeProps> = ({ recipe }) => {
       <Ui.Select.Root
         name="servings"
         id="servings"
+        aria-label="Servings"
         value={servings}
         onChange={(e) => {
           setServings(e.target.value);
         }}
       >
-        <label aria-hidden="true" htmlFor="servings">
-          Servings
-        </label>
         <Ui.Select.Option value="1">1 serving</Ui.Select.Option>
         <Ui.Select.Option value="2">2 servings</Ui.Select.Option>
         <Ui.Select.Option value="4">4 servings</Ui.Select.Option>

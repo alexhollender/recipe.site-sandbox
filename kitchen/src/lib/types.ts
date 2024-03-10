@@ -112,6 +112,8 @@ export type Preparation = {
 };
 
 export type IngredientUsage = {
+  _type: 'ingredientUsage';
+  _id: string;
   ingredient: Ingredient;
   ingredientTitleOverride: string | null;
   link: string;

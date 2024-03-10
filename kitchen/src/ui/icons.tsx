@@ -28,3 +28,24 @@ export const Pause = () => {
     </svg>
   );
 };
+
+export const DownCarrot = () => {
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 14 14"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="expand-collapse" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon
+          id="Path"
+          fill="currentColor"
+          fill-rule="nonzero"
+          points="12.649 3 7 8.404 1.4742 3 0 4.4742 7 11.4742 14 4.4742"
+        />
+      </g>
+    </svg>
+  );
+};

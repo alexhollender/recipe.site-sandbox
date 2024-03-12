@@ -1,3 +1,5 @@
+import * as RecipeContext from '@/lib/recipeContext';
+import * as SiteContext from '@/lib/siteContext';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
 
@@ -20,13 +22,9 @@ const RichtextComponents: Partial<PortableTextReactComponents> = {
     em: ({ children }) => <em className="italic font-normal">{children}</em>,
     ingredientUsageReference: ({ children, value }) => {
       return (
-        <span>
-          {children} ({value.ingredientUsage.ingredient.title} @ {value.ingredientUsage.quantityMin}{' '}
-          {value.ingredientUsage.unit
-            ? value.ingredientUsage.unit.abbreviation || value.ingredientUsage.unit.title
-            : ''}
-          )
-        </span>
+        <IngredientUsageReference ingredientUsage={value.ingredientUsage}>
+          {children}
+        </IngredientUsageReference>
       );
     },
     measurement: ({ children, value }) => {
@@ -45,12 +43,25 @@ const RichtextComponents: Partial<PortableTextReactComponents> = {
   },
 };
 
-export const Styled: React.FC<RichtextProps> = ({ content }) => {
+export const IngredientUsageReference: React.FC<
+  React.PropsWithChildren<{ ingredientUsage: Types.IngredientUsage }>
+> = ({ children, ingredientUsage }) => {
+  const recipeContext = RecipeContext.useContext();
+
   return (
-    <div className="space-y-4">
-      <PortableText value={content} components={RichtextComponents} />
-    </div>
+    <span>
+      <Ui.Text.Body bold as="span">
+        {children}
+      </Ui.Text.Body>{' '}
+      <Ui.Text.Body as="span" className="text-primary-tint">
+        (<Ui.IngredientUsageAmount ingredientUsage={ingredientUsage} />)
+      </Ui.Text.Body>
+    </span>
   );
+};
+
+export const Styled: React.FC<RichtextProps> = ({ content }) => {
+  return <PortableText value={content} components={RichtextComponents} />;
 };
 
 export const Inherited: React.FC<RichtextProps> = ({ content }) => {

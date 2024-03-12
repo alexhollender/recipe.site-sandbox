@@ -83,3 +83,50 @@ export const pluralizeUnit = (unit: string, min: number, max: number | null): st
   // return the original unit
   return unit;
 };
+
+const fractionMap: Record<number, string | null> = {
+  0.0: null,
+  0.2: '⅕',
+  0.125: '⅛',
+  0.25: '¼',
+  0.3: '⅓',
+  0.4: '⅖',
+  0.5: '½',
+  0.6: '⅔',
+  0.75: '¾',
+  0.8: '⅘',
+};
+
+// Rounds the number to a given fraction, then converts to fraction symbol
+export const toRoundedFraction = (number: number): string => {
+  // Check if the number is a whole number
+  if (number % 1 === 0) {
+    return number.toString();
+  }
+
+  // Directly round to the nearest fraction in the fractionMap
+  const roundedFraction = Object.keys(fractionMap).reduce((prev: string, curr: string) =>
+    Math.abs(parseFloat(curr) - (number % 1)) < Math.abs(parseFloat(prev) - (number % 1))
+      ? curr
+      : prev,
+  );
+
+  // Convert roundedFraction to a number
+  const roundedNumber = Math.floor(number) + parseFloat(roundedFraction);
+
+  // If the whole part of the number is 0, return only the fraction symbol
+  if (Math.floor(number) === 0) {
+    return fractionMap[parseFloat(roundedFraction)] || '';
+  }
+
+  // If the rounded fraction part is 0 (and maps to null), return just the whole part
+  if (parseFloat(roundedFraction) === 0.0) {
+    return roundedNumber.toString();
+  }
+
+  // Get the fraction symbol from the fractionMap
+  const fractionSymbol = fractionMap[parseFloat(roundedFraction)];
+
+  // Return the combined string of the whole part and the fraction symbol
+  return `${Math.floor(number)} ${fractionSymbol || ''}`;
+};

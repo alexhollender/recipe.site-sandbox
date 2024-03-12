@@ -77,6 +77,15 @@ export default Sanity.defineType({
       description:
         'Mostly for solid ingredients. To convert between volume and weight measurements.',
       type: 'number',
+      hidden: ({ parent }) => parent?.ingredientType !== 'solid',
+      validation: (Rule) =>
+        Rule.custom((gramsPerCup, context) => {
+          const parent = context.parent as any;
+          if (!gramsPerCup && parent?.ingredientType === 'solid') {
+            return 'Grams Per Cup is required for solid ingredients';
+          }
+          return true;
+        }),
     },
   ],
 });

@@ -2,6 +2,7 @@
 
 import * as Next from 'next';
 import * as React from 'react';
+import * as RecipeContext from '@/lib/recipeContext';
 import * as Site from '@/lib/site';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
@@ -22,7 +23,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
     setIsIngredientsDisplayed((state) => !state);
   };
 
-  const mediaArray = [props.recipe.featuredMedia, ...props.recipe.media];
+  const mediaArray = [props.recipe.featuredMedia, ...(props.recipe.media || [])];
 
   return (
     <div>
@@ -65,10 +66,17 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
       </Ui.Container>
       <Ui.Container className="mt-4">
         <Ui.Grid>
-          <div className="col-span-5">
-            <div className="bg-secondary-tint p-4 rounded-md">
+          <div className="col-span-12 md:col-span-5">
+            <div className="bg-secondary-tint p-4 rounded-md sticky top-5">
               <div className="flex items-center" role="button" onClick={onToggleIngredients}>
-                <div className="h-4 w-4 mr-2">
+                <div
+                  className={Utils.cx([
+                    'h-4 w-4 mr-2 transition-transform',
+                    {
+                      '-rotate-90': isIngredientsDisplayed === false,
+                    },
+                  ])}
+                >
                   <Ui.Icons.DownCarrot />
                 </div>
                 <Ui.Text.Title as="h2">{`Ingredients (${props.recipe.ingredientUsageCount})`}</Ui.Text.Title>
@@ -79,7 +87,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                     return (
                       <div key={ingredientUsageGroup.title}>
                         {ingredientUsageGroup.title && (
-                          <div className="border-b mb-3">
+                          <div className="border-b border-primary-tint mb-3 pb-0.5">
                             <Ui.Text.Highlight as="h3">
                               {ingredientUsageGroup.title}
                             </Ui.Text.Highlight>
@@ -90,9 +98,21 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                             return (
                               <li key={ingredientUsage._id}>
                                 <IngredientUsage ingredientUsage={ingredientUsage} />
+                                {ingredientUsage.note && (
+                                  <div className="pl-6">
+                                    <Ui.Text.Body className="italic text-primary-tint">
+                                      <Ui.Richtext.Styled content={ingredientUsage.note} />
+                                    </Ui.Text.Body>
+                                  </div>
+                                )}
                               </li>
                             );
                           })}
+                          {ingredientUsageGroup.note && (
+                            <Ui.Text.Body className="italic text-primary-tint">
+                              <Ui.Richtext.Styled content={ingredientUsageGroup.note} />
+                            </Ui.Text.Body>
+                          )}
                         </ol>
                       </div>
                     );
@@ -101,24 +121,20 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               )}
             </div>
           </div>
-          <div className="col-span-7">
-            {props.recipe.instructionGroups &&
-              props.recipe.instructionGroups.map((instructionGroup) => {
-                return (
-                  <div key={instructionGroup.title}>
-                    <h2>{instructionGroup.title}</h2>
-                    <ol>
-                      {instructionGroup.instructions.map((instruction) => {
-                        return (
-                          <li key={instruction._key}>
-                            <Ui.Richtext.Styled content={instruction.content} />
-                          </li>
-                        );
-                      })}
-                    </ol>
-                  </div>
-                );
-              })}
+          <div className="col-span-12 md:col-span-7">
+            <div className="mt-5">
+              <Ui.Text.Title as="h2">Instructions</Ui.Text.Title>
+            </div>
+            <div className="divide-y">
+              {props.recipe.instructionGroups &&
+                props.recipe.instructionGroups.map((instructionGroup) => {
+                  return (
+                    <div className="py-5" key={instructionGroup._key}>
+                      <InstructionGroup instructionGroup={instructionGroup} />
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </Ui.Grid>
       </Ui.Container>
@@ -128,44 +144,85 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
 
 export default RecipesShow;
 
+const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.InstructionGroup }) => {
+  const recipeContext = RecipeContext.useContext();
+
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
+
+  const onToggleIsCollapsed = () => {
+    setIsCollapsed((state) => !state);
+  };
+
+  return (
+    <div>
+      {instructionGroup.title && (
+        <div
+          className={Utils.cx([
+            'flex items-center',
+            {
+              'mb-3': isCollapsed === false,
+            },
+          ])}
+          role="button"
+          onClick={onToggleIsCollapsed}
+        >
+          <div
+            className={Utils.cx([
+              'h-4 w-4 mr-2 transition-transform',
+              {
+                '-rotate-90': isCollapsed === true,
+              },
+            ])}
+          >
+            <Ui.Icons.DownCarrot />
+          </div>
+          <Ui.Text.Highlight as="h3">{instructionGroup.title}</Ui.Text.Highlight>
+        </div>
+      )}
+      {isCollapsed === false && (
+        <ol className="space-y-7">
+          {instructionGroup.instructions.map((instruction) => {
+            return (
+              <li
+                key={instruction._key}
+                role="button"
+                className="relative"
+                onClick={() => {
+                  recipeContext.setSelectedInstruction(instruction._key);
+                }}
+              >
+                <div
+                  className={Utils.cx([
+                    '-inset-2 absolute bg-secondary-tint rounded-lg -z-10 opacity-0 transition-opacity duration-50',
+                    {
+                      'opacity-100':
+                        recipeContext.state.selectedInstructionKey === instruction._key,
+                    },
+                  ])}
+                ></div>
+                <Ui.Richtext.Styled content={instruction.content} />
+                {instruction.note && (
+                  <div className="pt-2">
+                    <Ui.Text.Body className="italic text-primary-tint">
+                      <Ui.Richtext.Styled content={instruction.note} />
+                    </Ui.Text.Body>
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </div>
+  );
+};
+
 const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
   ingredientUsage,
 }) => {
+  const recipeContext = RecipeContext.useContext();
+
   const title = ingredientUsage.ingredientTitleOverride || ingredientUsage.ingredient.title;
-
-  const getQuantity = () => {
-    if (!ingredientUsage.quantityMin) return null;
-    if (ingredientUsage.quantityMax)
-      return `${ingredientUsage.quantityMin} - ${ingredientUsage.quantityMax}`;
-    return ingredientUsage.quantityMin;
-  };
-
-  const quantity = getQuantity();
-
-  const getUnit = () => {
-    if (!ingredientUsage.unit) return null;
-    if (!ingredientUsage.quantityMin) return ` ${ingredientUsage.unit.title}`;
-    const pluralized = Utils.pluralizeUnit(
-      ingredientUsage.unit.title,
-      ingredientUsage.quantityMin,
-      ingredientUsage.quantityMax,
-    );
-    return ` ${pluralized}`;
-  };
-
-  const unit = getUnit();
-
-  const getPreparation = () => {
-    if (!ingredientUsage.preparation) return null;
-    const optionalComma = quantity ? ', ' : '';
-
-    if (ingredientUsage.preperationModifier)
-      return `${optionalComma}${ingredientUsage.preparation.pastTense} ${ingredientUsage.preperationModifier}`;
-
-    return `${optionalComma}${ingredientUsage.preparation.pastTense}`;
-  };
-
-  const preparation = getPreparation();
 
   return (
     <div className="flex items-start">
@@ -175,15 +232,21 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
         id={ingredientUsage._id}
         name={ingredientUsage._id}
         value={ingredientUsage._id}
+        onChange={(e) => {
+          if (e.target.checked) {
+            recipeContext.selectIngredientUsage(ingredientUsage);
+            return;
+          }
+          recipeContext.unselectIngredientUsage(ingredientUsage);
+        }}
+        checked={recipeContext.state.selectedIngredientUsageIds.includes(ingredientUsage._id)}
       ></input>
       <label htmlFor={ingredientUsage._id}>
         <Ui.Text.Label>
           <Ui.Text.Label as="span" className="pr-2" bold>
             {title}
           </Ui.Text.Label>
-          ({quantity && <span>{quantity}</span>}
-          {unit && <span>{unit}</span>}
-          {preparation && <span>{preparation}</span>})
+          (<Ui.IngredientUsageAmount ingredientUsage={ingredientUsage} />)
         </Ui.Text.Label>
       </label>
     </div>

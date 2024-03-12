@@ -1,6 +1,7 @@
 import * as Next from 'next';
 import * as NextNavigation from 'next/navigation';
 import * as React from 'react';
+import * as RecipeContext from '@/lib/recipeContext';
 import * as Chef from '@/lib/chef';
 import * as SitesShow from '@/app/[site]/page';
 import * as Views from '@/views';
@@ -18,7 +19,11 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = async ({ params }) => {
   ]);
   if (!site || !recipe) return NextNavigation.notFound();
 
-  return <Views.RecipesShow site={site} recipe={recipe} />;
+  return (
+    <RecipeContext.Provider recipe={recipe}>
+      <Views.RecipesShow site={site} recipe={recipe} />
+    </RecipeContext.Provider>
+  );
 };
 
 export default RecipesShow;

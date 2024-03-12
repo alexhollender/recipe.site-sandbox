@@ -1,17 +1,48 @@
 'use client';
 
 import * as React from 'react';
+import * as RecipeContext from '@/lib/recipeContext';
+import * as SiteContext from '@/lib/siteContext';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
+import * as Utils from '@/lib/utils';
 
 type RecipeProps = {
   recipe: Types.Recipe;
 };
 
+const QUANTITY_MULTIPLIERS = [0.5, 1, 2, 3, 4];
+
 const Controls: React.FC<RecipeProps> = ({ recipe }) => {
-  const [servings, setServings] = React.useState('4');
-  const [measurementSystem, setMeasurementSystem] = React.useState('us');
-  const [temperatureSystem, setTemperatureSystem] = React.useState('fahrenheit');
+  const recipeContext = RecipeContext.useContext();
+  const siteContext = SiteContext.useContext();
+
+  const getServingLabel = (servings: number): string => {
+    /*
+    True for 1, 0.5, etc., implying singular or fractional but not multiple
+    */
+    const isOneOrLess = servings <= 1;
+
+    if (isOneOrLess && recipe.servingDescription) {
+      return Utils.pluralize.singular(recipe.servingDescription);
+    }
+
+    if (recipe.servingDescription) {
+      return Utils.pluralize.plural(recipe.servingDescription);
+    }
+
+    if (isOneOrLess) {
+      return 'serving';
+    }
+
+    return 'servings';
+  };
+
+  const servingString = (multiplier: number): string => {
+    const totalServings = recipe.yieldServings * multiplier;
+    const servingLabel = getServingLabel(totalServings);
+    return `${Utils.toRoundedFraction(totalServings)} ${servingLabel}`;
+  };
 
   return (
     <div className="flex space-x-5">
@@ -19,24 +50,23 @@ const Controls: React.FC<RecipeProps> = ({ recipe }) => {
         name="servings"
         id="servings"
         aria-label="Servings"
-        value={servings}
+        value={recipeContext.state.quantityMultiplier}
         onChange={(e) => {
-          setServings(e.target.value);
+          recipeContext.setQuantityMultiplier(parseFloat(e.target.value));
         }}
       >
-        <Ui.Select.Option value="1">1 serving</Ui.Select.Option>
-        <Ui.Select.Option value="2">2 servings</Ui.Select.Option>
-        <Ui.Select.Option value="4">4 servings</Ui.Select.Option>
-        <Ui.Select.Option value="6">6 servings</Ui.Select.Option>
-        <Ui.Select.Option value="8">8 Servings</Ui.Select.Option>
+        {QUANTITY_MULTIPLIERS.map((multiplier) => {
+          return (
+            <Ui.Select.Option key={multiplier} value={multiplier}>
+              {servingString(multiplier)}
+            </Ui.Select.Option>
+          );
+        })}
       </Ui.Select.Root>
       <Ui.ToggleGroup.Root
-        value={measurementSystem}
-        onValueChange={(newValue) => {
-          setMeasurementSystem((currentValue) => {
-            if (newValue === '') return currentValue;
-            return newValue;
-          });
+        value={siteContext.state.measurementSystem}
+        onValueChange={(newValue: Types.MeasurementSystem | '') => {
+          if (newValue !== '') siteContext.setMeasurementSystem(newValue);
         }}
         type="single"
         defaultValue="us"
@@ -50,12 +80,9 @@ const Controls: React.FC<RecipeProps> = ({ recipe }) => {
         </Ui.ToggleGroup.Item>
       </Ui.ToggleGroup.Root>
       <Ui.ToggleGroup.Root
-        value={temperatureSystem}
-        onValueChange={(newValue) => {
-          setTemperatureSystem((currentValue) => {
-            if (newValue === '') return currentValue;
-            return newValue;
-          });
+        value={siteContext.state.temperatureSystem}
+        onValueChange={(newValue: Types.TemperatureSystem | '') => {
+          if (newValue !== '') siteContext.setTemperatureSystem(newValue);
         }}
         type="single"
         defaultValue="fahrenheit"

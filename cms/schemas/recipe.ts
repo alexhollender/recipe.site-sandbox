@@ -205,6 +205,7 @@ const Recipe = Sanity.defineType({
       type: 'number',
       fieldset: 'servings',
       group: 'meta',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'servingDescription',

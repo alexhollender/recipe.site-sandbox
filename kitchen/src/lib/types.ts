@@ -90,10 +90,16 @@ export type Ingredient = {
   alternateTitles: string[] | null;
   featuredImage: Image | null;
   description: PortableText;
-  ingredientType: 'solid' | 'liquid';
-  gramsPerCup: number | null;
-  mlPerCup: number | null;
-};
+} & (
+  | {
+      ingredientType: 'solid';
+      gramsPerCup: number;
+    }
+  | {
+      ingredientType: 'liquid';
+      gramsPerCup: null;
+    }
+);
 
 export type Unit = {
   _type: 'unit';
@@ -102,6 +108,8 @@ export type Unit = {
   slug: string;
   abbreviation: string | null;
 };
+
+export type UnitsByTitle = Record<string, Unit>;
 
 export type Preparation = {
   _type: 'preparation';
@@ -125,38 +133,49 @@ export type IngredientUsage = {
   note: PortableText | null;
 };
 
-export type IngredientConversion = {
-  quantityMin: IngredientUsage['quantityMin'];
-  quantityMax: IngredientUsage['quantityMax'];
-  unitSlug: Unit['slug'];
-  gramsPerCup: Ingredient['gramsPerCup'];
-  recipeUnits: string | string[];
-  quantityMultiplier: number;
+export type IngredientUsageGroup = {
+  _key: string;
+  title?: string | null;
+  note?: PortableText | null;
+  ingredientUsages: IngredientUsage[];
 };
 
-export type ConversionSettings = {
-  recipeUnits: string | string[];
-  quantityMultiplier: number;
+export type Instruction = {
+  _key: string;
+  content: PortableText;
+  timerMinutes: number | null;
+  note: PortableText | null;
+  media: Media[] | null;
 };
 
-export type Recipe = {
+export type InstructionGroup = {
+  _key: string;
+  title: string | null;
+  instructions: Instruction[];
+};
+
+export type RecipePreview = {
   _type: 'recipe';
   _id: string;
   title: string;
   slug: string;
   createdAt: string; // Date
-  keywords: string[] | null;
   categories: RecipeCategory[];
   cuisines: Cuisine[];
   tags: Tag[];
   description: PortableText | null;
   featuredMedia: Media;
-  media: Media[];
+  difficultyLevel: 'easy' | 'medium' | 'hard' | null;
+};
+
+export type Recipe = RecipePreview & {
+  keywords: string[] | null;
+  media: Media[] | null;
   prepTimeMinutes: number | null;
   cookTimeMinutes: number | null;
   timing: string | null;
-  yieldServings: number | null;
-  yieldDescription: string | null;
+  yieldServings: number;
+  servingDescription: string | null;
   storyExcerpt: PortableText | null;
   storyMore: PortableText | null;
   note: PortableText | null;
@@ -170,28 +189,23 @@ export type Recipe = {
       }[]
     | null;
   ingredientUsageCount: number;
-  ingredientUsageGroups:
+  ingredientUsageGroups: IngredientUsageGroup[] | null;
+  instructionGroups: InstructionGroup[] | null;
+} & (
     | {
-        _key: string;
-        title: string | null;
-        note: PortableText | null;
-        ingredientUsages: IngredientUsage[];
-      }[]
-    | null;
-  instructionGroups:
+        legacyRecipeData: null;
+      }
     | {
-        _key: string;
-        title: string | null;
-        instructions: {
-          _key: string;
-          content: PortableText;
-          timerMinutes: number | null;
-          note: PortableText | null;
-          media: Media[] | null;
-        }[];
-      }[]
-    | null;
-};
+        legacyRecipeData: {
+          featuredImage: {
+            src: string;
+            width: number;
+            height: number;
+          };
+          content: string;
+        };
+      }
+  );
 
 export type Site = {
   _type: 'site';
@@ -201,4 +215,26 @@ export type Site = {
   authors: Author[];
   recipes: Recipe[];
   featuredRecipes: Recipe[];
+};
+
+export type MeasurementSystem = 'us' | 'metric';
+export type TemperatureSystem = 'celsius' | 'fahrenheit';
+
+export type Collection = {
+  _type: 'collection';
+  _id: string;
+  title: string;
+  slug: string;
+  description: PortableText;
+  featuredMedia: Media;
+  color: string;
+  recipes: RecipePreview[];
+};
+
+export type SiteGlobals = {
+  site: Site;
+  categories: RecipeCategory[];
+  cuisines: Cuisine[];
+  tags: Tag[];
+  units: Unit[];
 };

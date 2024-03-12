@@ -1,6 +1,7 @@
 import * as Chef from '@/lib/chef';
 import * as NextNavigation from 'next/navigation';
 import * as Site from '@/lib/site';
+import * as SiteContext from '@/lib/siteContext';
 import * as Ui from '@/ui';
 
 export type Props = {
@@ -12,6 +13,8 @@ export type Props = {
 const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
   const site = await Chef.Sites.get({ slug: props.params.site });
   if (!site) return NextNavigation.notFound();
+
+  const globals = await Chef.SiteGlobals.get(props.params.site);
 
   const primaryAuthor = Site.primaryAuthor(site);
 
@@ -32,26 +35,28 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
           --color-secondary-tint: ${ColorTheme.secondaryTint};
         }
       `}</style>
-      <div className="border-b py-3 mb-3">
-        <Ui.Container>
-          <div className="flex justify-between items-center">
-            <div>
-              <p className="text-2xl">{primaryAuthor.name}</p>
+      <SiteContext.Provider globals={globals}>
+        <div className="border-b py-3 mb-3">
+          <Ui.Container>
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="text-2xl">{primaryAuthor.name}</p>
+              </div>
+              <nav>
+                <ul className="flex space-x-4">
+                  <li>
+                    <a href="/site1">Site 1</a>
+                  </li>
+                  <li>
+                    <a href="/site2">Site 2</a>
+                  </li>
+                </ul>
+              </nav>
             </div>
-            <nav>
-              <ul className="flex space-x-4">
-                <li>
-                  <a href="/site1">Site 1</a>
-                </li>
-                <li>
-                  <a href="/site2">Site 2</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </Ui.Container>
-      </div>
-      <main>{props.children}</main>
+          </Ui.Container>
+        </div>
+        <main>{props.children}</main>
+      </SiteContext.Provider>
     </>
   );
 };

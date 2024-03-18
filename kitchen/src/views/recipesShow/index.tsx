@@ -8,6 +8,8 @@ import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
 import * as Utils from '@/lib/utils';
 
+import Link from 'next/link';
+
 import Controls from '@/views/recipesShow/controls';
 import Story from '@/views/recipesShow/story';
 
@@ -55,9 +57,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
             )}
           </div>
           <div className="hidden md:block col-span-3">
-            <div className="border border-tint p-2 rounded-md">
-              <Ui.Text.Body>{Site.primaryAuthor(props.site).name}</Ui.Text.Body>
-            </div>
+            <Bio site={props.site} />
           </div>
         </Ui.Grid>
       </Ui.Container>
@@ -143,6 +143,50 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
 };
 
 export default RecipesShow;
+
+const Bio = ({ site }: { site: Types.Site }) => {
+  const author = Site.primaryAuthor(site);
+
+  return (
+    <div className="border border-tint p-6 rounded-md text-center">
+      {author.avatar && (
+        <div className="rounded-full aspect-square relative overflow-hidden">
+          <Ui.Media.Image image={author.avatar} alt={`${author.name} profile picture`} fill />
+        </div>
+      )}
+      {author.bio && (
+        <div className="mt-6">
+          <Ui.Text.Body>
+            <Ui.Richtext.Inherited content={author.bio} />
+          </Ui.Text.Body>
+        </div>
+      )}
+      {!author.bio && (
+        <div className="mt-6">
+          <Ui.Text.Body>{author.name}</Ui.Text.Body>
+        </div>
+      )}
+      {author.learnMoreLink && (
+        <div className="mt-6">
+          <Link href={author.learnMoreLink.href}>
+            <Ui.Text.Body bold>Learn More</Ui.Text.Body>
+          </Link>
+        </div>
+      )}
+      {site.socialMediaLinks.length > 0 && (
+        <div className="mt-6 justify-center flex space-x-5">
+          {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
+            return (
+              <div key={socialMediaLink._key} className="w-8">
+                <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.InstructionGroup }) => {
   const recipeContext = RecipeContext.useContext();

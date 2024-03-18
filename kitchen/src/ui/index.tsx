@@ -19,3 +19,4 @@ export * as Text from '@/ui/text';
 export * as ToggleGroup from '@/ui/toggleGroup';
 
 export { default as IngredientUsageAmount } from '@/ui/ingredientUsageAmount';
+export { default as SocialMediaLink } from '@/ui/socialMediaLink';

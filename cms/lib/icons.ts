@@ -1,4 +1,5 @@
 import { BiWorld } from 'react-icons/bi';
+import { BsLink45Deg } from 'react-icons/bs';
 import { CgWebsite } from 'react-icons/cg';
 import { FaCarrot, FaTag } from 'react-icons/fa';
 import { FaPlateWheat } from 'react-icons/fa6';
@@ -15,6 +16,7 @@ export const Cuisine = BiWorld;
 export const Equipment = GiCookingPot;
 export const Media = GrMultimedia;
 export const Ingredient = FaCarrot;
+export const Link = BsLink45Deg;
 export const Unit = GiWeight;
 export const Preparation = PiKnife;
 export const Recipe = FaPlateWheat;

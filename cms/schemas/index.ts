@@ -3,7 +3,8 @@ import Collection from './collection';
 import Cuisine from './cuisine';
 import Equipment from './equipment';
 import Ingredient from './ingredient';
-import ingredientUsage from './ingredientUsage';
+import IngredientUsage from './ingredientUsage';
+import Link from './link';
 import Preparation from './preparation';
 import Media from './media';
 import Recipe from './recipe';
@@ -19,7 +20,8 @@ export const schemaTypes = [
   Cuisine,
   Equipment,
   Ingredient,
-  ingredientUsage,
+  IngredientUsage,
+  Link,
   Media,
   Preparation,
   Recipe,

@@ -3,12 +3,20 @@ export type PortableText = {
   _key?: string;
 }[];
 
+export type Link = {
+  _type: 'link';
+  href: string;
+  openInNewTab: boolean;
+};
+
 export type Author = {
   _type: 'author';
   _id: string;
   name: string;
   slug: string;
   avatar: Image | null;
+  bio: PortableText | null;
+  learnMoreLink?: Link | null;
 };
 
 export type RecipeCategory = {
@@ -207,6 +215,12 @@ export type Recipe = RecipePreview & {
       }
   );
 
+export type SocialMediaLink = {
+  _key: string;
+  platform: 'instagram' | 'pinterest' | 'x' | 'youtube' | 'discord' | 'tiktok';
+  url: string;
+};
+
 export type Site = {
   _type: 'site';
   _id: string;
@@ -215,6 +229,8 @@ export type Site = {
   authors: Author[];
   recipes: Recipe[];
   featuredRecipes: Recipe[];
+  collections: Collection[];
+  socialMediaLinks: SocialMediaLink[];
 };
 
 export type MeasurementSystem = 'us' | 'metric';

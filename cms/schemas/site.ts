@@ -107,6 +107,22 @@ export default Sanity.defineType({
               name: 'platform',
               title: 'Platform',
               type: 'string',
+              options: {
+                list: [
+                  { title: 'Instagram', value: 'instagram' },
+                  { title: 'Pinterest', value: 'pinterest' },
+                  { title: 'X', value: 'x' },
+                  { title: 'YouTube', value: 'youtube' },
+                  {
+                    title: 'TikTok',
+                    value: 'tiktok',
+                  },
+                  {
+                    title: 'Discord',
+                    value: 'discord',
+                  },
+                ],
+              },
               validation: (Rule) => Rule.required(),
             },
             {

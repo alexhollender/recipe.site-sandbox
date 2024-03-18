@@ -3,12 +3,40 @@ import * as Types from '@/lib/types';
 
 import groq from 'groq';
 
+const IMAGE_QUERY = groq`
+  {
+    asset -> {
+      _id,
+      _type,
+      metadata {
+        lqip,
+        dimensions {
+          aspectRatio,
+          width,
+          height
+        }
+      }
+    },
+    caption,
+    crop
+  }
+`;
+
+const LINK_QUERY = groq`{
+  _type,
+  href,
+  openInNewTab
+}`;
+
 const AUTHOR_QUERY = groq`
   {
     _type,
     _id,
     name,
-    "slug": slug.current
+    "slug": slug.current,
+    avatar ${IMAGE_QUERY},
+    bio,
+    learnMoreLink ${LINK_QUERY}
   }
 `;
 
@@ -36,25 +64,6 @@ const TAG_QUERY = groq`
     _id,
     title,
     "slug": slug.current
-  }
-`;
-
-const IMAGE_QUERY = groq`
-  {
-    asset -> {
-      _id,
-      _type,
-      metadata {
-        lqip,
-        dimensions {
-          aspectRatio,
-          width,
-          height
-        }
-      }
-    },
-    caption,
-    crop
   }
 `;
 
@@ -148,9 +157,7 @@ const RICHTEXT_QUERY = groq`
     ...,
     markDefs[]{
       ...,
-      _type == "link" => {
-        href
-      },
+      _type == "link" => ${LINK_QUERY},
       _type == "ingredientUsageReference" => {
         ingredientUsage -> ${INGREDIENT_USAGE_QUERY},
       },

@@ -18,16 +18,7 @@ const RichtextBaseBlock = {
       {
         name: 'link',
         title: 'Link',
-        type: 'object',
-        fields: [
-          {
-            name: 'href',
-            type: 'url',
-            title: 'URL',
-            validation: (Rule: Sanity.Rule) =>
-              Rule.uri({ allowRelative: true, scheme: ['http', 'https', 'mailto'] }),
-          },
-        ],
+        type: 'link',
       },
     ],
   },

@@ -42,5 +42,15 @@ export default Sanity.defineType({
       type: 'image',
       // validation: (Rule) => Rule.required(),
     },
+    {
+      name: 'bio',
+      title: 'Bio',
+      type: 'richtextSimple',
+    },
+    {
+      name: 'learnMoreLink',
+      title: 'Learn More Link',
+      type: 'link',
+    },
   ],
 });

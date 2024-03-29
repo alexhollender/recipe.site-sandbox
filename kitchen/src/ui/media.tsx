@@ -64,13 +64,21 @@ export const HoverAutoplayVideo: React.FC<HoverAutoplayProps> = (props) => {
 type VideoProps = {
   video: Types.File;
   className?: string;
-} & Partial<NextImageProps>;
+  videoOnPlay?: () => void;
+  videoOnPause?: () => void;
+  videoPlayState?: 'paused' | 'playing';
+  fill?: boolean;
+};
 
 export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
   const [state, setState] = React.useState<'paused' | 'playing'>('paused');
   const videoPlayerRef = React.useRef<HTMLVideoElement>(null);
 
   const onPlay = () => {
+    if (props.videoOnPlay) {
+      props.videoOnPlay();
+      return;
+    }
     setState((state) => {
       if (state === 'paused') return 'playing';
       return state;
@@ -78,28 +86,34 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
   };
 
   const onPause = () => {
+    if (props.videoOnPause) {
+      props.videoOnPause();
+      return;
+    }
     setState((state) => {
       if (state === 'playing') return 'paused';
       return state;
     });
   };
 
+  const playState = props.videoPlayState || state;
+
   React.useEffect(() => {
     if (!videoPlayerRef.current) return;
 
-    if (state === 'playing') {
+    if (playState === 'playing') {
       videoPlayerRef.current.play();
       return;
     }
-    if (state === 'paused') {
+    if (playState === 'paused') {
       videoPlayerRef.current.pause();
       return;
     }
-  }, [state]);
+  }, [playState]);
 
   return (
     <div className="w-full h-full relative">
-      {state === 'paused' && (
+      {playState === 'paused' && (
         <button
           type="button"
           className="absolute inset-0 w-full h-full flex items-center justify-center"
@@ -110,7 +124,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
         </button>
       )}
 
-      {state === 'playing' && (
+      {playState === 'playing' && (
         <button
           type="button"
           className="absolute inset-0 w-full h-full flex items-center justify-center group"
@@ -134,6 +148,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
         ])}
         /* @ts-ignore */
         src={video.asset.url}
+        loop
         {...props}
       />
     </div>
@@ -142,11 +157,22 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
 
 type MediaProps = {
   media: Types.Media;
+  videoOnPlay?: () => void;
+  videoOnPause?: () => void;
+  videoPlayState?: 'paused' | 'playing';
 } & Partial<NextImageProps>;
 
 export const Media: React.FC<MediaProps> = ({ media, ...props }) => {
   if (media.video) {
-    return <Video video={media.video} {...props} />;
+    return (
+      <Video
+        video={media.video}
+        videoOnPlay={props.videoOnPlay}
+        videoOnPause={props.videoOnPause}
+        videoPlayState={props.videoPlayState}
+        {...props}
+      />
+    );
   }
 
   if (media.image) {

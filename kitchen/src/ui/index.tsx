@@ -23,6 +23,7 @@ export const Grid: React.FC<React.PropsWithChildren> = ({ children }) => {
 };
 
 export * as Cards from '@/ui/cards';
+export * as Chips from '@/ui/chips';
 export * as Icons from '@/ui/icons';
 export * as Media from '@/ui/media';
 export * as Richtext from '@/ui/richtext';

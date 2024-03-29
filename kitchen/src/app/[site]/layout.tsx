@@ -38,30 +38,59 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
         }
       `}</style>
       <SiteContext.Provider globals={globals}>
-        <div className="border-b py-3 mb-3">
-          <Ui.Container>
-            <div className="flex justify-between items-center">
-              <div>
-                <Link href="/about">
+        <div className="flex flex-col min-h-screen">
+          <div className="border-b py-3 mb-7">
+            <Ui.Container>
+              <div className="flex justify-between items-center">
+                <Link href="/">
                   <p className="text-2xl">{primaryAuthor.name}</p>
                 </Link>
-              </div>
-              <nav>
-                <ul className="flex space-x-4">
-                  <li>
-                    <Link href="/recipes">All Recipes</Link>
-                  </li>
-                  {site.linkList && (
+                <nav>
+                  <ul className="flex space-x-4">
                     <li>
-                      <Link href="/links">My links</Link>
+                      <Link href="/recipes" className="hover:opacity-60 transition-opacity">
+                        All Recipes
+                      </Link>
                     </li>
-                  )}
-                </ul>
-              </nav>
-            </div>
-          </Ui.Container>
+                    {site.linkList && (
+                      <li>
+                        <Link href="/links" className="hover:opacity-60 transition-opacity">
+                          My links
+                        </Link>
+                      </li>
+                    )}
+                    <li>
+                      <Link href="/about" className="hover:opacity-60 transition-opacity">
+                        About
+                      </Link>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </Ui.Container>
+          </div>
+          <main className="flex-1">{props.children}</main>
+          <footer className="mt-6 border-t border-secondary-tint py-6">
+            <Ui.Container>
+              <div className="flex justify-between items-center">
+                <p>
+                  © {new Date().getFullYear()} — {site.title}
+                </p>
+                <nav>
+                  <p>
+                    Built with{' '}
+                    <Link
+                      href="https://www.recipe.site"
+                      className="underline hover:opacity-60 transition-opacity"
+                    >
+                      Recipe.site
+                    </Link>
+                  </p>
+                </nav>
+              </div>
+            </Ui.Container>
+          </footer>
         </div>
-        <main>{props.children}</main>
       </SiteContext.Provider>
     </>
   );

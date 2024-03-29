@@ -164,10 +164,48 @@ export default Sanity.defineType({
       validation: (Rule) => Rule.required(),
     },
     {
+      name: 'aboutHeading',
+      title: 'About Heading',
+      type: 'richtextSimple',
+      description: 'The heading for the about section. Defaults to "About".',
+    },
+    {
       name: 'featuredImage',
       title: 'Featured Image',
       type: 'image',
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'productLinks',
+      title: 'Product Links',
+      type: 'array',
+      of: [
+        {
+          name: 'productLink',
+          type: 'object',
+          fields: [
+            {
+              name: 'productTitle',
+              title: 'Product Title',
+              type: 'richtextSimple',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'productImage',
+              title: 'Product Image',
+              type: 'image',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'href',
+              type: 'url',
+              title: 'URL',
+              validation: (Rule) =>
+                Rule.uri({ allowRelative: false, scheme: ['http', 'https', 'mailto'] }),
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'linkList',

@@ -179,6 +179,7 @@ export type RecipePreview = {
   prepTimeMinutes: number;
   cookTimeMinutes: number;
   totalTimeMinutes: number | null;
+  collections: CollectionPreview[];
 };
 
 export type Recipe = RecipePreview & {
@@ -223,6 +224,12 @@ export type SocialMediaLink = {
   url: string;
 };
 
+export type ProductLink = {
+  productTitle: string;
+  productImage: Image;
+  href: string;
+};
+
 export type Site = {
   _type: 'site';
   _id: string;
@@ -234,8 +241,10 @@ export type Site = {
   collections: Collection[];
   socialMediaLinks: SocialMediaLink[];
   aboutShort: PortableText;
+  aboutHeading: PortableText | null;
   about: PortableText;
   featuredImage: Image;
+  productLinks: SanityArrayItem<ProductLink>[];
   linkList: null | {
     title: string;
     links: {
@@ -249,7 +258,17 @@ export type Site = {
 export type MeasurementSystem = 'us' | 'metric';
 export type TemperatureSystem = 'celsius' | 'fahrenheit';
 
-export type Collection = {
+export type CollectionPreview = {
+  _type: 'collection';
+  _id: string;
+  title: string;
+  slug: string;
+  description: PortableText;
+  featuredMedia: Media;
+  color: string;
+};
+
+export type Collection = CollectionPreview & {
   _type: 'collection';
   _id: string;
   title: string;

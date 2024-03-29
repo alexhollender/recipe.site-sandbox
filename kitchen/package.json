@@ -16,6 +16,7 @@
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@sanity/client": "^6.11.1",
     "@sanity/image-url": "^1.0.2",
+    "@tailwindcss/container-queries": "^0.1.1",
     "fuse.js": "^7.0.0",
     "groq": "^3.24.1",
     "next": "14.0.4",

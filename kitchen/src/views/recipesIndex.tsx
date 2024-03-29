@@ -51,22 +51,21 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
   };
 
   return (
-    <div>
-      <Ui.Container className="mt-7">
-        <div className="flex space-x-3 mb-7">
-          <div className="relative py-2 px-2 space-x-2 flex bg-secondary-tint rounded-xl flex-1 focus-within:ring-1 focus-within:ring-primary-tint">
-            <div className="w-7 h-7">
-              <Ui.Icons.Search />
-            </div>
-            <input
-              type="text"
-              placeholder="Search for chicken, dessert, tofu, vegan..."
-              className="flex-1 font-label text-md bg-transparent focus:outline-none"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+    <Ui.Container>
+      <div className="flex space-x-3 mb-7">
+        <div className="relative py-2 px-2 space-x-2 flex bg-secondary-tint rounded-xl flex-1 focus-within:ring-1 focus-within:ring-primary-tint">
+          <div className="w-7 h-7">
+            <Ui.Icons.Search />
           </div>
-          {/* <button
+          <input
+            type="text"
+            placeholder="Search for chicken, dessert, tofu, vegan..."
+            className="flex-1 font-label text-md bg-transparent focus:outline-none"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        {/* <button
             type="button"
             className="flex items-center space-x-2 bg-secondary-tint hover:bg-opacity-50 px-3 rounded-xl transition-colors"
             onClick={() => {
@@ -78,8 +77,8 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
             </div>
             <Ui.Text.Label as="span">Filters</Ui.Text.Label>
           </button> */}
-        </div>
-        {/* {isFilterPaneDisplayed && (
+      </div>
+      {/* {isFilterPaneDisplayed && (
           <section className="border-y border-secondary-tint py-2 my-4">
             <Ui.Grid>
               <div className="col-span-12 sm:col-span-6 lg:col-span-3">
@@ -103,7 +102,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
             </Ui.Grid>
           </section>
         )} */}
-        {/* <div className="pb-6 flex space-x-4 w-full overflow-x-scroll">
+      {/* <div className="pb-6 flex space-x-4 w-full overflow-x-scroll">
           <button
             type="button"
             className="bg-secondary-tint hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
@@ -141,22 +140,21 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
             <Ui.Text.Label>Diet</Ui.Text.Label>
           </button>
         </div> */}
-        <Ui.Grid>
-          {getRecipes().length === 0 && (
-            <div className="col-span-12 text-center mt-2">
-              <Ui.Text.Title>No recipes found for this search</Ui.Text.Title>
+      <Ui.Grid>
+        {getRecipes().length === 0 && (
+          <div className="col-span-12 text-center mt-2">
+            <Ui.Text.Title>No recipes found for this search</Ui.Text.Title>
+          </div>
+        )}
+        {getRecipes().map((recipe) => {
+          return (
+            <div className="col-span-12 sm:col-span-6 lg:col-span-4" key={recipe._id}>
+              <Ui.Cards.Recipe recipe={recipe} />
             </div>
-          )}
-          {getRecipes().map((recipe) => {
-            return (
-              <div className="col-span-12 sm:col-span-6 lg:col-span-4" key={recipe._id}>
-                <Ui.Cards.Recipe recipe={recipe} />
-              </div>
-            );
-          })}
-        </Ui.Grid>
-      </Ui.Container>
-    </div>
+          );
+        })}
+      </Ui.Grid>
+    </Ui.Container>
   );
 };
 

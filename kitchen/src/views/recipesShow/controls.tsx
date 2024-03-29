@@ -45,7 +45,7 @@ const Controls: React.FC<RecipeProps> = ({ recipe }) => {
   };
 
   return (
-    <div className="flex space-x-5">
+    <div className="flex flex-wrap gap-x-5 gap-y-3">
       <Ui.Select.Root
         name="servings"
         id="servings"
@@ -63,38 +63,40 @@ const Controls: React.FC<RecipeProps> = ({ recipe }) => {
           );
         })}
       </Ui.Select.Root>
-      <Ui.ToggleGroup.Root
-        value={siteContext.state.measurementSystem}
-        onValueChange={(newValue: Types.MeasurementSystem | '') => {
-          if (newValue !== '') siteContext.setMeasurementSystem(newValue);
-        }}
-        type="single"
-        defaultValue="us"
-        aria-label="Measurement System"
-      >
-        <Ui.ToggleGroup.Item value="us" aria-label="US">
-          US
-        </Ui.ToggleGroup.Item>
-        <Ui.ToggleGroup.Item value="metric" aria-label="Metric">
-          Metric
-        </Ui.ToggleGroup.Item>
-      </Ui.ToggleGroup.Root>
-      <Ui.ToggleGroup.Root
-        value={siteContext.state.temperatureSystem}
-        onValueChange={(newValue: Types.TemperatureSystem | '') => {
-          if (newValue !== '') siteContext.setTemperatureSystem(newValue);
-        }}
-        type="single"
-        defaultValue="fahrenheit"
-        aria-label="Temperature System"
-      >
-        <Ui.ToggleGroup.Item value="fahrenheit" aria-label="Fahrenheit">
-          °F
-        </Ui.ToggleGroup.Item>
-        <Ui.ToggleGroup.Item value="celsius" aria-label="Celsius">
-          °C
-        </Ui.ToggleGroup.Item>
-      </Ui.ToggleGroup.Root>
+      <div className="flex gap-x-3">
+        <Ui.ToggleGroup.Root
+          value={siteContext.state.measurementSystem}
+          onValueChange={(newValue: Types.MeasurementSystem | '') => {
+            if (newValue !== '') siteContext.setMeasurementSystem(newValue);
+          }}
+          type="single"
+          defaultValue="us"
+          aria-label="Measurement System"
+        >
+          <Ui.ToggleGroup.Item value="us" aria-label="US">
+            US
+          </Ui.ToggleGroup.Item>
+          <Ui.ToggleGroup.Item value="metric" aria-label="Metric">
+            Metric
+          </Ui.ToggleGroup.Item>
+        </Ui.ToggleGroup.Root>
+        <Ui.ToggleGroup.Root
+          value={siteContext.state.temperatureSystem}
+          onValueChange={(newValue: Types.TemperatureSystem | '') => {
+            if (newValue !== '') siteContext.setTemperatureSystem(newValue);
+          }}
+          type="single"
+          defaultValue="fahrenheit"
+          aria-label="Temperature System"
+        >
+          <Ui.ToggleGroup.Item value="fahrenheit" aria-label="Fahrenheit">
+            °F
+          </Ui.ToggleGroup.Item>
+          <Ui.ToggleGroup.Item value="celsius" aria-label="Celsius">
+            °C
+          </Ui.ToggleGroup.Item>
+        </Ui.ToggleGroup.Root>
+      </div>
     </div>
   );
 };

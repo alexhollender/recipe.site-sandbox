@@ -4,22 +4,24 @@ import * as NextNavigation from 'next/navigation';
 import * as React from 'react';
 import * as Views from '@/views';
 
-export type SitesShowProps = {
+export type Props = {
   params: {
     site: string;
   };
 };
 
-const SitesShow: Next.NextPage<SitesShowProps> = async ({ params }) => {
+const SitesShow: Next.NextPage<Props> = async ({ params }) => {
   const site = await Chef.Sites.get({ slug: params.site });
+  const latestRecipes = await Chef.Recipes.searchBy({ siteSlug: params.site, limit: 6 });
+
   if (!site) return NextNavigation.notFound();
 
-  return <Views.SitesShow site={site} />;
+  return <Views.SitesShow site={site} latestRecipes={latestRecipes} />;
 };
 
 export default SitesShow;
 
-export async function generateMetadata({ params }: SitesShowProps): Promise<Next.Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Next.Metadata> {
   const site = await Chef.Sites.get({ slug: params.site });
   if (!site) return NextNavigation.notFound();
 

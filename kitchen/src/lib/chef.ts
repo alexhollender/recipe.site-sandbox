@@ -169,6 +169,18 @@ const RICHTEXT_QUERY = groq`
   }
 `;
 
+const COLLECTION_PREVIEW_QUERY = groq`
+  {
+    _type,
+    _id,
+    title,
+    "slug": slug.current,
+    "description": description[] ${RICHTEXT_QUERY},
+    "featuredMedia": featuredMedia ${MEDIA_QUERY},
+    color
+  }
+`;
+
 const RECIPE_PREVIEW_QUERY = groq`
 {
   _type,
@@ -184,6 +196,7 @@ const RECIPE_PREVIEW_QUERY = groq`
   "description": description[] ${RICHTEXT_QUERY},
   "descriptionPlaintext": pt::text(description),
   "ingredientUsageCount": count(ingredientUsageGroups[].ingredientUsages[]),
+  "collections": *[_type == 'collection' && ^._id in recipes[]._ref] ${COLLECTION_PREVIEW_QUERY},
   prepTimeMinutes,
   cookTimeMinutes,
   totalTimeMinutes,
@@ -245,13 +258,7 @@ const RECIPE_QUERY = groq`
 
 const COLLECTION_QUERY = groq`
   {
-    _type,
-    _id,
-    title,
-    "slug": slug.current,
-    "description": description[] ${RICHTEXT_QUERY},
-    "featuredMedia": featuredMedia ${MEDIA_QUERY},
-    color,
+    ...${COLLECTION_PREVIEW_QUERY},
     recipes[] -> ${RECIPE_PREVIEW_QUERY}
   }
 `;
@@ -271,8 +278,14 @@ const SITE_QUERY = groq`
     },
     collections[] -> ${COLLECTION_QUERY},
     aboutShort[] ${RICHTEXT_QUERY},
+    aboutHeading[] ${RICHTEXT_QUERY},
     about[] ${RICHTEXT_QUERY},
     featuredImage ${IMAGE_QUERY},
+    productLinks[] {
+      productTitle,
+      productImage,
+      href
+    },
     linkList {
       title,
       links[] {
@@ -290,6 +303,18 @@ export const Categories = {
       `*[_type == "recipeCategory" && _id in *[_type == "site" && slug.current == $siteSlug][0].recipes[]->categories[]._ref] ${RECIPE_CATEGORY_QUERY}`,
       {
         siteSlug: params.siteSlug,
+      },
+    );
+  },
+};
+
+export const Collections = {
+  get(params: { siteSlug: string; collectionSlug: string }) {
+    return Sanity.Client.fetch<Types.Collection | null>(
+      `*[_type == "collection" && slug.current == $collectionSlug && _id in *[_type == "site" && slug.current == $siteSlug][0].collections[]._ref][0] ${COLLECTION_QUERY}`,
+      {
+        siteSlug: params.siteSlug,
+        collectionSlug: params.collectionSlug,
       },
     );
   },
@@ -380,6 +405,7 @@ export const Recipes = {
     categorySlugs?: string[] | null;
     cuisineSlugs?: string[] | null;
     tagSlugs?: string[] | null;
+    limit?: number;
   }) {
     return Sanity.Client.fetch<Types.RecipePreview[]>(
       `*[_type == "recipe"
@@ -388,7 +414,7 @@ export const Recipes = {
         && ($categorySlugs != null && count(categories[@->slug.current in $categorySlugs]) > 0 || $categorySlugs == null)
         && ($cuisineSlugs != null && count(cuisines[@->slug.current in $cuisineSlugs]) > 0 || $cuisineSlugs == null)
         && ($tagSlugs != null && count(tags[@->slug.current in $tagSlugs]) > 0 || $tagSlugs == null)
-      ] | order(createdAt desc) ${RECIPE_PREVIEW_QUERY}
+      ]${params.limit ? `[0...${params.limit}] ` : ''} | order(createdAt desc) ${RECIPE_PREVIEW_QUERY}
       `,
       {
         siteSlug: params.siteSlug,

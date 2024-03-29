@@ -21,7 +21,7 @@ const SocialMediaLink: React.FC<SocialMediaLinkProps> = ({ socialMediaLink }) =>
   const Icon = IconMap[socialMediaLink.platform];
 
   return (
-    <Link href={socialMediaLink.url}>
+    <Link href={socialMediaLink.url} className="hover:opacity-60 transition-opacity">
       <Icon />
     </Link>
   );

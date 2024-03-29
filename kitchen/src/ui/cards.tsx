@@ -17,8 +17,10 @@ export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
   const onMouseOver = () => setIsHovered(true);
   const onMouseOut = () => setIsHovered(false);
 
+  const collection = recipe.collections[0];
+
   return (
-    <Link href={`/recipes/${recipe.slug}`} className="group">
+    <Link href={`/recipes/${recipe.slug}`} className="group @container/card block">
       {recipe.featuredMedia.image && (
         <div
           className="aspect-sd relative rounded-xl overflow-hidden"
@@ -49,10 +51,76 @@ export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
         <div>
           <Ui.Text.Title bold>{recipe.title}</Ui.Text.Title>
         </div>
-        <div className="mt-1">
+        <div className="mt-1 text-primary-tint flex flex-wrap gap-x-3 gap-y-1 items-center">
           <Ui.Text.Highlight>{`${recipe.ingredientUsageCount} ingredients • ${RecipeUtils.totalTimeFormatted(recipe)}`}</Ui.Text.Highlight>
+          {collection && <Ui.Chips.Primary>{collection.title}</Ui.Chips.Primary>}
         </div>
       </div>
+    </Link>
+  );
+};
+
+type CollectionCardProps = {
+  collection: Types.CollectionPreview;
+};
+
+export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const onMouseOver = () => setIsHovered(true);
+  const onMouseOut = () => setIsHovered(false);
+
+  return (
+    <Link href={`/collections/${collection.slug}`} className="group">
+      <div
+        className="aspect-square relative rounded-xl overflow-hidden"
+        onMouseOver={onMouseOver}
+        onMouseOut={onMouseOut}
+      >
+        {collection.featuredMedia.image && (
+          <Ui.Media.Image
+            image={collection.featuredMedia.image}
+            alt={collection.title}
+            fill
+            className={Utils.cx([
+              'object-cover transition-all z-10 hover:scale-[1.02] duration-300',
+              {
+                'md:group-hover:opacity-0': !!collection.featuredMedia.video,
+              },
+            ])}
+          />
+        )}
+        {collection.featuredMedia.video && (
+          <Ui.Media.HoverAutoplayVideo
+            video={collection.featuredMedia.video}
+            isHovered={isHovered}
+            className="object-cover absolute inset-0 hidden md:block z-0"
+          />
+        )}
+        <div className="absolute inset-0 z-10 bg-black opacity-30 pointer-events-none"></div>
+        <div className="absolute inset-0 flex items-center justify-center z-20 text-secondary pointer-events-none">
+          <Ui.Text.Lead>{collection.title}</Ui.Text.Lead>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+type ProductLinkCardProps = {
+  productLink: Types.ProductLink;
+};
+
+export const ProductLink: React.FC<ProductLinkCardProps> = ({ productLink }) => {
+  return (
+    <Link href={productLink.href} className="group">
+      <div className="aspect-portrait relative overflow-hidden">
+        <Ui.Media.Image
+          image={productLink.productImage}
+          alt={productLink.productTitle}
+          fill
+          className="object-cover transition-all z-10 hover:scale-[1.02] duration-300"
+        />
+      </div>
+      <Ui.Text.Highlight bold>{productLink.productTitle}</Ui.Text.Highlight>
     </Link>
   );
 };

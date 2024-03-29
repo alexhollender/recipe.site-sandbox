@@ -123,8 +123,8 @@ export const Soufflé = React.forwardRef<HTMLDivElement, React.PropsWithChildren
   function Container(props, ref) {
     return (
       <Ui.SouffléContainer className="relative">
-        <div className="slider-gradient absolute top-0 bottom-0 right-0 bg-gradient-to-l from-secondary w-16 z-10 transition-opacity"></div>
-        <div className="slider-gradient absolute top-0 bottom-0 left-0 bg-gradient-to-r from-secondary w-16 z-10 transition-opacity"></div>
+        <div className="slider-gradient absolute top-0 bottom-0 right-0 bg-gradient-to-l from-secondary w-16 z-10 transition-opacity pointer-events-none"></div>
+        <div className="slider-gradient absolute top-0 bottom-0 left-0 bg-gradient-to-r from-secondary w-16 z-10 transition-opacity pointer-events-none"></div>
         <Ui.Slider.Container onScroll={props.onScroll} ref={ref} className="hide-scrollbar">
           {props.children}
         </Ui.Slider.Container>
@@ -132,3 +132,46 @@ export const Soufflé = React.forwardRef<HTMLDivElement, React.PropsWithChildren
     );
   },
 );
+
+type SouffléSectionProps = {
+  heading: string;
+};
+
+export const SouffléSection: React.FC<React.PropsWithChildren<SouffléSectionProps>> = (props) => {
+  const slider = useSlider();
+
+  return (
+    <section>
+      <Ui.Container className="flex justify-between mb-3 items-center">
+        <Ui.Text.Title as="h2">{props.heading}</Ui.Text.Title>
+        <div className="flex justify-between space-x-5">
+          <button
+            type="button"
+            className="w-7 h-7 color-primary disabled:text-primary-tint transition-colors"
+            onClick={slider.onPrevious}
+            disabled={slider.isPreviousDisabled}
+          >
+            <Ui.Icons.Previous />
+          </button>
+          <button
+            type="button"
+            className="w-7 h-7 color-primary disabled:text-primary-tint transition-colors"
+            onClick={slider.onNext}
+            disabled={slider.isNextDisabled}
+          >
+            <Ui.Icons.Next />
+          </button>
+        </div>
+      </Ui.Container>
+      <Ui.Slider.Soufflé onScroll={slider.onScroll} ref={slider.ref}>
+        {React.Children.map(props.children, (child) => {
+          return (
+            <div className="flex-shrink-0 snap-start ps-4 slider-item-container">
+              <div className="slider-item-inner">{child}</div>
+            </div>
+          );
+        })}
+      </Ui.Slider.Soufflé>
+    </section>
+  );
+};

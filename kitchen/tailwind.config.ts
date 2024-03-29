@@ -17,9 +17,10 @@ const config: Config = {
       aspectRatio: {
         landscape: '16 / 9',
         sd: '4 / 3',
+        portrait: '3 / 4',
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/container-queries')],
 };
 export default config;

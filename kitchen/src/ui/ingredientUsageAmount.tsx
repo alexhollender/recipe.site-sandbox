@@ -4,7 +4,6 @@ import * as React from 'react';
 import * as RecipeContext from '@/lib/recipeContext';
 import * as SiteContext from '@/lib/siteContext';
 import * as Types from '@/lib/types';
-import * as Ui from '@/ui';
 import * as Utils from '@/lib/utils';
 
 type IngredientUsageProps = {

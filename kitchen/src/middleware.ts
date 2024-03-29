@@ -1,5 +1,9 @@
 import * as Server from 'next/server';
 
+export const config = {
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|monitoring).*)'],
+};
+
 const subdomainRegex = /^(?:https?:\/\/)?([a-zA-Z0-9\-]+)\./;
 
 export function middleware(request: Server.NextRequest) {

@@ -61,7 +61,11 @@ export const IngredientUsageReference: React.FC<
 };
 
 export const Styled: React.FC<RichtextProps> = ({ content }) => {
-  return <PortableText value={content} components={RichtextComponents} />;
+  return (
+    <div className="space-y-3">
+      <PortableText value={content} components={RichtextComponents} />
+    </div>
+  );
 };
 
 export const Inherited: React.FC<RichtextProps> = ({ content }) => {

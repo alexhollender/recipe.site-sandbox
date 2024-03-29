@@ -7,6 +7,17 @@ export const Container: React.FC<React.PropsWithChildren<{ className?: string }>
   return <div className={Utils.cx(['max-w-[75rem] mx-auto px-4', className])}>{children}</div>;
 };
 
+export const SouffléContainer: React.FC<React.PropsWithChildren<{ className?: string }>> = ({
+  children,
+  className,
+}) => {
+  return (
+    <div className={Utils.cx(['max-w-[120rem] mx-auto souffle-container', className])}>
+      {children}
+    </div>
+  );
+};
+
 export const Grid: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <div className="grid gap-x-7 gap-y-10 grid-cols-12">{children}</div>;
 };
@@ -16,6 +27,7 @@ export * as Icons from '@/ui/icons';
 export * as Media from '@/ui/media';
 export * as Richtext from '@/ui/richtext';
 export * as Select from '@/ui/select';
+export * as Slider from '@/ui/slider';
 export * as Text from '@/ui/text';
 export * as ToggleGroup from '@/ui/toggleGroup';
 

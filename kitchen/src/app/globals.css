@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slider-item-inner {
+  transform: translateX(calc(max(((100vw - 75rem) / 2), 0rem) - max(((100vw - 120rem) / 2), 0rem)));
+}
+
+.slider-item-container:last-child {
+  padding-inline-end: calc(
+    max(max(((100vw - 75rem) / 2), 0rem) - max(((100vw - 120rem) / 2), 0rem), 0rem) + 1rem
+  );
+}
+
+.slider-gradient-right {
+  right: calc(
+    max(max(((100vw - 75rem) / 2), 0rem) - max(((100vw - 120rem) / 2), 0rem), 0rem) + 1rem
+  );
+}
+
+.slider-gradient {
+  opacity: 0;
+}
+
+@media (min-width: 120rem) {
+  .slider-gradient {
+    opacity: 1;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

@@ -84,6 +84,44 @@ export const Filter = () => {
   );
 };
 
+export const Next = () => {
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20ZM10.9359 10.0003L7.33325 6.23433L8.31605 5.33366L12.9827 10.0003L8.31605 14.667L7.33325 13.6842L10.9359 10.0003Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+
+export const Previous = () => {
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M10 -8.74228e-07C4.47715 -1.35705e-06 1.35705e-06 4.47715 8.74228e-07 10C3.91405e-07 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 -3.91405e-07 10 -8.74228e-07ZM9.06408 9.99967L12.6667 13.7657L11.6839 14.6663L7.01728 9.99967L11.6839 5.33301L12.6667 6.31581L9.06408 9.99967Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+};
+
 export const SocialMedia = {
   Instagram: () => {
     return (

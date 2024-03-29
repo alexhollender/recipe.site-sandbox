@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import * as RecipeUtils from '@/lib/recipe';
 import * as Types from '@/lib/types';

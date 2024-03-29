@@ -5,9 +5,7 @@ import * as React from 'react';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
 
-import Fuse, { FuseResult } from 'fuse.js';
-import Link from 'next/link';
-import { get } from 'http';
+import Fuse from 'fuse.js';
 
 type RecipesIndexProps = {
   site: Types.Site;

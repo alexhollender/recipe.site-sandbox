@@ -42,7 +42,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               <Timing recipe={props.recipe} />
             </header>
             <div className="aspect-square relative rounded-md overflow-hidden mb-5">
-              <Ui.Media.Media media={props.recipe.featuredMedia} fill />
+              <Ui.Media.Media media={props.recipe.featuredMedia} fill className="object-cover" />
             </div>
             <div>
               <Overview site={props.site} recipe={props.recipe} />
@@ -145,34 +145,32 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
 export default RecipesShow;
 
 const Bio = ({ site }: { site: Types.Site }) => {
-  const author = Site.primaryAuthor(site);
-
   return (
     <div className="border border-tint p-6 rounded-md text-center">
-      {author.avatar && (
+      {site.featuredImage && (
         <div className="rounded-full aspect-square relative overflow-hidden">
-          <Ui.Media.Image image={author.avatar} alt={`${author.name} profile picture`} fill />
+          <Ui.Media.Image
+            image={site.featuredImage}
+            alt={`Profile picture`}
+            fill
+            className="object-cover"
+          />
         </div>
       )}
-      {author.bio && (
+      {site.aboutShort && (
         <div className="mt-6">
           <Ui.Text.Body>
-            <Ui.Richtext.Inherited content={author.bio} />
+            <Ui.Richtext.Inherited content={site.aboutShort} />
           </Ui.Text.Body>
         </div>
       )}
-      {!author.bio && (
-        <div className="mt-6">
-          <Ui.Text.Body>{author.name}</Ui.Text.Body>
-        </div>
-      )}
-      {author.learnMoreLink && (
-        <div className="mt-6">
-          <Link href={author.learnMoreLink.href}>
-            <Ui.Text.Body bold>Learn More</Ui.Text.Body>
-          </Link>
-        </div>
-      )}
+
+      <div className="mt-6">
+        <Link href="/about">
+          <Ui.Text.Label bold>Learn More</Ui.Text.Label>
+        </Link>
+      </div>
+
       {site.socialMediaLinks.length > 0 && (
         <div className="mt-6 justify-center flex space-x-5">
           {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {

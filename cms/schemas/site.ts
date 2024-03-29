@@ -151,5 +151,76 @@ export default Sanity.defineType({
         },
       ],
     },
+    {
+      name: 'aboutShort',
+      title: 'About (short)',
+      type: 'richtextSimple',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'about',
+      title: 'About',
+      type: 'richtext',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'featuredImage',
+      title: 'Featured Image',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'linkList',
+      title: 'Link List',
+      type: 'object',
+      fields: [
+        {
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        },
+        {
+          name: 'links',
+          title: 'Links',
+          type: 'array',
+          validation: (Rule) => Rule.required(),
+          of: [
+            {
+              name: 'link',
+              type: 'object',
+              preview: {
+                select: {
+                  label: 'label',
+                  href: 'href',
+                },
+                prepare({ label, href }) {
+                  return {
+                    title: label,
+                    subtitle: href,
+                    media: Icons.Link,
+                  };
+                },
+              },
+              fields: [
+                {
+                  name: 'label',
+                  title: 'Label',
+                  type: 'string',
+                  validation: (Rule) => Rule.required(),
+                },
+                {
+                  name: 'href',
+                  type: 'url',
+                  title: 'URL',
+                  validation: (Rule) =>
+                    Rule.uri({ allowRelative: false, scheme: ['http', 'https', 'mailto'] }),
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
 });

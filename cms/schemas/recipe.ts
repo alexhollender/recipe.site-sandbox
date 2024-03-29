@@ -181,22 +181,70 @@ const Recipe = Sanity.defineType({
       group: 'meta',
     },
     {
+      name: 'diets',
+      title: 'Diets',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          title: 'Diet',
+          to: [{ type: 'diet' }],
+        },
+      ],
+      group: 'meta',
+    },
+    {
+      name: 'meals',
+      title: 'Meals',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          title: 'Meal',
+          to: [{ type: 'meal' }],
+        },
+      ],
+      group: 'meta',
+    },
+    {
+      name: 'methods',
+      title: 'Methods',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          title: 'Method',
+          to: [{ type: 'method' }],
+        },
+      ],
+      group: 'meta',
+    },
+    {
       name: 'prepTimeMinutes',
       title: 'Prep Time (minutes)',
       type: 'number',
       group: 'meta',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'cookTimeMinutes',
       title: 'Cook Time (minutes)',
       type: 'number',
       group: 'meta',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'timing',
       title: 'Timing',
       type: 'text',
       rows: 2,
+      group: 'meta',
+    },
+    {
+      name: 'totalTimeMinutes',
+      title: 'Total Time (minutes)',
+      description: 'If not provided, this will be calculated from Prep Time + Cook Time.',
+      type: 'number',
       group: 'meta',
     },
     {

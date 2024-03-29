@@ -13,7 +13,10 @@ const structure: StructureResolver = (S, _context) => {
         .title('Categories')
         .icon(Icons.RecipeCategory)
         .child(S.documentTypeList('recipeCategory')),
+      S.listItem().title('Diets').icon(Icons.Diet).child(S.documentTypeList('diet')),
       S.listItem().title('Cuisines').icon(Icons.Cuisine).child(S.documentTypeList('cuisine')),
+      S.listItem().title('Meals').icon(Icons.Meal).child(S.documentTypeList('meal')),
+      S.listItem().title('Methods').icon(Icons.Method).child(S.documentTypeList('method')),
       S.listItem()
         .title('Ingredients')
         .icon(Icons.Ingredient)

@@ -28,6 +28,39 @@ export const Image: React.FC<SanityImageProps> = ({ image, className, ...props }
   );
 };
 
+type HoverAutoplayProps = {
+  video: Types.File;
+  className?: string;
+  isHovered: boolean;
+};
+
+export const HoverAutoplayVideo: React.FC<HoverAutoplayProps> = (props) => {
+  const videoPlayerRef = React.useRef<HTMLVideoElement>(null);
+
+  React.useEffect(() => {
+    if (!videoPlayerRef.current) return;
+
+    if (props.isHovered === true) {
+      videoPlayerRef.current.play();
+      return;
+    }
+    if (props.isHovered === false) {
+      videoPlayerRef.current.pause();
+      return;
+    }
+  }, [props.isHovered]);
+
+  return (
+    <video
+      ref={videoPlayerRef}
+      className={Utils.cx(['w-full h-full', props.className])}
+      src={props.video.asset.url}
+      muted
+      loop
+    />
+  );
+};
+
 type VideoProps = {
   video: Types.File;
   className?: string;

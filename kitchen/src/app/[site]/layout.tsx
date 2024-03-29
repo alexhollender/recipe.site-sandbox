@@ -4,6 +4,8 @@ import * as Site from '@/lib/site';
 import * as SiteContext from '@/lib/siteContext';
 import * as Ui from '@/ui';
 
+import Link from 'next/link';
+
 export type Props = {
   params: {
     site: string;
@@ -40,16 +42,20 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
           <Ui.Container>
             <div className="flex justify-between items-center">
               <div>
-                <p className="text-2xl">{primaryAuthor.name}</p>
+                <Link href="/about">
+                  <p className="text-2xl">{primaryAuthor.name}</p>
+                </Link>
               </div>
               <nav>
                 <ul className="flex space-x-4">
                   <li>
-                    <a href="/site1">Site 1</a>
+                    <Link href="/recipes">All Recipes</Link>
                   </li>
-                  <li>
-                    <a href="/site2">Site 2</a>
-                  </li>
+                  {site.linkList && (
+                    <li>
+                      <Link href="/links">My links</Link>
+                    </li>
+                  )}
                 </ul>
               </nav>
             </div>

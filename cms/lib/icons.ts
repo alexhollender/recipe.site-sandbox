@@ -1,20 +1,23 @@
 import { BiWorld } from 'react-icons/bi';
-import { BsLink45Deg } from 'react-icons/bs';
+import { BsLink45Deg, BsCupHotFill } from 'react-icons/bs';
 import { CgWebsite } from 'react-icons/cg';
 import { FaCarrot, FaTag } from 'react-icons/fa';
 import { FaPlateWheat } from 'react-icons/fa6';
-import { GiWeight, GiCookingPot } from 'react-icons/gi';
+import { GiWeight, GiWhisk, GiCookingPot } from 'react-icons/gi';
 import { GrMultimedia } from 'react-icons/gr';
 import { PiKnife } from 'react-icons/pi';
-import { MdCategory } from 'react-icons/md';
+import { MdCategory, MdNotInterested } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
 import { HiCollection } from 'react-icons/hi';
 
 export const Author = LuChefHat;
 export const Collection = HiCollection;
 export const Cuisine = BiWorld;
+export const Diet = MdNotInterested;
 export const Equipment = GiCookingPot;
+export const Meal = BsCupHotFill;
 export const Media = GrMultimedia;
+export const Method = GiWhisk;
 export const Ingredient = FaCarrot;
 export const Link = BsLink45Deg;
 export const Unit = GiWeight;

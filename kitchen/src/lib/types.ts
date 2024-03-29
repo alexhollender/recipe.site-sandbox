@@ -1,3 +1,5 @@
+export type SanityArrayItem<TObject> = { _key: string } & TObject;
+
 export type PortableText = {
   _type: 'block' | string;
   _key?: string;
@@ -15,8 +17,6 @@ export type Author = {
   name: string;
   slug: string;
   avatar: Image | null;
-  bio: PortableText | null;
-  learnMoreLink?: Link | null;
 };
 
 export type RecipeCategory = {
@@ -172,21 +172,24 @@ export type RecipePreview = {
   cuisines: Cuisine[];
   tags: Tag[];
   description: PortableText | null;
+  descriptionPlaintext: string | null;
   featuredMedia: Media;
   difficultyLevel: 'easy' | 'medium' | 'hard' | null;
+  ingredientUsageCount: number;
+  prepTimeMinutes: number;
+  cookTimeMinutes: number;
+  totalTimeMinutes: number | null;
 };
 
 export type Recipe = RecipePreview & {
   keywords: string[] | null;
   media: Media[] | null;
-  prepTimeMinutes: number | null;
-  cookTimeMinutes: number | null;
-  timing: string | null;
   yieldServings: number;
   servingDescription: string | null;
   storyExcerpt: PortableText | null;
   storyMore: PortableText | null;
   note: PortableText | null;
+  timing: string | null;
   equipmentUsages:
     | {
         equipment: Equipment;
@@ -196,7 +199,6 @@ export type Recipe = RecipePreview & {
         link: string;
       }[]
     | null;
-  ingredientUsageCount: number;
   ingredientUsageGroups: IngredientUsageGroup[] | null;
   instructionGroups: InstructionGroup[] | null;
 } & (
@@ -231,6 +233,17 @@ export type Site = {
   featuredRecipes: Recipe[];
   collections: Collection[];
   socialMediaLinks: SocialMediaLink[];
+  aboutShort: PortableText;
+  about: PortableText;
+  featuredImage: Image;
+  linkList: null | {
+    title: string;
+    links: {
+      label: string;
+      href: string;
+      _key: string;
+    }[];
+  };
 };
 
 export type MeasurementSystem = 'us' | 'metric';

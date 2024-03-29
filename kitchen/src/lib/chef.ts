@@ -182,6 +182,11 @@ const RECIPE_PREVIEW_QUERY = groq`
   "tags": tags[] -> ${TAG_QUERY},
   "featuredMedia": featuredMedia ${MEDIA_QUERY},
   "description": description[] ${RICHTEXT_QUERY},
+  "descriptionPlaintext": pt::text(description),
+  "ingredientUsageCount": count(ingredientUsageGroups[].ingredientUsages[]),
+  prepTimeMinutes,
+  cookTimeMinutes,
+  totalTimeMinutes,
   "legacyRecipeData": legacyRecipeData {
     featuredImage {
       src,
@@ -196,13 +201,11 @@ const RECIPE_QUERY = groq`
     ...${RECIPE_PREVIEW_QUERY},
     keywords,
     "media": media[] ${MEDIA_QUERY},
-    prepTimeMinutes,
-    cookTimeMinutes,
-    timing,
     yieldServings,
     servingDescription,
     storyExcerpt,
     storyMore,
+    timing,
     "note": note[] ${RICHTEXT_QUERY},
     "equipmentUsages": equipmentUsages[] {
       _key,
@@ -212,7 +215,6 @@ const RECIPE_QUERY = groq`
       equipmentTitleOverride,
       link
     },
-    "ingredientUsageCount": count(ingredientUsageGroups[].ingredientUsages[]),
     "ingredientUsageGroups": ingredientUsageGroups[] {
       _key,
       title,
@@ -258,6 +260,7 @@ const SITE_QUERY = groq`
   {
     _type,
     _id,
+    title,
     "authors": authors[] -> ${AUTHOR_QUERY},
     "recipes": recipes[] -> ${RECIPE_PREVIEW_QUERY} | order(createdAt desc),
     "featuredRecipes": featuredRecipes[] -> ${RECIPE_PREVIEW_QUERY},
@@ -266,7 +269,18 @@ const SITE_QUERY = groq`
       platform,
       url
     },
-    collections[] -> ${COLLECTION_QUERY}
+    collections[] -> ${COLLECTION_QUERY},
+    aboutShort[] ${RICHTEXT_QUERY},
+    about[] ${RICHTEXT_QUERY},
+    featuredImage ${IMAGE_QUERY},
+    linkList {
+      title,
+      links[] {
+        _key,
+        label,
+        href
+      }
+    }
   }
 `;
 

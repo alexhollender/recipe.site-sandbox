@@ -14,9 +14,9 @@ const config: Config = {
         secondary: 'var(--color-secondary)',
         'secondary-tint': 'var(--color-secondary-tint)',
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      aspectRatio: {
+        landscape: '16 / 9',
+        sd: '4 / 3',
       },
     },
   },

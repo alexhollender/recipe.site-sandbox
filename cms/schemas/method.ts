@@ -2,28 +2,20 @@ import * as Icons from '../lib/icons';
 import * as Sanity from 'sanity';
 
 export default Sanity.defineType({
-  name: 'author',
-  title: 'Author',
+  name: 'method',
+  title: 'Method',
   type: 'document',
-  icon: Icons.Author,
+  icon: Icons.Method,
   preview: {
     select: {
-      name: 'name',
-      slug: 'slug.current',
-      avatar: 'avatar',
-    },
-    prepare({ name, slug, avatar }) {
-      return {
-        title: name,
-        subtitle: slug,
-        media: avatar,
-      };
+      title: 'title',
+      subtitle: 'slug.current',
     },
   },
   fields: [
     {
-      name: 'name',
-      title: 'Name',
+      name: 'title',
+      title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
     },
@@ -35,12 +27,6 @@ export default Sanity.defineType({
       options: {
         source: 'title',
       },
-    },
-    {
-      name: 'avatar',
-      title: 'Avatar',
-      type: 'image',
-      // validation: (Rule) => Rule.required(),
     },
   ],
 });

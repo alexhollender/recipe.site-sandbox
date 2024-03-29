@@ -2,6 +2,7 @@ import * as Chef from '@/lib/chef';
 import * as Next from 'next';
 import * as NextNavigation from 'next/navigation';
 import * as React from 'react';
+import * as Ui from '@/ui';
 
 import Link from 'next/link';
 
@@ -18,6 +19,17 @@ const SitesShow: Next.NextPage<Props> = async ({ params }) => {
   return (
     <div>
       <h1>{site.title}</h1>
+      <div className="overflow-scroll">
+        <div className="flex pl-6">
+          {site.featuredRecipes.map((recipe) => {
+            return (
+              <div className="flex-shrink-0 w-[500px]" key={recipe.slug}>
+                <Ui.Cards.Recipe recipe={recipe} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <ul>
         {site.recipes.map((recipe) => (
           <li key={recipe.slug}>

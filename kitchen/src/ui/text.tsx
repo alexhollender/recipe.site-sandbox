@@ -57,7 +57,7 @@ export const Lead: TextComponent = (props) =>
 export const Title: TextComponent = (props) =>
   TextStyle(props, {
     family: 'font-interface',
-    size: 'text-3xl',
+    size: 'text-2xl',
     baseWeight: 'font-normal',
     boldWeight: 'font-bold',
   });

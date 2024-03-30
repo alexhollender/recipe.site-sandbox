@@ -29,7 +29,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           })}
         </Ui.Slider.SouffléSection>
       </section>
-      <section className="mt-32">
+      <section className="mt-14 md:mt-28">
         <Ui.Slider.SouffléSection heading="Recipe collections">
           {props.site.collections.map((collection) => {
             return (
@@ -40,7 +40,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           })}
         </Ui.Slider.SouffléSection>
       </section>
-      <section className="mt-32">
+      <section className="mt-20 md:mt-28">
         <Ui.Container>
           <Ui.Grid>
             <div className="col-span-12 md:col-span-6">
@@ -80,7 +80,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         </Ui.Container>
       </section>
       {props.site.productLinks && (
-        <section className="mt-32">
+        <section className="mt-16 md:mt-28">
           <Ui.Slider.SouffléSection heading="My favorite products">
             {props.site.productLinks.map((productLink) => {
               return (
@@ -92,14 +92,14 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.SouffléSection>
         </section>
       )}
-      <section className="mt-32">
+      <section className="mt-20 md:mt-28">
         <Ui.Container>
           <div className="mb-3 flex justify-between items-center">
             <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>
             <Link href="/recipes">
-              <Ui.Text.Highlight bold className="hover:opacity-60 transition-opacity">
+              <Ui.Text.Label bold className="hover:opacity-60 transition-opacity">
                 View all recipes
-              </Ui.Text.Highlight>
+              </Ui.Text.Label>
             </Link>
           </div>
           <Ui.Grid>

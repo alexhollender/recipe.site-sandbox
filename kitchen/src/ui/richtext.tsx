@@ -1,7 +1,7 @@
 import * as RecipeContext from '@/lib/recipeContext';
-import * as SiteContext from '@/lib/siteContext';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
+import * as Utils from '@/lib/utils';
 
 import { PortableText, PortableTextReactComponents } from '@portabletext/react';
 
@@ -13,10 +13,22 @@ type RichtextProps = {
 
 const RichtextComponents: Partial<PortableTextReactComponents> = {
   block: {
-    normal: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
-    h1: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
-    h2: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
-    h3: ({ children }) => <Ui.Text.Body>{children}</Ui.Text.Body>,
+    normal: ({ children }) => <p>{children}</p>,
+    h1: ({ children }) => (
+      <Ui.Text.Lead bold className="pt-2">
+        {children}
+      </Ui.Text.Lead>
+    ),
+    h2: ({ children }) => (
+      <Ui.Text.Title bold className="pt-1">
+        {children}
+      </Ui.Text.Title>
+    ),
+    h3: ({ children }) => (
+      <Ui.Text.Highlight bold className="pt-0.5">
+        {children}
+      </Ui.Text.Highlight>
+    ),
   },
   marks: {
     em: ({ children }) => <em className="italic font-normal">{children}</em>,
@@ -50,19 +62,31 @@ export const IngredientUsageReference: React.FC<
 
   return (
     <span>
-      <Ui.Text.Body bold as="span">
+      <Ui.Text.Label bold as="span">
         {children}
-      </Ui.Text.Body>{' '}
-      <Ui.Text.Body as="span" className="text-primary-tint">
+      </Ui.Text.Label>{' '}
+      <Ui.Text.Label as="span" className="text-primary-tint">
         (<Ui.IngredientUsageAmount ingredientUsage={ingredientUsage} />)
-      </Ui.Text.Body>
+      </Ui.Text.Label>
     </span>
   );
 };
 
-export const Styled: React.FC<RichtextProps> = ({ content }) => {
+type StyledRichtextProps = RichtextProps & {
+  style: 'narrative' | 'interface';
+};
+
+export const Styled: React.FC<StyledRichtextProps> = ({ content, style }) => {
   return (
-    <div className="space-y-3">
+    <div
+      className={Utils.cx([
+        'space-y-3',
+        {
+          'type-tagline': style === 'narrative',
+          'type-label': style === 'interface',
+        },
+      ])}
+    >
       <PortableText value={content} components={RichtextComponents} />
     </div>
   );

@@ -122,6 +122,21 @@ export const Previous = () => {
   );
 };
 
+export const Openface = () => {
+  return (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 24 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 0.599609H24V2.99961H0V0.599609Z" fill="currentColor" />
+      <path d="M0 8.99961H24V11.3996H0V8.99961Z" fill="currentColor" />
+    </svg>
+  );
+};
+
 export const SocialMedia = {
   Instagram: () => {
     return (

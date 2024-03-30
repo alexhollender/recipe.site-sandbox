@@ -31,73 +31,52 @@ const Base: FC<PropsWithChildren<TextProps & { defaultClasses: string }>> = ({
 };
 
 type TextStyle = {
-  family: string;
-  size: string;
   baseWeight: string;
   boldWeight: string;
 };
 
 const TextStyle = ({ bold, ...props }: TextProps, style: TextStyle) => {
-  return (
-    <Base
-      defaultClasses={`${style.family} ${style.size} ${bold ? style.boldWeight : style.baseWeight}`}
-      {...props}
-    />
-  );
+  return <Base defaultClasses={`${bold ? style.boldWeight : style.baseWeight}`} {...props} />;
 };
 
 export const Lead: TextComponent = (props) =>
   TextStyle(props, {
-    family: 'font-interface',
-    size: 'text-3xl',
-    baseWeight: 'font-bold',
-    boldWeight: 'font-heavy',
+    baseWeight: 'type-lead',
+    boldWeight: 'type-lead-bold',
   });
 
 export const Title: TextComponent = (props) =>
   TextStyle(props, {
-    family: 'font-interface',
-    size: 'text-2xl',
-    baseWeight: 'font-normal',
-    boldWeight: 'font-bold',
+    baseWeight: 'type-title',
+    boldWeight: 'type-title-bold',
   });
 
 export const Highlight: TextComponent = (props) =>
   TextStyle(props, {
-    family: 'font-interface',
-    size: 'text-lg',
-    baseWeight: 'font-normal',
-    boldWeight: 'font-bold',
+    baseWeight: 'type-highlight',
+    boldWeight: 'type-highlight-bold',
   });
 
 export const Tagline: TextComponent = (props) =>
   TextStyle(props, {
-    family: 'font-narrative',
-    size: 'text-xl',
-    baseWeight: 'font-normal',
-    boldWeight: 'font-bold',
+    baseWeight: 'type-tagline',
+    boldWeight: 'type-tagline-bold',
   });
 
 export const Label: TextComponent = (props) =>
   TextStyle(props, {
-    family: 'font-interface',
-    size: 'text-base',
-    baseWeight: 'font-normal',
-    boldWeight: 'font-bold',
+    baseWeight: 'type-label',
+    boldWeight: 'type-label-bold',
   });
 
 export const Body: TextComponent = (props) =>
   TextStyle(props, {
-    family: 'font-narrative',
-    size: 'text-base',
-    baseWeight: 'font-normal',
-    boldWeight: 'font-bold',
+    baseWeight: 'type-body',
+    boldWeight: 'type-body-bold',
   });
 
 export const Detail: TextComponent = (props) =>
   TextStyle(props, {
-    family: 'font-interface',
-    size: 'text-xs',
-    baseWeight: 'font-bold',
-    boldWeight: 'font-heavy',
+    baseWeight: 'type-detail',
+    boldWeight: 'type-detail-bold',
   });

@@ -14,7 +14,7 @@ type SitesShowProps = {
 
 const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
   return (
-    <div>
+    <div className="mb-24">
       <Ui.Text.Title as="h1" className="sr-only">
         {props.site.title}
       </Ui.Text.Title>
@@ -43,17 +43,19 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       <section className="mt-32">
         <Ui.Container>
           <Ui.Grid>
-            <div className="col-span-7">
+            <div className="col-span-6">
               <div className="mb-3">
                 {props.site.aboutHeading ? (
-                  <Ui.Text.Title as="h2">
+                  <Ui.Text.Lead bold as="h2">
                     <Ui.Richtext.Inherited content={props.site.aboutHeading} />
-                  </Ui.Text.Title>
+                  </Ui.Text.Lead>
                 ) : (
-                  <Ui.Text.Title as="h2">About</Ui.Text.Title>
+                  <Ui.Text.Lead bold as="h2">
+                    About
+                  </Ui.Text.Lead>
                 )}
               </div>
-              <Ui.Richtext.Styled content={props.site.about} />
+              <Ui.Richtext.Styled style="narrative" content={props.site.about} />
 
               {props.site.socialMediaLinks.length > 0 && (
                 <div className="mt-6 flex space-x-5">
@@ -67,7 +69,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
                 </div>
               )}
             </div>
-            <div className="col-span-5">
+            <div className="col-start-8 col-span-5">
               {props.site.featuredImage && (
                 <div className="relative aspect-square">
                   <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
@@ -95,8 +97,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           <div className="mb-3 flex justify-between items-center">
             <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>
             <Link href="/recipes">
-              <Ui.Text.Highlight bold className="underline hover:opacity-60 transition-opacity">
-                View all
+              <Ui.Text.Highlight bold className="hover:opacity-60 transition-opacity">
+                View all recipes
               </Ui.Text.Highlight>
             </Link>
           </div>

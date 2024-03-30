@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --fontFamily-narrative: 'Times New Roman', 'serif';
+  --fontFamily-interface: 'Arial', 'sans-serif';
+}
+
 .slider-item-inner {
   transform: translateX(calc(max(((100vw - 75rem) / 2), 0rem) - max(((100vw - 120rem) / 2), 0rem)));
 }
@@ -16,6 +21,10 @@
   right: calc(
     max(max(((100vw - 75rem) / 2), 0rem) - max(((100vw - 120rem) / 2), 0rem), 0rem) + 1rem
   );
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .slider-gradient {
@@ -35,4 +44,103 @@
 .hide-scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.type-lead {
+  font-family: var(--fontFamily-interface);
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.type-lead-bold {
+  font-family: var(--fontFamily-interface);
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 2.25rem;
+}
+
+.type-title {
+  font-family: var(--fontFamily-interface);
+  font-size: 1.375rem;
+  line-height: 1.875rem;
+}
+
+.type-title-bold {
+  font-family: var(--fontFamily-interface);
+  font-size: 1.375rem;
+  line-height: 1.875rem;
+  font-weight: 700;
+}
+
+.type-highlight {
+  font-family: var(--fontFamily-interface);
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+}
+
+.type-highlight-bold {
+  font-family: var(--fontFamily-interface);
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+}
+
+.type-tagline {
+  font-family: var(--fontFamily-narrative);
+  font-size: 1.125rem;
+  line-height: 1.875rem;
+}
+
+.type-tagline-bold {
+  font-family: var(--fontFamily-narrative);
+  font-size: 1.125rem;
+  line-height: 1.875rem;
+  font-weight: 700;
+}
+
+.type-label {
+  font-family: var(--fontFamily-interface);
+  font-size: 1rem;
+}
+
+.type-label-bold {
+  font-family: var(--fontFamily-interface);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.type-body {
+  font-family: var(--fontFamily-narrative);
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+
+.type-body-bold {
+  font-family: var(--fontFamily-narrative);
+  font-size: 1rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+.type-detail {
+  font-family: var(--fontFamily-interface);
+  font-size: 0.75rem;
+}
+
+.type-detail-bold {
+  font-family: var(--fontFamily-interface);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.instruction-counter {
+  counter-reset: instructions;
+}
+
+.instruction {
+  counter-increment: instructions;
+}
+
+.instruction::before {
+  content: counter(instructions) !important;
 }

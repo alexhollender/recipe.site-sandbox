@@ -20,7 +20,7 @@ export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
   const collection = recipe.collections[0];
 
   return (
-    <Link href={`/recipes/${recipe.slug}`} className="group @container/card block">
+    <Link href={`/recipes/${recipe.slug}`} className="group">
       {recipe.featuredMedia.image && (
         <div
           className="aspect-sd relative rounded-xl overflow-hidden"
@@ -53,7 +53,7 @@ export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
         </div>
         <div className="mt-1 text-primary-tint flex flex-wrap gap-x-3 gap-y-1 items-center">
           <Ui.Text.Highlight>{`${recipe.ingredientUsageCount} ingredients • ${RecipeUtils.totalTimeFormatted(recipe)}`}</Ui.Text.Highlight>
-          {collection && <Ui.Chips.Primary>{collection.title}</Ui.Chips.Primary>}
+          {/* {collection && <Ui.Chips.Primary>{collection.title}</Ui.Chips.Primary>} */}
         </div>
       </div>
     </Link>
@@ -98,7 +98,7 @@ export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
         )}
         <div className="absolute inset-0 z-10 bg-black opacity-30 pointer-events-none"></div>
         <div className="absolute inset-0 flex items-center justify-center z-20 text-secondary pointer-events-none">
-          <Ui.Text.Lead>{collection.title}</Ui.Text.Lead>
+          <Ui.Text.Lead className="text-shadow">{collection.title}</Ui.Text.Lead>
         </div>
       </div>
     </Link>
@@ -111,16 +111,20 @@ type ProductLinkCardProps = {
 
 export const ProductLink: React.FC<ProductLinkCardProps> = ({ productLink }) => {
   return (
-    <Link href={productLink.href} className="group">
+    <Link href={productLink.href} className="group" target="_blank">
       <div className="aspect-portrait relative overflow-hidden">
         <Ui.Media.Image
           image={productLink.productImage}
-          alt={productLink.productTitle}
+          alt={productLink.productTitlePlaintext}
           fill
           className="object-cover transition-all z-10 hover:scale-[1.02] duration-300"
         />
       </div>
-      <Ui.Text.Highlight bold>{productLink.productTitle}</Ui.Text.Highlight>
+      <div className="mt-3">
+        <Ui.Text.Highlight bold>
+          <Ui.Richtext.Inherited content={productLink.productTitle} />
+        </Ui.Text.Highlight>
+      </div>
     </Link>
   );
 };

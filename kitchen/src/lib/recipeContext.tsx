@@ -29,7 +29,7 @@ export const Provider = ({
 }) => {
   const [state, setState] = React.useState<State>({
     quantityMultiplier: 1,
-    selectedInstructionKey: null,
+    selectedInstructionKey: recipe.instructionGroups?.[0]?.instructions[0]._key || null,
     selectedIngredientUsageIds: [],
   });
 

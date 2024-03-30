@@ -14,15 +14,16 @@ const About: Next.NextPage<AboutProps> = (props) => {
         <div className="col-span-7">
           <div className="mb-3">
             {props.site.aboutHeading ? (
-              <Ui.Text.Title as="h2">
+              <Ui.Text.Title bold as="h2">
                 <Ui.Richtext.Inherited content={props.site.aboutHeading} />
               </Ui.Text.Title>
             ) : (
-              <Ui.Text.Title as="h2">About</Ui.Text.Title>
+              <Ui.Text.Title bold as="h2">
+                About
+              </Ui.Text.Title>
             )}
           </div>
-          <Ui.Richtext.Styled content={props.site.about} />
-
+          <Ui.Richtext.Styled style="narrative" content={props.site.about} />
           {props.site.socialMediaLinks.length > 0 && (
             <div className="mt-6 flex space-x-5">
               {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {

@@ -22,7 +22,7 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
 
   const ColorTheme = {
     primary: '#000000',
-    primaryTint: '#8D8D8D',
+    primaryTint: '#5B5B5B',
     secondary: '#FFFFFF',
     secondaryTint: '#F2F2F2',
   };
@@ -39,53 +39,23 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
       `}</style>
       <SiteContext.Provider globals={globals}>
         <div className="flex flex-col min-h-screen">
-          <div className="border-b py-3 mb-7">
-            <Ui.Container>
-              <div className="flex justify-between items-center">
-                <Link href="/">
-                  <p className="text-2xl">{primaryAuthor.name}</p>
-                </Link>
-                <nav>
-                  <ul className="flex space-x-4">
-                    <li>
-                      <Link href="/recipes" className="hover:opacity-60 transition-opacity">
-                        All Recipes
-                      </Link>
-                    </li>
-                    {site.linkList && (
-                      <li>
-                        <Link href="/links" className="hover:opacity-60 transition-opacity">
-                          My links
-                        </Link>
-                      </li>
-                    )}
-                    <li>
-                      <Link href="/about" className="hover:opacity-60 transition-opacity">
-                        About
-                      </Link>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </Ui.Container>
-          </div>
+          <Ui.Nav.Main site={site} />
           <main className="flex-1">{props.children}</main>
           <footer className="mt-6 border-t border-secondary-tint py-6">
             <Ui.Container>
               <div className="flex justify-between items-center">
-                <p>
+                <Ui.Text.Label>
                   © {new Date().getFullYear()} — {site.title}
-                </p>
+                </Ui.Text.Label>
                 <nav>
-                  <p>
-                    Built with{' '}
-                    <Link
-                      href="https://www.recipe.site"
-                      className="underline hover:opacity-60 transition-opacity"
-                    >
-                      Recipe.site
-                    </Link>
-                  </p>
+                  <Link
+                    href="https://www.recipe.site"
+                    className="hover:opacity-60 transition-opacity"
+                  >
+                    <Ui.Text.Label>
+                      Built with <span className="underline">Recipe.site</span>
+                    </Ui.Text.Label>
+                  </Link>
                 </nav>
               </div>
             </Ui.Container>

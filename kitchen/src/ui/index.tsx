@@ -26,6 +26,7 @@ export * as Cards from '@/ui/cards';
 export * as Chips from '@/ui/chips';
 export * as Icons from '@/ui/icons';
 export * as Media from '@/ui/media';
+export * as Nav from '@/ui/nav';
 export * as Richtext from '@/ui/richtext';
 export * as Select from '@/ui/select';
 export * as Slider from '@/ui/slider';

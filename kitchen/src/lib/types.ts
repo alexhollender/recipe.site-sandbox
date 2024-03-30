@@ -225,7 +225,8 @@ export type SocialMediaLink = {
 };
 
 export type ProductLink = {
-  productTitle: string;
+  productTitle: PortableText;
+  productTitlePlaintext: string;
   productImage: Image;
   href: string;
 };

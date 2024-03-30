@@ -282,8 +282,10 @@ const SITE_QUERY = groq`
     about[] ${RICHTEXT_QUERY},
     featuredImage ${IMAGE_QUERY},
     productLinks[] {
+      _key,
       productTitle,
-      productImage,
+      "productTitlePlaintext": pt::text(productTitle),
+      productImage ${IMAGE_QUERY},
       href
     },
     linkList {

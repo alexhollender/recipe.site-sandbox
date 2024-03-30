@@ -84,9 +84,11 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
       ></Script>
       <Ui.Container className="mb-4">
         <Ui.Grid>
-          <div className="col-span-12 md:col-span-9">
-            <header className="space-y-4 mb-3">
-              <Ui.Text.Lead as="h1">{props.recipe.title}</Ui.Text.Lead>
+          <div className="col-span-12 lg:col-span-8">
+            <header className="space-y-2 mb-3">
+              <Ui.Text.Lead as="h1" bold>
+                {props.recipe.title}
+              </Ui.Text.Lead>
               {props.recipe.description && (
                 <Ui.Text.Tagline>
                   <Ui.Richtext.Inherited content={props.recipe.description} />
@@ -94,7 +96,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               )}
               <Timing recipe={props.recipe} />
             </header>
-            <div className="aspect-square relative rounded-md overflow-hidden mb-5">
+            <div className="aspect-sd relative rounded-md overflow-hidden mb-5">
               {mediaArray.length > 1 && (
                 <div className="absolute top-0 bottom-0 left-0 flex items-center pl-8 z-20 pointer-events-none">
                   <button
@@ -182,19 +184,25 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               </div>
             )}
           </div>
-          <div className="hidden md:block col-span-3">
+          <div className="hidden lg:block col-start-10 col-span-3">
             <Bio site={props.site} />
           </div>
         </Ui.Grid>
       </Ui.Container>
-      <Ui.Container className="py-3 border-y">
-        <Controls recipe={props.recipe} />
+      <Ui.Container>
+        <div className="py-3 border-y">
+          <Controls recipe={props.recipe} />
+        </div>
       </Ui.Container>
       <Ui.Container className="mt-4">
         <Ui.Grid>
           <div className="col-span-12 md:col-span-5">
             <div className="bg-secondary-tint p-4 rounded-md sticky top-5">
-              <div className="flex items-center" role="button" onClick={onToggleIngredients}>
+              <div
+                className="flex md:hidden items-center"
+                role="button"
+                onClick={onToggleIngredients}
+              >
                 <div
                   className={Utils.cx([
                     'h-4 w-4 mr-2 transition-transform',
@@ -205,8 +213,19 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 >
                   <Ui.Icons.DownCarrot />
                 </div>
-                <Ui.Text.Title as="h2">{`Ingredients (${props.recipe.ingredientUsageCount})`}</Ui.Text.Title>
+                <Ui.Text.Title
+                  bold
+                  as="h2"
+                >{`Ingredients (${props.recipe.ingredientUsageCount})`}</Ui.Text.Title>
               </div>
+
+              <div className="hidden md:block">
+                <Ui.Text.Title
+                  bold
+                  as="h2"
+                >{`Ingredients (${props.recipe.ingredientUsageCount})`}</Ui.Text.Title>
+              </div>
+
               {isIngredientsDisplayed && props.recipe.ingredientUsageGroups && (
                 <div className="mt-4 mb-2 space-y-5">
                   {props.recipe.ingredientUsageGroups.map((ingredientUsageGroup) => {
@@ -226,18 +245,24 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                                 <IngredientUsage ingredientUsage={ingredientUsage} />
                                 {ingredientUsage.note && (
                                   <div className="pl-6">
-                                    <Ui.Text.Body className="italic text-primary-tint">
-                                      <Ui.Richtext.Styled content={ingredientUsage.note} />
-                                    </Ui.Text.Body>
+                                    <div className="italic text-primary-tint">
+                                      <Ui.Richtext.Styled
+                                        style="interface"
+                                        content={ingredientUsage.note}
+                                      />
+                                    </div>
                                   </div>
                                 )}
                               </li>
                             );
                           })}
                           {ingredientUsageGroup.note && (
-                            <Ui.Text.Body className="italic text-primary-tint">
-                              <Ui.Richtext.Styled content={ingredientUsageGroup.note} />
-                            </Ui.Text.Body>
+                            <div className="italic text-primary-tint">
+                              <Ui.Richtext.Styled
+                                style="interface"
+                                content={ingredientUsageGroup.note}
+                              />
+                            </div>
                           )}
                         </ol>
                       </div>
@@ -247,9 +272,11 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               )}
             </div>
           </div>
-          <div className="col-span-12 md:col-span-7">
+          <div className="col-span-12 md:col-span-7 instruction-counter">
             <div className="mt-5">
-              <Ui.Text.Title as="h2">Instructions</Ui.Text.Title>
+              <Ui.Text.Title bold as="h2">
+                Instructions
+              </Ui.Text.Title>
             </div>
             <div className="divide-y">
               {props.recipe.instructionGroups &&
@@ -274,26 +301,30 @@ const Bio = ({ site }: { site: Types.Site }) => {
   return (
     <div className="border border-tint p-6 rounded-md text-center">
       {site.featuredImage && (
-        <div className="rounded-full aspect-square relative overflow-hidden">
-          <Ui.Media.Image
-            image={site.featuredImage}
-            alt={`Profile picture`}
-            fill
-            className="object-cover"
-          />
+        <div className="px-2">
+          <div className="rounded-full aspect-square relative overflow-hidden">
+            <Ui.Media.Image
+              image={site.featuredImage}
+              alt={`Profile picture`}
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       )}
       {site.aboutShort && (
         <div className="mt-6">
-          <Ui.Text.Body>
+          <Ui.Text.Tagline>
             <Ui.Richtext.Inherited content={site.aboutShort} />
-          </Ui.Text.Body>
+          </Ui.Text.Tagline>
         </div>
       )}
 
       <div className="mt-6">
         <Link href="/about">
-          <Ui.Text.Label bold>Learn More</Ui.Text.Label>
+          <Ui.Text.Label bold className="hover:opacity-60 transition-opacity">
+            Learn More
+          </Ui.Text.Label>
         </Link>
       </div>
 
@@ -344,7 +375,9 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
           >
             <Ui.Icons.DownCarrot />
           </div>
-          <Ui.Text.Highlight as="h3">{instructionGroup.title}</Ui.Text.Highlight>
+          <Ui.Text.Highlight bold as="h3">
+            {instructionGroup.title}
+          </Ui.Text.Highlight>
         </div>
       )}
       {isCollapsed === false && (
@@ -354,28 +387,40 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
               <li
                 key={instruction._key}
                 role="button"
-                className="relative"
+                className={Utils.cx([
+                  'relative instruction flex before:inline-flex before:border before:transition-colors before:border-primary before:w-6 before:h-6 before:items-center before:justify-center before:flex-shrink-0 before:mr-2 before:rounded-full before:text-[0.75rem] before:font-interface before:font-bold group before:-left-1 before:relative',
+                  {
+                    'before:bg-primary before:text-secondary':
+                      recipeContext.state.selectedInstructionKey === instruction._key,
+                    'before:bg-secondary before:text-primary':
+                      recipeContext.state.selectedInstructionKey !== instruction._key,
+                  },
+                ])}
                 onClick={() => {
                   recipeContext.setSelectedInstruction(instruction._key);
                 }}
               >
-                <div
-                  className={Utils.cx([
-                    '-inset-2 absolute bg-secondary-tint rounded-lg -z-10 opacity-0 transition-opacity duration-50',
-                    {
-                      'opacity-100':
-                        recipeContext.state.selectedInstructionKey === instruction._key,
-                    },
-                  ])}
-                ></div>
-                <Ui.Richtext.Styled content={instruction.content} />
-                {instruction.note && (
-                  <div className="pt-2">
-                    <Ui.Text.Body className="italic text-primary-tint">
-                      <Ui.Richtext.Styled content={instruction.note} />
-                    </Ui.Text.Body>
-                  </div>
-                )}
+                <div>
+                  <div
+                    className={Utils.cx([
+                      '-inset-x-3 -inset-y-2 absolute bg-secondary-tint rounded-lg -z-10 opacity-0 transition-opacity duration-50 ',
+                      {
+                        'opacity-100':
+                          recipeContext.state.selectedInstructionKey === instruction._key,
+                        'group-hover:opacity-40':
+                          recipeContext.state.selectedInstructionKey !== instruction._key,
+                      },
+                    ])}
+                  ></div>
+                  <Ui.Richtext.Styled style="interface" content={instruction.content} />
+                  {instruction.note && (
+                    <div className="pt-2">
+                      <Ui.Text.Label className="italic text-primary-tint">
+                        <Ui.Richtext.Inherited content={instruction.note} />
+                      </Ui.Text.Label>
+                    </div>
+                  )}
+                </div>
               </li>
             );
           })}
@@ -393,10 +438,19 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
   const title = ingredientUsage.ingredientTitleOverride || ingredientUsage.ingredient.title;
 
   return (
-    <div className="flex items-start">
+    <div
+      className={Utils.cx([
+        'flex items-start transition-opacity',
+        {
+          'opacity-50': recipeContext.state.selectedIngredientUsageIds.includes(
+            ingredientUsage._id,
+          ),
+        },
+      ])}
+    >
       <input
         type="checkbox"
-        className="mr-2 mt-[0.325rem]"
+        className="mr-2 mt-[0.325rem] cursor-pointer"
         id={ingredientUsage._id}
         name={ingredientUsage._id}
         value={ingredientUsage._id}
@@ -411,7 +465,7 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
       ></input>
       <label htmlFor={ingredientUsage._id} className="cursor-pointer">
         <Ui.Text.Label>
-          <Ui.Text.Label as="span" className="pr-2" bold>
+          <Ui.Text.Label as="span" className="pr-1" bold>
             {title}
           </Ui.Text.Label>
           (<Ui.IngredientUsageAmount ingredientUsage={ingredientUsage} />)
@@ -424,20 +478,20 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
 const Timing: React.FC<{ recipe: Types.Recipe }> = ({ recipe }) => {
   if (recipe.timing) {
     return (
-      <Ui.Text.Body>
+      <Ui.Text.Label>
         <span>{recipe.ingredientUsageCount} ingredients</span>
         <span className="mx-1">•</span>
         <span>{recipe.timing}</span>
-      </Ui.Text.Body>
+      </Ui.Text.Label>
     );
   }
 
   return (
-    <Ui.Text.Body>
+    <Ui.Text.Label>
       {recipe.prepTimeMinutes && <span>Prep: {Utils.formatMinutes(recipe.prepTimeMinutes)}</span>}
       {recipe.prepTimeMinutes && recipe.cookTimeMinutes && <span className="mx-1">•</span>}
       {recipe.cookTimeMinutes && <span>Cook: {Utils.formatMinutes(recipe.cookTimeMinutes)}</span>}
-    </Ui.Text.Body>
+    </Ui.Text.Label>
   );
 };
 

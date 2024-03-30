@@ -18,25 +18,31 @@ const Story: React.FC<StoryProps> = ({ storyExcerpt, storyMore }) => {
   return (
     <div>
       <div>
-        <Ui.Richtext.Styled content={storyExcerpt} />
+        <Ui.Richtext.Styled style="narrative" content={storyExcerpt} />
       </div>
       {storyMore && (
         <div className="mt-2">
           {showMore === false && (
             <button type="button" onClick={onShowMore}>
-              <Ui.Text.Body bold className="pb-0.25 border-b border-primary border-dotted">
+              <Ui.Text.Label
+                bold
+                className="pb-0.25 border-b border-primary border-dotted hover:opacity-60 transition-opacity"
+              >
                 Read more
-              </Ui.Text.Body>
+              </Ui.Text.Label>
             </button>
           )}
           {showMore === true && (
             <div>
-              <Ui.Richtext.Styled content={storyMore} />
+              <Ui.Richtext.Styled style="narrative" content={storyMore} />
               <div className="mt-2">
                 <button type="button" onClick={onShowLess}>
-                  <Ui.Text.Body bold className="pb-0.25 border-b border-primary border-dotted">
+                  <Ui.Text.Label
+                    bold
+                    className="pb-0.25 border-b border-primary border-dotted hover:opacity-60 transition-opacity"
+                  >
                     Read less
-                  </Ui.Text.Body>
+                  </Ui.Text.Label>
                 </button>
               </div>
             </div>

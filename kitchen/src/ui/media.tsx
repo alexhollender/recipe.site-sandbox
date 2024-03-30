@@ -68,6 +68,8 @@ type VideoProps = {
   videoOnPause?: () => void;
   videoPlayState?: 'paused' | 'playing';
   fill?: boolean;
+  posterImage?: Types.Image;
+  alt?: string;
 };
 
 export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
@@ -116,7 +118,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
       {playState === 'paused' && (
         <button
           type="button"
-          className="absolute inset-0 w-full h-full flex items-center justify-center"
+          className="absolute inset-0 w-full h-full flex items-center justify-center z-20"
           aria-label="Play Video"
           onClick={onPlay}
         >
@@ -127,7 +129,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
       {playState === 'playing' && (
         <button
           type="button"
-          className="absolute inset-0 w-full h-full flex items-center justify-center group"
+          className="absolute inset-0 w-full h-full flex items-center justify-center group z-20"
           aria-label="Pause Video"
           onClick={onPause}
         >
@@ -135,6 +137,21 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
             <Icons.Pause />
           </div>
         </button>
+      )}
+
+      {props.posterImage && (
+        <Image
+          image={props.posterImage}
+          alt={props.alt || ''}
+          fill
+          className={Utils.cx([
+            'object-cover z-10 transition-opacity',
+            {
+              'opacity-0': playState === 'playing',
+              'opacity-100': playState === 'paused',
+            },
+          ])}
+        />
       )}
 
       <video
@@ -170,6 +187,8 @@ export const Media: React.FC<MediaProps> = ({ media, ...props }) => {
         videoOnPlay={props.videoOnPlay}
         videoOnPause={props.videoOnPause}
         videoPlayState={props.videoPlayState}
+        posterImage={media.image || undefined}
+        alt={props.alt || ''}
         {...props}
       />
     );

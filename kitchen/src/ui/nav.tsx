@@ -70,16 +70,16 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
           </div>
         </Ui.Container>
       </div>
-      <div className="md:hidden absolute left-0 right-0 z-50 ">
-        <nav
-          className={Utils.cx([
-            'transition-opacity bg-secondary py-3 shadow-lg',
-            {
-              'opacity-0': !isMenuOpen,
-              'opacity-100': isMenuOpen,
-            },
-          ])}
-        >
+      <div
+        className={Utils.cx([
+          'md:hidden absolute left-0 right-0 z-50',
+          {
+            'md:hidden': isMenuOpen,
+            hidden: !isMenuOpen,
+          },
+        ])}
+      >
+        <nav className="bg-secondary py-3 shadow-lg">
           <Ui.Container>
             <ul className="space-y-4">
               <li>

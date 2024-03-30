@@ -23,6 +23,7 @@ const LinksIndex: Next.NextPage<LinksIndexProps> = (props) => {
               <Link
                 href={link.href}
                 className="block bg-secondary-tint text-primary p-4 rounded-xl hover:opacity-60 transition-opacity"
+                target="_blank"
               >
                 <Ui.Text.Label bold>{link.label}</Ui.Text.Label>
               </Link>

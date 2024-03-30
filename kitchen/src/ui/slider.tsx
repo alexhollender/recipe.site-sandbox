@@ -144,7 +144,7 @@ export const SouffléSection: React.FC<React.PropsWithChildren<SouffléSectionPr
     <section>
       <Ui.Container className="flex justify-between mb-3 items-center">
         <Ui.Text.Title as="h2">{props.heading}</Ui.Text.Title>
-        <div className="flex justify-between space-x-5">
+        <div className="justify-between space-x-5 hidden md:flex">
           <button
             type="button"
             className="w-7 h-7 color-primary disabled:opacity-25 transition-opacity hover:opacity-60"

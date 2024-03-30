@@ -23,6 +23,6 @@ export async function generateMetadata({ params }: LinksIndexProps): Promise<Nex
   if (!site) return NextNavigation.notFound();
 
   return {
-    title: `Links · ${site.title}`,
+    title: `Links • ${site.title}`,
   };
 }

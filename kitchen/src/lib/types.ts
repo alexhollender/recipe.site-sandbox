@@ -242,6 +242,7 @@ export type Site = {
   collections: Collection[];
   socialMediaLinks: SocialMediaLink[];
   aboutShort: PortableText;
+  aboutShortPlaintext: string;
   aboutHeading: PortableText | null;
   about: PortableText;
   featuredImage: Image;

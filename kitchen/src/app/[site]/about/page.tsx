@@ -23,6 +23,6 @@ export async function generateMetadata({ params }: AboutProps): Promise<Next.Met
   if (!site) return NextNavigation.notFound();
 
   return {
-    title: `About · ${site.title}`,
+    title: `About • ${site.title}`,
   };
 }

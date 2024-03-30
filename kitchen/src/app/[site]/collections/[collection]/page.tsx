@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: CollectionsShowProps): Promis
   if (!site || !collection) return NextNavigation.notFound();
 
   return {
-    title: `${site.title} · ${collection.title}`,
+    title: `${collection.title} • ${site.title}`,
   };
 }
 

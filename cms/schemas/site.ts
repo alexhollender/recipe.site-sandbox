@@ -208,6 +208,12 @@ export default Sanity.defineType({
       ],
     },
     {
+      name: 'logo',
+      title: 'Logo',
+      type: 'image',
+      // validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'linkList',
       title: 'Link List',
       type: 'object',

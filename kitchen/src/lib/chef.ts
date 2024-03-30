@@ -278,6 +278,7 @@ const SITE_QUERY = groq`
     },
     collections[] -> ${COLLECTION_QUERY},
     aboutShort[] ${RICHTEXT_QUERY},
+    "aboutShortPlaintext": pt::text(aboutShort),
     aboutHeading[] ${RICHTEXT_QUERY},
     about[] ${RICHTEXT_QUERY},
     featuredImage ${IMAGE_QUERY},

@@ -20,12 +20,3 @@ const SitesShow: Next.NextPage<Props> = async ({ params }) => {
 };
 
 export default SitesShow;
-
-export async function generateMetadata({ params }: Props): Promise<Next.Metadata> {
-  const site = await Chef.Sites.get({ slug: params.site });
-  if (!site) return NextNavigation.notFound();
-
-  return {
-    title: site.title,
-  };
-}

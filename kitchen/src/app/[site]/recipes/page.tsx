@@ -23,6 +23,6 @@ export async function generateMetadata({ params }: RecipesIndexProps): Promise<N
   if (!site) return NextNavigation.notFound();
 
   return {
-    title: `${site.title} · Recipes`,
+    title: `Recipes • ${site.title}`,
   };
 }

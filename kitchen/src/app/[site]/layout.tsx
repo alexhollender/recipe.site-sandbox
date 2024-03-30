@@ -1,5 +1,7 @@
 import * as Chef from '@/lib/chef';
+import * as Next from 'next';
 import * as NextNavigation from 'next/navigation';
+import * as Sanity from '@/lib/sanity';
 import * as Site from '@/lib/site';
 import * as SiteContext from '@/lib/siteContext';
 import * as Ui from '@/ui';
@@ -65,5 +67,45 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
     </>
   );
 };
+
+export async function generateMetadata({ params }: Props): Promise<Next.Metadata> {
+  const site = await Chef.Sites.get({ slug: params.site });
+  if (!site) return NextNavigation.notFound();
+
+  const primaryAuthor = Site.primaryAuthor(site);
+
+  return {
+    title: site.title,
+    authors: {
+      name: primaryAuthor.name,
+    },
+    openGraph: {
+      title: site.title,
+      description: site.aboutShortPlaintext,
+      locale: 'en_US',
+      type: 'website',
+      images: site.featuredImage
+        ? [
+            {
+              url: Sanity.ImageBuilder.image(site.featuredImage).url(),
+              width: site.featuredImage.asset.metadata.dimensions.width,
+              height: site.featuredImage.asset.metadata.dimensions.height,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      images: site.featuredImage
+        ? [
+            {
+              url: Sanity.ImageBuilder.image(site.featuredImage).url(),
+              width: site.featuredImage.asset.metadata.dimensions.width,
+              height: site.featuredImage.asset.metadata.dimensions.height,
+            },
+          ]
+        : undefined,
+    },
+  };
+}
 
 export default SiteLayout;

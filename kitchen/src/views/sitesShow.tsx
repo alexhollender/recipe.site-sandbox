@@ -43,7 +43,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       <section className="mt-32">
         <Ui.Container>
           <Ui.Grid>
-            <div className="col-span-6">
+            <div className="col-span-12 md:col-span-6">
               <div className="mb-3">
                 {props.site.aboutHeading ? (
                   <Ui.Text.Lead bold as="h2">
@@ -69,7 +69,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
                 </div>
               )}
             </div>
-            <div className="col-start-8 col-span-5">
+            <div className="col-span-12 md:col-start-8 md:col-span-5">
               {props.site.featuredImage && (
                 <div className="relative aspect-square">
                   <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />

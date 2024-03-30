@@ -288,6 +288,7 @@ const SITE_QUERY = groq`
       productImage ${IMAGE_QUERY},
       href
     },
+    logo ${IMAGE_QUERY},
     linkList {
       title,
       links[] {

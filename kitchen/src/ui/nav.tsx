@@ -29,7 +29,11 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
         <Ui.Container>
           <div className="flex justify-between items-center">
             <Link href="/">
-              <Ui.Text.Title>{primaryAuthor.name}</Ui.Text.Title>
+              {site.logo ? (
+                <Ui.Media.Image image={site.logo} alt={site.title} className="h-9 w-auto" />
+              ) : (
+                <Ui.Text.Title>{primaryAuthor.name}</Ui.Text.Title>
+              )}
             </Link>
 
             <nav className="hidden md:block">

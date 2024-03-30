@@ -3,6 +3,7 @@ import * as NextNavigation from 'next/navigation';
 import * as React from 'react';
 import * as RecipeContext from '@/lib/recipeContext';
 import * as Chef from '@/lib/chef';
+import * as Sanity from '@/lib/sanity';
 import * as SitesShow from '@/app/[site]/page';
 import * as Views from '@/views';
 
@@ -36,7 +37,32 @@ export async function generateMetadata({ params }: RecipesShowProps): Promise<Ne
   if (!site || !recipe) return NextNavigation.notFound();
 
   return {
-    title: `${site.title} · ${recipe.title}`,
+    title: `${recipe.title} • ${site.title}`,
+    description: recipe.descriptionPlaintext || null,
+    openGraph: {
+      title: `${recipe.title} • ${site.title}`,
+      description: recipe.descriptionPlaintext || undefined,
+      images: recipe.featuredMedia.image
+        ? [
+            {
+              url: Sanity.ImageBuilder.image(recipe.featuredMedia.image).url(),
+              width: recipe.featuredMedia.image.asset.metadata.dimensions.width,
+              height: recipe.featuredMedia.image.asset.metadata.dimensions.height,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      images: recipe.featuredMedia.image
+        ? [
+            {
+              url: Sanity.ImageBuilder.image(recipe.featuredMedia.image).url(),
+              width: recipe.featuredMedia.image.asset.metadata.dimensions.width,
+              height: recipe.featuredMedia.image.asset.metadata.dimensions.height,
+            },
+          ]
+        : undefined,
+    },
   };
 }
 

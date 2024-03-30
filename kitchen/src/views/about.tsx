@@ -11,7 +11,7 @@ const About: Next.NextPage<AboutProps> = (props) => {
   return (
     <Ui.Container>
       <Ui.Grid>
-        <div className="col-span-7">
+        <div className="col-span-12 md:col-span-6">
           <div className="mb-3">
             {props.site.aboutHeading ? (
               <Ui.Text.Title bold as="h2">
@@ -36,7 +36,7 @@ const About: Next.NextPage<AboutProps> = (props) => {
             </div>
           )}
         </div>
-        <div className="col-span-5">
+        <div className="col-span-12 md:col-start-8 md:col-span-5">
           <div className="relative aspect-square">
             <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
           </div>

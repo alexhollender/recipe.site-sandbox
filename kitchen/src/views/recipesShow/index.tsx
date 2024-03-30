@@ -90,7 +90,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 {props.recipe.title}
               </Ui.Text.Lead>
               {props.recipe.description && (
-                <Ui.Text.Tagline>
+                <Ui.Text.Tagline className="text-primary-tint">
                   <Ui.Richtext.Inherited content={props.recipe.description} />
                 </Ui.Text.Tagline>
               )}
@@ -332,7 +332,7 @@ const Bio = ({ site }: { site: Types.Site }) => {
         <div className="mt-6 justify-center flex space-x-5">
           {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
             return (
-              <div key={socialMediaLink._key} className="w-8">
+              <div key={socialMediaLink._key} className="w-6">
                 <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
               </div>
             );

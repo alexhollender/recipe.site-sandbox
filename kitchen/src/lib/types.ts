@@ -246,6 +246,7 @@ export type Site = {
   about: PortableText;
   featuredImage: Image;
   productLinks: SanityArrayItem<ProductLink>[];
+  logo: Image | null;
   linkList: null | {
     title: string;
     links: {

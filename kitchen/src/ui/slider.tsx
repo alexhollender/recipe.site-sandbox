@@ -147,7 +147,7 @@ export const SouffléSection: React.FC<React.PropsWithChildren<SouffléSectionPr
         <div className="flex justify-between space-x-5">
           <button
             type="button"
-            className="w-7 h-7 color-primary disabled:text-primary-tint transition-colors"
+            className="w-7 h-7 color-primary disabled:opacity-25 transition-opacity hover:opacity-60"
             onClick={slider.onPrevious}
             disabled={slider.isPreviousDisabled}
           >
@@ -155,7 +155,7 @@ export const SouffléSection: React.FC<React.PropsWithChildren<SouffléSectionPr
           </button>
           <button
             type="button"
-            className="w-7 h-7 color-primary disabled:text-primary-tint transition-colors"
+            className="w-7 h-7 color-primary disabled:opacity-25 transition-opacity hover:opacity-60"
             onClick={slider.onNext}
             disabled={slider.isNextDisabled}
           >

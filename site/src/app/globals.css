@@ -5,6 +5,15 @@
 :root {
   --fontFamily-narrative: 'Times New Roman', 'serif';
   --fontFamily-interface: 'Arial', 'sans-serif';
+
+  --color-text: #000000;
+  --color-accent: var(--color-text);
+  --color-subdued: #5b5b5b;
+  --color-overlay: #ffffff;
+  --color-background: #ffffff;
+  --color-panel: #f2f2f2;
+  --color-emphasis: #8d8d8d;
+  --color-outline: #d9d9d9;
 }
 
 .slider-item-inner {

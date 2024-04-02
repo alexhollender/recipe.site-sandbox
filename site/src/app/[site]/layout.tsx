@@ -22,32 +22,33 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
 
   const primaryAuthor = Site.primaryAuthor(site);
 
-  const ColorTheme = {
-    primary: '#000000',
-    primaryTint: '#5B5B5B',
-    secondary: '#FFFFFF',
-    secondaryTint: '#F2F2F2',
-  };
+  console.log('site', site);
 
   return (
     <>
-      <style>{`
-        :root {
-          --color-primary: ${ColorTheme.primary};
-          --color-primary-tint: ${ColorTheme.primaryTint};
-          --color-secondary: ${ColorTheme.secondary};
-          --color-secondary-tint: ${ColorTheme.secondaryTint};
-        }
+      {site.theme && (
+        <style>{`
+          :root {
+            --color-text: ${site.theme.colorText.hex};
+            --color-accent: ${site.theme.colorAccent.hex};
+            --color-subdued: ${site.theme.colorSubdued.hex};
+            --color-overlay: ${site.theme.colorOverlay.hex};
+            --color-background: ${site.theme.colorBackground.hex};
+            --color-panel: ${site.theme.colorPanel.hex};
+            --color-emphasis: ${site.theme.colorEmphasis.hex};
+            --color-outline: ${site.theme.colorOutline.hex};
+          }
       `}</style>
+      )}
       <SiteContext.Provider globals={globals}>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-background">
           <Ui.Nav.Main site={site} />
           <main className="flex-1">{props.children}</main>
-          <footer className="mt-6 border-t border-secondary-tint py-6">
+          <footer className="mt-6 border-t border-outline py-6 text-subdued">
             <Ui.Container>
               <div className="flex justify-between items-center">
                 <Ui.Text.Label>
-                  © {new Date().getFullYear()} — {site.title}
+                  © {new Date().getFullYear()} — {site.title}
                 </Ui.Text.Label>
                 <nav>
                   <Link

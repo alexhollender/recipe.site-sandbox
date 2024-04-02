@@ -4,7 +4,9 @@ export const Container: React.FC<React.PropsWithChildren<{ className?: string }>
   children,
   className,
 }) => {
-  return <div className={Utils.cx(['max-w-[75rem] mx-auto px-4', className])}>{children}</div>;
+  return (
+    <div className={Utils.cx(['max-w-[75rem] mx-auto px-4 md:px-6', className])}>{children}</div>
+  );
 };
 
 export const SouffléContainer: React.FC<React.PropsWithChildren<{ className?: string }>> = ({
@@ -33,5 +35,6 @@ export * as Slider from '@/ui/slider';
 export * as Text from '@/ui/text';
 export * as ToggleGroup from '@/ui/toggleGroup';
 
+export { default as Gallery } from '@/ui/gallery';
 export { default as IngredientUsageAmount } from '@/ui/ingredientUsageAmount';
 export { default as SocialMediaLink } from '@/ui/socialMediaLink';

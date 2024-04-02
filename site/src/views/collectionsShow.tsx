@@ -5,8 +5,6 @@ import * as React from 'react';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
 
-import Link from 'next/link';
-
 type CollectionsShowProps = {
   site: Types.Site;
   collection: Types.Collection;
@@ -15,10 +13,12 @@ type CollectionsShowProps = {
 const CollectionsShow: Next.NextPage<CollectionsShowProps> = (props) => {
   return (
     <Ui.Container>
-      <div className="mb-3">
-        <Ui.Text.Title as="h1">{props.collection.title}</Ui.Text.Title>
+      <div className="mb-3 text-accent">
+        <Ui.Text.Lead bold as="h1">
+          {props.collection.title}
+        </Ui.Text.Lead>
       </div>
-      <div className="mb-5">
+      <div className="mb-5 text-text">
         <Ui.Text.Tagline>
           <Ui.Richtext.Inherited content={props.collection.description} />
         </Ui.Text.Tagline>

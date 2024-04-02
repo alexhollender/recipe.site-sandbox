@@ -143,11 +143,13 @@ export const SouffléSection: React.FC<React.PropsWithChildren<SouffléSectionPr
   return (
     <section>
       <Ui.Container className="flex justify-between mb-3 items-center">
-        <Ui.Text.Title as="h2">{props.heading}</Ui.Text.Title>
+        <Ui.Text.Title as="h2" className="text-text">
+          {props.heading}
+        </Ui.Text.Title>
         <div className="justify-between space-x-5 hidden md:flex">
           <button
             type="button"
-            className="w-7 h-7 color-primary disabled:opacity-25 transition-opacity hover:opacity-60"
+            className="w-7 h-7 text-accent disabled:opacity-25 transition-opacity hover:opacity-60"
             onClick={slider.onPrevious}
             disabled={slider.isPreviousDisabled}
           >
@@ -155,7 +157,7 @@ export const SouffléSection: React.FC<React.PropsWithChildren<SouffléSectionPr
           </button>
           <button
             type="button"
-            className="w-7 h-7 color-primary disabled:opacity-25 transition-opacity hover:opacity-60"
+            className="w-7 h-7 text-accent disabled:opacity-25 transition-opacity hover:opacity-60"
             onClick={slider.onNext}
             disabled={slider.isNextDisabled}
           >

@@ -11,21 +11,21 @@ const About: Next.NextPage<AboutProps> = (props) => {
   return (
     <Ui.Container>
       <Ui.Grid>
-        <div className="col-span-12 md:col-span-6">
+        <div className="col-span-12 md:col-span-6 text-accent">
           <div className="mb-3">
             {props.site.aboutHeading ? (
-              <Ui.Text.Title bold as="h2">
+              <Ui.Text.Title bold as="h1">
                 <Ui.Richtext.Inherited content={props.site.aboutHeading} />
               </Ui.Text.Title>
             ) : (
-              <Ui.Text.Title bold as="h2">
+              <Ui.Text.Title bold as="h1">
                 About
               </Ui.Text.Title>
             )}
           </div>
           <Ui.Richtext.Styled style="narrative" content={props.site.about} />
           {props.site.socialMediaLinks.length > 0 && (
-            <div className="mt-6 flex space-x-5">
+            <div className="mt-6 flex space-x-5 text-text">
               {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
                 return (
                   <div key={socialMediaLink._key} className="w-8">

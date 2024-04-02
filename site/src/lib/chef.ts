@@ -242,7 +242,7 @@ const RECIPE_QUERY = groq`
         content[] ${RICHTEXT_QUERY},
         timerMinutes,
         note,
-        "media": media[] -> ${MEDIA_QUERY}
+        media[] ${MEDIA_QUERY}
       }
     },
     "legacyRecipeData": legacyRecipeData {
@@ -260,6 +260,27 @@ const COLLECTION_QUERY = groq`
   {
     ...${COLLECTION_PREVIEW_QUERY},
     recipes[] -> ${RECIPE_PREVIEW_QUERY}
+  }
+`;
+
+const COLOR_QUERY = groq`{
+  _type,
+  hex,
+}`;
+
+const THEME_QUERY = groq`
+  {
+    _type,
+    _id,
+    title,
+    colorText ${COLOR_QUERY},
+    colorAccent ${COLOR_QUERY},
+    colorSubdued ${COLOR_QUERY},
+    colorOverlay ${COLOR_QUERY},
+    colorBackground ${COLOR_QUERY},
+    colorPanel ${COLOR_QUERY},
+    colorEmphasis ${COLOR_QUERY},
+    colorOutline ${COLOR_QUERY}
   }
 `;
 
@@ -297,7 +318,8 @@ const SITE_QUERY = groq`
         label,
         href
       }
-    }
+    },
+    theme -> ${THEME_QUERY}
   }
 `;
 

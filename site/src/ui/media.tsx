@@ -55,6 +55,7 @@ export const HoverAutoplayVideo: React.FC<HoverAutoplayProps> = (props) => {
       ref={videoPlayerRef}
       className={Utils.cx(['w-full h-full', props.className])}
       src={props.video.asset.url}
+      playsInline
       muted
       loop
     />
@@ -166,6 +167,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
         /* @ts-ignore */
         src={video.asset.url}
         loop
+        playsInline
         {...props}
       />
     </div>

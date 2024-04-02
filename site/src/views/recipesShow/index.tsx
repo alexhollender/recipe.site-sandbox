@@ -25,52 +25,8 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
 
   const mediaArray = [props.recipe.featuredMedia, ...(props.recipe.media || [])];
 
-  const [activeMediaIndex, setActiveMediaIndex] = React.useState(0);
-  const [videoPlayStates, setVideoPlayStates] = React.useState<('paused' | 'playing')[]>(
-    mediaArray.map(() => 'paused'),
-  );
-
-  const activeMediaPlayState = videoPlayStates[activeMediaIndex];
-
-  const onPlayVideo = () => {
-    setVideoPlayStates((state) => {
-      const newState = [...state];
-      newState[activeMediaIndex] = 'playing';
-      return newState;
-    });
-  };
-
-  const onPauseVideo = () => {
-    setVideoPlayStates((state) => {
-      const newState = [...state];
-      newState[activeMediaIndex] = 'paused';
-      return newState;
-    });
-  };
-
   const onToggleIngredients = () => {
     setIsIngredientsDisplayed((state) => !state);
-  };
-
-  const onNextMedia = () => {
-    onPauseVideo();
-    setActiveMediaIndex((state) => {
-      if (state + 1 >= mediaArray.length) return 0;
-      return state + 1;
-    });
-  };
-
-  const onPreviousMedia = () => {
-    onPauseVideo();
-    setActiveMediaIndex((state) => {
-      if (state - 1 < 0) return mediaArray.length - 1;
-      return state - 1;
-    });
-  };
-
-  const onChangeMedia = (index: number) => {
-    onPauseVideo();
-    setActiveMediaIndex(index);
   };
 
   return (
@@ -86,97 +42,28 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
         <Ui.Grid>
           <div className="col-span-12 lg:col-span-8">
             <header className="space-y-2 mb-3">
-              <Ui.Text.Lead as="h1" bold>
-                {props.recipe.title}
-              </Ui.Text.Lead>
+              <div className="text-accent">
+                <Ui.Text.Lead as="h1" bold>
+                  {props.recipe.title}
+                </Ui.Text.Lead>
+              </div>
               {props.recipe.description && (
-                <Ui.Text.Tagline className="text-primary-tint">
+                <Ui.Text.Tagline className="text-subdued">
                   <Ui.Richtext.Inherited content={props.recipe.description} />
                 </Ui.Text.Tagline>
               )}
-              <Timing recipe={props.recipe} />
+              <div className="text-text">
+                <Timing recipe={props.recipe} />
+              </div>
             </header>
-            <div className="aspect-sd relative rounded-md overflow-hidden mb-5">
-              {mediaArray.length > 1 && (
-                <div className="absolute top-0 bottom-0 left-0 flex items-center pl-8 z-20 pointer-events-none">
-                  <button
-                    type="button"
-                    onClick={onPreviousMedia}
-                    className={Utils.cx([
-                      'h-12 w-12 text-secondary-tint opacity-90 pointer-events-auto',
-                    ])}
-                    aria-label="Previous Image"
-                  >
-                    <Ui.Icons.Previous />
-                  </button>
-                </div>
-              )}
-              {mediaArray.length > 1 && (
-                <div className="absolute top-0 bottom-0 right-0 flex items-center pr-8 z-20 pointer-events-none">
-                  <button
-                    type="button"
-                    onClick={onNextMedia}
-                    className={Utils.cx([
-                      'h-12 w-12 text-secondary-tint opacity-90 pointer-events-auto',
-                    ])}
-                    aria-label="Next Image"
-                  >
-                    <Ui.Icons.Next />
-                  </button>
-                </div>
-              )}
-              {mediaArray.length > 1 && (
-                <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-6 z-20 pointer-events-none">
-                  <div className="flex space-x-4 p-3 bg-secondary-tint rounded-full">
-                    {mediaArray.map((media, index) => {
-                      return (
-                        <button
-                          key={media._key}
-                          type="button"
-                          onClick={() => onChangeMedia(index)}
-                          className={Utils.cx([
-                            'h-4 w-4 rounded-full pointer-events-auto transition-opacity',
-                            {
-                              'bg-primary opacity-50': activeMediaIndex === index,
-                              'bg-primary opacity-20': activeMediaIndex !== index,
-                            },
-                          ])}
-                          aria-label="Change Image"
-                        ></button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-              {mediaArray.map((media, index) => {
-                return (
-                  <div
-                    key={media._key}
-                    className={Utils.cx([
-                      'absolute inset-0 transition-opacity duration-300',
-                      {
-                        'opacity-100 z-10': activeMediaIndex === index,
-                        'opacity-0 z-0': activeMediaIndex !== index,
-                      },
-                    ])}
-                  >
-                    <Ui.Media.Media
-                      videoOnPause={onPauseVideo}
-                      videoOnPlay={onPlayVideo}
-                      videoPlayState={activeMediaPlayState}
-                      media={media}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                );
-              })}
+            <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-md overflow-hidden">
+              <Ui.Gallery media={mediaArray} />
             </div>
             <div>
               <Overview site={props.site} recipe={props.recipe} />
             </div>
             {props.recipe.storyExcerpt && (
-              <div className="mt-3">
+              <div className="mt-3 text-text">
                 <Story
                   storyExcerpt={props.recipe.storyExcerpt}
                   storyMore={props.recipe.storyMore}
@@ -190,16 +77,16 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
         </Ui.Grid>
       </Ui.Container>
       <Ui.Container>
-        <div className="py-3 border-y">
+        <div className="py-3 border-y border-outline">
           <Controls recipe={props.recipe} />
         </div>
       </Ui.Container>
       <Ui.Container className="mt-4">
         <Ui.Grid>
           <div className="col-span-12 md:col-span-5">
-            <div className="bg-secondary-tint p-4 rounded-md sticky top-5">
+            <div className="bg-panel p-4 md:p-6 rounded-md sticky top-5">
               <div
-                className="flex md:hidden items-center"
+                className="flex md:hidden items-center text-text"
                 role="button"
                 onClick={onToggleIngredients}
               >
@@ -219,7 +106,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 >{`Ingredients (${props.recipe.ingredientUsageCount})`}</Ui.Text.Title>
               </div>
 
-              <div className="hidden md:block">
+              <div className="hidden md:block text-text">
                 <Ui.Text.Title
                   bold
                   as="h2"
@@ -232,7 +119,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                     return (
                       <div key={ingredientUsageGroup.title}>
                         {ingredientUsageGroup.title && (
-                          <div className="border-b border-primary-tint mb-3 pb-0.5">
+                          <div className="border-b border-outline mb-3 pb-0.5 text-text">
                             <Ui.Text.Highlight as="h3">
                               {ingredientUsageGroup.title}
                             </Ui.Text.Highlight>
@@ -245,7 +132,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                                 <IngredientUsage ingredientUsage={ingredientUsage} />
                                 {ingredientUsage.note && (
                                   <div className="pl-6">
-                                    <div className="italic text-primary-tint">
+                                    <div className="italic text-subdued">
                                       <Ui.Richtext.Styled
                                         style="interface"
                                         content={ingredientUsage.note}
@@ -257,7 +144,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                             );
                           })}
                           {ingredientUsageGroup.note && (
-                            <div className="italic text-primary-tint">
+                            <div className="italic text-subdued">
                               <Ui.Richtext.Styled
                                 style="interface"
                                 content={ingredientUsageGroup.note}
@@ -299,7 +186,7 @@ export default RecipesShow;
 
 const Bio = ({ site }: { site: Types.Site }) => {
   return (
-    <div className="border border-tint p-6 rounded-md text-center">
+    <div className="border border-outline p-6 rounded-md text-center">
       {site.featuredImage && (
         <div className="px-2">
           <div className="rounded-full aspect-square relative overflow-hidden">
@@ -313,14 +200,14 @@ const Bio = ({ site }: { site: Types.Site }) => {
         </div>
       )}
       {site.aboutShort && (
-        <div className="mt-6">
+        <div className="mt-6 text-subdued">
           <Ui.Text.Tagline>
             <Ui.Richtext.Inherited content={site.aboutShort} />
           </Ui.Text.Tagline>
         </div>
       )}
 
-      <div className="mt-6">
+      <div className="mt-6 text-text">
         <Link href="/about">
           <Ui.Text.Label bold className="hover:opacity-60 transition-opacity">
             Learn More
@@ -329,7 +216,7 @@ const Bio = ({ site }: { site: Types.Site }) => {
       </div>
 
       {site.socialMediaLinks.length > 0 && (
-        <div className="mt-6 justify-center flex space-x-5">
+        <div className="mt-6 justify-center flex space-x-5 text-text">
           {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
             return (
               <div key={socialMediaLink._key} className="w-6">
@@ -352,6 +239,10 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
     setIsCollapsed((state) => !state);
   };
 
+  const media = instructionGroup.instructions.reduce((allMedia: Types.Media[], instruction) => {
+    return [...allMedia, ...(instruction.media || [])];
+  }, []);
+
   return (
     <div>
       {instructionGroup.title && (
@@ -359,7 +250,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
           className={Utils.cx([
             'flex items-center',
             {
-              'mb-3': isCollapsed === false,
+              'mb-5': isCollapsed === false,
             },
           ])}
           role="button"
@@ -381,29 +272,29 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
         </div>
       )}
       {isCollapsed === false && (
-        <ol className="space-y-7">
-          {instructionGroup.instructions.map((instruction) => {
-            return (
-              <li
-                key={instruction._key}
-                role="button"
-                className={Utils.cx([
-                  'relative instruction flex before:inline-flex before:border before:transition-colors before:border-primary before:w-6 before:h-6 before:items-center before:justify-center before:flex-shrink-0 before:mr-2 before:rounded-full before:text-[0.75rem] before:font-interface before:font-bold group before:-left-1 before:relative',
-                  {
-                    'before:bg-primary before:text-secondary':
-                      recipeContext.state.selectedInstructionKey === instruction._key,
-                    'before:bg-secondary before:text-primary':
-                      recipeContext.state.selectedInstructionKey !== instruction._key,
-                  },
-                ])}
-                onClick={() => {
-                  recipeContext.setSelectedInstruction(instruction._key);
-                }}
-              >
-                <div>
+        <div>
+          <ol className="space-y-7">
+            {instructionGroup.instructions.map((instruction) => {
+              return (
+                <li
+                  key={instruction._key}
+                  role="button"
+                  className={Utils.cx([
+                    'relative z-10 instruction flex before:inline-flex before:z-10 before:border before:transition-colors before:w-6 before:h-6 before:items-center before:justify-center before:flex-shrink-0 before:mr-2 before:rounded-full before:text-[0.75rem] before:font-interface before:font-bold group before:-left-1 before:relative',
+                    {
+                      'before:bg-text before:text-background before:border-text':
+                        recipeContext.state.selectedInstructionKey === instruction._key,
+                      'before:bg-background before:text-text before:border-emphasis':
+                        recipeContext.state.selectedInstructionKey !== instruction._key,
+                    },
+                  ])}
+                  onClick={() => {
+                    recipeContext.setSelectedInstruction(instruction._key);
+                  }}
+                >
                   <div
                     className={Utils.cx([
-                      '-inset-x-3 -inset-y-2 absolute bg-secondary-tint rounded-lg -z-10 opacity-0 transition-opacity duration-50 ',
+                      '-inset-x-4 md:-inset-x-3 -inset-y-2 absolute bg-panel md:rounded-lg z-0 opacity-0 transition-opacity duration-50 ',
                       {
                         'opacity-100':
                           recipeContext.state.selectedInstructionKey === instruction._key,
@@ -412,19 +303,26 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                       },
                     ])}
                   ></div>
-                  <Ui.Richtext.Styled style="interface" content={instruction.content} />
+                  <div className="text-text relative z-10">
+                    <Ui.Richtext.Styled style="interface" content={instruction.content} />
+                  </div>
                   {instruction.note && (
-                    <div className="pt-2">
-                      <Ui.Text.Label className="italic text-primary-tint">
+                    <div className="pt-2 relative z-10">
+                      <Ui.Text.Label className="italic text-subdued">
                         <Ui.Richtext.Inherited content={instruction.note} />
                       </Ui.Text.Label>
                     </div>
                   )}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+                </li>
+              );
+            })}
+          </ol>
+          {media.length > 0 && (
+            <div className="mt-6 -mx-4 md:mx-0 md:rounded-md overflow-hidden">
+              <Ui.Gallery media={media} />
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
@@ -463,7 +361,7 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
         }}
         checked={recipeContext.state.selectedIngredientUsageIds.includes(ingredientUsage._id)}
       ></input>
-      <label htmlFor={ingredientUsage._id} className="cursor-pointer">
+      <label htmlFor={ingredientUsage._id} className="cursor-pointer text-text">
         <Ui.Text.Label>
           <Ui.Text.Label as="span" className="pr-1" bold>
             {title}
@@ -499,7 +397,7 @@ const Overview: React.FC<{ site: Types.Site; recipe: Types.Recipe }> = ({ site, 
   const author = Site.primaryAuthor(site);
 
   return (
-    <div className="flex space-x-3 items-center">
+    <div className="flex space-x-3 items-center text-text">
       {author.avatar && (
         <div className="rounded-full w-10 h-10 relative overflow-hidden">
           <Ui.Media.Image image={author.avatar} alt={`${author.name} profile picture`} fill />

@@ -231,6 +231,27 @@ export type ProductLink = {
   href: string;
 };
 
+export type Color = {
+  _type: 'color';
+  hex: HexColor;
+};
+
+export type Theme = {
+  _id: string;
+  _type: 'theme';
+  title: string;
+  colorText: Color;
+  colorAccent: Color;
+  colorSubdued: Color;
+  colorOverlay: Color;
+  colorBackground: Color;
+  colorPanel: Color;
+  colorEmphasis: Color;
+  colorOutline: Color;
+};
+
+export type HexColor = string;
+
 export type Site = {
   _type: 'site';
   _id: string;
@@ -248,6 +269,7 @@ export type Site = {
   featuredImage: Image;
   productLinks: SanityArrayItem<ProductLink>[];
   logo: Image | null;
+  theme: Theme | null;
   linkList: null | {
     title: string;
     links: {

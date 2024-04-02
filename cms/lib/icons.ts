@@ -9,6 +9,7 @@ import { PiKnife } from 'react-icons/pi';
 import { MdCategory, MdNotInterested } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
 import { HiCollection } from 'react-icons/hi';
+import { IoIosColorPalette } from 'react-icons/io';
 
 export const Author = LuChefHat;
 export const Collection = HiCollection;
@@ -26,3 +27,4 @@ export const Recipe = FaPlateWheat;
 export const RecipeCategory = MdCategory;
 export const Site = CgWebsite;
 export const Tag = FaTag;
+export const Theme = IoIosColorPalette;

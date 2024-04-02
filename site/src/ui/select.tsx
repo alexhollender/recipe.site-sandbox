@@ -15,7 +15,7 @@ export const Root: React.FC<RootProps> = ({ children, ...props }) => {
       </div>
       <select
         {...props}
-        className="py-1 pl-5 pr-8 bg-secondary-tint text-primary rounded-full font-interface text-base font-bold h-8 cursor-pointer hover:opacity-60 transition-opacity appearance-none"
+        className="py-1 pl-5 pr-8 bg-panel text-text rounded-full font-interface text-base font-bold h-8 cursor-pointer hover:opacity-60 transition-opacity appearance-none"
       >
         {children}
       </select>

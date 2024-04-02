@@ -15,6 +15,7 @@ import RecipeCategory from './recipeCategory';
 import Richtext, { RichtextSimple, RichtextRecipe } from './richtext';
 import Site from './site';
 import Tag from './tag';
+import Theme from './theme';
 import Unit from './unit';
 
 export const schemaTypes = [
@@ -37,5 +38,6 @@ export const schemaTypes = [
   RichtextRecipe,
   Site,
   Tag,
+  Theme,
   Unit,
 ];

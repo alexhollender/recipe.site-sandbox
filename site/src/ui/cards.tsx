@@ -48,10 +48,10 @@ export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
         </div>
       )}
       <div className="mt-2">
-        <div>
+        <div className="text-accent">
           <Ui.Text.Title bold>{recipe.title}</Ui.Text.Title>
         </div>
-        <div className="mt-1 text-primary-tint flex flex-wrap gap-x-3 gap-y-1 items-center">
+        <div className="mt-1 text-subdued flex flex-wrap gap-x-3 gap-y-1 items-center">
           <Ui.Text.Highlight>{`${recipe.ingredientUsageCount} ingredients • ${RecipeUtils.totalTimeFormatted(recipe)}`}</Ui.Text.Highlight>
           {/* {collection && <Ui.Chips.Primary>{collection.title}</Ui.Chips.Primary>} */}
         </div>
@@ -98,7 +98,9 @@ export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
         )}
         <div className="absolute inset-0 z-10 bg-black opacity-30 pointer-events-none"></div>
         <div className="absolute inset-0 flex items-center justify-center z-20 text-secondary pointer-events-none">
-          <Ui.Text.Lead className="text-shadow">{collection.title}</Ui.Text.Lead>
+          <Ui.Text.Lead className="text-shadow text-center text-white">
+            {collection.title}
+          </Ui.Text.Lead>
         </div>
       </div>
     </Link>
@@ -112,7 +114,7 @@ type ProductLinkCardProps = {
 export const ProductLink: React.FC<ProductLinkCardProps> = ({ productLink }) => {
   return (
     <Link href={productLink.href} className="group" target="_blank">
-      <div className="aspect-portrait relative overflow-hidden">
+      <div className="aspect-portrait relative overflow-hidden rounded-xl">
         <Ui.Media.Image
           image={productLink.productImage}
           alt={productLink.productTitlePlaintext}
@@ -120,7 +122,7 @@ export const ProductLink: React.FC<ProductLinkCardProps> = ({ productLink }) => 
           className="object-cover transition-all z-10 hover:scale-[1.02] duration-300"
         />
       </div>
-      <div className="mt-3">
+      <div className="mt-3 text-text">
         <Ui.Text.Highlight bold>
           <Ui.Richtext.Inherited content={productLink.productTitle} />
         </Ui.Text.Highlight>

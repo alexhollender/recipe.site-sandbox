@@ -26,7 +26,7 @@ const Story: React.FC<StoryProps> = ({ storyExcerpt, storyMore }) => {
             <button type="button" onClick={onShowMore}>
               <Ui.Text.Label
                 bold
-                className="pb-0.25 border-b border-primary border-dotted hover:opacity-60 transition-opacity"
+                className="pb-0.25 border-b border-text border-dotted hover:opacity-60 transition-opacity"
               >
                 Read more
               </Ui.Text.Label>
@@ -39,7 +39,7 @@ const Story: React.FC<StoryProps> = ({ storyExcerpt, storyMore }) => {
                 <button type="button" onClick={onShowLess}>
                   <Ui.Text.Label
                     bold
-                    className="pb-0.25 border-b border-primary border-dotted hover:opacity-60 transition-opacity"
+                    className="pb-0.25 border-b border-text border-dotted hover:opacity-60 transition-opacity"
                   >
                     Read less
                   </Ui.Text.Label>

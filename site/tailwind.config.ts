@@ -9,10 +9,14 @@ const config: Config = {
         interface: ['Arial', 'sans-serif'],
       },
       colors: {
-        primary: 'var(--color-primary)',
-        'primary-tint': 'var(--color-primary-tint)',
-        secondary: 'var(--color-secondary)',
-        'secondary-tint': 'var(--color-secondary-tint)',
+        text: 'var(--color-text)',
+        accent: 'var(--color-accent)',
+        subdued: 'var(--color-subdued)',
+        overlay: 'var(--color-overlay)',
+        background: 'var(--color-background)',
+        panel: 'var(--color-panel)',
+        emphasis: 'var(--color-emphasis)',
+        outline: 'var(--color-outline)',
       },
       aspectRatio: {
         landscape: '16 / 9',

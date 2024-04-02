@@ -22,7 +22,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         <Ui.Slider.SouffléSection heading="Featured recipes">
           {props.site.featuredRecipes.map((recipe) => {
             return (
-              <div className="max-w-[80vw] w-[36rem]" key={recipe._id}>
+              <div className="max-w-[80vw] w-[30rem]" key={recipe._id}>
                 <Ui.Cards.Recipe recipe={recipe} />
               </div>
             );
@@ -33,7 +33,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         <Ui.Slider.SouffléSection heading="Recipe collections">
           {props.site.collections.map((collection) => {
             return (
-              <div className="max-w-[80vw] w-[28rem]" key={collection._id}>
+              <div className="max-w-[80vw] w-[24rem]" key={collection._id}>
                 <Ui.Cards.Collection collection={collection} />
               </div>
             );
@@ -43,7 +43,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       <section className="mt-20 md:mt-28">
         <Ui.Container>
           <Ui.Grid>
-            <div className="col-span-12 md:col-span-6">
+            <div className="col-span-12 md:col-span-6 text-accent">
               <div className="mb-3">
                 {props.site.aboutHeading ? (
                   <Ui.Text.Lead bold as="h2">
@@ -58,7 +58,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
               <Ui.Richtext.Styled style="narrative" content={props.site.about} />
 
               {props.site.socialMediaLinks.length > 0 && (
-                <div className="mt-6 flex space-x-5">
+                <div className="mt-6 flex space-x-5 text-text">
                   {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
                     return (
                       <div key={socialMediaLink._key} className="w-8">
@@ -84,7 +84,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           <Ui.Slider.SouffléSection heading="My favorite products">
             {props.site.productLinks.map((productLink) => {
               return (
-                <div className="max-w-[80vw] w-[28rem]" key={productLink._key}>
+                <div className="max-w-[80vw] w-[22rem]" key={productLink._key}>
                   <Ui.Cards.ProductLink productLink={productLink} />
                 </div>
               );
@@ -94,7 +94,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       )}
       <section className="mt-20 md:mt-28">
         <Ui.Container>
-          <div className="mb-3 flex justify-between items-center">
+          <div className="mb-3 flex justify-between items-center text-text">
             <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>
             <Link href="/recipes">
               <Ui.Text.Label bold className="hover:opacity-60 transition-opacity">

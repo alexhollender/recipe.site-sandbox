@@ -53,14 +53,14 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
   return (
     <Ui.Container>
       <div className="flex space-x-3 mb-7">
-        <div className="relative py-2 px-2 space-x-2 flex bg-secondary-tint rounded-xl flex-1 focus-within:ring-1 focus-within:ring-primary-tint">
-          <div className="w-7 h-7">
+        <div className="relative py-2 px-2 space-x-2 flex bg-panel rounded-xl flex-1 focus-within:ring-1 focus-within:ring-outline">
+          <div className="w-7 h-7 text-text">
             <Ui.Icons.Search />
           </div>
           <input
             type="text"
             placeholder="Search for chicken, dessert, tofu, vegan..."
-            className="flex-1 font-label text-md bg-transparent focus:outline-none"
+            className="flex-1 font-label text-md bg-transparent text-text focus:outline-none"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -142,7 +142,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
         </div> */}
       <Ui.Grid>
         {getRecipes().length === 0 && (
-          <div className="col-span-12 text-center mt-2">
+          <div className="col-span-12 text-center mt-2 text-text">
             <Ui.Text.Title>No recipes found for this search</Ui.Text.Title>
           </div>
         )}

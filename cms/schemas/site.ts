@@ -266,5 +266,15 @@ export default Sanity.defineType({
         },
       ],
     },
+    {
+      name: 'theme',
+      title: 'Theme',
+      type: 'reference',
+      to: [
+        {
+          type: 'theme',
+        },
+      ],
+    },
   ],
 });

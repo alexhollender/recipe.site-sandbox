@@ -13,8 +13,8 @@ type LinksIndexProps = {
 const LinksIndex: Next.NextPage<LinksIndexProps> = (props) => {
   return (
     <Ui.Container className="text-center">
-      <div className="mb-4">
-        <Ui.Text.Lead>{props.linkList.title}</Ui.Text.Lead>
+      <div className="mb-4 text-accent">
+        <Ui.Text.Lead as="h1">{props.linkList.title}</Ui.Text.Lead>
       </div>
       <div className="space-y-5">
         {props.linkList.links.map((link) => {
@@ -22,7 +22,7 @@ const LinksIndex: Next.NextPage<LinksIndexProps> = (props) => {
             <div key={link._key} className="max-w-[40rem] mx-auto">
               <Link
                 href={link.href}
-                className="block bg-secondary-tint text-primary p-4 rounded-xl hover:opacity-60 transition-opacity"
+                className="block bg-accent text-background p-4 rounded-xl hover:opacity-60 transition-opacity"
                 target="_blank"
               >
                 <Ui.Text.Label bold>{link.label}</Ui.Text.Label>

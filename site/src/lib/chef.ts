@@ -465,19 +465,13 @@ export const Recipes = {
 
 export const Units = {
   list() {
-    return Sanity.Client.fetch<Types.Unit[]>(
-      `*[_type == "unit"] ${UNIT_QUERY}`,
-      {},
-    );
+    return Sanity.Client.fetch<Types.Unit[]>(`*[_type == "unit"] ${UNIT_QUERY}`);
   },
 };
 
 export const Sites = {
   list() {
-    return Sanity.Client.fetch<Types.Site[]>(
-      `*[_type == "site"] ${SITE_QUERY}`,
-      {},
-    );
+    return Sanity.Client.fetch<Types.Site[]>(`*[_type == "site"] ${SITE_QUERY}`);
   },
 
   get(params: { slug: string }) {

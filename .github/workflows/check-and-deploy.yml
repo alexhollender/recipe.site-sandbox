@@ -18,7 +18,7 @@ jobs:
           cache-dependency-path: site/yarn.lock
 
       - name: Install Dependencies
-        run: yarn install && yarn ci
+        run: yarn install
 
       - name: Run Linter
         id: run_linter

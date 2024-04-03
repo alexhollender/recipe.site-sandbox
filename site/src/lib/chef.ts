@@ -330,6 +330,7 @@ export const Categories = {
       {
         siteSlug: params.siteSlug,
       },
+      { cache: 'no-cache' },
     );
   },
 };
@@ -342,6 +343,7 @@ export const Collections = {
         siteSlug: params.siteSlug,
         collectionSlug: params.collectionSlug,
       },
+      { cache: 'no-cache' },
     );
   },
 };
@@ -353,6 +355,7 @@ export const Cuisines = {
       {
         siteSlug: params.siteSlug,
       },
+      { cache: 'no-cache' },
     );
   },
 };
@@ -364,6 +367,7 @@ export const Tags = {
       {
         siteSlug: params.siteSlug,
       },
+      { cache: 'no-cache' },
     );
   },
 };
@@ -375,6 +379,7 @@ export const Ingredients = {
       {
         siteSlug: params.siteSlug,
       },
+      { cache: 'no-cache' },
     );
   },
 };
@@ -387,6 +392,7 @@ export const Recipes = {
         siteSlug: params.siteSlug,
         recipeSlug: params.recipeSlug,
       },
+      { cache: 'no-cache' },
     );
   },
   listByCategory(params: { siteSlug: string; categorySlug: string }) {
@@ -396,6 +402,7 @@ export const Recipes = {
         siteSlug: params.siteSlug,
         categorySlug: params.categorySlug,
       },
+      { cache: 'no-cache' },
     );
   },
   listByCuisine(params: { siteSlug: string; cuisineSlug: string }) {
@@ -405,6 +412,7 @@ export const Recipes = {
         siteSlug: params.siteSlug,
         cuisineSlug: params.cuisineSlug,
       },
+      { cache: 'no-cache' },
     );
   },
   listByTag(params: { siteSlug: string; tagSlug: string }) {
@@ -414,6 +422,7 @@ export const Recipes = {
         siteSlug: params.siteSlug,
         tagSlug: params.tagSlug,
       },
+      { cache: 'no-cache' },
     );
   },
   listByIngredient(params: { siteSlug: string; ingredientSlug: string }) {
@@ -423,6 +432,7 @@ export const Recipes = {
         siteSlug: params.siteSlug,
         ingredientSlug: params.ingredientSlug,
       },
+      { cache: 'no-cache' },
     );
   },
   searchBy(params: {
@@ -459,19 +469,28 @@ export const Recipes = {
         tagSlugs:
           Array.isArray(params.tagSlugs) && params.tagSlugs.length > 0 ? params.tagSlugs : null,
       },
+      { cache: 'no-cache' },
     );
   },
 };
 
 export const Units = {
   list() {
-    return Sanity.Client.fetch<Types.Unit[]>(`*[_type == "unit"] ${UNIT_QUERY}`);
+    return Sanity.Client.fetch<Types.Unit[]>(
+      `*[_type == "unit"] ${UNIT_QUERY}`,
+      {},
+      { cache: 'no-cache' },
+    );
   },
 };
 
 export const Sites = {
   list() {
-    return Sanity.Client.fetch<Types.Site[]>(`*[_type == "site"] ${SITE_QUERY}`);
+    return Sanity.Client.fetch<Types.Site[]>(
+      `*[_type == "site"] ${SITE_QUERY}`,
+      {},
+      { cache: 'no-cache' },
+    );
   },
 
   get(params: { slug: string }) {
@@ -480,6 +499,7 @@ export const Sites = {
       {
         slug: params.slug,
       },
+      { cache: 'no-cache' },
     );
   },
 };

@@ -7,7 +7,7 @@ export const Client = SanityClient.createClient({
   projectId: Config.SANITY_PROJECT_ID,
   dataset: Config.SANITY_DATASET,
   apiVersion: Config.SANITY_API_VERSION,
-  useCdn: true,
+  useCdn: false,
 });
 
 export const ImageBuilder = ImageUrlBuilder(Client);

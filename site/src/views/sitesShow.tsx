@@ -29,17 +29,19 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           })}
         </Ui.Slider.SouffléSection>
       </section>
-      <section className="mt-14 md:mt-28">
-        <Ui.Slider.SouffléSection heading="Recipe collections">
-          {props.site.collections.map((collection) => {
-            return (
-              <div className="max-w-[80vw] w-[24rem]" key={collection._id}>
-                <Ui.Cards.Collection collection={collection} />
-              </div>
-            );
-          })}
-        </Ui.Slider.SouffléSection>
-      </section>
+      {props.site.collections &&
+        <section className="mt-14 md:mt-28">
+          <Ui.Slider.SouffléSection heading="Recipe collections">
+            {props.site.collections.map((collection) => {
+              return (
+                <div className="max-w-[80vw] w-[24rem]" key={collection._id}>
+                  <Ui.Cards.Collection collection={collection} />
+                </div>
+              );
+            })}
+          </Ui.Slider.SouffléSection>
+        </section>
+      }
       <section className="mt-20 md:mt-28">
         <Ui.Container>
           <Ui.Grid>

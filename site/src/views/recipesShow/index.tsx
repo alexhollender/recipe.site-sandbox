@@ -303,16 +303,18 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                       },
                     ])}
                   ></div>
-                  <div className="text-text relative z-10">
-                    <Ui.Richtext.Styled style="interface" content={instruction.content} />
-                  </div>
-                  {instruction.note && (
-                    <div className="pt-2 relative z-10">
-                      <Ui.Text.Label className="italic text-subdued">
-                        <Ui.Richtext.Inherited content={instruction.note} />
-                      </Ui.Text.Label>
+                  <div className="flex flex-col">
+                    <div className="text-text relative z-10">
+                      <Ui.Richtext.Styled style="interface" content={instruction.content} />
                     </div>
-                  )}
+                    {instruction.note && (
+                      <div className="pt-2 relative z-10">
+                        <Ui.Text.Label className="italic text-subdued">
+                          <Ui.Richtext.Inherited content={instruction.note} />
+                        </Ui.Text.Label>
+                      </div>
+                    )}
+                  </div>
                 </li>
               );
             })}

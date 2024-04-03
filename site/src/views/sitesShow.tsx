@@ -100,7 +100,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
             <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>
             <Link href="/recipes">
               <Ui.Text.Label bold className="hover:opacity-60 transition-opacity">
-                View all recipes
+                View all
               </Ui.Text.Label>
             </Link>
           </div>

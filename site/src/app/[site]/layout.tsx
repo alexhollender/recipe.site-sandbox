@@ -22,8 +22,6 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
 
   const primaryAuthor = Site.primaryAuthor(site);
 
-  console.log('site', site);
-
   return (
     <>
       {site.theme && (

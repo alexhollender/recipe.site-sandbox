@@ -44,8 +44,6 @@ export const useSlider = () => {
       setActiveIndex(activeSlide);
     }
 
-    console.log('scrollLeft', scrollLeft);
-
     if (scrollLeft === 0) {
       setScrollState('start');
       return;

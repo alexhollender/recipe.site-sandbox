@@ -98,7 +98,7 @@ export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
         )}
         <div className="absolute inset-0 z-10 bg-black opacity-30 pointer-events-none"></div>
         <div className="absolute inset-0 flex items-center justify-center z-20 text-secondary pointer-events-none">
-          <Ui.Text.Lead className="text-shadow text-center text-white">
+          <Ui.Text.Lead className="px-6 text-shadow text-center text-white">
             {collection.title}
           </Ui.Text.Lead>
         </div>

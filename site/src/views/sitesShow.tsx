@@ -18,6 +18,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       <Ui.Text.Title as="h1" className="sr-only">
         {props.site.title}
       </Ui.Text.Title>
+      {/* Featured recipes */}
       {props.site.featuredRecipes && (
         <section className="mt-2">
           <Ui.Slider.SouffléSection heading="Featured recipes">
@@ -31,8 +32,9 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.SouffléSection>
         </section>
       )}
+      {/* Collections */}
       {props.site.collections && (
-        <section className="mt-14 md:mt-28">
+        <section className="mt-14 md:mt-28 first-of-type:mt-2">
           <Ui.Slider.SouffléSection heading="Recipe collections">
             {props.site.collections.map((collection) => {
               return (
@@ -45,8 +47,9 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         </section>
       )}
       {/* Show Conor */}
+      {/* About */}
       {props.site.aboutHeading && (
-        <section className="mt-20 md:mt-28">
+        <section className="mt-20 md:mt-28 first-of-type:mt-2">
           <Ui.Container>
             <Ui.Grid>
               <div className="col-span-12 md:col-span-6 text-accent">
@@ -80,8 +83,9 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Container>
         </section>
       )}
+      {/* Products */}
       {props.site.productLinks && (
-        <section className="mt-16 md:mt-28">
+        <section className="mt-16 md:mt-28 first-of-type:mt-2">
           <Ui.Slider.SouffléSection heading="My favorite products">
             {props.site.productLinks.map((productLink) => {
               return (
@@ -93,7 +97,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.SouffléSection>
         </section>
       )}
-      <section className="mt-20 md:mt-28">
+      {/* Latest recipes */}
+      <section className="mt-20 md:mt-28 first-of-type:mt-2">
         <Ui.Container>
           <div className="mb-3 flex justify-between items-center text-text">
             <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>

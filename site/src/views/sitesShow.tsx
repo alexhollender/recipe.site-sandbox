@@ -18,17 +18,19 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       <Ui.Text.Title as="h1" className="sr-only">
         {props.site.title}
       </Ui.Text.Title>
-      <section className="mt-2">
-        <Ui.Slider.SouffléSection heading="Featured recipes">
-          {props.site.featuredRecipes.map((recipe) => {
-            return (
-              <div className="max-w-[80vw] w-[30rem]" key={recipe._id}>
-                <Ui.Cards.Recipe recipe={recipe} />
-              </div>
-            );
-          })}
-        </Ui.Slider.SouffléSection>
-      </section>
+      {props.site.featuredRecipes && (
+        <section className="mt-2">
+          <Ui.Slider.SouffléSection heading="Featured recipes">
+            {props.site.featuredRecipes.map((recipe) => {
+              return (
+                <div className="max-w-[80vw] w-[30rem]" key={recipe._id}>
+                  <Ui.Cards.Recipe recipe={recipe} />
+                </div>
+              );
+            })}
+          </Ui.Slider.SouffléSection>
+        </section>
+      )}
       {props.site.collections && (
         <section className="mt-14 md:mt-28">
           <Ui.Slider.SouffléSection heading="Recipe collections">

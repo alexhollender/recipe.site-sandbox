@@ -37,13 +37,17 @@ export async function generateMetadata({ params }: CollectionsShowProps): Promis
 
 export async function generateStaticParams() {
   const sites = await Chef.Sites.list();
-  const siteCollections = sites.map((site) => {
-    return site.collections.map((collection) => {
-      return {
-        site: site.slug,
-        collection: collection.slug,
-      };
-    });
+  const siteCollections = sites.flatMap((site) => {
+    if (site.collections) {
+      return site.collections.map((collection) => {
+        return {
+          site: site.slug,
+          collection: collection.slug,
+        };
+      });
+    } else {
+      return [];
+    }
   });
-  return siteCollections.flat();
+  return siteCollections;
 }

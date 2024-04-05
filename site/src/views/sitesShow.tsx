@@ -44,45 +44,42 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.SouffléSection>
         </section>
       )}
-      <section className="mt-20 md:mt-28">
-        <Ui.Container>
-          <Ui.Grid>
-            <div className="col-span-12 md:col-span-6 text-accent">
-              <div className="mb-3">
-                {props.site.aboutHeading ? (
+      {/* Show Conor */}
+      {props.site.aboutHeading && (
+        <section className="mt-20 md:mt-28">
+          <Ui.Container>
+            <Ui.Grid>
+              <div className="col-span-12 md:col-span-6 text-accent">
+                <div className="mb-3">
                   <Ui.Text.Lead bold as="h2">
                     <Ui.Richtext.Inherited content={props.site.aboutHeading} />
                   </Ui.Text.Lead>
-                ) : (
-                  <Ui.Text.Lead bold as="h2">
-                    About
-                  </Ui.Text.Lead>
+                </div>
+                <Ui.Richtext.Styled style="narrative" content={props.site.about} />
+
+                {props.site.socialMediaLinks.length > 0 && (
+                  <div className="mt-6 flex space-x-5 text-text">
+                    {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
+                      return (
+                        <div key={socialMediaLink._key} className="w-8">
+                          <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
+                        </div>
+                      );
+                    })}
+                  </div>
                 )}
               </div>
-              <Ui.Richtext.Styled style="narrative" content={props.site.about} />
-
-              {props.site.socialMediaLinks.length > 0 && (
-                <div className="mt-6 flex space-x-5 text-text">
-                  {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-                    return (
-                      <div key={socialMediaLink._key} className="w-8">
-                        <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-            <div className="col-span-12 md:col-start-8 md:col-span-5">
-              {props.site.featuredImage && (
-                <div className="relative aspect-square">
-                  <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
-                </div>
-              )}
-            </div>
-          </Ui.Grid>
-        </Ui.Container>
-      </section>
+              <div className="col-span-12 md:col-start-8 md:col-span-5">
+                {props.site.featuredImage && (
+                  <div className="relative aspect-square">
+                    <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
+                  </div>
+                )}
+              </div>
+            </Ui.Grid>
+          </Ui.Container>
+        </section>
+      )}
       {props.site.productLinks && (
         <section className="mt-16 md:mt-28">
           <Ui.Slider.SouffléSection heading="My favorite products">
@@ -117,6 +114,41 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Grid>
         </Ui.Container>
       </section>
+      {!props.site.aboutHeading && (
+        <section className="mt-20 md:mt-28">
+          <Ui.Container>
+            <Ui.Grid>
+              <div className="col-span-12 md:col-span-6 text-accent">
+                <div className="mb-3">
+                  <Ui.Text.Lead bold as="h2">
+                    About
+                  </Ui.Text.Lead>
+                </div>
+                <Ui.Richtext.Styled style="narrative" content={props.site.about} />
+
+                {props.site.socialMediaLinks.length > 0 && (
+                  <div className="mt-6 flex space-x-5 text-text">
+                    {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
+                      return (
+                        <div key={socialMediaLink._key} className="w-8">
+                          <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+              <div className="col-span-12 md:col-start-8 md:col-span-5">
+                {props.site.featuredImage && (
+                  <div className="relative aspect-square">
+                    <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
+                  </div>
+                )}
+              </div>
+            </Ui.Grid>
+          </Ui.Container>
+        </section>
+      )}
     </div>
   );
 };

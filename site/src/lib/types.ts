@@ -113,6 +113,7 @@ export type Unit = {
   _type: 'unit';
   _id: string;
   title: string;
+  pluralTitle: string | null;
   slug: string;
   abbreviation: string | null;
 };
@@ -278,9 +279,11 @@ export type Site = {
       _key: string;
     }[];
   };
+  defaultMeasurementSystem: MeasurementSystem;
+  defaultTemperatureSystem: TemperatureSystem;
 };
 
-export type MeasurementSystem = 'us' | 'metric';
+export type MeasurementSystem = 'imperial' | 'metric';
 export type TemperatureSystem = 'celsius' | 'fahrenheit';
 
 export type CollectionPreview = {

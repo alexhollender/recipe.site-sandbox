@@ -27,8 +27,8 @@ export function Provider({
   globals: Types.SiteGlobals;
 }) {
   const [state, setState] = React.useState<State>({
-    measurementSystem: 'us',
-    temperatureSystem: 'fahrenheit',
+    measurementSystem: globals.site.defaultMeasurementSystem || 'imperial',
+    temperatureSystem: globals.site.defaultTemperatureSystem || 'fahrenheit',
   });
 
   const setMeasurementSystem = (measurementSystem: Types.MeasurementSystem) => {

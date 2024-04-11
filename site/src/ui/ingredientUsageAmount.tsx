@@ -8,6 +8,11 @@ import * as Utils from '@/lib/utils';
 
 type IngredientUsageProps = {
   ingredientUsage: Types.IngredientUsage;
+  onRender: (formatted: {
+    quantity: string | null;
+    unit: string | null;
+    preparation: string | null;
+  }) => React.ReactNode;
 };
 
 const IngredientUsageAmount: React.FC<IngredientUsageProps> = (props) => {
@@ -34,7 +39,7 @@ const IngredientUsageAmount: React.FC<IngredientUsageProps> = (props) => {
     if (!ingredientUsage.unit) return null;
     if (!ingredientUsage.quantityMin) return ` ${ingredientUsage.unit.title}`;
     const pluralized = Utils.pluralizeUnit(
-      ingredientUsage.unit.title,
+      ingredientUsage.unit,
       ingredientUsage.quantityMin,
       ingredientUsage.quantityMax,
     );
@@ -55,13 +60,13 @@ const IngredientUsageAmount: React.FC<IngredientUsageProps> = (props) => {
 
   const preparation = getPreparation();
 
-  return (
-    <>
-      {quantity && <span>{quantity}</span>}
-      {unit && <span>{unit}</span>}
-      {preparation && <span>{preparation}</span>}
-    </>
-  );
+  if (!quantity && !unit && !preparation) return null;
+
+  return props.onRender({
+    quantity,
+    unit,
+    preparation,
+  });
 };
 
 export default IngredientUsageAmount;
@@ -86,7 +91,7 @@ export const convertIngredientUsage = ({
     ? ingredientUsage.quantityMax * quantityMultiplier
     : null;
 
-  if (!ingredientUsage.unit || measurementSystem === 'us')
+  if (!ingredientUsage.unit || measurementSystem === 'imperial')
     return {
       ...ingredientUsage,
       quantityMin: totalQuantityMin,

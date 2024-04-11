@@ -368,7 +368,18 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
           <Ui.Text.Label as="span" className="pr-1" bold>
             {title}
           </Ui.Text.Label>
-          (<Ui.IngredientUsageAmount ingredientUsage={ingredientUsage} />)
+          <Ui.IngredientUsageAmount
+            ingredientUsage={ingredientUsage}
+            onRender={({ quantity, unit, preparation }) => {
+              return (
+                <span>
+                  ({quantity && <span>{quantity}</span>}
+                  {unit && <span>{unit}</span>}
+                  {preparation && <span>{preparation}</span>})
+                </span>
+              );
+            }}
+          />
         </Ui.Text.Label>
       </label>
     </div>

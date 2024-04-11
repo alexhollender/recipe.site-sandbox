@@ -59,7 +59,7 @@ const generateIngredientArray = (ingredientUsageGroups: Types.IngredientUsageGro
       const parts = [
         quantityMin,
         quantityMax && `-${quantityMax}`,
-        unit && Utils.pluralizeUnit(unit.title, quantityMin || 0, quantityMax),
+        unit && Utils.pluralizeUnit(unit, quantityMin || 0, quantityMax),
         ingredientTitleOverride || ingredient.title,
         preparation && preparation.pastTense,
         preperationModifier,

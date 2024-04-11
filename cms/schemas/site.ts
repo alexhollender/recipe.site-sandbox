@@ -276,5 +276,31 @@ export default Sanity.defineType({
         },
       ],
     },
+    {
+      name: 'defaultMeasurementSystem',
+      title: 'Default Measurement System',
+      type: 'string',
+      initialValue: 'imperial',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Imperial', value: 'imperial' },
+          { title: 'Metric', value: 'metric' },
+        ],
+      },
+    },
+    {
+      name: 'defaultTemperatureSystem',
+      title: 'Default Temperature System',
+      type: 'string',
+      initialValue: 'fahrenheit',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Fahrenheit', value: 'fahrenheit' },
+          { title: 'Celsius', value: 'celsius' },
+        ],
+      },
+    },
   ],
 });

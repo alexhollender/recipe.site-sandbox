@@ -73,7 +73,7 @@ const Controls: React.FC<RecipeProps> = ({ recipe }) => {
           defaultValue="us"
           aria-label="Measurement System"
         >
-          <Ui.ToggleGroup.Item value="us" aria-label="US">
+          <Ui.ToggleGroup.Item value="imperial" aria-label="US">
             US
           </Ui.ToggleGroup.Item>
           <Ui.ToggleGroup.Item value="metric" aria-label="Metric">

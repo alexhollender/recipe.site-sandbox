@@ -35,6 +35,7 @@ export * as Slider from '@/ui/slider';
 export * as Text from '@/ui/text';
 export * as ToggleGroup from '@/ui/toggleGroup';
 
+export { default as Measurement } from '@/ui/measurement';
 export { default as Gallery } from '@/ui/gallery';
 export { default as IngredientUsageAmount } from '@/ui/ingredientUsageAmount';
 export { default as SocialMediaLink } from '@/ui/socialMediaLink';

@@ -120,8 +120,9 @@ const UNIT_QUERY = groq`
     _type,
     _id,
     title,
+    pluralTitle,
     "slug": slug.current,
-    abbreviation
+    abbreviation,
   }
 `;
 
@@ -319,7 +320,9 @@ const SITE_QUERY = groq`
         href
       }
     },
-    theme -> ${THEME_QUERY}
+    theme -> ${THEME_QUERY},
+    defaultMeasurementSystem,
+    defaultTemperatureSystem
   }
 `;
 

@@ -2,6 +2,8 @@ export { default as pluralize } from 'pluralize';
 
 export * from '@shared/utils';
 
+import * as Types from '@/lib/types';
+
 export const formatMinutes = (totalMinutes: number): string => {
   const days = Math.floor(totalMinutes / (60 * 24));
   const hours = Math.floor((totalMinutes % (60 * 24)) / 60);
@@ -36,29 +38,12 @@ export const formatDate = (isoDateString: string): string => {
   return date.toLocaleDateString('en-US', options);
 };
 
-const unitMap: Record<string, string> = {
-  cup: 'cups',
-  piece: 'pieces',
-  serving: 'servings',
-  block: 'blocks',
-  fillet: 'fillets',
-  clove: 'cloves',
-  bunch: 'bunches',
-  handful: 'handfuls',
-  knob: 'knobs',
-};
-
 // Returns the pluralized version of the unit
-export const pluralizeUnit = (unit: string, min: number, max: number | null): string => {
-  // Check if the unit exists in the unitMap and the quantity is greater than one
-  if (unitMap[unit] && (min > 1 || (max !== null && max > 1))) {
-    // Return the pluralized form of the unit
-    return unitMap[unit];
+export const pluralizeUnit = (unit: Types.Unit, min: number, max: number | null): string => {
+  if ((min > 1 || (max !== null && max > 1)) && unit.pluralTitle !== null) {
+    return unit.pluralTitle;
   }
-
-  // If the unit is not in the unitMap or the quantity is not greater than one,
-  // return the original unit
-  return unit;
+  return unit.title;
 };
 
 const fractionMap: Record<number, string | null> = {

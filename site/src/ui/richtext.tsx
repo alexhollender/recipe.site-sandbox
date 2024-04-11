@@ -39,8 +39,18 @@ const RichtextComponents: Partial<PortableTextReactComponents> = {
         </IngredientUsageReference>
       );
     },
-    measurement: ({ children, value }) => {
-      return <span>MEASUREMENT</span>;
+    measurement: ({
+      children,
+      value,
+    }: {
+      children: React.ReactNode;
+      value?: {
+        unit: Types.Unit;
+        quantity: number;
+      };
+    }) => {
+      if (!value) return <span>{children}</span>;
+      return <Ui.Measurement unit={value.unit} quantity={value.quantity} />;
     },
     link: ({ children, value }) => {
       return (
@@ -58,16 +68,22 @@ const RichtextComponents: Partial<PortableTextReactComponents> = {
 export const IngredientUsageReference: React.FC<
   React.PropsWithChildren<{ ingredientUsage: Types.IngredientUsage }>
 > = ({ children, ingredientUsage }) => {
-  const recipeContext = RecipeContext.useContext();
-
   return (
     <span>
       <Ui.Text.Label bold as="span">
         {children}
       </Ui.Text.Label>{' '}
-      <Ui.Text.Label as="span" className="text-primary-tint">
-        (<Ui.IngredientUsageAmount ingredientUsage={ingredientUsage} />)
-      </Ui.Text.Label>
+      <Ui.IngredientUsageAmount
+        ingredientUsage={ingredientUsage}
+        onRender={({ quantity, unit }) => {
+          return (
+            <Ui.Text.Label as="span" className="text-primary-tint">
+              ({quantity && <span>{quantity}</span>}
+              {unit && <span>{unit}</span>})
+            </Ui.Text.Label>
+          );
+        }}
+      />
     </span>
   );
 };

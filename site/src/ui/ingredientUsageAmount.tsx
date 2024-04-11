@@ -71,7 +71,16 @@ const IngredientUsageAmount: React.FC<IngredientUsageProps> = (props) => {
 
 export default IngredientUsageAmount;
 
-const multiplyIfNotNull = (a: number | null, b: number) => (a !== null ? a * b : null);
+const multiplyAndRoundIfNotNull = (a: number | null, b: number) =>
+  a !== null ? roundAboveThreshold(a * b) : null;
+
+const DEFAULT_ROUNDING_THRESHOLD = 25;
+const roundAboveThreshold = (number: number, threshold: number = DEFAULT_ROUNDING_THRESHOLD) => {
+  if (number > threshold) {
+    return Math.round(number);
+  }
+  return number;
+};
 
 export const convertIngredientUsage = ({
   ingredientUsage,
@@ -104,8 +113,11 @@ export const convertIngredientUsage = ({
   ) {
     return {
       ...ingredientUsage,
-      quantityMin: totalQuantityMin * ingredientUsage.ingredient.gramsPerCup,
-      quantityMax: multiplyIfNotNull(totalQuantityMax, ingredientUsage.ingredient.gramsPerCup),
+      quantityMin: roundAboveThreshold(totalQuantityMin * ingredientUsage.ingredient.gramsPerCup),
+      quantityMax: multiplyAndRoundIfNotNull(
+        totalQuantityMax,
+        ingredientUsage.ingredient.gramsPerCup,
+      ),
 
       unit: unitsByTitle['g'],
     };
@@ -114,8 +126,8 @@ export const convertIngredientUsage = ({
   if (ingredientUsage.unit.title === 'cup') {
     return {
       ...ingredientUsage,
-      quantityMin: totalQuantityMin * 237,
-      quantityMax: multiplyIfNotNull(totalQuantityMax, 237),
+      quantityMin: roundAboveThreshold(totalQuantityMin * 237),
+      quantityMax: multiplyAndRoundIfNotNull(totalQuantityMax, 237),
       unit: unitsByTitle['ml'],
     };
   }
@@ -123,8 +135,8 @@ export const convertIngredientUsage = ({
   if (ingredientUsage.unit.title === 'oz') {
     return {
       ...ingredientUsage,
-      quantityMin: totalQuantityMin * 28.35,
-      quantityMax: multiplyIfNotNull(ingredientUsage.quantityMax, 28.35),
+      quantityMin: roundAboveThreshold(totalQuantityMin * 28.35),
+      quantityMax: multiplyAndRoundIfNotNull(ingredientUsage.quantityMax, 28.35),
       unit: unitsByTitle['g'],
     };
   }
@@ -132,8 +144,8 @@ export const convertIngredientUsage = ({
   if (ingredientUsage.unit.title === 'lb') {
     return {
       ...ingredientUsage,
-      quantityMin: totalQuantityMin * 453.592,
-      quantityMax: multiplyIfNotNull(ingredientUsage.quantityMax, 453.592),
+      quantityMin: roundAboveThreshold(totalQuantityMin * 453.592),
+      quantityMax: multiplyAndRoundIfNotNull(ingredientUsage.quantityMax, 453.592),
       unit: unitsByTitle['g'],
     };
   }

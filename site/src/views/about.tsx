@@ -38,7 +38,11 @@ const About: Next.NextPage<AboutProps> = (props) => {
         </div>
         <div className="col-span-12 md:col-start-8 md:col-span-5">
           <div className="relative aspect-square">
-            <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
+            <Ui.Media.Image
+              image={props.site.featuredImage}
+              alt="Profile picture"
+              className={'w-full h-full object-cover block'}
+            />
           </div>
         </div>
       </Ui.Grid>

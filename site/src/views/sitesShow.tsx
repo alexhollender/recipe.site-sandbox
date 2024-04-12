@@ -75,7 +75,11 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
               <div className="col-span-12 md:col-start-8 md:col-span-5">
                 {props.site.featuredImage && (
                   <div className="relative aspect-square">
-                    <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
+                    <Ui.Media.Image
+                      image={props.site.featuredImage}
+                      alt="Profile picture"
+                      className={'w-full h-full object-cover block'}
+                    />
                   </div>
                 )}
               </div>
@@ -146,7 +150,11 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
               <div className="col-span-12 md:col-start-8 md:col-span-5">
                 {props.site.featuredImage && (
                   <div className="relative aspect-square">
-                    <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
+                    <Ui.Media.Image
+                      image={props.site.featuredImage}
+                      alt="Profile picture"
+                      className={'w-full h-full object-cover block'}
+                    />
                   </div>
                 )}
               </div>

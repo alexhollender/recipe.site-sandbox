@@ -160,7 +160,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
             </div>
           </div>
           <div className="col-span-12 md:col-span-7 instruction-counter">
-            <div className="mt-5">
+            <div className="mt-5 text-text">
               <Ui.Text.Title bold as="h2">
                 Instructions
               </Ui.Text.Title>
@@ -248,7 +248,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
       {instructionGroup.title && (
         <div
           className={Utils.cx([
-            'flex items-center',
+            'flex items-center text-text',
             {
               'mb-5': isCollapsed === false,
             },

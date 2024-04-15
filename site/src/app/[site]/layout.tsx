@@ -48,6 +48,11 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
           }
       `}</style>
       )}
+      {site.cssOverrides && (
+        <style>{`
+          ${site.cssOverrides}
+        `}</style>
+      )}
       <SiteContext.Provider globals={globals}>
         <div className="flex flex-col min-h-screen bg-background">
           <Ui.Nav.Main site={site} />

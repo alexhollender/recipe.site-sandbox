@@ -287,6 +287,12 @@ export default Sanity.defineType({
       ],
     },
     {
+      name: 'cssOverrides',
+      title: 'CSS Overrides',
+      type: 'text',
+      rows: 4,
+    },
+    {
       name: 'defaultMeasurementSystem',
       title: 'Default Measurement System',
       type: 'string',

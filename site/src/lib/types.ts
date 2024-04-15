@@ -290,6 +290,7 @@ export type Site = {
   logo: Image | null;
   colorTheme: ColorTheme | null;
   typeTheme: TypeTheme | null;
+  cssOverrides: string | null;
   linkList: null | {
     title: string;
     links: {

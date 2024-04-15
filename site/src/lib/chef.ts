@@ -339,6 +339,7 @@ const SITE_QUERY = groq`
     },
     colorTheme -> ${COLOR_THEME_QUERY},
     typeTheme -> ${TYPE_THEME_QUERY},
+    cssOverrides,
     defaultMeasurementSystem,
     defaultTemperatureSystem
   }

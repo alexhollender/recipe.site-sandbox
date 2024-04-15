@@ -3,24 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #000000;
-  --color-primary-tint: #7d7d7d;
-  --color-secondary: #ffffff;
-  --color-secondary-tint: #8b8b8b;
+  --color-text: #000000;
+  --color-accent: var(--color-text);
+  --color-subdued: #5b5b5b;
+  --color-overlay: #ffffff;
+  --color-background: #ffffff;
+  --color-panel: #f2f2f2;
+  --color-emphasis: #8d8d8d;
+  --color-outline: #d9d9d9;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --color-primary: #ffffff;
     --color-primary-tint: #8b8b8b;
     --color-secondary: #000000;
     --color-secondary-tint: #2d2d2d;
   }
-}
+} */
 
 body {
   color: var(--color-primary);
   background: var(--color-secondary);
+}
+
+/* Richtext editor */
+.ProseMirror:focus {
+  outline: none;
+}
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }
 
 @layer utilities {

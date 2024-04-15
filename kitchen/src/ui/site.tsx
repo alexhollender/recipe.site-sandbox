@@ -13,10 +13,10 @@ const NavItem: React.FC<NavItemProps> = (props) => {
       <Link href={props.href}>
         <div
           className={Utils.cx([
-            'border-b-2 pb-4 pt-4 hover:text-primary cursor-pointer transition-colors',
+            'border-b-2 pb-4 pt-4 hover:text-text cursor-pointer transition-colors',
             {
-              'text-primary border-b-primary': props.isActive,
-              'text-primary-tint border-b-transparent': !props.isActive,
+              'text-text border-b-text': props.isActive,
+              'text-emphasis border-b-transparent hover:border-b-outline': !props.isActive,
             },
           ])}
         >
@@ -28,11 +28,11 @@ const NavItem: React.FC<NavItemProps> = (props) => {
 };
 
 type HeaderProps = {
-  pathname: string;
+  pathname?: string;
 };
 export const Header: React.FC<HeaderProps> = (props) => {
   return (
-    <div className="sticky top-0 border-b border-primary-tint mb-4">
+    <div className="sticky top-0 border-b border-outline mb-4 bg-background">
       <Container>
         <nav>
           <ul className="flex space-x-7">
@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = (props) => {
 };
 
 type LayoutProps = React.PropsWithChildren<{
-  pathname: string;
+  pathname?: string;
 }>;
 export const Layout: React.FC<LayoutProps> = (props) => {
   return (

@@ -5,14 +5,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: 'var(--color-primary)',
-          tint: 'var(--color-primary-tint)',
-        },
-        secondary: {
-          DEFAULT: 'var(--color-secondary)',
-          tint: 'var(--color-secondary-tint)',
-        },
+        text: 'var(--color-text)',
+        accent: 'var(--color-accent)',
+        subdued: 'var(--color-subdued)',
+        overlay: 'var(--color-overlay)',
+        background: 'var(--color-background)',
+        panel: 'var(--color-panel)',
+        emphasis: 'var(--color-emphasis)',
+        outline: 'var(--color-outline)',
       },
     },
   },

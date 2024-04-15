@@ -269,7 +269,7 @@ const COLOR_QUERY = groq`{
   hex,
 }`;
 
-const THEME_QUERY = groq`
+const COLOR_THEME_QUERY = groq`
   {
     _type,
     _id,
@@ -284,6 +284,23 @@ const THEME_QUERY = groq`
     colorOutline ${COLOR_QUERY}
   }
 `;
+
+const FONT_QUERY = groq`{
+  family,
+  weights {
+    normal,
+    bold
+  }
+}`;
+
+const TYPE_THEME_QUERY = groq`{
+  _type,
+  _id,
+  title,
+  displayFont ${FONT_QUERY},
+  interfaceFont ${FONT_QUERY},
+  narrativeFont ${FONT_QUERY}
+}`;
 
 const SITE_QUERY = groq`
   {
@@ -320,7 +337,8 @@ const SITE_QUERY = groq`
         href
       }
     },
-    theme -> ${THEME_QUERY},
+    colorTheme -> ${COLOR_THEME_QUERY},
+    typeTheme -> ${TYPE_THEME_QUERY},
     defaultMeasurementSystem,
     defaultTemperatureSystem
   }

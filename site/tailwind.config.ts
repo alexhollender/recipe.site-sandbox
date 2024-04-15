@@ -5,8 +5,13 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        narrative: ['Times New Roman', 'serif'],
-        interface: ['Arial', 'sans-serif'],
+        narrative: 'var(--font-family-narrative)',
+        interface: 'var(--font-family-interface)',
+        display: 'var(--font-family-display)',
+      },
+      fontWeight: {
+        normal: 'var(--font-weight-normal)',
+        bold: 'var(--font-weight-bold)',
       },
       colors: {
         text: 'var(--color-text)',

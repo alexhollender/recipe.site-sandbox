@@ -28,7 +28,11 @@ const structure: StructureResolver = (S, _context) => {
         .icon(Icons.Preparation)
         .child(S.documentTypeList('preparation')),
       S.listItem().title('Tags').icon(Icons.Tag).child(S.documentTypeList('tag')),
-      S.listItem().title('Themes').icon(Icons.Theme).child(S.documentTypeList('theme')),
+      S.listItem()
+        .title('Color Theme')
+        .icon(Icons.ColorTheme)
+        .child(S.documentTypeList('colorTheme')),
+      S.listItem().title('Type Theme').icon(Icons.TypeTheme).child(S.documentTypeList('typeTheme')),
     ]);
 };
 

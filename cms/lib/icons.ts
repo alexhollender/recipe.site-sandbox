@@ -10,8 +10,10 @@ import { MdCategory, MdNotInterested } from 'react-icons/md';
 import { LuChefHat } from 'react-icons/lu';
 import { HiCollection } from 'react-icons/hi';
 import { IoIosColorPalette } from 'react-icons/io';
+import { TbTypography } from 'react-icons/tb';
 
 export const Author = LuChefHat;
+export const ColorTheme = IoIosColorPalette;
 export const Collection = HiCollection;
 export const Cuisine = BiWorld;
 export const Diet = MdNotInterested;
@@ -27,4 +29,4 @@ export const Recipe = FaPlateWheat;
 export const RecipeCategory = MdCategory;
 export const Site = CgWebsite;
 export const Tag = FaTag;
-export const Theme = IoIosColorPalette;
+export const TypeTheme = TbTypography;

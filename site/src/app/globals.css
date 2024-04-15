@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --fontFamily-narrative: 'Times New Roman', 'serif';
-  --fontFamily-interface: 'Arial', 'sans-serif';
-
   --color-text: #000000;
   --color-accent: var(--color-text);
   --color-subdued: #5b5b5b;
@@ -14,6 +11,13 @@
   --color-panel: #f2f2f2;
   --color-emphasis: #8d8d8d;
   --color-outline: #d9d9d9;
+
+  --font-family-narrative: 'Times New Roman', 'serif';
+  --font-family-interface: 'Arial', 'sans-serif';
+  --font-family-display: var(--font-interface);
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
 }
 
 .slider-item-inner {
@@ -56,90 +60,97 @@
 }
 
 .type-lead {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-normal);
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 
 .type-lead-bold {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
   font-size: 1.875rem;
-  font-weight: 700;
   line-height: 2.25rem;
 }
 
 .type-title {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-normal);
   font-size: 1.375rem;
   line-height: 1.875rem;
 }
 
 .type-title-bold {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
   font-size: 1.375rem;
   line-height: 1.875rem;
-  font-weight: 700;
 }
 
 .type-highlight {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-interface);
+  font-weight: var(--font-weight-normal);
   font-size: 1.125rem;
   line-height: 1.5rem;
 }
 
 .type-highlight-bold {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-interface);
+  font-weight: var(--font-weight-bold);
   font-size: 1.125rem;
   line-height: 1.5rem;
-  font-weight: 700;
 }
 
 .type-tagline {
-  font-family: var(--fontFamily-narrative);
+  font-family: var(--font-family-narrative);
+  font-weight: var(--font-weight-normal);
   font-size: 1.125rem;
   line-height: 1.875rem;
 }
 
 .type-tagline-bold {
-  font-family: var(--fontFamily-narrative);
+  font-family: var(--font-family-narrative);
+  font-weight: var(--font-weight-bold);
   font-size: 1.125rem;
   line-height: 1.875rem;
-  font-weight: 700;
 }
 
 .type-label {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-interface);
+  font-weight: var(--font-weight-normal);
   font-size: 1rem;
 }
 
 .type-label-bold {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-interface);
+  font-weight: var(--font-weight-bold);
   font-size: 1rem;
-  font-weight: 700;
 }
 
 .type-body {
-  font-family: var(--fontFamily-narrative);
+  font-family: var(--font-family-narrative);
+  font-weight: var(--font-weight-normal);
   font-size: 1rem;
   line-height: 1.75rem;
 }
 
 .type-body-bold {
-  font-family: var(--fontFamily-narrative);
+  font-family: var(--font-family-narrative);
+  font-weight: var(--font-weight-bold);
   font-size: 1rem;
   line-height: 1.75rem;
-  font-weight: 700;
 }
 
 .type-detail {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-interface);
+  font-weight: var(--font-weight-normal);
   font-size: 0.75rem;
 }
 
 .type-detail-bold {
-  font-family: var(--fontFamily-interface);
+  font-family: var(--font-family-interface);
+  font-weight: var(--font-weight-bold);
   font-size: 0.75rem;
-  font-weight: 700;
 }
 
 .instruction-counter {
@@ -152,4 +163,144 @@
 
 .instruction::before {
   content: counter(instructions) !important;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Thin.woff2);
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Thin\ Italic.woff2);
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Light.woff2);
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Light\ Italic.woff2);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Regular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Regular\ Italic.woff2);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ SemiBold.woff2);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ SemiBold\ Italic.woff2);
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Display;
+  src: url(../../public/fonts/IvyPresto\ Display\ Bold\ Italic.woff2);
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ Thin.woff2);
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Display\ Thin\ Italic.woff2);
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ Light.woff2);
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Display\ Light\ Italic.woff2);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ Regular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ Regular\ Italic.woff2);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ SemiBold.woff2);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ SemiBold\ Italic.woff2);
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ Bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: IvyPresto Text;
+  src: url(../../public/fonts/IvyPresto\ Text\ Bold\ Italic.woff2);
+  font-weight: 700;
+  font-style: italic;
 }

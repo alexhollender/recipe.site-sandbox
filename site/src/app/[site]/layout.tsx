@@ -1,4 +1,5 @@
 import * as Chef from '@/lib/chef';
+import * as Config from '@/lib/config';
 import * as Next from 'next';
 import * as NextNavigation from 'next/navigation';
 import * as Sanity from '@/lib/sanity';
@@ -20,21 +21,30 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
 
   const globals = await Chef.SiteGlobals.get(props.params.site);
 
-  const primaryAuthor = Site.primaryAuthor(site);
-
   return (
     <>
-      {site.theme && (
+      {site.colorTheme && (
         <style>{`
           :root {
-            --color-text: ${site.theme.colorText.hex};
-            --color-accent: ${site.theme.colorAccent.hex};
-            --color-subdued: ${site.theme.colorSubdued.hex};
-            --color-overlay: ${site.theme.colorOverlay.hex};
-            --color-background: ${site.theme.colorBackground.hex};
-            --color-panel: ${site.theme.colorPanel.hex};
-            --color-emphasis: ${site.theme.colorEmphasis.hex};
-            --color-outline: ${site.theme.colorOutline.hex};
+            --color-text: ${site.colorTheme.colorText.hex};
+            --color-accent: ${site.colorTheme.colorAccent.hex};
+            --color-subdued: ${site.colorTheme.colorSubdued.hex};
+            --color-overlay: ${site.colorTheme.colorOverlay.hex};
+            --color-background: ${site.colorTheme.colorBackground.hex};
+            --color-panel: ${site.colorTheme.colorPanel.hex};
+            --color-emphasis: ${site.colorTheme.colorEmphasis.hex};
+            --color-outline: ${site.colorTheme.colorOutline.hex};
+          }
+      `}</style>
+      )}
+      {site.typeTheme && (
+        <style>{`
+          :root {
+            --font-family-display: ${Config.FontFamilies[site.typeTheme.displayFont.family]};
+            --font-family-interface: ${Config.FontFamilies[site.typeTheme.interfaceFont.family]};
+            --font-family-narrative: ${Config.FontFamilies[site.typeTheme.narrativeFont.family]};
+            --font-weight-normal: ${site.typeTheme.displayFont.weights.normal};
+            --font-weight-bold: ${site.typeTheme.displayFont.weights.bold};
           }
       `}</style>
       )}

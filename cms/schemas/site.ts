@@ -267,12 +267,22 @@ export default Sanity.defineType({
       ],
     },
     {
-      name: 'theme',
-      title: 'Theme',
+      name: 'colorTheme',
+      title: 'Color Theme',
       type: 'reference',
       to: [
         {
-          type: 'theme',
+          type: 'colorTheme',
+        },
+      ],
+    },
+    {
+      name: 'typeTheme',
+      title: 'Type Theme',
+      type: 'reference',
+      to: [
+        {
+          type: 'typeTheme',
         },
       ],
     },

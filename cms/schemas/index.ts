@@ -1,5 +1,6 @@
 import Author from './author';
 import Collection from './collection';
+import ColorTheme from './colorTheme';
 import Cuisine from './cuisine';
 import Diet from './diet';
 import Equipment from './equipment';
@@ -15,15 +16,17 @@ import RecipeCategory from './recipeCategory';
 import Richtext, { RichtextSimple, RichtextRecipe } from './richtext';
 import Site from './site';
 import Tag from './tag';
-import Theme from './theme';
+import TypeTheme, { Font } from './typeTheme';
 import Unit from './unit';
 
 export const schemaTypes = [
   Author,
   Collection,
+  ColorTheme,
   Cuisine,
   Diet,
   Equipment,
+  Font,
   Ingredient,
   IngredientUsage,
   Link,
@@ -38,6 +41,6 @@ export const schemaTypes = [
   RichtextRecipe,
   Site,
   Tag,
-  Theme,
+  TypeTheme,
   Unit,
 ];

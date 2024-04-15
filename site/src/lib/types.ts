@@ -232,14 +232,16 @@ export type ProductLink = {
   href: string;
 };
 
+export type HexColor = string;
+
 export type Color = {
   _type: 'color';
   hex: HexColor;
 };
 
-export type Theme = {
+export type ColorTheme = {
   _id: string;
-  _type: 'theme';
+  _type: 'colorTheme';
   title: string;
   colorText: Color;
   colorAccent: Color;
@@ -251,7 +253,23 @@ export type Theme = {
   colorOutline: Color;
 };
 
-export type HexColor = string;
+export type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
+export type FontFamily = 'ivypresto-display' | 'ivypresto-text' | 'helvetica';
+
+export type Font = {
+  family: FontFamily;
+  weights: {
+    normal: FontWeight;
+    bold: FontWeight;
+  };
+};
+
+export type TypeTheme = {
+  _type: 'typeTheme';
+  displayFont: Font;
+  interfaceFont: Font;
+  narrativeFont: Font;
+};
 
 export type Site = {
   _type: 'site';
@@ -270,7 +288,8 @@ export type Site = {
   featuredImage: Image;
   productLinks: SanityArrayItem<ProductLink>[];
   logo: Image | null;
-  theme: Theme | null;
+  colorTheme: ColorTheme | null;
+  typeTheme: TypeTheme | null;
   linkList: null | {
     title: string;
     links: {

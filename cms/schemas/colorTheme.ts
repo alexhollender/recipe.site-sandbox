@@ -2,10 +2,10 @@ import * as Icons from '../lib/icons';
 import * as Sanity from 'sanity';
 
 export default Sanity.defineType({
-  name: 'theme',
-  title: 'Theme',
+  name: 'colorTheme',
+  title: 'Color Theme',
   type: 'document',
-  icon: Icons.Theme,
+  icon: Icons.ColorTheme,
   preview: {
     select: {
       title: 'title',

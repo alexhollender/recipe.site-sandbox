@@ -43,8 +43,12 @@ const SiteLayout: React.FC<React.PropsWithChildren<Props>> = async (props) => {
             --font-family-display: ${Config.FontFamilies[site.typeTheme.displayFont.family]};
             --font-family-interface: ${Config.FontFamilies[site.typeTheme.interfaceFont.family]};
             --font-family-narrative: ${Config.FontFamilies[site.typeTheme.narrativeFont.family]};
-            --font-weight-normal: ${site.typeTheme.displayFont.weights.normal};
-            --font-weight-bold: ${site.typeTheme.displayFont.weights.bold};
+            --font-weight-display-normal: ${site.typeTheme.displayFont.weights.normal};
+            --font-weight-display-bold: ${site.typeTheme.displayFont.weights.bold};
+            --font-weight-narrative-normal: ${site.typeTheme.narrativeFont.weights.normal};
+            --font-weight-narrative-bold: ${site.typeTheme.narrativeFont.weights.bold};
+            --font-weight-interface-normal: ${site.typeTheme.interfaceFont.weights.normal};
+            --font-weight-interface-bold: ${site.typeTheme.interfaceFont.weights.bold};
           }
       `}</style>
       )}

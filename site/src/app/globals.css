@@ -16,8 +16,12 @@
   --font-family-interface: 'Arial', 'sans-serif';
   --font-family-display: var(--font-interface);
 
-  --font-weight-normal: 400;
-  --font-weight-bold: 700;
+  --font-weight-narrative-normal: 400;
+  --font-weight-narrative-bold: 700;
+  --font-weight-interface-normal: 400;
+  --font-weight-interface-bold: 700;
+  --font-weight-display-normal: 400;
+  --font-weight-display-bold: 700;
 }
 
 .slider-item-inner {
@@ -61,95 +65,95 @@
 
 .type-lead {
   font-family: var(--font-family-display);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-display-normal);
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 
 .type-lead-bold {
   font-family: var(--font-family-display);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-display-bold);
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 
 .type-title {
   font-family: var(--font-family-display);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-display-normal);
   font-size: 1.375rem;
   line-height: 1.875rem;
 }
 
 .type-title-bold {
   font-family: var(--font-family-display);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-display-bold);
   font-size: 1.375rem;
   line-height: 1.875rem;
 }
 
 .type-highlight {
   font-family: var(--font-family-interface);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-interface-normal);
   font-size: 1.125rem;
   line-height: 1.5rem;
 }
 
 .type-highlight-bold {
   font-family: var(--font-family-interface);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-interface-bold);
   font-size: 1.125rem;
   line-height: 1.5rem;
 }
 
 .type-tagline {
   font-family: var(--font-family-narrative);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-narrative-normal);
   font-size: 1.125rem;
   line-height: 1.875rem;
 }
 
 .type-tagline-bold {
   font-family: var(--font-family-narrative);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-narrative-bold);
   font-size: 1.125rem;
   line-height: 1.875rem;
 }
 
 .type-label {
   font-family: var(--font-family-interface);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-interface-normal);
   font-size: 1rem;
 }
 
 .type-label-bold {
   font-family: var(--font-family-interface);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-interface-bold);
   font-size: 1rem;
 }
 
 .type-body {
   font-family: var(--font-family-narrative);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-narrative-normal);
   font-size: 1rem;
   line-height: 1.75rem;
 }
 
 .type-body-bold {
   font-family: var(--font-family-narrative);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-narrative-bold);
   font-size: 1rem;
   line-height: 1.75rem;
 }
 
 .type-detail {
   font-family: var(--font-family-interface);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-interface-normal);
   font-size: 0.75rem;
 }
 
 .type-detail-bold {
   font-family: var(--font-family-interface);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-interface-bold);
   font-size: 0.75rem;
 }
 

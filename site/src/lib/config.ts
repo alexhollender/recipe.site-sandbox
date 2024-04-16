@@ -9,4 +9,5 @@ export const FontFamilies = {
   'ivypresto-display': 'IvyPresto Display, Times New Roman, serif',
   'ivypresto-text': 'IvyPresto Text, Times New Roman, serif',
   'franklin-gothic': 'Franklin Gothic, Helvetica, sans-serif',
+  'moret-variable': 'Moret Variable, Times New Roman, serif',
 } satisfies Record<Types.FontFamily, string>;

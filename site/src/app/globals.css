@@ -378,3 +378,8 @@
   font-weight: 700;
   font-style: italic;
 }
+
+@font-face {
+  font-family: Moret variable;
+  src: url(../../public/fonts/Moret\ variable.woff2);
+}

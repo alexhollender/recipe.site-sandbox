@@ -259,7 +259,7 @@ export type FontFamily =
   | 'ivypresto-display'
   | 'ivypresto-text'
   | 'helvetica'
-  | 'moret-variable';
+  | 'moret';
 
 export type Font = {
   family: FontFamily;

@@ -47,7 +47,7 @@ export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
           )}
         </div>
       )}
-      <div className="mt-2">
+      <div className="mt-2 RecipeCardContent">
         <div className="text-accent">
           <Ui.Text.Title bold>{recipe.title}</Ui.Text.Title>
         </div>

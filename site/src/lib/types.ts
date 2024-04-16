@@ -254,7 +254,7 @@ export type ColorTheme = {
 };
 
 export type FontWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900;
-export type FontFamily = 'ivypresto-display' | 'ivypresto-text' | 'helvetica';
+export type FontFamily = 'franklin-gothic' | 'ivypresto-display' | 'ivypresto-text' | 'helvetica';
 
 export type Font = {
   family: FontFamily;

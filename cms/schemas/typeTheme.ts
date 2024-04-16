@@ -16,6 +16,7 @@ export const Font = Sanity.defineType({
           { title: 'Ivy Presto Display', value: 'ivypresto-display' },
           { title: 'Ivy Presto Text', value: 'ivypresto-text' },
           { title: 'Helvetica', value: 'helvetica' },
+          { title: 'Franklin Gothic', value: 'franklin-gothic' },
         ],
       },
     },

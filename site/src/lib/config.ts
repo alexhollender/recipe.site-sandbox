@@ -8,4 +8,5 @@ export const FontFamilies = {
   helvetica: 'Helvetica, sans-serif',
   'ivypresto-display': 'IvyPresto Display, Times New Roman, serif',
   'ivypresto-text': 'IvyPresto Text, Times New Roman, serif',
+  'franklin-gothic': 'Franklin Gothic, Helvetica, sans-serif',
 } satisfies Record<Types.FontFamily, string>;

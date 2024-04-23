@@ -33,7 +33,7 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
                 {site.logo ? (
                   <Ui.Media.Image image={site.logo} alt={site.title} className="h-9 w-auto" />
                 ) : (
-                  <Ui.Text.Title>{primaryAuthor.name}</Ui.Text.Title>
+                  <Ui.Text.Title>{site.title}</Ui.Text.Title>
                 )}
               </Link>
 

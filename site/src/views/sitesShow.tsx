@@ -13,6 +13,45 @@ type SitesShowProps = {
 };
 
 const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
+  const AboutSection = (
+    <section className="mt-20 md:mt-28">
+      <Ui.Container>
+        <Ui.Grid>
+          <div className="col-span-12 md:col-span-6 text-accent">
+            <div className="mb-5">
+              <Ui.Text.Lead bold as="h2">
+                {props.site.aboutHeading ? (
+                  <Ui.Richtext.Inherited content={props.site.aboutHeading} />
+                ) : (
+                  `About`
+                )}
+              </Ui.Text.Lead>
+            </div>
+            <Ui.Richtext.Styled style="narrative" content={props.site.about} />
+
+            {props.site.socialMediaLinks.length > 0 && (
+              <div className="mt-6 flex space-x-5 text-text">
+                {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
+                  return (
+                    <div key={socialMediaLink._key} className="w-8">
+                      <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          <div className="col-span-12 md:col-start-8 md:col-span-5">
+            {props.site.featuredImage && (
+              <div className="relative aspect-square">
+                <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
+              </div>
+            )}
+          </div>
+        </Ui.Grid>
+      </Ui.Container>
+    </section>
+  );
   return (
     <div className="mb-24">
       <Ui.Text.Title as="h1" className="sr-only">
@@ -47,46 +86,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         </section>
       )}
       {/* Show Conor */}
-      {/* About */}
-      {props.site.aboutHeading && (
-        <section className="mt-20 md:mt-28 first-of-type:mt-2">
-          <Ui.Container>
-            <Ui.Grid>
-              <div className="col-span-12 md:col-span-6 text-accent">
-                <div className="mb-3">
-                  <Ui.Text.Lead bold as="h2">
-                    <Ui.Richtext.Inherited content={props.site.aboutHeading} />
-                  </Ui.Text.Lead>
-                </div>
-                <Ui.Richtext.Styled style="narrative" content={props.site.about} />
-
-                {props.site.socialMediaLinks.length > 0 && (
-                  <div className="mt-6 flex space-x-5 text-text">
-                    {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-                      return (
-                        <div key={socialMediaLink._key} className="w-8">
-                          <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-              <div className="col-span-12 md:col-start-8 md:col-span-5">
-                {props.site.featuredImage && (
-                  <div className="relative aspect-square">
-                    <Ui.Media.Image
-                      image={props.site.featuredImage}
-                      alt="Profile picture"
-                      className={'w-full h-full object-cover block'}
-                    />
-                  </div>
-                )}
-              </div>
-            </Ui.Grid>
-          </Ui.Container>
-        </section>
-      )}
+      {/* About 1 */}
+      {props.site.featuredRecipes && AboutSection}
       {/* Products */}
       {props.site.productLinks && (
         <section className="mt-16 md:mt-28 first-of-type:mt-2">
@@ -123,45 +124,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Grid>
         </Ui.Container>
       </section>
-      {!props.site.aboutHeading && (
-        <section className="mt-20 md:mt-28">
-          <Ui.Container>
-            <Ui.Grid>
-              <div className="col-span-12 md:col-span-6 text-accent">
-                <div className="mb-3">
-                  <Ui.Text.Lead bold as="h2">
-                    About
-                  </Ui.Text.Lead>
-                </div>
-                <Ui.Richtext.Styled style="narrative" content={props.site.about} />
-
-                {props.site.socialMediaLinks.length > 0 && (
-                  <div className="mt-6 flex space-x-5 text-text">
-                    {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-                      return (
-                        <div key={socialMediaLink._key} className="w-8">
-                          <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-              <div className="col-span-12 md:col-start-8 md:col-span-5">
-                {props.site.featuredImage && (
-                  <div className="relative aspect-square">
-                    <Ui.Media.Image
-                      image={props.site.featuredImage}
-                      alt="Profile picture"
-                      className={'w-full h-full object-cover block'}
-                    />
-                  </div>
-                )}
-              </div>
-            </Ui.Grid>
-          </Ui.Container>
-        </section>
-      )}
+      {/* About 2 */}
+      {!props.site.featuredRecipes && AboutSection}
     </div>
   );
 };

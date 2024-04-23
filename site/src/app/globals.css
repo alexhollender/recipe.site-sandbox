@@ -171,280 +171,407 @@
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Thin.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto/IvyPresto\ Display\ Thin.woff2);
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Thin\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto/IvyPresto\ Display\ Thin\ Italic.woff2);
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Light.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Light.woff2);
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Light\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Light\ Italic.woff2);
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Regular.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Regular.woff2);
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Regular\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Regular\ Italic.woff2);
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ SemiBold.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ SemiBold.woff2);
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ SemiBold\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ SemiBold\ Italic.woff2);
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Bold.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Bold.woff2);
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Display;
-  src: url(../../public/fonts/IvyPresto\ Display\ Bold\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Bold\ Italic.woff2);
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ Thin.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ Thin.woff2);
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Display\ Thin\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Thin\ Italic.woff2);
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ Light.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ Light.woff2);
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Display\ Light\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Light\ Italic.woff2);
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ Regular.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ Regular.woff2);
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ Regular\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ Regular\ Italic.woff2);
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ SemiBold.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ SemiBold.woff2);
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ SemiBold\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ SemiBold\ Italic.woff2);
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ Bold.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ Bold.woff2);
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: IvyPresto Text;
-  src: url(../../public/fonts/IvyPresto\ Text\ Bold\ Italic.woff2);
+  src: url(../../public/fonts/IvyPresto/IvyPresto\ Text\ Bold\ Italic.woff2);
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Light.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Light.woff2);
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Light\ Italic.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Light\ Italic.woff2);
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Book.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Book.woff2);
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Book\ Italic.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Book\ Italic.woff2);
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Medium.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Medium.woff2);
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Medium\ Italic.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Medium\ Italic.woff2);
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Demi.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Demi.woff2);
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Demi\ Italic.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Demi\ Italic.woff2);
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Heavy.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Heavy.woff2);
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Franklin Gothic;
-  src: url(../../public/fonts/FranklinGothic\ Heavy\ Italic.woff2);
+  src: url(../../public/fonts/FranklinGothic/FranklinGothic\ Heavy\ Italic.woff2);
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Book.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Book.woff2);
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Book\ Oblique.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Book\ Oblique.woff2);
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Regular.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Regular.woff2);
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Regular\ Oblique.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Regular\ Oblique.woff2);
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Semibold.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Semibold.woff2);
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Semibold\ Oblique.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Semibold\ Oblique.woff2);
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Bold.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Bold.woff2);
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Bold\ Oblique.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Bold\ Oblique.woff2);
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Extrabold.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Extrabold.woff2);
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: Moret;
-  src: url(../../public/fonts/Moret\ Exrabold\ Oblique.woff2);
+  src: url(../../public/fonts/Moret/Moret\ Exrabold\ Oblique.woff2);
   font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/Graphik/GraphikThin.woff2);
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikThinItalic.woff2);
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikExtralight.woff2);
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikExtralightItalic.woff2);
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikLight.woff2);
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikLightItalic.woff2);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikRegular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikRegularItalic.woff2);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikMedium.woff2);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikMediumItalic.woff2);
+  font-weight: 500;
+  font-style: italic;
+}
+
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikSemibold.woff2);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikSemiboldItalic.woff2);
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikBold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikBoldItalic.woff2);
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikBlack.woff2);
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikBlackItalic.woff2);
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikSuper.woff2);
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(../../public/fonts/Graphik/GraphikSuperItalic.woff2);
+  font-weight: 900;
   font-style: italic;
 }

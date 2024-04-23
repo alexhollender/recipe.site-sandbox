@@ -13,11 +13,15 @@ export const Font = Sanity.defineType({
       validation: (Rule) => Rule.required(),
       options: {
         list: [
+          // Display
           { title: 'Ivy Presto Display', value: 'ivypresto-display' },
+          { title: 'Moret', value: 'moret' },
+          { title: 'Graphik', value: 'graphik' },
+          // Narrative
           { title: 'Ivy Presto Text', value: 'ivypresto-text' },
+          // Interface
           { title: 'Helvetica', value: 'helvetica' },
           { title: 'Franklin Gothic', value: 'franklin-gothic' },
-          { title: 'Moret', value: 'moret' },
         ],
       },
     },

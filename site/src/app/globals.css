@@ -574,3 +574,73 @@
   font-weight: 900;
   font-style: italic;
 }
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-Thin.woff2);
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-ThinItalic.woff2);
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-Light.woff2);
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-LightItalic.woff2);
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-Regular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-Italic.woff2);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-Medium.woff2);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-MediumItalic.woff2);
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-Bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: RobotoMono;
+  src: url(../../public/fonts/RobotoMono/RobotoMono-BoldItalic.woff2);
+  font-weight: 700;
+  font-style: italic;
+}

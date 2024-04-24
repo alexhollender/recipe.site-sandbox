@@ -9,7 +9,7 @@ export const FontFamilies = {
   'ivypresto-display': 'IvyPresto Display, Times New Roman, serif',
   moret: 'Moret, Times New Roman, serif',
   graphik: 'Graphik, Helvetica, sans-serif',
-  'roboto-mono': 'RobotoMono, Courier New, monospace',
+  'roboto-mono': 'Roboto Mono, Courier New, monospace',
   // Narrative
   'ivypresto-text': 'IvyPresto Text, Times New Roman, serif',
   // Interface

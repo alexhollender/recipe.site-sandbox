@@ -264,7 +264,8 @@ export type FontFamily =
   | 'ivypresto-text'
   // Interface
   | 'franklin-gothic'
-  | 'helvetica';
+  | 'helvetica'
+  | 'inter';
 
 export type Font = {
   family: FontFamily;

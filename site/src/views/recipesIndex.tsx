@@ -67,7 +67,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
         </div>
         {/* <button
             type="button"
-            className="flex items-center space-x-2 bg-secondary-tint hover:bg-opacity-50 px-3 rounded-xl transition-colors"
+            className="flex items-center space-x-2 hover:bg-opacity-50 px-3 rounded-xl transition-colors"
             onClick={() => {
               setIsFilterPaneDisplayed((displayed) => !displayed);
             }}
@@ -79,7 +79,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
           </button> */}
       </div>
       {/* {isFilterPaneDisplayed && (
-          <section className="border-y border-secondary-tint py-2 my-4">
+          <section className="border-y py-2 my-4">
             <Ui.Grid>
               <div className="col-span-12 sm:col-span-6 lg:col-span-3">
                 <Ui.Text.Title>Collection</Ui.Text.Title>
@@ -105,37 +105,37 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
       {/* <div className="pb-6 flex space-x-4 w-full overflow-x-scroll">
           <button
             type="button"
-            className="bg-secondary-tint hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
+            className="hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
           >
             <Ui.Text.Label>Meal</Ui.Text.Label>
           </button>
           <button
             type="button"
-            className="bg-secondary-tint hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
+            className="hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
           >
             <Ui.Text.Label>Cuisine</Ui.Text.Label>
           </button>
           <button
             type="button"
-            className="bg-secondary-tint hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
+            className="hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
           >
             <Ui.Text.Label>Category</Ui.Text.Label>
           </button>
           <button
             type="button"
-            className="bg-secondary-tint hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
+            className="hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
           >
             <Ui.Text.Label>Method</Ui.Text.Label>
           </button>
           <button
             type="button"
-            className="bg-secondary-tint hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
+            className="hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
           >
             <Ui.Text.Label>Cuisine</Ui.Text.Label>
           </button>
           <button
             type="button"
-            className="bg-secondary-tint hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
+            className="hover:bg-opacity-50 px-3 py-2 rounded-xl transition-colors"
           >
             <Ui.Text.Label>Diet</Ui.Text.Label>
           </button>

@@ -81,7 +81,7 @@ export const IngredientUsageReference: React.FC<
             ingredientUsage={ingredientUsage}
             onRender={({ quantity, unit }) => {
               return (
-                <Ui.Text.Label as="span" className="text-primary-tint">
+                <Ui.Text.Label as="span" className="text-subdued">
                   ({quantity && <span>{quantity}</span>}
                   {unit && <span>{unit}</span>})
                 </Ui.Text.Label>

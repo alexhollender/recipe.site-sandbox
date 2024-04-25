@@ -15,10 +15,14 @@
 
 /* @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #ffffff;
-    --color-primary-tint: #8b8b8b;
-    --color-secondary: #000000;
-    --color-secondary-tint: #2d2d2d;
+    --color-text: #000000;
+    --color-accent: var(--color-text);
+    --color-subdued: #5b5b5b;
+    --color-overlay: #ffffff;
+    --color-background: #ffffff;
+    --color-panel: #f2f2f2;
+    --color-emphasis: #8d8d8d;
+    --color-outline: #d9d9d9;
   }
 } */
 

@@ -72,18 +72,23 @@ export const IngredientUsageReference: React.FC<
     <span>
       <Ui.Text.Label bold as="span">
         {children}
-      </Ui.Text.Label>{' '}
-      <Ui.IngredientUsageAmount
-        ingredientUsage={ingredientUsage}
-        onRender={({ quantity, unit }) => {
-          return (
-            <Ui.Text.Label as="span" className="text-primary-tint">
-              ({quantity && <span>{quantity}</span>}
-              {unit && <span>{unit}</span>})
-            </Ui.Text.Label>
-          );
-        }}
-      />
+      </Ui.Text.Label>
+      {(ingredientUsage.quantityMin || ingredientUsage.unit) && (
+        <>
+          {' '}
+          <Ui.IngredientUsageAmount
+            ingredientUsage={ingredientUsage}
+            onRender={({ quantity, unit }) => {
+              return (
+                <Ui.Text.Label as="span" className="text-primary-tint">
+                  ({quantity && <span>{quantity}</span>}
+                  {unit && <span>{unit}</span>})
+                </Ui.Text.Label>
+              );
+            }}
+          />
+        </>
+      )}
     </span>
   );
 };

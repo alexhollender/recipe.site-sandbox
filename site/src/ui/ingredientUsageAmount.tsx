@@ -37,7 +37,7 @@ const IngredientUsageAmount: React.FC<IngredientUsageProps> = (props) => {
 
   const getUnit = () => {
     if (!ingredientUsage.unit) return null;
-    if (!ingredientUsage.quantityMin) return ` ${ingredientUsage.unit.title}`;
+    if (!ingredientUsage.quantityMin) return `${ingredientUsage.unit.title}`;
     const pluralized = Utils.pluralizeUnit(
       ingredientUsage.unit,
       ingredientUsage.quantityMin,
@@ -61,6 +61,8 @@ const IngredientUsageAmount: React.FC<IngredientUsageProps> = (props) => {
   const preparation = getPreparation();
 
   if (!quantity && !unit && !preparation) return null;
+
+  console.log(quantity, unit, preparation);
 
   return props.onRender({
     quantity,

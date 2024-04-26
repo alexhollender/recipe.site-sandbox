@@ -13,45 +13,6 @@ type SitesShowProps = {
 };
 
 const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
-  const AboutSection = (
-    <section className="mt-20 md:mt-28">
-      <Ui.Container>
-        <Ui.Grid>
-          <div className="col-span-12 md:col-span-6 text-accent">
-            <div className="mb-5">
-              <Ui.Text.Lead bold as="h2">
-                {props.site.aboutHeading ? (
-                  <Ui.Richtext.Inherited content={props.site.aboutHeading} />
-                ) : (
-                  `About`
-                )}
-              </Ui.Text.Lead>
-            </div>
-            <Ui.Richtext.Styled style="narrative" content={props.site.about} />
-
-            {props.site.socialMediaLinks.length > 0 && (
-              <div className="mt-6 flex space-x-5 text-text">
-                {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-                  return (
-                    <div key={socialMediaLink._key} className="w-8">
-                      <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-          <div className="col-span-12 md:col-start-8 md:col-span-5">
-            {props.site.featuredImage && (
-              <div className="relative aspect-square">
-                <Ui.Media.Image image={props.site.featuredImage} alt="Profile picture" />
-              </div>
-            )}
-          </div>
-        </Ui.Grid>
-      </Ui.Container>
-    </section>
-  );
   return (
     <div className="mb-24">
       <Ui.Text.Title as="h1" className="sr-only">
@@ -87,7 +48,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       )}
       {/* Show Conor */}
       {/* About 1 */}
-      {props.site.featuredRecipes && AboutSection}
+      {props.site.featuredRecipes && <AboutSection site={props.site} />}
       {/* Products */}
       {props.site.productLinks && (
         <section className="mt-16 md:mt-28 first-of-type:mt-2">
@@ -125,9 +86,51 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         </Ui.Container>
       </section>
       {/* About 2 */}
-      {!props.site.featuredRecipes && AboutSection}
+      {!props.site.featuredRecipes && <AboutSection site={props.site} />}
     </div>
   );
 };
 
 export default SitesShow;
+
+const AboutSection = ({ site }: { site: Types.Site }) => {
+  return (
+    <section className="mt-20 md:mt-28">
+      <Ui.Container>
+        <Ui.Grid>
+          <div className="col-span-12 md:col-span-6 text-accent">
+            <div className="mb-5">
+              <Ui.Text.Lead bold as="h2">
+                {site.aboutHeading ? (
+                  <Ui.Richtext.Inherited content={site.aboutHeading} />
+                ) : (
+                  `About`
+                )}
+              </Ui.Text.Lead>
+            </div>
+            <Ui.Richtext.Styled style="narrative" content={site.about} />
+
+            {site.socialMediaLinks.length > 0 && (
+              <div className="mt-6 flex space-x-5 text-text">
+                {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
+                  return (
+                    <div key={socialMediaLink._key} className="w-8">
+                      <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          <div className="col-span-12 md:col-start-8 md:col-span-5">
+            {site.featuredImage && (
+              <div className="relative aspect-square">
+                <Ui.Media.Image image={site.featuredImage} alt="Profile picture" />
+              </div>
+            )}
+          </div>
+        </Ui.Grid>
+      </Ui.Container>
+    </section>
+  );
+};

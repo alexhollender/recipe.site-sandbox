@@ -169,6 +169,7 @@
   content: counter(instructions) !important;
 }
 
+/* FONTS */
 @font-face {
   font-family: IvyPresto Display;
   src: url(../../public/fonts/IvyPresto/IvyPresto\ Display\ Thin.woff2);

@@ -63,7 +63,7 @@ const Gallery: React.FC<GalleryProps> = ({ media }) => {
           className="absolute top-0 bottom-0 left-0 flex items-center justify-start pl-8 pr-32 z-20 group"
           aria-label="Previous Image"
         >
-          <div className="h-10 w-10 text-white opacity-85 group-hover:opacity-100 transition-opacity">
+          <div className="h-9 w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity">
             <Ui.Icons.Previous />
           </div>
         </button>
@@ -76,7 +76,7 @@ const Gallery: React.FC<GalleryProps> = ({ media }) => {
           aria-label="Next Image"
         >
           <div
-            className="h-10 w-10 text-white opacity-85 group-hover:opacity-100 transition-opacity"
+            className="h-9 w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity"
             aria-label="Next Image"
           >
             <Ui.Icons.Next />
@@ -97,7 +97,7 @@ const Gallery: React.FC<GalleryProps> = ({ media }) => {
                 >
                   <div
                     className={Utils.cx([
-                      'h-3 w-3 rounded-full transition-opacity hover:opacity-100 shadow-md bg-white',
+                      'h-2.5 w-2.5 rounded-full transition-opacity hover:opacity-100 shadow-md bg-white',
                       {
                         'opacity-85': activeMediaIndex === index,
                         'opacity-50': activeMediaIndex !== index,

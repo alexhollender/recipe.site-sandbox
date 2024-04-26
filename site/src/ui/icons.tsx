@@ -38,11 +38,11 @@ export const DownCarrot = () => {
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="expand-collapse" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="expand-collapse" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <polygon
           id="Path"
           fill="currentColor"
-          fill-rule="nonzero"
+          fillRule="nonzero"
           points="12.649 3 7 8.404 1.4742 3 0 4.4742 7 11.4742 14 4.4742"
         />
       </g>

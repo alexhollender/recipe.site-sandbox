@@ -62,8 +62,6 @@ const IngredientUsageAmount: React.FC<IngredientUsageProps> = (props) => {
 
   if (!quantity && !unit && !preparation) return null;
 
-  console.log(quantity, unit, preparation);
-
   return props.onRender({
     quantity,
     unit,

@@ -84,7 +84,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
       <Ui.Container className="mt-4">
         <Ui.Grid>
           <div className="col-span-12 md:col-span-5">
-            <div className="bg-panel p-4 md:p-6 rounded-md sticky top-5">
+            <div className="bg-panel p-4 md:p-6 rounded-md sticky top-5 max-h-[calc(100vh-2.5rem)] overflow-y-scroll scrollbar-thumb-custom scrollbar-track-custom">
               <div
                 className="flex md:hidden items-center text-text"
                 role="button"

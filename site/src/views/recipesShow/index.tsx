@@ -365,9 +365,22 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
       ></input>
       <label htmlFor={ingredientUsage._id} className="cursor-pointer text-text">
         <Ui.Text.Label>
-          <Ui.Text.Label as="span" className="pr-1" bold>
-            {title}
-          </Ui.Text.Label>
+          {ingredientUsage.link ? (
+            <Ui.Text.Label
+              as="a"
+              href={ingredientUsage.link}
+              className="pr-1 underline"
+              target="_blank"
+              rel="external"
+              bold
+            >
+              {title}
+            </Ui.Text.Label>
+          ) : (
+            <Ui.Text.Label as="span" className="pr-1" bold>
+              {title}
+            </Ui.Text.Label>
+          )}
           <Ui.IngredientUsageAmount
             ingredientUsage={ingredientUsage}
             onRender={({ quantity, unit, preparation }) => {

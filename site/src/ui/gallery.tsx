@@ -63,7 +63,7 @@ const Gallery: React.FC<GalleryProps> = ({ media }) => {
           className="absolute top-0 bottom-0 left-0 flex items-center justify-start pl-8 pr-32 z-20 group"
           aria-label="Previous Image"
         >
-          <div className="h-9 w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity">
+          <div className="h-9 w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-sm">
             <Ui.Icons.Previous />
           </div>
         </button>
@@ -76,7 +76,7 @@ const Gallery: React.FC<GalleryProps> = ({ media }) => {
           aria-label="Next Image"
         >
           <div
-            className="h-9 w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity"
+            className="h-9 w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-sm"
             aria-label="Next Image"
           >
             <Ui.Icons.Next />

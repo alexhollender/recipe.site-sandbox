@@ -15,17 +15,17 @@ const RichtextComponents: Partial<PortableTextReactComponents> = {
   block: {
     normal: ({ children }) => <p>{children}</p>,
     h1: ({ children }) => (
-      <Ui.Text.Lead bold className="pt-2">
+      <Ui.Text.Lead bold className="pt-3">
         {children}
       </Ui.Text.Lead>
     ),
     h2: ({ children }) => (
-      <Ui.Text.Title bold className="pt-1">
+      <Ui.Text.Title bold className="pt-2">
         {children}
       </Ui.Text.Title>
     ),
     h3: ({ children }) => (
-      <Ui.Text.Highlight bold className="pt-0.5">
+      <Ui.Text.Highlight bold className="pt-1.5">
         {children}
       </Ui.Text.Highlight>
     ),

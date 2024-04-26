@@ -22,11 +22,16 @@ type RecipesShowProps = {
 
 const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
   const [isIngredientsDisplayed, setIsIngredientsDisplayed] = React.useState(true);
+  const [isNotesDisplayed, setIsNotesDisplayed] = React.useState(true);
 
   const mediaArray = [props.recipe.featuredMedia, ...(props.recipe.media || [])];
 
   const onToggleIngredients = () => {
     setIsIngredientsDisplayed((state) => !state);
+  };
+
+  const onToggleNotes = () => {
+    setIsNotesDisplayed((state) => !state);
   };
 
   return (
@@ -84,7 +89,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
       <Ui.Container className="mt-4">
         <Ui.Grid>
           <div className="col-span-12 md:col-span-5">
-            <div className="bg-panel p-4 md:p-6 rounded-md sticky top-5 max-h-[calc(100vh-2.5rem)] overflow-y-scroll scrollbar-thumb-custom scrollbar-track-custom">
+            <div className="bg-panel p-4 md:p-6 rounded-md sticky top-5 md:max-h-[calc(100vh-2.5rem)] overflow-y-auto scrollbar-thumb-custom scrollbar-track-custom">
               <div
                 className="flex md:hidden items-center text-text"
                 role="button"
@@ -178,6 +183,34 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
           </div>
         </Ui.Grid>
       </Ui.Container>
+      {props.recipe.note && (
+        <Ui.Container className="mt-4">
+          <div className="pt-3 border-t border-outline">
+            <div className="bg-panel p-4 md:p-6 rounded-md">
+              <div className="flex items-center text-text" role="button" onClick={onToggleNotes}>
+                <div
+                  className={Utils.cx([
+                    'h-4 w-4 mr-2 transition-transform',
+                    {
+                      '-rotate-90': isNotesDisplayed === false,
+                    },
+                  ])}
+                >
+                  <Ui.Icons.DownCarrot />
+                </div>
+                <Ui.Text.Title bold as="h2">
+                  Notes
+                </Ui.Text.Title>
+              </div>
+              {isNotesDisplayed && (
+                <div className="mt-4 mb-2 space-y-5">
+                  <Ui.Richtext.Styled style="narrative" content={props.recipe.note} />
+                </div>
+              )}
+            </div>
+          </div>
+        </Ui.Container>
+      )}
     </div>
   );
 };

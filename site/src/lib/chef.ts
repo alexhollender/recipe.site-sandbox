@@ -462,7 +462,7 @@ export const Recipes = {
         && ($categorySlugs != null && count(categories[@->slug.current in $categorySlugs]) > 0 || $categorySlugs == null)
         && ($cuisineSlugs != null && count(cuisines[@->slug.current in $cuisineSlugs]) > 0 || $cuisineSlugs == null)
         && ($tagSlugs != null && count(tags[@->slug.current in $tagSlugs]) > 0 || $tagSlugs == null)
-      ]${params.limit ? `[0...${params.limit}] ` : ''} | order(createdAt desc) ${RECIPE_PREVIEW_QUERY}
+      ]${params.limit ? `| order(createdAt desc) [0...${params.limit}] ` : '| order(createdAt desc)'} ${RECIPE_PREVIEW_QUERY}
       `,
       {
         siteSlug: params.siteSlug,

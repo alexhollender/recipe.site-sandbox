@@ -341,7 +341,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                       <Ui.Richtext.Styled style="interface" content={instruction.content} />
                     </div>
                     {instruction.note && (
-                      <div className="pt-2 relative z-10">
+                      <div className="pt-1 relative z-10">
                         <Ui.Text.Label className="italic text-subdued">
                           <Ui.Richtext.Inherited content={instruction.note} />
                         </Ui.Text.Label>
@@ -421,7 +421,7 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
                 <span>
                   ({quantity && <span>{quantity}</span>}
                   {unit && <span>{unit}</span>}
-                  {preparation && <span>{preparation}</span>})
+                  {preparation && <span className="italic">{preparation}</span>})
                 </span>
               );
             }}

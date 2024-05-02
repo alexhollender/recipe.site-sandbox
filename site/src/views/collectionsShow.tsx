@@ -27,7 +27,7 @@ const CollectionsShow: Next.NextPage<CollectionsShowProps> = (props) => {
         <Ui.Grid>
           {props.collection.recipes.map((recipe) => {
             return (
-              <div key={recipe._id} className="col-span-12 sm:col-span-6 md:col-span-4">
+              <div key={recipe._id} className="col-span-12 md:col-span-6 lg:col-span-4">
                 <Ui.Cards.Recipe recipe={recipe} />
               </div>
             );

@@ -21,7 +21,7 @@ export const SouffléContainer: React.FC<React.PropsWithChildren<{ className?: s
 };
 
 export const Grid: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return <div className="grid md:gap-x-10 gap-y-10 grid-cols-12">{children}</div>;
+  return <div className="grid gap-x-2 md:gap-x-10 gap-y-10 grid-cols-12">{children}</div>;
 };
 
 export * as Cards from '@/ui/cards';

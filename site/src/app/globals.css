@@ -24,6 +24,11 @@
   --font-weight-display-bold: 700;
 }
 
+b,
+strong {
+  font-weight: var(--font-weight-interface-bold);
+}
+
 .slider-item-inner {
   transform: translateX(calc(max(((100vw - 75rem) / 2), 0rem) - max(((100vw - 120rem) / 2), 0rem)));
 }

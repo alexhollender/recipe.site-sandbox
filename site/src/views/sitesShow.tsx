@@ -4,6 +4,7 @@ import * as Next from 'next';
 import * as React from 'react';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
+import * as Utils from '@/lib/utils';
 
 import Link from 'next/link';
 
@@ -77,7 +78,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           <Ui.Grid>
             {props.latestRecipes.map((recipe) => {
               return (
-                <div key={recipe._id} className="col-span-12 sm:col-span-6 md:col-span-4">
+                <div key={recipe._id} className="col-span-12 md:col-span-6 lg:col-span-4">
                   <Ui.Cards.Recipe recipe={recipe} />
                 </div>
               );
@@ -124,8 +125,12 @@ const AboutSection = ({ site }: { site: Types.Site }) => {
           </div>
           <div className="col-span-12 md:col-start-8 md:col-span-5">
             {site.featuredImage && (
-              <div className="relative aspect-square">
-                <Ui.Media.Image image={site.featuredImage} alt="Profile picture" />
+              <div>
+                <Ui.Media.Image
+                  image={site.featuredImage}
+                  alt="Profile picture"
+                  className={Utils.cx(['w-full h-auto'])}
+                />
               </div>
             )}
           </div>

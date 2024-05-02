@@ -16,6 +16,7 @@ export const Font = Sanity.defineType({
           // Display
           { title: 'Ivy Presto Display', value: 'ivypresto-display' },
           { title: 'Moret', value: 'moret' },
+          { title: 'ITC Clearface', value: 'itc-clearface' },
           { title: 'Graphik', value: 'graphik' },
           { title: 'Roboto Mono', value: 'roboto-mono' },
           // Narrative

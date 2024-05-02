@@ -790,3 +790,59 @@
   font-weight: 900;
   font-style: italic;
 }
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-Regular.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-Italic.woff2);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-Bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-BlackItalic.woff2);
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-Heavy.woff2);
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-HeavyItalic.woff2);
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-Black.woff2);
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: ITC Clearface;
+  src: url(../../public/fonts/ITCClearface/ClearfaceStd-BlackItalic.woff2);
+  font-weight: 900;
+  font-style: italic;
+}

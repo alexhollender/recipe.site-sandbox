@@ -258,6 +258,7 @@ export type FontFamily =
   // Display
   | 'ivypresto-display'
   | 'moret'
+  | 'itc-clearface'
   | 'graphik'
   | 'roboto-mono'
   // Narrative

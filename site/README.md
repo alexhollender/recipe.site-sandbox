@@ -17,3 +17,8 @@ Semi-Bold: 600
 Bold: 700
 Extra-Bold/Heavy: 800
 Black: 900
+
+## Custom Domains
+
+If you want to add a custom domain, add it to the DomainsToSanitySlugs
+variable in src/middleware.ts

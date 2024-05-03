@@ -55,7 +55,7 @@ const Gallery: React.FC<GalleryProps> = ({ media }) => {
   };
 
   return (
-    <div className="aspect-sd relative">
+    <div className="aspect-sd relative Gallery">
       {media.length > 1 && (
         <button
           type="button"

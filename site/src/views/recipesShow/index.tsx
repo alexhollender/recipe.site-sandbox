@@ -61,7 +61,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 <Timing recipe={props.recipe} />
               </div>
             </header>
-            <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-md overflow-hidden">
+            <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-md overflow-hidden RecipePageGalleryContainer">
               <Ui.Gallery media={mediaArray} />
             </div>
             <div>

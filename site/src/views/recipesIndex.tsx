@@ -52,6 +52,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
 
   return (
     <Ui.Container>
+      {/* Search & filtering */}
       <div className="flex space-x-3 mb-7">
         <div className="relative py-2 px-2 space-x-2 flex bg-panel rounded-xl flex-1 focus-within:ring-1 focus-within:ring-outline">
           <div className="w-7 h-7 text-text">
@@ -140,20 +141,47 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
             <Ui.Text.Label>Diet</Ui.Text.Label>
           </button>
         </div> */}
-      <Ui.Grid>
-        {getRecipes().length === 0 && (
-          <div className="col-span-12 text-center mt-2 text-text">
-            <Ui.Text.Title>No recipes found for this search</Ui.Text.Title>
+
+      {/* Collections */}
+      {props.site.collections && searchTerm.trim() === '' && (
+        <div className="mb-7 pb-7 border-b border-outline">
+          <div className="mb-3">
+            <h2 className="type-title text-text">Recipe collections</h2>
+          </div>
+          <Ui.Grid>
+            {props.site.collections.map((collection) => {
+              return (
+                <div className="col-span-12 sm:col-span-6 lg:col-span-4" key={collection._id}>
+                  <Ui.Cards.Collection collection={collection} />
+                </div>
+              );
+            })}
+          </Ui.Grid>
+        </div>
+      )}
+
+      {/* All recipes */}
+      <div>
+        {searchTerm.trim() === '' && (
+          <div className="mb-3">
+            <h2 className="type-title text-text">All recipes</h2>
           </div>
         )}
-        {getRecipes().map((recipe) => {
-          return (
-            <div className="col-span-12 sm:col-span-6 lg:col-span-4" key={recipe._id}>
-              <Ui.Cards.Recipe recipe={recipe} />
+        <Ui.Grid>
+          {getRecipes().length === 0 && (
+            <div className="col-span-12 text-center mt-2 text-text">
+              <Ui.Text.Title>No recipes found for this search</Ui.Text.Title>
             </div>
-          );
-        })}
-      </Ui.Grid>
+          )}
+          {getRecipes().map((recipe) => {
+            return (
+              <div className="col-span-12 sm:col-span-6 lg:col-span-4" key={recipe._id}>
+                <Ui.Cards.Recipe recipe={recipe} />
+              </div>
+            );
+          })}
+        </Ui.Grid>
+      </div>
     </Ui.Container>
   );
 };

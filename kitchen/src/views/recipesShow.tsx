@@ -12,32 +12,30 @@ import * as Tiptap from '@tiptap/react';
 
 type RecipesShowProps = {
   globals: Types.Globals;
-  recipe: Types.RecipeDocument;
+  recipe: Types.Recipe;
 };
 
 const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
-  const recipe = Recipes.getCurrent(props.recipe);
-
   const [description, setDescription] = React.useState<Tiptap.JSONContent[]>([]);
-  const [title, setTitle] = React.useState<string>(recipe.title);
+  const [title, setTitle] = React.useState<string>(props.recipe.title);
 
-  React.useEffect(() => {
-    const transaction = PrivateChef.Transaction.new();
-    PrivateChef.Recipes.update(transaction, recipe._id, {
-      ...recipe,
-      title,
-    });
-    transaction.commit();
-  }, [title]);
+  // React.useEffect(() => {
+  //   const transaction = PrivateChef.Transaction.new();
+  //   PrivateChef.Recipes.update(transaction, props.recipe.id, {
+  //     ...props.recipe,
+  //     title,
+  //   });
+  //   transaction.commit();
+  // }, [title]);
 
   console.log('Description as Portable Text', Adapter.tiptapToPortableText(description));
 
-  const getDraftStatus = () => {
-    const status = Recipes.draftStatus(props.recipe);
-    if (status === 'unpublished') return 'Unpublished';
-    if (status === 'published_with_draft') return 'Unsaved changes';
-    return null;
-  };
+  // const getDraftStatus = () => {
+  //   const status = Recipes.draftStatus(props.recipe);
+  //   if (status === 'unpublished') return 'Unpublished';
+  //   if (status === 'published_with_draft') return 'Unsaved changes';
+  //   return null;
+  // };
 
   return (
     <Ui.Site.Layout>
@@ -50,13 +48,13 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               setTitle(e.target.value);
             }}
           />
-          <p>{getDraftStatus()}</p>
+          {/* <p>{getDraftStatus()}</p> */}
         </div>
         <div className="flex space-x-24 mt-8">
           <div className="min-w-[300px]">
             <h2 className="font-bold mb-5">Ingredients</h2>
 
-            {recipe.ingredientUsageGroups && (
+            {props.recipe.ingredientUsageGroups && (
               <ol className="divide-y divide-y-outline *:py-4 first:*:pt-0 last:*:pb-0">
                 {recipe.ingredientUsageGroups.map((ingredientUsageGroup, index) => (
                   <li key={index}>

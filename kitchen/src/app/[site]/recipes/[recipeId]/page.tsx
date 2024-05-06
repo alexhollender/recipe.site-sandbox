@@ -13,13 +13,15 @@ type RecipesShowProps = {
 
 const RecipesShow: Next.NextPage<RecipesShowProps> = async ({ params }) => {
   const globals = await PrivateChef.Globals.get({ siteSlug: params.site });
+
+  if (!globals) return NextNavigation.notFound();
+
   const recipe = await PrivateChef.Recipes.getOrCreateDraft({
-    siteSlug: params.site,
-    recipeId: params.recipeId,
+    siteId: globals?.site._id,
+    publishedRecipeId: params.recipeId,
   });
 
   if (!recipe) return NextNavigation.notFound();
-  if (!globals) return NextNavigation.notFound();
 
   return <Views.RecipesShow globals={globals} recipe={recipe} />;
 };

@@ -82,7 +82,7 @@ export const Recipes = {
       _type: 'recipe';
     } | null>(
       `{
-        *[_type == "recipe" && _id == $draftRecipeId && ($draftRecipeId in *[_type == "site" && _id == $siteId][0].recipes[]._ref || $recipePublishedId in *[_type == "site" && _id == $siteId][0].recipes[]._ref)][0] ${Queries.RECIPE_QUERY}
+        *[_type == "recipe" && _id == $draftRecipeId && ($draftRecipeId in *[_type == "site" && _id == $siteId][0].recipes[]._ref || $publishedRecipeId in *[_type == "site" && _id == $siteId][0].recipes[]._ref)][0] ${Queries.RECIPE_QUERY}
       }`,
       {
         siteId: params.siteId,

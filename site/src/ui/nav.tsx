@@ -28,7 +28,7 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
       <div className="mb-7">
         <div className="relative border-b border-outline z-50 bg-background SiteHeader">
           <Ui.Container>
-            <div className="h-14 flex justify-between items-center text-accent">
+            <div className="min-h-14 flex justify-between items-center text-accent SiteHeaderInner">
               <Link href="/">
                 {site.logo ? (
                   <Ui.Media.Image image={site.logo} alt={site.title} className="h-9 w-auto" />

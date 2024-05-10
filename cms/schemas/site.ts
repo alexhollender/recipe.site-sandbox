@@ -187,7 +187,7 @@ export default Sanity.defineType({
             select: {
               title: 'productTitle',
               subtitle: 'href',
-              media: 'productImage.image',
+              media: 'productImage.image.asset',
             },
           },
           fields: [

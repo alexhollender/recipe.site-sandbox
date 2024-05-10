@@ -183,6 +183,13 @@ export default Sanity.defineType({
         {
           name: 'productLink',
           type: 'object',
+          preview: {
+            select: {
+              title: 'productTitle',
+              subtitle: 'href',
+              media: 'productImage.image',
+            },
+          },
           fields: [
             {
               name: 'productTitle',

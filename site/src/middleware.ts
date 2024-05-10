@@ -14,6 +14,8 @@ For example www.bersumac.com will map to bersumar slug.
 const DomainsToSanitySlugs: Record<string, string> = {
   'bersumac.com': 'bersumac',
   'www.bersumac.com': 'bersumac',
+  'citrusandroots.com': 'citrusandroots',
+  'www.citrusandroots.com': 'citrusandroots',
 };
 
 export function middleware(request: Server.NextRequest) {

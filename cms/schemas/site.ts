@@ -176,12 +176,12 @@ export default Sanity.defineType({
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'productLinks',
+      name: 'products',
       title: 'Product Links',
       type: 'array',
       of: [
         {
-          name: 'productLink',
+          name: 'product',
           type: 'object',
           fields: [
             {

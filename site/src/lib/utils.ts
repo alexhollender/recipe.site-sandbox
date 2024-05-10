@@ -90,5 +90,6 @@ export const toRoundedFraction = (number: number): string => {
   const fractionSymbol = fractionMap[parseFloat(roundedFraction)];
 
   // Return the combined string of the whole part and the fraction symbol
-  return `${Math.floor(number)} ${fractionSymbol || ''}`;
+  // using `\u00A0` instead of a space, because in Graphik font it was rendering a kind of ghost " instead of a space
+  return `${Math.floor(number)}\u00A0${fractionSymbol || ''}`;
 };

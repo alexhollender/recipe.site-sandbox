@@ -14,13 +14,13 @@ const About: Next.NextPage<AboutProps> = (props) => {
         <div className="col-span-12 md:col-span-6 text-accent">
           <div className="mb-3">
             {props.site.aboutHeading ? (
-              <Ui.Text.Title bold as="h1">
+              <Ui.Text.Lead bold as="h1">
                 <Ui.Richtext.Inherited content={props.site.aboutHeading} />
-              </Ui.Text.Title>
+              </Ui.Text.Lead>
             ) : (
-              <Ui.Text.Title bold as="h1">
+              <Ui.Text.Lead bold as="h1">
                 About
-              </Ui.Text.Title>
+              </Ui.Text.Lead>
             )}
           </div>
           <Ui.Richtext.Styled style="narrative" content={props.site.about} />
@@ -37,7 +37,7 @@ const About: Next.NextPage<AboutProps> = (props) => {
           )}
         </div>
         <div className="col-span-12 md:col-start-8 md:col-span-5">
-          <div className="relative aspect-square">
+          <div className="relative">
             <Ui.Media.Image
               image={props.site.featuredImage}
               alt="Profile picture"

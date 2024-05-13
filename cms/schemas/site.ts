@@ -188,8 +188,7 @@ export default Sanity.defineType({
             },
             {
               name: 'openInNewTab',
-              title: 'Open in New Tab?',
-              description: 'If true, link will open in a new tab.',
+              title: 'Open link in new new?',
               type: 'boolean',
             },
           ],

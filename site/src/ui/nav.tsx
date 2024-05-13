@@ -55,7 +55,11 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
                     <>
                       {site.customHeaderLinks.map((link, index) => (
                         <li key={index}>
-                          <Link href={link.href} className="hover:opacity-60 transition-opacity">
+                          <Link
+                            href={link.href}
+                            target={link.openInNewTab ? '_blank' : '_self'}
+                            className="hover:opacity-60 transition-opacity"
+                          >
                             <Ui.Text.Label>{link.label}</Ui.Text.Label>
                           </Link>
                         </li>

@@ -189,14 +189,14 @@ export const SocialMedia = {
   Substack: () => {
     return (
       <svg
-        width="40"
-        height="40"
+        width="100%"
+        height="auto"
         viewBox="0 0 40 40"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M34.9836 14.3327H6V10.4333H34.985V14.3327H34.9836ZM6 17.8665V36L20.4925 27.9013L34.985 36V17.8665H6ZM34.985 3H6V6.8995H34.985V3Z"
+          d="M33.3487 15.3025H7V11.7575H33.35V15.3025H33.3487ZM7 18.515V35L20.175 27.6375L33.35 35V18.515H7ZM33.35 5H7V8.545H33.35V5Z"
           fill="black"
         />
       </svg>

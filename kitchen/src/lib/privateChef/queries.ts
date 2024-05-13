@@ -325,6 +325,12 @@ export const SITE_QUERY = groq`
         href
       }
     },
+    customHeaderLinks[] {
+      _key,
+      label,
+      href,
+      openInNewTab,
+    },
     theme -> ${THEME_QUERY},
     defaultMeasurementSystem,
     defaultTemperatureSystem

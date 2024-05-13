@@ -312,6 +312,14 @@ export type Site = {
       _key: string;
     }[];
   };
+  customHeaderLinks:
+    | null
+    | {
+        label: string;
+        href: string;
+        openInNewTab: boolean;
+        _key: string;
+      }[];
   defaultMeasurementSystem: MeasurementSystem;
   defaultTemperatureSystem: TemperatureSystem;
 };

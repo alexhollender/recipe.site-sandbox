@@ -51,6 +51,17 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
                       </Link>
                     </li>
                   )}
+                  {site.customHeaderLinks && (
+                    <>
+                      {site.customHeaderLinks.map((link, index) => (
+                        <li key={index}>
+                          <Link href={link.href} className="hover:opacity-60 transition-opacity">
+                            <Ui.Text.Label>{link.label}</Ui.Text.Label>
+                          </Link>
+                        </li>
+                      ))}
+                    </>
+                  )}
                   <li>
                     <Link href="/about" className="hover:opacity-60 transition-opacity">
                       <Ui.Text.Label>About</Ui.Text.Label>

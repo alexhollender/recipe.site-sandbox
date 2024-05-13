@@ -337,6 +337,12 @@ const SITE_QUERY = groq`
         href
       }
     },
+    customHeaderLinks[] {
+      _key,
+      label,
+      href,
+      openInNewTab
+    },
     colorTheme -> ${COLOR_THEME_QUERY},
     typeTheme -> ${TYPE_THEME_QUERY},
     cssOverrides,

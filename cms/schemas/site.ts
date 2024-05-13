@@ -186,6 +186,12 @@ export default Sanity.defineType({
               validation: (Rule) =>
                 Rule.uri({ allowRelative: false, scheme: ['http', 'https', 'mailto'] }),
             },
+            {
+              name: 'openInNewTab',
+              title: 'Open in New Tab?',
+              description: 'If true, link will open in a new tab.',
+              type: 'boolean',
+            },
           ],
         },
       ],

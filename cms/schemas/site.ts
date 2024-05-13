@@ -164,6 +164,33 @@ export default Sanity.defineType({
       ],
     },
     {
+      name: 'customHeaderLinks',
+      title: 'Custom Header Links',
+      group: 'basic',
+      type: 'array',
+      of: [
+        {
+          name: 'headerLink',
+          type: 'object',
+          fields: [
+            {
+              name: 'label',
+              title: 'Label',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: 'href',
+              type: 'url',
+              title: 'URL',
+              validation: (Rule) =>
+                Rule.uri({ allowRelative: false, scheme: ['http', 'https', 'mailto'] }),
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'recipes',
       title: 'Recipes',
       group: 'recipesAndCollections',

@@ -6,6 +6,33 @@ export default Sanity.defineType({
   title: 'Site',
   type: 'document',
   icon: Icons.Site,
+  groups: [
+    {
+      name: 'basic',
+      title: 'Basic',
+      default: true,
+    },
+    {
+      name: 'recipesAndCollections',
+      title: 'Recipes & Collections',
+    },
+    {
+      name: 'products',
+      title: 'Products',
+    },
+    {
+      name: 'linkList',
+      title: 'Link list',
+    },
+    {
+      name: 'about',
+      title: 'About',
+    },
+    {
+      name: 'theme',
+      title: 'Theme',
+    },
+  ],
   preview: {
     select: {
       title: 'title',
@@ -18,6 +45,7 @@ export default Sanity.defineType({
       title: 'Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
+      group: 'basic',
     },
     {
       name: 'slug',
@@ -27,12 +55,14 @@ export default Sanity.defineType({
       options: {
         source: 'title',
       },
+      group: 'basic',
     },
     {
       name: 'authors',
       title: 'Authors',
       type: 'array',
       validation: (Rule) => Rule.required(),
+      group: 'basic',
       of: [
         {
           type: 'reference',
@@ -47,6 +77,7 @@ export default Sanity.defineType({
     {
       name: 'featuredRecipes',
       title: 'Featured Recipes',
+      group: 'recipesAndCollections',
       type: 'array',
       of: [
         {
@@ -80,6 +111,7 @@ export default Sanity.defineType({
     {
       name: 'collections',
       title: 'Collections',
+      group: 'recipesAndCollections',
       type: 'array',
       of: [
         {
@@ -96,6 +128,7 @@ export default Sanity.defineType({
     {
       name: 'socialMediaLinks',
       title: 'Social Media Links',
+      group: 'basic',
       type: 'array',
       of: [
         {
@@ -133,6 +166,7 @@ export default Sanity.defineType({
     {
       name: 'recipes',
       title: 'Recipes',
+      group: 'recipesAndCollections',
       type: 'array',
       of: [
         {
@@ -151,11 +185,13 @@ export default Sanity.defineType({
       title: 'About (short)',
       type: 'richtextSimple',
       validation: (Rule) => Rule.required(),
+      group: 'about',
     },
     {
       name: 'about',
       title: 'About',
       type: 'richtext',
+      group: 'about',
       validation: (Rule) => Rule.required(),
     },
     {
@@ -163,17 +199,20 @@ export default Sanity.defineType({
       title: 'About Heading',
       type: 'richtextSimple',
       description: 'The heading for the about section. Defaults to "About".',
+      group: 'about',
     },
     {
       name: 'featuredImage',
       title: 'Featured Image',
       type: 'image',
       validation: (Rule) => Rule.required(),
+      group: 'about',
     },
     {
       name: 'productLinks',
       title: 'Product Links',
       type: 'array',
+      group: 'products',
       of: [
         {
           name: 'productLink',
@@ -213,11 +252,12 @@ export default Sanity.defineType({
       name: 'logo',
       title: 'Logo',
       type: 'image',
-      // validation: (Rule) => Rule.required(),
+      group: 'theme',
     },
     {
       name: 'linkList',
       title: 'Link List',
+      group: 'linkList',
       type: 'object',
       fields: [
         {
@@ -271,6 +311,7 @@ export default Sanity.defineType({
     {
       name: 'colorTheme',
       title: 'Color Theme',
+      group: 'theme',
       type: 'reference',
       to: [
         {
@@ -281,6 +322,7 @@ export default Sanity.defineType({
     {
       name: 'typeTheme',
       title: 'Type Theme',
+      group: 'theme',
       type: 'reference',
       to: [
         {
@@ -293,10 +335,12 @@ export default Sanity.defineType({
       title: 'CSS Overrides',
       type: 'text',
       rows: 4,
+      group: 'theme',
     },
     {
       name: 'defaultMeasurementSystem',
       title: 'Default Measurement System',
+      group: 'basic',
       type: 'string',
       initialValue: 'imperial',
       validation: (Rule) => Rule.required(),
@@ -310,6 +354,7 @@ export default Sanity.defineType({
     {
       name: 'defaultTemperatureSystem',
       title: 'Default Temperature System',
+      group: 'basic',
       type: 'string',
       initialValue: 'fahrenheit',
       validation: (Rule) => Rule.required(),

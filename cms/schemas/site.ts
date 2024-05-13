@@ -109,19 +109,14 @@ export default Sanity.defineType({
               type: 'string',
               options: {
                 list: [
-                  { title: 'Instagram', value: 'instagram' },
-                  { title: 'Pinterest', value: 'pinterest' },
-                  { title: 'X', value: 'x' },
-                  { title: 'YouTube', value: 'youtube' },
-                  {
-                    title: 'TikTok',
-                    value: 'tiktok',
-                  },
-                  {
-                    title: 'Discord',
-                    value: 'discord',
-                  },
-                ],
+                  { "title": "Discord", "value": "discord" },
+                  { "title": "Instagram", "value": "instagram" },
+                  { "title": "Pinterest", "value": "pinterest" },
+                  { "title": "Substack", "value": "substack" },
+                  { "title": "TikTok", "value": "tiktok" },
+                  { "title": "X", "value": "x" },
+                  { "title": "YouTube", "value": "youtube" }
+              ],
               },
               validation: (Rule) => Rule.required(),
             },

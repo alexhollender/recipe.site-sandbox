@@ -221,7 +221,7 @@ export type Recipe = RecipePreview & {
 
 export type SocialMediaLink = {
   _key: string;
-  platform: 'instagram' | 'pinterest' | 'x' | 'youtube' | 'discord' | 'tiktok';
+  platform: 'discord' | 'instagram' | 'pinterest' | 'substack' | 'tiktok' | 'x' | 'youtube';
   url: string;
 };
 

@@ -13,11 +13,9 @@ type MainNavProps = {
   site: Types.Site;
 };
 
-export const Main: React.FC<MainNavProps> = ({ site }) => {
+export const Main: React.FC<{ site: Types.Site }> = ({ site }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathname = Navigation.usePathname();
-
-  const primaryAuthor = Site.primaryAuthor(site);
 
   React.useEffect(() => {
     setIsMenuOpen(false);
@@ -39,38 +37,7 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
 
               <nav className="hidden md:block">
                 <ul className="flex space-x-4">
-                  <li>
-                    <Link href="/recipes" className="hover:opacity-60 transition-opacity">
-                      <Ui.Text.Label>All Recipes</Ui.Text.Label>
-                    </Link>
-                  </li>
-                  {site.linkList && (
-                    <li>
-                      <Link href="/links" className="hover:opacity-60 transition-opacity">
-                        <Ui.Text.Label>My links</Ui.Text.Label>
-                      </Link>
-                    </li>
-                  )}
-                  {site.customHeaderLinks && (
-                    <>
-                      {site.customHeaderLinks.map((link, index) => (
-                        <li key={index}>
-                          <Link
-                            href={link.href}
-                            target={link.openInNewTab ? '_blank' : '_self'}
-                            className="hover:opacity-60 transition-opacity"
-                          >
-                            <Ui.Text.Label>{link.label}</Ui.Text.Label>
-                          </Link>
-                        </li>
-                      ))}
-                    </>
-                  )}
-                  <li>
-                    <Link href="/about" className="hover:opacity-60 transition-opacity">
-                      <Ui.Text.Label>About</Ui.Text.Label>
-                    </Link>
-                  </li>
+                  <MenuItems site={site} />
                 </ul>
               </nav>
               <button
@@ -86,60 +53,83 @@ export const Main: React.FC<MainNavProps> = ({ site }) => {
             </div>
           </Ui.Container>
         </div>
-      </div>
-      <div
-        className={Utils.cx([
-          'md:hidden absolute top-14 left-0 right-0 bottom-0 z-40',
-          {
-            visible: isMenuOpen,
-            'invisible pointer-events-none': !isMenuOpen,
-          },
-        ])}
-      >
-        <nav
+        <div
           className={Utils.cx([
-            'relative bg-background py-3 shadow-xl z-10 transition-transform',
+            'md:hidden absolute left-0 right-0 z-40',
             {
-              'transform translate-y-0': isMenuOpen,
-              'transform -translate-y-full': !isMenuOpen,
+              visible: isMenuOpen,
+              'invisible pointer-events-none': !isMenuOpen,
             },
           ])}
         >
-          <Ui.Container>
-            <ul className="py-2 space-y-6 text-accent">
-              <li>
-                <Link href="/recipes" className="hover:opacity-60 transition-opacity">
-                  <Ui.Text.Label>All Recipes</Ui.Text.Label>
-                </Link>
-              </li>
-              {site.linkList && (
-                <li>
-                  <Link href="/links" className="hover:opacity-60 transition-opacity">
-                    <Ui.Text.Label>My links</Ui.Text.Label>
-                  </Link>
-                </li>
-              )}
-              <li>
-                <Link href="/about" className="hover:opacity-60 transition-opacity">
-                  <Ui.Text.Label>About</Ui.Text.Label>
-                </Link>
-              </li>
-            </ul>
-          </Ui.Container>
-        </nav>
-        <div
-          role="button"
-          aria-label="Close Menu"
-          onClick={() => setIsMenuOpen(false)}
-          className={Utils.cx([
-            'fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-0 transition-opacity',
-            {
-              'opacity-100': isMenuOpen,
-              'opacity-0 pointer-events-none': !isMenuOpen,
-            },
-          ])}
-        ></div>
+          <nav
+            className={Utils.cx([
+              'relative bg-background py-3 shadow-xl z-10 transition-transform',
+              {
+                'transform translate-y-0': isMenuOpen,
+                'transform -translate-y-full': !isMenuOpen,
+              },
+            ])}
+          >
+            <Ui.Container>
+              <ul className="py-2 space-y-6 text-accent">
+                <MenuItems site={site} />
+              </ul>
+            </Ui.Container>
+          </nav>
+          <div
+            role="button"
+            aria-label="Close Menu"
+            onClick={() => setIsMenuOpen(false)}
+            className={Utils.cx([
+              'h-screen fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-0 transition-opacity',
+              {
+                'opacity-100': isMenuOpen,
+                'opacity-0 pointer-events-none': !isMenuOpen,
+              },
+            ])}
+          ></div>
+        </div>
       </div>
+    </>
+  );
+};
+
+const MenuItems: React.FC<{ site: Types.Site }> = ({ site }) => {
+  return (
+    <>
+      <li>
+        <Link href="/recipes" className="hover:opacity-60 transition-opacity">
+          <Ui.Text.Label>All Recipes</Ui.Text.Label>
+        </Link>
+      </li>
+      {site.linkList && (
+        <li>
+          <Link href="/links" className="hover:opacity-60 transition-opacity">
+            <Ui.Text.Label>My links</Ui.Text.Label>
+          </Link>
+        </li>
+      )}
+      {site.customHeaderLinks && (
+        <>
+          {site.customHeaderLinks.map((link, index) => (
+            <li key={index}>
+              <Link
+                href={link.href}
+                target={link.openInNewTab ? '_blank' : '_self'}
+                className="hover:opacity-60 transition-opacity"
+              >
+                <Ui.Text.Label>{link.label}</Ui.Text.Label>
+              </Link>
+            </li>
+          ))}
+        </>
+      )}
+      <li>
+        <Link href="/about" className="hover:opacity-60 transition-opacity">
+          <Ui.Text.Label>About</Ui.Text.Label>
+        </Link>
+      </li>
     </>
   );
 };

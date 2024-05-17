@@ -64,15 +64,6 @@ const Recipe = Sanity.defineType({
   },
   fields: [
     {
-      name: 'site',
-      title: 'Site',
-      type: 'reference',
-      to: [{ type: 'site' }],
-      validation: (Rule) => Rule.required(),
-      fieldset: 'title',
-      group: 'intro',
-    },
-    {
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -91,7 +82,6 @@ const Recipe = Sanity.defineType({
       fieldset: 'title',
       group: 'intro',
     },
-
     {
       name: 'description',
       title: 'Description',
@@ -129,6 +119,14 @@ const Recipe = Sanity.defineType({
       name: 'storyMore',
       title: 'Story More',
       type: 'richtext',
+      group: 'intro',
+    },
+    {
+      name: 'site',
+      title: 'Site',
+      type: 'reference',
+      to: [{ type: 'site' }],
+      validation: (Rule) => Rule.required(),
       group: 'intro',
     },
     {

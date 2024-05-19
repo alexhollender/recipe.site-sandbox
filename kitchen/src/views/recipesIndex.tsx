@@ -14,6 +14,7 @@ type RecipesIndexProps = {
 };
 
 const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
+  console.log('recipes', props.recipes);
   return (
     <Ui.Site.Layout pathname="/recipes">
       <Ui.Site.Container>
@@ -34,7 +35,9 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
                 href={`/recipes/${recipe.publishedId}`}
                 className="flex py-3 hover:bg-panel cursor-pointer justify-between"
               >
-                <p>{recipe.title || 'Untitled'}</p>
+                <p>
+                  {recipe.title || 'Untitled'} ({recipe.slug})
+                </p>
                 <div className="flex space-x-8">
                   <p>{getDraftStatus()}</p>
                   {/* <p>{new Date(recipe.createdAt).toLocaleDateString()}</p> */}

@@ -46,6 +46,33 @@ export const RECIPE_CATEGORY_QUERY = groq`
   }
 `;
 
+export const METHOD_QUERY = groq`
+  {
+    _type,
+    _id,
+    title,
+    "slug": slug.current
+  }
+`;
+
+export const MEAL_QUERY = groq`
+  {
+    _type,
+    _id,
+    title,
+    "slug": slug.current
+  }
+`;
+
+export const DIET_QUERY = groq`
+  {
+    _type,
+    _id,
+    title,
+    "slug": slug.current
+  }
+`;
+
 export const CUISINE_QUERY = groq`
   {
     _type,
@@ -137,6 +164,9 @@ export const PREPARTION_QUERY = groq`
 export const INGREDIENT_USAGE_QUERY = groq`
 {
   _id,
+  _createdAt,
+  _updatedAt,
+  _ref,
   _type,
   "ingredient": ingredient -> ${INGREDIENT_QUERY},
   ingredientTitleOverride,
@@ -183,11 +213,20 @@ export const RECIPE_PREVIEW_QUERY = groq`
 {
   _type,
   _id,
+  _createdAt,
+  _updatedAt,
   title,
+  site -> {
+    _id,
+    _type,
+    title,
+    "slug": slug.current
+  },
   "publishedId": select(
-    string::startsWith(^._id, "drafts.") => string::split(^._id, "drafts.")[1],
+    string::startsWith(_id, "drafts.") => string::split(_id, "drafts.")[1],
     _id
   ),
+  "isDraft": string::startsWith(_id, "drafts."),
   "isPublished": defined(*[_type == "recipe" && _id == select(
     string::startsWith(^._id, "drafts.") => string::split(^._id, "drafts.")[1],
     _id
@@ -196,6 +235,9 @@ export const RECIPE_PREVIEW_QUERY = groq`
   createdAt,
   difficultyLevel,
   "categories": categories[] -> ${RECIPE_CATEGORY_QUERY},
+  "methods": methods[] -> ${METHOD_QUERY},
+  "meals": meals[] -> ${MEAL_QUERY},
+  "diets": diets[] -> ${DIET_QUERY},
   "cuisines": cuisines[] -> ${CUISINE_QUERY},
   "tags": tags[] -> ${TAG_QUERY},
   "featuredMedia": featuredMedia ${MEDIA_QUERY},

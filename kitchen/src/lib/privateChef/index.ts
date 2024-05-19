@@ -1,4 +1,4 @@
-import * as Adapters from '@/lib/privateChef/adapter';
+import * as Adapters from '@/lib/privateChef/adapters';
 import * as Queries from '@/lib/privateChef/queries';
 import * as Sanity from '@/lib/sanity';
 import * as SanityClient from '@sanity/client';
@@ -67,27 +67,50 @@ export const Recipes = {
   }) {
     const draft = await Recipes.getDraft({ siteId, publishedRecipeId });
 
-    if (draft) return draft;
+    console.log('draft', draft);
 
-    const transaction = Transaction.new();
-    const withDraft = Recipes.createDraft(transaction, { siteId, publishedRecipeId });
-    await withDraft.commit();
+    if (draft) return Adapters.SanityRecipe.toAppRecipe(draft);
 
-    return Recipes.getDraft({ siteId, publishedRecipeId });
+    const published = await Recipes.getPublished({ siteId, publishedRecipeId });
+
+    await Recipes.createDraft(
+      Transaction.new(),
+      {
+        siteId,
+        publishedRecipeId,
+      },
+      published,
+    ).commit({
+      visibility: 'sync',
+      autoGenerateArrayKeys: true,
+    });
+
+    const newDraft = await Recipes.getDraft({ siteId, publishedRecipeId });
+
+    if (!newDraft) throw new Error('Failed to create draft');
+
+    return Adapters.SanityRecipe.toAppRecipe(newDraft);
   },
 
   getDraft(params: { siteId: string; publishedRecipeId: string }) {
-    return Sanity.Client.fetch<{
-      _id: string;
-      _type: 'recipe';
-    } | null>(
-      `{
-        *[_type == "recipe" && _id == $draftRecipeId && ($draftRecipeId in *[_type == "site" && _id == $siteId][0].recipes[]._ref || $publishedRecipeId in *[_type == "site" && _id == $siteId][0].recipes[]._ref)][0] ${Queries.RECIPE_QUERY}
-      }`,
+    return Sanity.Client.fetch<Types.Sanity.Recipe | null>(
+      `*[_type == "recipe" && _id == $draftRecipeId && site._ref == $siteId][0] ${Queries.RECIPE_QUERY}`,
+      {
+        siteId: params.siteId,
+        draftRecipeId: `drafts.${params.publishedRecipeId}`,
+      },
+      {
+        cache: 'no-store',
+      },
+    );
+  },
+
+  getPublished(params: { siteId: string; publishedRecipeId: string }) {
+    return Sanity.Client.fetch<Types.Sanity.Recipe | null>(
+      `*[_type == "recipe" && _id == $publishedRecipeId && site._ref == $siteId][0] ${Queries.RECIPE_QUERY}`,
       {
         siteId: params.siteId,
         publishedRecipeId: params.publishedRecipeId,
-        draftRecipeId: `drafts.${params.publishedRecipeId}`,
       },
     );
   },
@@ -95,19 +118,24 @@ export const Recipes = {
   createDraft(
     transaction: SanityClient.Transaction,
     params: { siteId: string; publishedRecipeId: string },
+    existingRecipe: Types.Sanity.Recipe | null,
   ) {
-    const withCreate = transaction.create({
-      _id: `drafts.${params.publishedRecipeId}`,
-      _type: 'recipe',
+    if (!existingRecipe) {
+      const newRecipe: Types.Sanity.BaseRecipeForUpload = {
+        _id: `drafts.${params.publishedRecipeId}`,
+        _type: 'recipe',
+        site: {
+          _type: 'reference',
+          _ref: params.siteId,
+        },
+      };
+      return transaction.create(newRecipe);
+    }
+
+    return Adapters.SanityRecipe.duplicateForUpload(transaction, existingRecipe, {
+      recipeId: `drafts.${params.publishedRecipeId}`,
+      siteId: params.siteId,
     });
-
-    const withAddToSite = withCreate.patch(params.siteId, (patch) =>
-      patch
-        .setIfMissing({ recipes: [] })
-        .append('recipes', [{ _ref: `drafts.${params.publishedRecipeId}` }]),
-    );
-
-    return withAddToSite;
   },
 
   get(params: { siteSlug: string; recipeId: string }) {
@@ -125,101 +153,47 @@ export const Recipes = {
       {
         siteSlug: params.siteSlug,
         recipeId: params.recipeId,
-        recipePublishedId: params.recipeId.replace('drafts.', ''),
       },
     );
   },
+
   async list(params: { siteId: string }) {
     const recipes = await Sanity.Client.fetch<Types.Sanity.Recipe[]>(
-      `*[_type == "site" && _id == $siteId][0].recipes[] -> ${Queries.RECIPE_QUERY}`,
+      `*[_type == "recipe" && site._ref == $siteId] ${Queries.RECIPE_QUERY}`,
       {
         siteId: params.siteId,
       },
     );
-    return recipes.map(Adapters.sanityRecipeToRecipe);
-  },
-  listByCategory(params: { siteSlug: string; categorySlug: string }) {
-    return Sanity.Client.fetch<Types.Sanity.RecipePreview[] | null>(
-      `*[_type == "recipe" && $categorySlug in categories[]->slug.current && _id in *[_type == "site" && slug.current == $siteSlug][0].recipes[]._ref] ${Queries.RECIPE_PREVIEW_QUERY}`,
-      {
-        siteSlug: params.siteSlug,
-        categorySlug: params.categorySlug,
-      },
-    );
-  },
-  listByCuisine(params: { siteSlug: string; cuisineSlug: string }) {
-    return Sanity.Client.fetch<Types.Sanity.RecipePreview[] | null>(
-      `*[_type == "recipe" && $cuisineSlug in cuisines[]->slug.current && _id in *[_type == "site" && slug.current == $siteSlug][0].recipes[]._ref] ${Queries.RECIPE_PREVIEW_QUERY}`,
-      {
-        siteSlug: params.siteSlug,
-        cuisineSlug: params.cuisineSlug,
-      },
-    );
-  },
-  listByTag(params: { siteSlug: string; tagSlug: string }) {
-    return Sanity.Client.fetch<Types.Sanity.RecipePreview[] | null>(
-      `*[_type == "recipe" && $tagSlug in tags[]->slug.current && _id in *[_type == "site" && slug.current == $siteSlug][0].recipes[]._ref] ${Queries.RECIPE_PREVIEW_QUERY}`,
-      {
-        siteSlug: params.siteSlug,
-        tagSlug: params.tagSlug,
-      },
-    );
-  },
-  listByIngredient(params: { siteSlug: string; ingredientSlug: string }) {
-    return Sanity.Client.fetch<Types.Sanity.RecipePreview[] | null>(
-      `*[_type == "recipe" && $ingredientSlug in ingredientUsageGroups[].ingredientUsages[]->ingredient->slug.current && _id in *[_type == "site" && slug.current == $siteSlug][0].recipes[]._ref] ${Queries.RECIPE_PREVIEW_QUERY}`,
-      {
-        siteSlug: params.siteSlug,
-        ingredientSlug: params.ingredientSlug,
-      },
-    );
-  },
-  searchBy(params: {
-    siteSlug: string;
-    ingredientSlugs?: string[] | null;
-    categorySlugs?: string[] | null;
-    cuisineSlugs?: string[] | null;
-    tagSlugs?: string[] | null;
-    limit?: number;
-  }) {
-    return Sanity.Client.fetch<Types.Sanity.RecipePreview[]>(
-      `*[_type == "recipe"
-        && _id in *[_type == "site" && slug.current == $siteSlug][0].recipes[]._ref
-        && ($ingredientSlugs != null && count(ingredientUsageGroups[].ingredientUsages[@->ingredient->slug.current in $ingredientSlugs]) > 0 || $ingredientSlugs == null)
-        && ($categorySlugs != null && count(categories[@->slug.current in $categorySlugs]) > 0 || $categorySlugs == null)
-        && ($cuisineSlugs != null && count(cuisines[@->slug.current in $cuisineSlugs]) > 0 || $cuisineSlugs == null)
-        && ($tagSlugs != null && count(tags[@->slug.current in $tagSlugs]) > 0 || $tagSlugs == null)
-      ]${params.limit ? `[0...${params.limit}] ` : ''} | order(createdAt desc) ${Queries.RECIPE_PREVIEW_QUERY}
-      `,
-      {
-        siteSlug: params.siteSlug,
-        ingredientSlugs:
-          Array.isArray(params.ingredientSlugs) && params.ingredientSlugs.length > 0
-            ? params.ingredientSlugs
-            : null,
-        categorySlugs:
-          Array.isArray(params.categorySlugs) && params.categorySlugs.length > 0
-            ? params.categorySlugs
-            : null,
-        cuisineSlugs:
-          Array.isArray(params.cuisineSlugs) && params.cuisineSlugs.length > 0
-            ? params.cuisineSlugs
-            : null,
-        tagSlugs:
-          Array.isArray(params.tagSlugs) && params.tagSlugs.length > 0 ? params.tagSlugs : null,
-      },
-    );
+
+    const mergedRecipes = recipes.reduce((byId: Record<string, Types.Sanity.Recipe>, recipe) => {
+      /*
+      If we haven't seen this recipe before, add it to the list.
+      */
+      if (!byId[recipe.publishedId]) {
+        byId[recipe.publishedId] = recipe;
+        return byId;
+      }
+
+      /*
+      If we have seen this recipe before, check if it's a draft.
+      If it is a draft, keep it. We want to display drafts in the list.
+      */
+      const existing = byId[recipe.publishedId];
+      if (existing.isDraft) return byId;
+
+      /*
+      If it's not a draft, replace it with this one, which will be the draft.
+      */
+      byId[recipe.publishedId] = recipe;
+      return byId;
+    }, {});
+
+    return Object.values(mergedRecipes)
+      .sort((a, b) => new Date(b._updatedAt).getTime() - new Date(a._updatedAt).getTime())
+      .map(Adapters.SanityRecipe.toAppRecipe);
   },
 
   TYPE: 'recipe',
-
-  async toSanity(recipe: Types.Recipe) {
-    return {
-      _id: recipe.id,
-      _type: Recipes.TYPE,
-      title: recipe.title,
-    };
-  },
 
   async update(
     transaction: SanityClient.Transaction,

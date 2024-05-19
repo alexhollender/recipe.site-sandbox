@@ -17,11 +17,9 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = async ({ params }) => {
   if (!globals) return NextNavigation.notFound();
 
   const recipe = await PrivateChef.Recipes.getOrCreateDraft({
-    siteId: globals?.site._id,
+    siteId: globals.site._id,
     publishedRecipeId: params.recipeId,
   });
-
-  if (!recipe) return NextNavigation.notFound();
 
   return <Views.RecipesShow globals={globals} recipe={recipe} />;
 };

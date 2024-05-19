@@ -31,29 +31,69 @@ export type Globals = {
 
 export type Recipe = {
   id: string;
-  title: string;
-  slug: string;
+  title: string | null;
+  slug: string | null;
+  siteId: string;
   publishedId: string;
   isPublished: boolean;
-  description: Richtext | null;
-  featuredMedia: Sanity.Media;
-  media: Sanity.Media[];
-  storyExcerpt: Richtext | null;
-  story: Richtext | null;
+  _updatedAt: string;
+  _createdAt: string;
   createdAt: string | null;
   categoryIds: string[];
   cuisineIds: string[];
   tagIds: string[];
-  dietIds: string[];
-  mealIds: string[];
-  methodIds: string[];
+  description: Richtext | null;
+  featuredMedia: Sanity.Media | null;
+  difficultyLevel: 'easy' | 'medium' | 'hard' | null;
   prepTimeMinutes: number | null;
   cookTimeMinutes: number | null;
   totalTimeMinutes: number | null;
-  timing: string | null;
+  keywords: string[] | null;
+  media: Sanity.Media[];
+
   yieldServings: number | null;
   servingDescription: string | null;
-  difficultyLevel: string | null;
+  storyExcerpt: Richtext | null;
+  storyMore: Richtext | null;
+  note: Richtext | null;
+
+  dietIds: string[];
+  mealIds: string[];
+  methodIds: string[];
+  timing: string | null;
+
+  ingredientUsageGroups: {
+    key: string;
+    title: string | null;
+    note: Richtext | null;
+    ingredientUsages: {
+      id: string;
+      _createdAt: string;
+      ingredientId: string | null;
+      ingredientTitleOverride: string | null;
+      link: string | null;
+      quantityMin: number | null;
+      quantityMax: number | null;
+      unitId: string | null;
+      preparationId: string | null;
+      preperationModifier: string | null;
+      note: Richtext | null;
+    }[];
+  }[];
+
+  instructionGroups: {
+    key: string;
+    title: string | null;
+    instructions: {
+      key: string;
+      content: Richtext | null;
+      timerMinutes: number | null;
+      note: Richtext | null;
+      media: Sanity.Media[];
+    }[];
+  }[];
+
+  legacyRecipeData: any;
 };
 
 export namespace Sanity {
@@ -82,6 +122,27 @@ export namespace Sanity {
 
   export type Cuisine = {
     _type: 'cuisine';
+    _id: string;
+    title: string;
+    slug: string;
+  };
+
+  export type Method = {
+    _type: 'method';
+    _id: string;
+    title: string;
+    slug: string;
+  };
+
+  export type Meal = {
+    _type: 'method';
+    _id: string;
+    title: string;
+    slug: string;
+  };
+
+  export type Diet = {
+    _type: 'method';
     _id: string;
     title: string;
     slug: string;
@@ -185,9 +246,11 @@ export namespace Sanity {
   export type IngredientUsage = {
     _type: 'ingredientUsage';
     _id: string;
-    ingredient: Ingredient;
+    _createdAt: string;
+    _updatedAt: string;
+    ingredient: Ingredient | null;
     ingredientTitleOverride: string | null;
-    link: string;
+    link: string | null;
     quantityMin: number | null;
     quantityMax: number | null;
     unit: Unit | null;
@@ -198,8 +261,8 @@ export namespace Sanity {
 
   export type IngredientUsageGroup = {
     _key: string;
-    title?: string | null;
-    note?: PortableText | null;
+    title: string | null;
+    note: PortableText | null;
     ingredientUsages: IngredientUsage[];
   };
 
@@ -220,12 +283,24 @@ export namespace Sanity {
   export type RecipePreview = {
     _type: 'recipe';
     _id: string;
+    _createdAt: string;
+    _updatedAt: string;
     publishedId: string;
+    isDraft: boolean;
     isPublished: boolean;
-    title: string;
-    slug: string;
+    site: {
+      _id: string;
+      _type: 'site';
+      title: string;
+      slug: string;
+    };
+    title: string | null;
+    slug: string | null;
     createdAt: string; // Date
     categories: null | RecipeCategory[];
+    methods: null | Method[];
+    meals: null | Meal[];
+    diets: null | Diet[];
     cuisines: null | Cuisine[];
     tags: null | Tag[];
     description: PortableText | null;
@@ -274,6 +349,146 @@ export namespace Sanity {
           };
         }
     );
+
+  export type MediaForUpload = {
+    _type: 'media';
+    image:
+      | {
+          _type: 'image';
+          asset: {
+            _type: 'reference';
+            _ref: string;
+          };
+        }
+      | undefined;
+    video:
+      | {
+          _type: 'file';
+          asset: {
+            _type: 'reference';
+            _ref: string;
+          };
+        }
+      | undefined;
+  };
+
+  export type BaseRecipeForUpload = {
+    _id: string;
+    _type: 'recipe';
+    site: {
+      _type: 'reference';
+      _ref: string;
+    };
+  };
+
+  export type RecipeForUpload = BaseRecipeForUpload & {
+    _createdAt: string;
+    title: string;
+    slug:
+      | {
+          _type: 'slug';
+          current: string;
+        }
+      | undefined;
+    categories: {
+      _type: 'reference';
+      _ref: string;
+    }[];
+    cuisines: {
+      _type: 'reference';
+      _ref: string;
+    }[];
+    tags: {
+      _type: 'reference';
+      _ref: string;
+    }[];
+    diets: {
+      _type: 'reference';
+      _ref: string;
+    }[];
+    meals: {
+      _type: 'reference';
+      _ref: string;
+    }[];
+    methods: {
+      _type: 'reference';
+      _ref: string;
+    }[];
+    createdAt: string | undefined;
+    description: PortableText | undefined;
+    featuredMedia: MediaForUpload | undefined;
+    difficultyLevel: 'easy' | 'medium' | 'hard' | undefined;
+    prepTimeMinutes: number | undefined;
+    cookTimeMinutes: number | undefined;
+    totalTimeMinutes: number | undefined;
+    keywords: string[] | undefined;
+    yieldServings: number | undefined;
+    servingDescription: string | undefined;
+    storyExcerpt: PortableText | undefined;
+    storyMore: PortableText | undefined;
+    note: PortableText | undefined;
+    timing: string | undefined;
+    legacyRecipeData:
+      | {
+          featuredImage: {
+            src: string;
+            width: number;
+            height: number;
+          };
+          content: string;
+        }
+      | undefined;
+    ingredientUsageGroups: {
+      _type: 'ingredientUsageGroup';
+      title: string | undefined;
+      note: PortableText | undefined;
+      ingredientUsages: {
+        _type: 'reference';
+        _ref: string;
+      }[];
+    }[];
+    instructionGroups: {
+      _type: 'instructionGroup';
+      title: string | undefined;
+      instructions: {
+        _type: 'instruction';
+        timerMinutes: number | undefined;
+        note: PortableText | undefined;
+        media: MediaForUpload[] | undefined;
+        content: PortableText | undefined;
+      }[];
+    }[];
+  };
+
+  export type IngredientUsageForUpload = {
+    _id: string;
+    _type: 'ingredientUsage';
+    _createdAt: string;
+    ingredient:
+      | {
+          _type: 'reference';
+          _ref: string;
+        }
+      | undefined;
+    ingredientTitleOverride: string | undefined;
+    link: string | undefined;
+    quantityMin: number | undefined;
+    quantityMax: number | undefined;
+    unit:
+      | {
+          _type: 'reference';
+          _ref: string;
+        }
+      | undefined;
+    preparation:
+      | {
+          _type: 'reference';
+          _ref: string;
+        }
+      | undefined;
+    preperationModifier: string | undefined;
+    note: PortableText | undefined;
+  };
 
   export type SocialMediaLink = {
     _key: string;

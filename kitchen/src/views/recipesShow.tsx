@@ -1,6 +1,6 @@
 'use client';
 
-import * as Adapter from '@/lib/privateChef/adapter';
+import * as Adapter from '@/lib/privateChef/adapters';
 import * as Next from 'next';
 import * as PrivateChef from '@/lib/privateChef';
 import * as React from 'react';
@@ -17,7 +17,9 @@ type RecipesShowProps = {
 
 const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
   const [description, setDescription] = React.useState<Tiptap.JSONContent[]>([]);
-  const [title, setTitle] = React.useState<string>(props.recipe.title);
+  const [title, setTitle] = React.useState<string | null>(props.recipe.title);
+
+  console.log('props', props.recipe);
 
   // React.useEffect(() => {
   //   const transaction = PrivateChef.Transaction.new();
@@ -27,8 +29,6 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
   //   });
   //   transaction.commit();
   // }, [title]);
-
-  console.log('Description as Portable Text', Adapter.tiptapToPortableText(description));
 
   // const getDraftStatus = () => {
   //   const status = Recipes.draftStatus(props.recipe);
@@ -43,8 +43,9 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
         <div className="flex justify-between">
           <input
             type="text"
-            value={title}
+            value={title || ''}
             onChange={(e) => {
+              if (e.target.value === '') return setTitle(null);
               setTitle(e.target.value);
             }}
           />
@@ -54,7 +55,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
           <div className="min-w-[300px]">
             <h2 className="font-bold mb-5">Ingredients</h2>
 
-            {props.recipe.ingredientUsageGroups && (
+            {/* {props.recipe.ingredientUsageGroups && (
               <ol className="divide-y divide-y-outline *:py-4 first:*:pt-0 last:*:pb-0">
                 {recipe.ingredientUsageGroups.map((ingredientUsageGroup, index) => (
                   <li key={index}>
@@ -81,7 +82,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                   </li>
                 ))}
               </ol>
-            )}
+            )} */}
           </div>
           <div className="flex-1 divide-y divide-y-outline">
             <div className="pb-10">
@@ -90,7 +91,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
             </div>
             <div className="pt-6 pb-10">
               <h2 className="font-bold mb-2">Instructions</h2>
-              {recipe.instructionGroups && (
+              {/* {recipe.instructionGroups && (
                 <ol>
                   {recipe.instructionGroups.map((instructionGroup, index) => (
                     <li key={index}>
@@ -99,7 +100,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                         {instructionGroup.instructions.map((instruction, index) => {
                           return (
                             <li key={index} className="flex">
-                              {/* {instruction.content} */}
+                              {instruction.content}
                             </li>
                           );
                         })}
@@ -107,7 +108,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                     </li>
                   ))}
                 </ol>
-              )}
+              )} */}
             </div>
           </div>
         </div>

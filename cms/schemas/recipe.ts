@@ -64,6 +64,14 @@ const Recipe = Sanity.defineType({
   },
   fields: [
     {
+      name: 'site',
+      title: 'Site',
+      type: 'reference',
+      to: [{ type: 'site' }],
+      validation: (Rule) => Rule.required(),
+      group: 'intro',
+    },
+    {
       name: 'title',
       title: 'Title',
       type: 'string',

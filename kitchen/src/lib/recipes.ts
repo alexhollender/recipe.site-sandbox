@@ -15,14 +15,3 @@ export const draftStatus = (recipeDocument: Types.RecipeDocument): Types.RecipeD
     return 'published_with_draft';
   return 'published_only';
 };
-
-type IngredientUsage = {
-  ingredientId: string | null;
-  quantityMin: number | null;
-  unitId: string | null;
-  preparationId: string | null;
-};
-
-type State = {
-  title: string;
-};

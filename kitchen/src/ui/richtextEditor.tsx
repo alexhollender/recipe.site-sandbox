@@ -1,6 +1,6 @@
 'use client';
 
-import * as Adapter from '@/lib/privateChef/adapter';
+import * as Adapter from '@/lib/privateChef/adapters';
 import * as Tiptap from '@tiptap/react';
 
 import Placeholder from '@tiptap/extension-placeholder';

@@ -130,14 +130,6 @@ const Recipe = Sanity.defineType({
       group: 'intro',
     },
     {
-      name: 'site',
-      title: 'Site',
-      type: 'reference',
-      to: [{ type: 'site' }],
-      // validation: (Rule) => Rule.required(),
-      group: 'intro',
-    },
-    {
       name: 'createdAt',
       title: 'Created At',
       type: 'datetime',

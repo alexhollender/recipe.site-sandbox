@@ -109,7 +109,7 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
           <button
             type="button"
             onClick={onPreviousMedia}
-            className="absolute top-0 bottom-0 left-4 md:left-0 flex items-center justify-start md:pl-8 md:pr-32 z-20 group"
+            className="absolute top-1/2 transform -translate-y-1/2 left-0 p-4 md:pl-8 md:pr-16 md:h-full z-20 flex items-center justify-start group"
             aria-label="Previous Image"
           >
             <div className="h-6 md:h-9 w-6 md:w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-sm">
@@ -121,7 +121,7 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
           <button
             type="button"
             onClick={onNextMedia}
-            className="absolute top-0 bottom-0 right-4 md:right-0 flex items-center justify-end md:pl-32 md:pr-8 z-20 group"
+            className="absolute top-1/2 transform -translate-y-1/2 right-0 p-4 md:pr-8 md:pl-16 md:h-full z-20 flex items-center justify-end group"
             aria-label="Next Image"
           >
             <div

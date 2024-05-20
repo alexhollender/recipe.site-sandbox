@@ -158,7 +158,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
 
       <video
         ref={videoPlayerRef}
-        preload="none"
+        // preload="none"
         className={Utils.cx([
           'w-full h-full',
           className,

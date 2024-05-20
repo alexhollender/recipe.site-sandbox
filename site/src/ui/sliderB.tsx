@@ -104,7 +104,7 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
 
   return (
     <div className="aspect-sd relative Gallery">
-      <div className="absolute w-full h-full top-0 bottom-0 left-0">
+      {/* <div className="absolute w-full h-full top-0 bottom-0 left-0">
         {media.length > 1 && !isAtStart && (
           <button
             type="button"
@@ -159,7 +159,7 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
       <div
         onScroll={onScroll}
         ref={sliderRef}

@@ -12,16 +12,17 @@ type SanityImageProps = Partial<NextImageProps> & {
   alt: string;
   image: Types.Image;
   className?: string;
+  placeholder?: string;
 };
 
-export const Image: React.FC<SanityImageProps> = ({ image, className, ...props }) => {
+export const Image: React.FC<SanityImageProps> = ({ image, className, placeholder, ...props }) => {
   return (
     <NextImage
       src={Sanity.ImageBuilder.image(image).url()}
       width={props.fill ? undefined : image.asset.metadata.dimensions.width}
       height={props.fill ? undefined : image.asset.metadata.dimensions.height}
       blurDataURL={image.asset.metadata.lqip}
-      placeholder="blur"
+      placeholder={placeholder || 'blur'}
       className={className}
       {...props}
     />
@@ -55,7 +56,7 @@ export const HoverAutoplayVideo: React.FC<HoverAutoplayProps> = (props) => {
       ref={videoPlayerRef}
       className={Utils.cx(['w-full h-full', props.className])}
       src={props.video.asset.url}
-      preload="none"
+      // preload="none"
       playsInline
       muted
       loop

@@ -26,6 +26,7 @@ export const Font = Sanity.defineType({
           { title: 'Helvetica', value: 'helvetica' },
           { title: 'Franklin Gothic', value: 'franklin-gothic' },
           { title: 'Inter', value: 'inter' },
+          { title: 'Arimo', value: 'arimo' },
         ],
       },
     },

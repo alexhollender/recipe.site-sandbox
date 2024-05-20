@@ -35,7 +35,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
   };
 
   return (
-    <div>
+    <div className="RecipePage">
       <Script
         id="json-ld-recipe"
         type="application/ld+json"
@@ -219,7 +219,7 @@ export default RecipesShow;
 
 const Bio = ({ site }: { site: Types.Site }) => {
   return (
-    <div className="border border-outline p-6 rounded-md text-center">
+    <div className="border border-outline p-6 rounded-md text-center Bio">
       {site.featuredImage && (
         <div className="px-2">
           <div className="rounded-full aspect-square relative overflow-hidden">

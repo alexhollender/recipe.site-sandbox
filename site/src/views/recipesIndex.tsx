@@ -51,7 +51,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
   };
 
   return (
-    <Ui.Container>
+    <Ui.Container className="min-h-[75vh] mb-12">
       {/* Search & filtering */}
       <div className="flex space-x-3 mb-7">
         <div className="relative py-2 px-2 space-x-2 flex bg-panel rounded-xl flex-1 focus-within:ring-1 focus-within:ring-outline">
@@ -162,7 +162,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
 
       {/* All recipes */}
       <div>
-        {searchTerm.trim() === '' && (
+        {props.site.collections && searchTerm.trim() === '' && (
           <div className="mb-3">
             <h2 className="type-title text-text">All recipes</h2>
           </div>

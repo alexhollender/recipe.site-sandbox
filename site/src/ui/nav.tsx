@@ -29,7 +29,12 @@ export const Main: React.FC<{ site: Types.Site }> = ({ site }) => {
             <div className="min-h-14 flex justify-between items-center text-accent SiteHeaderInner">
               <Link href="/">
                 {site.logo ? (
-                  <Ui.Media.Image image={site.logo} alt={site.title} className="h-9 w-auto" />
+                  <Ui.Media.Image
+                    image={site.logo}
+                    alt={site.title}
+                    placeholder="empty"
+                    className="h-9 w-auto"
+                  />
                 ) : (
                   <Ui.Text.Title>{site.title}</Ui.Text.Title>
                 )}

@@ -10,14 +10,14 @@ type SliderBProps = {
 };
 
 const SliderB: React.FC<SliderBProps> = ({ media }) => {
+  const [sliderItemCount, setSliderItemCount] = React.useState<number | undefined>(undefined);
+  const [scrollAmount, setScrollAmount] = React.useState<number | undefined>(undefined);
   const [activeMediaIndex, setActiveMediaIndex] = React.useState<number>(0);
+  const [isAtStart, setIsAtStart] = React.useState<boolean>(true);
+  const [isAtEnd, setIsAtEnd] = React.useState<boolean>(false);
   const [videoPlayStates, setVideoPlayStates] = React.useState<('paused' | 'playing')[]>(
     media.map(() => 'paused'),
   );
-  const [sliderItemCount, setSliderItemCount] = React.useState<number | undefined>(undefined);
-  const [scrollOffset, setScrollOffset] = React.useState<number | undefined>(undefined);
-  const [isAtStart, setIsAtStart] = React.useState<boolean>(true);
-  const [isAtEnd, setIsAtEnd] = React.useState<boolean>(false);
 
   const sliderRef = React.useRef<HTMLDivElement>(null);
 
@@ -34,8 +34,8 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
       const sliderVisibleWidth: number = sliderRef.current.getBoundingClientRect().width;
       const itemWidth: number = sliderRef.current.children[0]?.getBoundingClientRect().width;
       const visibleItems: number = Math.floor(sliderVisibleWidth / itemWidth);
-      const scrollOffset: number = itemWidth * visibleItems;
-      setScrollOffset(scrollOffset);
+      const scrollAmount: number = itemWidth * visibleItems;
+      setScrollAmount(scrollAmount);
     };
 
     const resizeObserver = new ResizeObserver(handleResize);
@@ -71,20 +71,20 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
   };
 
   const onPreviousMedia = () => {
-    if (!sliderRef.current || !scrollOffset) return;
-    sliderRef.current.scrollBy({ left: -scrollOffset, behavior: 'smooth' });
+    if (!sliderRef.current || !scrollAmount) return;
+    sliderRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     onPauseVideo();
   };
 
   const onNextMedia = () => {
-    if (!sliderRef.current || !scrollOffset) return;
-    sliderRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+    if (!sliderRef.current || !scrollAmount) return;
+    sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     onPauseVideo();
   };
 
   const onChangeMedia = (index: number) => {
-    if (!sliderRef.current || !scrollOffset) return;
-    const scrollPosition: number = scrollOffset * index;
+    if (!sliderRef.current || !scrollAmount) return;
+    const scrollPosition: number = scrollAmount * index;
     sliderRef.current.scrollTo({ left: scrollPosition, behavior: 'smooth' });
     onPauseVideo();
     setActiveMediaIndex(index);

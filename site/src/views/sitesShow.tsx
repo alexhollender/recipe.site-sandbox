@@ -15,13 +15,13 @@ type SitesShowProps = {
 
 const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
   return (
-    <div className="mb-24">
+    <div className="mb-24 HomePage">
       <Ui.Text.Title as="h1" className="sr-only">
         {props.site.title}
       </Ui.Text.Title>
       {/* Featured recipes */}
       {props.site.featuredRecipes && (
-        <section className="mt-2">
+        <section className="mt-2 FeaturedRecipes">
           <Ui.Slider.SouffléSection heading="Featured recipes">
             {props.site.featuredRecipes.map((recipe) => {
               return (
@@ -35,7 +35,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       )}
       {/* Collections */}
       {props.site.collections && (
-        <section className="mt-14 md:mt-28 first-of-type:mt-2">
+        <section className="mt-14 md:mt-28 first-of-type:mt-2 Collections">
           <Ui.Slider.SouffléSection heading="Recipe collections">
             {props.site.collections.map((collection) => {
               return (
@@ -52,7 +52,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       {props.site.featuredRecipes && <AboutSection site={props.site} />}
       {/* Products */}
       {props.site.productLinks && (
-        <section className="mt-16 md:mt-28 first-of-type:mt-2">
+        <section className="mt-16 md:mt-28 first-of-type:mt-2 Products">
           <Ui.Slider.SouffléSection heading="My favorite products">
             {props.site.productLinks.map((productLink) => {
               return (
@@ -65,7 +65,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         </section>
       )}
       {/* Latest recipes */}
-      <section className="mt-20 md:mt-28 first-of-type:mt-2">
+      <section className="mt-20 md:mt-28 first-of-type:mt-2 LatestRecipes">
         <Ui.Container>
           <div className="mb-3 flex justify-between items-center text-text">
             <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>
@@ -96,7 +96,7 @@ export default SitesShow;
 
 const AboutSection = ({ site }: { site: Types.Site }) => {
   return (
-    <section className="mt-20 md:mt-28">
+    <section className="mt-20 md:mt-28 About">
       <Ui.Container>
         <Ui.Grid>
           <div className="col-span-12 md:col-span-6 text-accent">

@@ -267,7 +267,8 @@ export type FontFamily =
   // Interface
   | 'franklin-gothic'
   | 'helvetica'
-  | 'inter';
+  | 'inter'
+  | 'arimo';
 
 export type Font = {
   family: FontFamily;

@@ -18,4 +18,5 @@ export const FontFamilies = {
   helvetica: 'Helvetica, sans-serif',
   'franklin-gothic': 'Franklin Gothic, Helvetica, sans-serif',
   inter: 'Inter, Helvetica, sans-serif',
+  arimo: 'Arimo, Helvetica, sans-serif',
 } satisfies Record<Types.FontFamily, string>;

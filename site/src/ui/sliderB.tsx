@@ -163,7 +163,7 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
       <div
         onScroll={onScroll}
         ref={sliderRef}
-        className="aspect-sd relative flex overflow-x-scroll snap-x snap-mandatory hide-scrollbar"
+        className="aspect-sd relative flex overflow-x-scroll snap-x snap-mandatory hide-scrollbar overflow-y-hidden"
       >
         {media.map((media, index) => {
           return (

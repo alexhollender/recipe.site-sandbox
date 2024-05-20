@@ -40,13 +40,15 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
 
     const resizeObserver = new ResizeObserver(handleResize);
 
-    if (sliderRef.current) {
-      resizeObserver.observe(sliderRef.current);
+    const currentSlider = sliderRef.current;
+
+    if (currentSlider) {
+      resizeObserver.observe(currentSlider);
     }
 
     return () => {
-      if (sliderRef.current) {
-        resizeObserver.unobserve(sliderRef.current);
+      if (currentSlider) {
+        resizeObserver.unobserve(currentSlider);
       }
     };
   }, []);

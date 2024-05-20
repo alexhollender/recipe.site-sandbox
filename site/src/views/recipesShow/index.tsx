@@ -62,7 +62,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               </div>
             </header>
             <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-md overflow-hidden RecipePageGalleryContainer">
-              <Ui.Gallery media={mediaArray} />
+              <Ui.SliderB media={mediaArray} />
             </div>
             <div>
               <Overview site={props.site} recipe={props.recipe} />

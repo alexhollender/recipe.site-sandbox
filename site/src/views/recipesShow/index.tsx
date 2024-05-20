@@ -354,7 +354,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
           </ol>
           {media.length > 0 && (
             <div className="mt-6 -mx-4 md:mx-0 md:rounded-md overflow-hidden">
-              <Ui.Gallery media={media} />
+              <Ui.SliderB media={media} />
             </div>
           )}
         </div>

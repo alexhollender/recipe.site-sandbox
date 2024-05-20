@@ -119,7 +119,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
       {playState === 'paused' && (
         <button
           type="button"
-          className="absolute inset-0 w-full h-full flex items-center justify-center z-20"
+          className="absolute inset-0 m-auto h-16 md:h-24 w-16 md:w-24 flex items-center justify-center z-20"
           aria-label="Play Video"
           onClick={onPlay}
         >
@@ -130,7 +130,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
       {playState === 'playing' && (
         <button
           type="button"
-          className="absolute inset-0 w-full h-full flex items-center justify-center group z-20"
+          className="absolute inset-0 m-auto h-16 w-16 flex items-center justify-center group z-20"
           aria-label="Pause Video"
           onClick={onPause}
         >

@@ -41,7 +41,6 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
     const resizeObserver = new ResizeObserver(handleResize);
 
     const currentSlider = sliderRef.current;
-
     if (currentSlider) {
       resizeObserver.observe(currentSlider);
     }
@@ -71,15 +70,15 @@ const SliderB: React.FC<SliderBProps> = ({ media }) => {
     });
   };
 
-  const onNextMedia = () => {
-    if (!sliderRef.current || !scrollOffset) return;
-    sliderRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
-    onPauseVideo();
-  };
-
   const onPreviousMedia = () => {
     if (!sliderRef.current || !scrollOffset) return;
     sliderRef.current.scrollBy({ left: -scrollOffset, behavior: 'smooth' });
+    onPauseVideo();
+  };
+
+  const onNextMedia = () => {
+    if (!sliderRef.current || !scrollOffset) return;
+    sliderRef.current.scrollBy({ left: scrollOffset, behavior: 'smooth' });
     onPauseVideo();
   };
 

@@ -10,6 +10,7 @@ import Link from './link';
 import Preparation from './preparation';
 import Meal from './meal';
 import Media from './media';
+import MediaImageRequired from './mediaImageRequired';
 import Method from './method';
 import Recipe from './recipe';
 import RecipeCategory from './recipeCategory';
@@ -32,6 +33,7 @@ export const schemaTypes = [
   Link,
   Meal,
   Media,
+  MediaImageRequired,
   Method,
   Preparation,
   Recipe,

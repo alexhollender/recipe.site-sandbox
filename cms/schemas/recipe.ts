@@ -101,7 +101,7 @@ const Recipe = Sanity.defineType({
       title: 'Featured Media',
       description:
         'This will be used as the recipe thumbnail, as well as displayed as the first piece of media in the intro media gallery',
-      type: 'mediaImageRequired',
+      type: 'media',
       validation: (Rule) => Rule.required(),
       group: 'intro',
     },

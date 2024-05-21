@@ -2,8 +2,8 @@ import * as Icons from '../lib/icons';
 import * as Sanity from 'sanity';
 
 export default Sanity.defineType({
-  name: 'media',
-  title: 'Media',
+  name: 'mediaImageRequired',
+  title: 'Media (image required)',
   type: 'object',
   icon: Icons.Media,
   preview: {

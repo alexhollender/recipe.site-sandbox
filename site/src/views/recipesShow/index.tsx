@@ -61,7 +61,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 <Timing recipe={props.recipe} />
               </div>
             </header>
-            <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-md overflow-hidden RecipePageGalleryContainer">
+            <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-lg overflow-hidden RecipePageGalleryContainer">
               <Ui.Slider.Slider
                 items={mediaArray.length}
                 controlType="overlay"
@@ -109,7 +109,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
       <Ui.Container className="mt-4">
         <Ui.Grid>
           <div className="col-span-12 md:col-span-5">
-            <div className="bg-panel p-4 md:p-6 rounded-md sticky top-5 md:max-h-[calc(100vh-2.5rem)] overflow-y-auto scrollbar-thumb-custom scrollbar-track-custom">
+            <div className="bg-panel p-4 md:p-6 rounded-lg sticky top-5 md:max-h-[calc(100vh-2.5rem)] overflow-y-auto scrollbar-thumb-custom scrollbar-track-custom">
               <div
                 className="flex md:hidden items-center text-text"
                 role="button"
@@ -206,7 +206,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
       {props.recipe.note && (
         <Ui.Container className="mt-4">
           <div className="pt-3 border-t border-outline">
-            <div className="bg-panel p-4 md:p-6 rounded-md">
+            <div className="bg-panel p-4 md:p-6 rounded-lg">
               <div className="flex items-center text-text" role="button" onClick={onToggleNotes}>
                 <div
                   className={Utils.cx([
@@ -239,7 +239,7 @@ export default RecipesShow;
 
 const Bio = ({ site }: { site: Types.Site }) => {
   return (
-    <div className="border border-outline p-6 rounded-md text-center Bio">
+    <div className="border border-outline p-6 rounded-lg text-center Bio">
       {site.featuredImage && (
         <div className="px-2">
           <div className="rounded-full aspect-square relative overflow-hidden">
@@ -373,7 +373,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
             })}
           </ol>
           {media.length > 0 && (
-            <div className="mt-6 -mx-4 md:mx-0 md:rounded-md overflow-hidden">
+            <div className="mt-6 -mx-4 md:mx-0 md:rounded-lg overflow-hidden">
               <Ui.Slider.Slider
                 items={media.length}
                 controlType="overlay"

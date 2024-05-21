@@ -19,7 +19,7 @@ export const useSlider = (items: number) => {
       if (!sliderRef.current) return;
       const sliderVisibleWidth: number = sliderRef.current.getBoundingClientRect().width;
       const totalScrollableWidth: number = sliderRef.current.scrollWidth;
-      const itemWidth: number = sliderRef.current.children[0]?.getBoundingClientRect().width;
+      const itemWidth: number = sliderRef.current.children[0]?.getBoundingClientRect().width || 100;
       const visibleItems: number = Math.floor(sliderVisibleWidth / itemWidth);
       const scrollAmount: number = itemWidth * visibleItems;
       setScrollAmount(scrollAmount);
@@ -28,13 +28,15 @@ export const useSlider = (items: number) => {
 
     const resizeObserver = new ResizeObserver(handleResize);
 
-    if (sliderRef.current) {
-      resizeObserver.observe(sliderRef.current);
+    const currentSlider = sliderRef.current;
+
+    if (currentSlider) {
+      resizeObserver.observe(currentSlider);
     }
 
     return () => {
-      if (sliderRef.current) {
-        resizeObserver.unobserve(sliderRef.current);
+      if (currentSlider) {
+        resizeObserver.unobserve(currentSlider);
       }
     };
   }, []);
@@ -245,7 +247,7 @@ export const Slider: React.FC<SliderProps> = ({
 
   return (
     <div className={Utils.cx([wrapperClasses])}>
-      {/* Controls (previous, next, progress indicators) */}
+      {/* Controls - previous, next, progress indicators */}
       {controlType === 'overlay' && items > 1 && (
         <SliderControlsOverlay
           items={items}

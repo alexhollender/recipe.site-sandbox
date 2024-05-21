@@ -23,7 +23,7 @@ export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
     <Link href={`/recipes/${recipe.slug}`} className="group">
       {recipe.featuredMedia.image && (
         <div
-          className="aspect-sd relative rounded-xl overflow-hidden"
+          className="aspect-sd relative rounded-lg overflow-hidden"
           onMouseOver={onMouseOver}
           onMouseOut={onMouseOut}
         >
@@ -72,7 +72,7 @@ export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
   return (
     <Link href={`/collections/${collection.slug}`} className="group">
       <div
-        className="aspect-square relative rounded-xl overflow-hidden"
+        className="aspect-square relative rounded-lg overflow-hidden"
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
       >
@@ -114,7 +114,7 @@ type ProductLinkCardProps = {
 export const ProductLink: React.FC<ProductLinkCardProps> = ({ productLink }) => {
   return (
     <Link href={productLink.href} className="group" target="_blank">
-      <div className="aspect-portrait relative overflow-hidden rounded-xl">
+      <div className="aspect-portrait relative overflow-hidden rounded-lg">
         <Ui.Media.Image
           image={productLink.productImage}
           alt={productLink.productTitlePlaintext}

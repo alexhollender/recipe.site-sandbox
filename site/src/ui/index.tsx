@@ -31,7 +31,7 @@ export * as Media from '@/ui/media';
 export * as Nav from '@/ui/nav';
 export * as Richtext from '@/ui/richtext';
 export * as Select from '@/ui/select';
-export * as Slider from '@/ui/sliderNew';
+export * as Slider from '@/ui/slider';
 export * as Text from '@/ui/text';
 export * as ToggleGroup from '@/ui/toggleGroup';
 

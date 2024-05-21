@@ -62,7 +62,12 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               </div>
             </header>
             <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-md overflow-hidden RecipePageGalleryContainer">
-              <Ui.SliderC.Slider media={mediaArray} className="aspect-sd">
+              <Ui.Slider.Slider
+                items={mediaArray.length}
+                controlType="overlay"
+                wrapperClasses="relative"
+                itemsContainerClasses="aspect-sd"
+              >
                 {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>
                   mediaArray.map((media, index) => (
                     <div key={media._key} className="aspect-sd w-full h-full relative snap-start">
@@ -77,7 +82,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                     </div>
                   ))
                 }
-              </Ui.SliderC.Slider>
+              </Ui.Slider.Slider>
             </div>
             <div>
               <Overview site={props.site} recipe={props.recipe} />
@@ -369,7 +374,12 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
           </ol>
           {media.length > 0 && (
             <div className="mt-6 -mx-4 md:mx-0 md:rounded-md overflow-hidden">
-              <Ui.SliderC.Slider media={media} className="aspect-sd">
+              <Ui.Slider.Slider
+                items={media.length}
+                controlType="overlay"
+                wrapperClasses="relative"
+                itemsContainerClasses="aspect-sd"
+              >
                 {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>
                   media.map((media, index) => (
                     <div key={media._key} className="aspect-sd w-full h-full relative snap-start">
@@ -384,7 +394,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                     </div>
                   ))
                 }
-              </Ui.SliderC.Slider>
+              </Ui.Slider.Slider>
             </div>
           )}
         </div>

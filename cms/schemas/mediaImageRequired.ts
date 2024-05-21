@@ -33,7 +33,7 @@ export default Sanity.defineType({
   ],
   validation: (Rule) =>
     Rule.custom((fields) => {
-      if (!fields?.image && !fields?.video) return 'You must have an Image or Video present.';
+      if (!fields?.image) return 'You must have an image for Featured Media.';
       return true;
     }),
   description:

@@ -347,7 +347,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                 >
                   <div
                     className={Utils.cx([
-                      '-inset-x-4 md:-inset-x-3 -inset-y-2 absolute bg-panel md:rounded-lg z-0 opacity-0 transition-opacity duration-50 ',
+                      '-inset-x-4 md:-inset-x-3 -inset-y-3 absolute bg-panel md:rounded-lg z-0 opacity-0 transition-opacity duration-50 ',
                       {
                         'opacity-100':
                           recipeContext.state.selectedInstructionKey === instruction._key,

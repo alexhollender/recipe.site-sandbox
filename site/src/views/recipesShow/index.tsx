@@ -61,7 +61,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 <Timing recipe={props.recipe} />
               </div>
             </header>
-            <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-lg overflow-hidden RecipePageGalleryContainer">
+            <div className="mb-5 -mx-4 md:-mx-6 lg:mx-0 lg:rounded-lg overflow-hidden RecipePageSliderContainer">
               <Ui.Slider.Slider
                 items={mediaArray.length}
                 controlType="overlay"
@@ -70,7 +70,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               >
                 {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>
                   mediaArray.map((media, index) => (
-                    <div key={media._key} className="aspect-sd w-full h-full relative snap-start">
+                    <div key={media._key} className="aspect-sd relative snap-start">
                       <Ui.Media.Media
                         videoOnPause={onPauseVideo}
                         videoOnPlay={onPlayVideo}
@@ -382,7 +382,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
               >
                 {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>
                   media.map((media, index) => (
-                    <div key={media._key} className="aspect-sd w-full h-full relative snap-start">
+                    <div key={media._key} className="aspect-sd relative snap-start">
                       <Ui.Media.Media
                         videoOnPause={onPauseVideo}
                         videoOnPlay={onPlayVideo}

@@ -408,16 +408,17 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
 }) => {
   const recipeContext = RecipeContext.useContext();
 
+  const displayTitle = ingredientUsage.ingredientTitleOverride || ingredientUsage.ingredient.title;
+
   // Need to do this inside of ingredientUsageAmount
   const title =
-    ingredientUsage.ingredientTitleOverride ||
-    (ingredientUsage.quantityMin &&
+    ingredientUsage.quantityMin &&
     ingredientUsage.quantityMax === null &&
     ingredientUsage.unit === null
       ? ingredientUsage.quantityMin <= 1
-        ? Utils.pluralize.singular(ingredientUsage.ingredient.title)
-        : Utils.pluralize(ingredientUsage.ingredient.title)
-      : ingredientUsage.ingredient.title);
+        ? Utils.pluralize.singular(displayTitle)
+        : Utils.pluralize(displayTitle)
+      : displayTitle;
 
   return (
     <div

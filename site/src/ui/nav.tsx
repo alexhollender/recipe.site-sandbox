@@ -23,7 +23,7 @@ export const Main: React.FC<{ site: Types.Site }> = ({ site }) => {
 
   return (
     <>
-      <div className="mb-7">
+      <div className="mb-7 SiteHeaderWrapper">
         <div className="relative border-b border-outline z-50 bg-background SiteHeader">
           <Ui.Container>
             <div className="min-h-14 flex justify-between items-center text-accent SiteHeaderInner">

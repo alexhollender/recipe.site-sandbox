@@ -4,6 +4,17 @@ export * from '@shared/utils';
 
 import * as Types from '@/lib/types';
 
+export const formatSeconds = (totalSeconds: number): string => {
+  let formattedSeconds = new Date(totalSeconds * 1000).toISOString();
+  if (totalSeconds < 540) {
+    return formattedSeconds.substring(15, 19);
+  } else if (totalSeconds < 3600) {
+    return formattedSeconds.substring(14, 19);
+  } else {
+    return formattedSeconds.substring(12, 19);
+  }
+};
+
 export const formatMinutes = (totalMinutes: number): string => {
   const days = Math.floor(totalMinutes / (60 * 24));
   const hours = Math.floor((totalMinutes % (60 * 24)) / 60);

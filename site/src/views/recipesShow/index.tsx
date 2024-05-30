@@ -15,6 +15,8 @@ import Script from 'next/script';
 import Controls from '@/views/recipesShow/controls';
 import Story from '@/views/recipesShow/story';
 
+import Timer from '@/ui/timer';
+
 type RecipesShowProps = {
   site: Types.Site;
   recipe: Types.Recipe;
@@ -360,6 +362,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                     <div className="text-text relative z-10">
                       <Ui.Richtext.Styled style="interface" content={instruction.content} />
                     </div>
+                    {instruction.timerMinutes && <Timer minutes={instruction.timerMinutes} />}
                     {instruction.note && (
                       <div className="pt-1 relative z-10">
                         <Ui.Text.Label className="italic text-subdued">

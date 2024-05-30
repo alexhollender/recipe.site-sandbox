@@ -339,7 +339,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                     {
                       'before:bg-text before:text-background before:border-text':
                         recipeContext.state.selectedInstructionKey === instruction._key,
-                      'before:bg-background before:text-text before:border-emphasis':
+                      'before:text-text before:border-emphasis':
                         recipeContext.state.selectedInstructionKey !== instruction._key,
                     },
                   ])}

@@ -160,16 +160,6 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                             return (
                               <li key={ingredientUsage._id}>
                                 <IngredientUsage ingredientUsage={ingredientUsage} />
-                                {ingredientUsage.note && (
-                                  <div className="pl-6">
-                                    <div className="italic text-subdued">
-                                      <Ui.Richtext.Styled
-                                        style="interface"
-                                        content={ingredientUsage.note}
-                                      />
-                                    </div>
-                                  </div>
-                                )}
                               </li>
                             );
                           })}
@@ -486,6 +476,13 @@ const IngredientUsage: React.FC<{ ingredientUsage: Types.IngredientUsage }> = ({
             }}
           />
         </Ui.Text.Label>
+        {ingredientUsage.note && (
+          <div>
+            <div className="italic text-subdued">
+              <Ui.Richtext.Styled style="interface" content={ingredientUsage.note} />
+            </div>
+          </div>
+        )}
       </label>
     </div>
   );

@@ -71,7 +71,7 @@ export const IngredientUsageReference: React.FC<
         {children}
       </Ui.Text.Label>
       {/* Only render this part if there is a quantity or unit */}
-      {(ingredientUsage.quantityMin || ingredientUsage.unit) && (
+      {(ingredientUsage?.quantityMin || ingredientUsage?.unit) && (
         <>
           {' '}
           <Ui.IngredientUsageAmount

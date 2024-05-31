@@ -74,7 +74,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                   mediaArray.map((media, index) => (
                     <div
                       key={media._key}
-                      className="aspect-sd min-w-full h-auto relative snap-start"
+                      className="aspect-sd min-w-full min-h-full relative snap-start"
                     >
                       <Ui.Media.Media
                         videoOnPause={onPauseVideo}
@@ -390,7 +390,7 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
                   media.map((media, index) => (
                     <div
                       key={media._key}
-                      className="aspect-sd min-w-full h-auto relative snap-start"
+                      className="aspect-sd min-w-full min-h-auto relative snap-start"
                     >
                       <Ui.Media.Media
                         videoOnPause={onPauseVideo}

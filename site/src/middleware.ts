@@ -9,13 +9,14 @@ const subdomainRegex = /^(?:https?:\/\/)?([a-zA-Z0-9\-]+)\./;
 /*
 This maps from URL to Sanity site slug.
 
-For example www.bersumac.com will map to bersumar slug.
+For example 'www.bersumac.com' will map to 'bersumar' slug.
 */
 const DomainsToSanitySlugs: Record<string, string> = {
   'bersumac.com': 'bersumac',
   'www.bersumac.com': 'bersumac',
   'citrusandroots.com': 'citrusandroots',
-  'www.citrusandroots.com': 'citrusandroots',
+  'chungeats.com': 'chungeats',
+  'www.chungeats.com': 'chungeats',
 };
 
 export function middleware(request: Server.NextRequest) {

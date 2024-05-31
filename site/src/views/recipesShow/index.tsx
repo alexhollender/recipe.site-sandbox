@@ -319,85 +319,83 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
           </Ui.Text.Highlight>
         </div>
       )}
-      {isCollapsed === false && (
-        <div>
-          <ol className="space-y-7">
-            {instructionGroup.instructions.map((instruction) => {
-              return (
-                <li
-                  key={instruction._key}
-                  role="button"
+      <div className={isCollapsed ? 'invisible h-0' : 'block'}>
+        <ol className="space-y-7">
+          {instructionGroup.instructions.map((instruction) => {
+            return (
+              <li
+                key={instruction._key}
+                role="button"
+                className={Utils.cx([
+                  'relative z-10 instruction flex before:inline-flex before:z-10 before:border before:transition-colors before:w-6 before:h-6 before:items-center before:justify-center before:flex-shrink-0 before:mr-2 before:rounded-full before:text-[0.75rem] before:font-interface before:font-bold group before:-left-1 before:relative',
+                  {
+                    'before:bg-text before:text-background before:border-text':
+                      recipeContext.state.selectedInstructionKey === instruction._key,
+                    'before:text-text before:border-emphasis':
+                      recipeContext.state.selectedInstructionKey !== instruction._key,
+                  },
+                ])}
+                onClick={() => {
+                  recipeContext.setSelectedInstruction(instruction._key);
+                }}
+              >
+                <div
                   className={Utils.cx([
-                    'relative z-10 instruction flex before:inline-flex before:z-10 before:border before:transition-colors before:w-6 before:h-6 before:items-center before:justify-center before:flex-shrink-0 before:mr-2 before:rounded-full before:text-[0.75rem] before:font-interface before:font-bold group before:-left-1 before:relative',
+                    '-inset-x-4 md:-inset-x-3 -inset-y-3 absolute bg-panel md:rounded-lg z-0 opacity-0 transition-opacity duration-50 ',
                     {
-                      'before:bg-text before:text-background before:border-text':
+                      'opacity-100':
                         recipeContext.state.selectedInstructionKey === instruction._key,
-                      'before:text-text before:border-emphasis':
+                      'group-hover:opacity-40':
                         recipeContext.state.selectedInstructionKey !== instruction._key,
                     },
                   ])}
-                  onClick={() => {
-                    recipeContext.setSelectedInstruction(instruction._key);
-                  }}
-                >
-                  <div
-                    className={Utils.cx([
-                      '-inset-x-4 md:-inset-x-3 -inset-y-3 absolute bg-panel md:rounded-lg z-0 opacity-0 transition-opacity duration-50 ',
-                      {
-                        'opacity-100':
-                          recipeContext.state.selectedInstructionKey === instruction._key,
-                        'group-hover:opacity-40':
-                          recipeContext.state.selectedInstructionKey !== instruction._key,
-                      },
-                    ])}
-                  ></div>
-                  <div className="flex flex-col">
-                    <div className="text-text relative z-10">
-                      <Ui.Richtext.Styled style="interface" content={instruction.content} />
-                    </div>
-                    {instruction.timerMinutes && <Timer minutes={instruction.timerMinutes} />}
-                    {instruction.note && (
-                      <div className="pt-1 relative z-10">
-                        <Ui.Text.Label className="italic text-subdued">
-                          <Ui.Richtext.Inherited content={instruction.note} />
-                        </Ui.Text.Label>
-                      </div>
-                    )}
+                ></div>
+                <div className="flex flex-col">
+                  <div className="text-text relative z-10">
+                    <Ui.Richtext.Styled style="interface" content={instruction.content} />
                   </div>
-                </li>
-              );
-            })}
-          </ol>
-          {media.length > 0 && (
-            <div className="mt-6 -mx-4 md:mx-0 md:rounded-lg overflow-hidden">
-              <Ui.Slider.Slider
-                items={media.length}
-                controlType="overlay"
-                wrapperClasses="relative"
-                itemsContainerClasses="aspect-sd"
-              >
-                {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>
-                  media.map((media, index) => (
-                    <div
-                      key={media._key}
-                      className="aspect-sd min-w-full min-h-auto relative snap-start"
-                    >
-                      <Ui.Media.Media
-                        videoOnPause={onPauseVideo}
-                        videoOnPlay={onPlayVideo}
-                        videoPlayState={videoPlayStates[index]}
-                        media={media}
-                        fill
-                        className="object-cover"
-                      />
+                  {instruction.timerMinutes && <Timer minutes={instruction.timerMinutes} />}
+                  {instruction.note && (
+                    <div className="pt-1 relative z-10">
+                      <Ui.Text.Label className="italic text-subdued">
+                        <Ui.Richtext.Inherited content={instruction.note} />
+                      </Ui.Text.Label>
                     </div>
-                  ))
-                }
-              </Ui.Slider.Slider>
-            </div>
-          )}
-        </div>
-      )}
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+        {media.length > 0 && (
+          <div className="mt-6 -mx-4 md:mx-0 md:rounded-lg overflow-hidden">
+            <Ui.Slider.Slider
+              items={media.length}
+              controlType="overlay"
+              wrapperClasses="relative"
+              itemsContainerClasses="aspect-sd"
+            >
+              {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>
+                media.map((media, index) => (
+                  <div
+                    key={media._key}
+                    className="aspect-sd min-w-full min-h-auto relative snap-start"
+                  >
+                    <Ui.Media.Media
+                      videoOnPause={onPauseVideo}
+                      videoOnPlay={onPlayVideo}
+                      videoPlayState={videoPlayStates[index]}
+                      media={media}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))
+              }
+            </Ui.Slider.Slider>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

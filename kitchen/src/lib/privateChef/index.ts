@@ -67,8 +67,6 @@ export const Recipes = {
   }) {
     const draft = await Recipes.getDraft({ siteId, publishedRecipeId });
 
-    console.log('draft', draft);
-
     if (draft) return Adapters.SanityRecipe.toAppRecipe(draft);
 
     const published = await Recipes.getPublished({ siteId, publishedRecipeId });
@@ -195,13 +193,11 @@ export const Recipes = {
 
   TYPE: 'recipe',
 
-  async update(
-    transaction: SanityClient.Transaction,
-    recipeId: string,
-    recipe: Types.Sanity.Recipe,
-  ) {
-    // const sanityRecipe = await Recipes.toSanity(recipe);
-    return transaction.patch(recipeId, (patch) => patch.set({ title: recipe.title }));
+  async update(transaction: SanityClient.Transaction, recipe: Types.Recipe) {
+    const recipeForUpload = Adapters.AppRecipe.serializeForUpload(transaction, recipe);
+    return recipeForUpload.commit({
+      autoGenerateArrayKeys: true,
+    });
   },
 };
 

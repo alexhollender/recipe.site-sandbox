@@ -16,19 +16,26 @@ type RecipesShowProps = {
 };
 
 const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
-  const [description, setDescription] = React.useState<Tiptap.JSONContent[]>([]);
+  const [description, setDescription] = React.useState<Types.Richtext>(
+    props.recipe.description || {
+      type: 'doc',
+      content: [],
+    },
+  );
   const [title, setTitle] = React.useState<string | null>(props.recipe.title);
 
-  console.log('props', props.recipe);
+  console.log('recipe', props.recipe);
+  console.log('description', description);
 
   // React.useEffect(() => {
   //   const transaction = PrivateChef.Transaction.new();
-  //   PrivateChef.Recipes.update(transaction, props.recipe.id, {
+  //   PrivateChef.Recipes.update(transaction, {
   //     ...props.recipe,
   //     title,
+  //     description,
   //   });
   //   transaction.commit();
-  // }, [title]);
+  // }, [title, description]);
 
   // const getDraftStatus = () => {
   //   const status = Recipes.draftStatus(props.recipe);

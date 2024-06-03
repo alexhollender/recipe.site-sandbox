@@ -2,15 +2,17 @@
 
 import * as Adapter from '@/lib/privateChef/adapters';
 import * as Tiptap from '@tiptap/react';
+import * as Types from '@/lib/types';
 
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
+import Link from '@tiptap/extension-link';
 
 const PlaceholderExtension = Placeholder.configure({
   placeholder: 'Write something …',
 });
 
-const Extensions = [StarterKit, PlaceholderExtension];
+const Extensions = [StarterKit, PlaceholderExtension, Link];
 
 const content = '<p>Hello World!</p>';
 
@@ -200,21 +202,19 @@ const FloatingMenu = () => {
 
 type RichtextEditorProps = {
   value: Tiptap.JSONContent;
-  onChange: (value: Tiptap.JSONContent[]) => void;
+  onChange: (value: Types.Richtext) => void;
 };
 
 const RichtextEditor: React.FC<RichtextEditorProps> = (props) => {
   return (
-    <div className="focus:outline-none">
+    <div className="richtext-editor focus:outline-none">
       <Tiptap.EditorProvider
         extensions={Extensions}
         content={props.value}
         // slotBefore={<MenuBar />}
         onUpdate={(e) => {
           const json = e.editor.getJSON();
-          const content = json.content;
-          if (!content) return;
-          props.onChange(content);
+          props.onChange(json as Types.Richtext);
         }}
       >
         <BubbleMenu />

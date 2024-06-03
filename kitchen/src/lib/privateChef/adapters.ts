@@ -3,6 +3,7 @@ import * as SanityClient from '@sanity/client';
 import * as Tiptap from '@tiptap/react';
 import * as Types from '@/lib/types';
 import * as Uuid from 'uuid';
+import * as Nanoid from 'nanoid';
 
 export const AppRecipe = {
   serializeForUpload: (transaction: SanityClient.Transaction, recipe: Types.Recipe) => {
@@ -422,32 +423,159 @@ export const SanityMedia = {
   },
 };
 
+const TiptapMarksToPortableTextMarks: Record<string, string> = {
+  bold: 'strong',
+  italic: 'em',
+};
+
+const PortableTextMarksToTiptapMarks: Record<string, string> = {
+  strong: 'bold',
+  em: 'italic',
+};
+
+const TiptapListTypesToPortableTextListTypes: Record<string, string> = {
+  bulletList: 'bullet',
+};
+
+const PortableTextListTypesToTiptapListTypes: Record<string, string> = {
+  bullet: 'bulletList',
+};
+
 export const PortableTextContent = {
-  toTiptap: (portableText: PortableText.PortableTextBlock[]): Tiptap.JSONContent[] => {
-    return [];
+  toTiptap: (portableText: PortableText.PortableTextBlock[]): Types.Richtext => {
+    function convertNode(
+      node: PortableText.PortableTextBlock | PortableText.PortableTextSpan,
+      markDefs: PortableText.PortableTextMarkDefinition[] = [],
+    ): Tiptap.JSONContent | null {
+      switch (node._type) {
+        case 'block':
+          if (!!node.style && node.style.startsWith('h')) {
+            return {
+              type: 'heading',
+              attrs: {
+                level: parseInt(node.style.slice(1)),
+              },
+              content: node.children
+                ? (node.children
+                    // @ts-ignore
+                    .map((child) => convertNode(child, node.markDefs))
+                    .filter((n) => n) as Tiptap.JSONContent[])
+                : [],
+            };
+          }
+
+          /*
+          TODO: Get list items working. This is a bit tricky because the
+          Portable Text spec doesn't nest their lists.
+          */
+
+          if (node.listItem) {
+            const { listItem, ...rest } = node;
+            return {
+              type: PortableTextListTypesToTiptapListTypes[listItem],
+              content: [
+                {
+                  type: 'listItem',
+                  content: [convertNode(rest, node.markDefs)].filter(
+                    (n) => n,
+                  ) as Tiptap.JSONContent[],
+                },
+              ],
+            };
+          }
+
+          return {
+            type: 'paragraph',
+            content: node.children
+              ? (node.children
+                  // @ts-ignore
+                  .map((child) => convertNode(child, node.markDefs))
+                  .filter((n) => n) as Tiptap.JSONContent[])
+              : [],
+          };
+
+        case 'span':
+          /*
+          Tiptip doesn't allow for empty text nodes, so we need to filter
+          them out.
+          */
+          if ('text' in node && node.text === '') return null;
+
+          return {
+            type: 'text',
+            // @ts-ignore
+            text: node.text,
+            // @ts-ignore
+            marks: node.marks?.map((mark) => {
+              const markDef = markDefs.find((def) => def._key === mark);
+              if (markDef && markDef._type === 'link') {
+                return {
+                  type: 'link',
+                  attrs: {
+                    href: markDef.href,
+                    target: markDef.openInNewTab ? '_blank' : '_self',
+                    rel: markDef.openInNewTab ? 'noopener noreferrer nofollow' : '',
+                  },
+                };
+              }
+              return {
+                type: PortableTextMarksToTiptapMarks[mark],
+              };
+            }),
+          };
+
+        default:
+          console.warn(`Unsupported node type: ${node._type}`);
+          return null;
+      }
+    }
+
+    return {
+      type: 'doc',
+      content: portableText
+        .map((block) => convertNode(block))
+        .filter((n) => n) as Tiptap.JSONContent[],
+    };
   },
 };
 
 export const TiptapContent = {
-  toPortableText: (tiptapContent: Tiptap.JSONContent[]): PortableText.PortableTextBlock[] => {
+  toPortableText: (tiptapContent: Types.Richtext): PortableText.PortableTextBlock[] => {
     function convertNode(
       node: Tiptap.JSONContent,
     ): PortableText.PortableTextBlock | PortableText.PortableTextSpan | null {
+      const convertContent = (
+        content: Tiptap.JSONContent[] | undefined,
+      ): PortableText.PortableTextSpan[] => {
+        if (!content || content.length === 0) {
+          return [
+            {
+              _type: 'span',
+              text: '',
+              marks: [],
+              _key: Nanoid.nanoid(),
+            },
+          ];
+        }
+        return content.map(convertNode).filter((n) => n) as PortableText.PortableTextSpan[];
+      };
+
       switch (node.type) {
         case 'text':
           return {
             _type: 'span',
             text: node.text || '',
-            marks: node.marks?.map((mark) => mark.type),
+            marks: node.marks?.map((mark) => TiptapMarksToPortableTextMarks[mark.type]),
+            _key: Nanoid.nanoid(),
           };
 
         case 'paragraph':
           return {
             _type: 'block',
             style: 'normal',
-            children: node.content
-              ? (node.content.map(convertNode).filter((n) => n) as PortableText.PortableTextSpan[])
-              : [],
+            children: convertContent(node.content),
+            markDefs: [],
+            _key: Nanoid.nanoid(),
           };
 
         case 'heading':
@@ -455,9 +583,10 @@ export const TiptapContent = {
             _type: 'block',
             // @ts-ignore
             style: `h${node.attrs.level}`,
-            children: node.content
-              ? (node.content.map(convertNode).filter((n) => n) as PortableText.PortableTextSpan[])
-              : [],
+            children: convertContent(node.content),
+            // TODO: Make markdefs work
+            markDefs: [],
+            _key: Nanoid.nanoid(),
           };
 
         default:
@@ -466,6 +595,8 @@ export const TiptapContent = {
       }
     }
 
-    return tiptapContent.map(convertNode).filter((n) => n) as PortableText.PortableTextBlock[];
+    return tiptapContent.content
+      .map(convertNode)
+      .filter((n) => n) as PortableText.PortableTextBlock[];
   },
 };

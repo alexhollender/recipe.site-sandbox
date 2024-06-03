@@ -2,7 +2,10 @@ import * as Pt from '@portabletext/types';
 import * as Tiptap from '@tiptap/react';
 
 export type PortableText = Pt.PortableTextBlock[];
-export type Richtext = Tiptap.JSONContent[];
+export type Richtext = {
+  type: 'doc';
+  content: Tiptap.JSONContent[];
+};
 
 export type RecipeDocument =
   | {

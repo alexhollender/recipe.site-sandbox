@@ -1,5 +1,10 @@
 export type SanityArrayItem<TObject> = { _key: string } & TObject;
 
+export type PageProps<TProps = {}> = {
+  globals: SiteGlobals;
+  site: Site;
+} & TProps;
+
 export type PortableText = {
   _type: 'block' | string;
   _key?: string;
@@ -323,6 +328,7 @@ export type Site = {
       }[];
   defaultMeasurementSystem: MeasurementSystem;
   defaultTemperatureSystem: TemperatureSystem;
+  googleAnalyticsId: string;
 };
 
 export type MeasurementSystem = 'imperial' | 'metric';

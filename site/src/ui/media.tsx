@@ -2,6 +2,7 @@
 
 import NextImage, { ImageProps as NextImageProps } from 'next/image';
 
+import * as Cdn from '@/lib/cdn';
 import * as Icons from '@/ui/icons';
 import * as React from 'react';
 import * as Sanity from '@/lib/sanity';
@@ -55,7 +56,7 @@ export const HoverAutoplayVideo: React.FC<HoverAutoplayProps> = (props) => {
     <video
       ref={videoPlayerRef}
       className={Utils.cx(['w-full h-full', props.className])}
-      src={props.video.asset.url}
+      src={Cdn.getFileUrl(props.video)}
       // preload="none"
       playsInline
       muted
@@ -168,7 +169,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
           },
         ])}
         /* @ts-ignore */
-        src={video.asset.url}
+        src={Cdn.getFileUrl(video)}
         loop
         playsInline
         {...props}

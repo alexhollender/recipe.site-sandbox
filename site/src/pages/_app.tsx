@@ -20,6 +20,8 @@ const App: React.FC<NextApp.AppProps> = ({ Component, pageProps }) => {
     globals: Types.SiteGlobals;
   } = pageProps;
 
+  if (!site || !globals) return <Component {...pageProps} />;
+
   return (
     <>
       <Head>

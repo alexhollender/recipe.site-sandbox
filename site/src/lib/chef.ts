@@ -307,6 +307,7 @@ const SITE_QUERY = groq`
     _type,
     _id,
     title,
+    "slug": slug.current,
     "authors": authors[] -> ${AUTHOR_QUERY},
     "recipes": recipes[] -> ${RECIPE_PREVIEW_QUERY} | order(createdAt desc),
     "featuredRecipes": featuredRecipes[] -> ${RECIPE_PREVIEW_QUERY},
@@ -500,20 +501,21 @@ export const Units = {
 
 export const Sites = {
   list() {
-    return Sanity.Client.fetch<Types.Site[]>(`*[_type == "site"] ${SITE_QUERY}`);
+    return Sanity.Client.fetch<Types.Site[]>(
+      `*[_type == "site" && slug.current != "alice-sun" && slug.current != "alison-roman"] ${SITE_QUERY}`,
+    );
   },
 
   listSlugs() {
-    return Sanity.Client.fetch<string[]>(`*[_type == "site"].slug.current`);
+    return Sanity.Client.fetch<string[]>(
+      `*[_type == "site" && slug.current != "alice-sun" && slug.current != "alison-roman"].slug.current`,
+    );
   },
 
   get(params: { slug: string }) {
-    return Sanity.Client.fetch<Types.Site | null>(
-      `*[_type == "site" && slug.current == $slug][0] ${SITE_QUERY}`,
-      {
-        slug: params.slug,
-      },
-    );
+    return Sanity.Client.fetch<Types.Site | null>(`*[_type == "site"][0] ${SITE_QUERY}`, {
+      slug: params.slug,
+    });
   },
 };
 

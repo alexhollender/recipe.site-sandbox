@@ -39,6 +39,7 @@ export default Sanity.defineType({
       subtitle: 'slug.current',
     },
   },
+  // Basic
   fields: [
     {
       name: 'title',
@@ -69,57 +70,6 @@ export default Sanity.defineType({
           to: [
             {
               type: 'author',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: 'featuredRecipes',
-      title: 'Featured Recipes',
-      group: 'recipesAndCollections',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {
-              title: 'Recipe',
-              type: 'recipe',
-            },
-          ],
-          options: {
-            filter: async ({ document, getClient }) => {
-              const client = getClient({ apiVersion: '2023-12-30' });
-
-              const recipeIds = await client.fetch(
-                `*[_type == 'site' && _id == $siteId][0].recipes[]->._id`,
-                {
-                  siteId: document._id,
-                },
-              );
-
-              return {
-                filter: '_id in $recipeIds',
-                params: { recipeIds },
-              };
-            },
-          },
-        },
-      ],
-    },
-    {
-      name: 'collections',
-      title: 'Collections',
-      group: 'recipesAndCollections',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {
-              type: 'collection',
-              title: 'Collection',
             },
           ],
         },
@@ -196,6 +146,92 @@ export default Sanity.defineType({
       ],
     },
     {
+      name: 'defaultMeasurementSystem',
+      title: 'Default Measurement System',
+      group: 'basic',
+      type: 'string',
+      initialValue: 'imperial',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Imperial', value: 'imperial' },
+          { title: 'Metric', value: 'metric' },
+        ],
+      },
+    },
+    {
+      name: 'defaultTemperatureSystem',
+      title: 'Default Temperature System',
+      group: 'basic',
+      type: 'string',
+      initialValue: 'fahrenheit',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [
+          { title: 'Fahrenheit', value: 'fahrenheit' },
+          { title: 'Celsius', value: 'celsius' },
+        ],
+      },
+    },
+    {
+      name: 'googleAnalyticsId',
+      title: 'Google Analytics ID',
+      type: 'string',
+      group: 'basic',
+    },
+    // Recipes & Collections
+    {
+      name: 'featuredRecipes',
+      title: 'Featured Recipes',
+      group: 'recipesAndCollections',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {
+              title: 'Recipe',
+              type: 'recipe',
+            },
+          ],
+          options: {
+            filter: async ({ document, getClient }) => {
+              const client = getClient({ apiVersion: '2023-12-30' });
+
+              const recipeIds = await client.fetch(
+                `*[_type == 'site' && _id == $siteId][0].recipes[]->._id`,
+                {
+                  siteId: document._id,
+                },
+              );
+
+              return {
+                filter: '_id in $recipeIds',
+                params: { recipeIds },
+              };
+            },
+          },
+        },
+      ],
+    },
+    {
+      name: 'collections',
+      title: 'Collections',
+      group: 'recipesAndCollections',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {
+              type: 'collection',
+              title: 'Collection',
+            },
+          ],
+        },
+      ],
+    },
+    {
       name: 'recipes',
       title: 'Recipes',
       group: 'recipesAndCollections',
@@ -212,34 +248,7 @@ export default Sanity.defineType({
         },
       ],
     },
-    {
-      name: 'aboutShort',
-      title: 'About (short)',
-      type: 'richtextSimple',
-      validation: (Rule) => Rule.required(),
-      group: 'about',
-    },
-    {
-      name: 'about',
-      title: 'About',
-      type: 'richtext',
-      group: 'about',
-      validation: (Rule) => Rule.required(),
-    },
-    {
-      name: 'aboutHeading',
-      title: 'About Heading',
-      type: 'richtextSimple',
-      description: 'The heading for the about section. Defaults to "About".',
-      group: 'about',
-    },
-    {
-      name: 'featuredImage',
-      title: 'Featured Image',
-      type: 'image',
-      validation: (Rule) => Rule.required(),
-      group: 'about',
-    },
+    // Products
     {
       name: 'productLinks',
       title: 'Product Links',
@@ -280,12 +289,7 @@ export default Sanity.defineType({
         },
       ],
     },
-    {
-      name: 'logo',
-      title: 'Logo',
-      type: 'image',
-      group: 'theme',
-    },
+    // Link list
     {
       name: 'linkList',
       title: 'Link List',
@@ -340,6 +344,42 @@ export default Sanity.defineType({
         },
       ],
     },
+    // About
+    {
+      name: 'aboutShort',
+      title: 'About (short)',
+      type: 'richtextSimple',
+      validation: (Rule) => Rule.required(),
+      group: 'about',
+    },
+    {
+      name: 'about',
+      title: 'About',
+      type: 'richtext',
+      group: 'about',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'aboutHeading',
+      title: 'About Heading',
+      type: 'richtextSimple',
+      description: 'The heading for the about section. Defaults to "About".',
+      group: 'about',
+    },
+    {
+      name: 'featuredImage',
+      title: 'Featured Image',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+      group: 'about',
+    },
+    // Theme
+    {
+      name: 'logo',
+      title: 'Logo',
+      type: 'image',
+      group: 'theme',
+    },
     {
       name: 'colorTheme',
       title: 'Color Theme',
@@ -368,34 +408,6 @@ export default Sanity.defineType({
       type: 'text',
       rows: 4,
       group: 'theme',
-    },
-    {
-      name: 'defaultMeasurementSystem',
-      title: 'Default Measurement System',
-      group: 'basic',
-      type: 'string',
-      initialValue: 'imperial',
-      validation: (Rule) => Rule.required(),
-      options: {
-        list: [
-          { title: 'Imperial', value: 'imperial' },
-          { title: 'Metric', value: 'metric' },
-        ],
-      },
-    },
-    {
-      name: 'defaultTemperatureSystem',
-      title: 'Default Temperature System',
-      group: 'basic',
-      type: 'string',
-      initialValue: 'fahrenheit',
-      validation: (Rule) => Rule.required(),
-      options: {
-        list: [
-          { title: 'Fahrenheit', value: 'fahrenheit' },
-          { title: 'Celsius', value: 'celsius' },
-        ],
-      },
     },
   ],
 });

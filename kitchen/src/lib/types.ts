@@ -563,6 +563,7 @@ export namespace Sanity {
         }[];
     defaultMeasurementSystem: MeasurementSystem;
     defaultTemperatureSystem: TemperatureSystem;
+    googleAnalyticsId: string;
   };
 
   export type MeasurementSystem = 'imperial' | 'metric';

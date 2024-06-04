@@ -375,6 +375,7 @@ export const SITE_QUERY = groq`
     },
     theme -> ${THEME_QUERY},
     defaultMeasurementSystem,
-    defaultTemperatureSystem
+    defaultTemperatureSystem,
+    googleAnalyticsId
   }
 `;

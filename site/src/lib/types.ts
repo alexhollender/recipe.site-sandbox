@@ -51,6 +51,7 @@ export type Image = {
   asset: {
     _id: string;
     _type: 'sanity.imageAsset';
+    mimeType: string;
     metadata: {
       lqip: string;
       dimensions: {
@@ -340,18 +341,12 @@ export type CollectionPreview = {
   title: string;
   slug: string;
   description: PortableText;
+  descriptionPlaintext: string | null;
   featuredMedia: Media;
   color: string;
 };
 
 export type Collection = CollectionPreview & {
-  _type: 'collection';
-  _id: string;
-  title: string;
-  slug: string;
-  description: PortableText;
-  featuredMedia: Media;
-  color: string;
   recipes: RecipePreview[];
 };
 

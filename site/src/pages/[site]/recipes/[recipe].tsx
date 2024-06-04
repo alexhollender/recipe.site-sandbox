@@ -17,35 +17,58 @@ const RecipesShow: Next.NextPage<Next.InferGetStaticPropsType<typeof getStaticPr
   return (
     <>
       <Head>
+        {/* Title */}
         <title>{`${recipe.title} • ${site.title}`}</title>
+        <meta property="og:title" content={`${recipe.title} • ${site.title}`} key="ogTitle" />
+        <meta name="twitter:title" content={`${recipe.title} • ${site.title}`} key="twitterTitle" />
+        {/* Description */}
         {recipe.descriptionPlaintext && (
-          <meta name="description" content={recipe.descriptionPlaintext} />
+          <>
+            <meta name="description" content={recipe.descriptionPlaintext} key="description" />
+            <meta
+              property="og:description"
+              content={recipe.descriptionPlaintext}
+              key="ogDescription"
+            />
+            <meta
+              name="twitter:description"
+              content={recipe.descriptionPlaintext}
+              key="twitterDescription"
+            />
+          </>
         )}
-        <meta property="og:title" content={`${recipe.title} • ${site.title}`} />
-        {recipe.descriptionPlaintext && (
-          <meta property="og:description" content={recipe.descriptionPlaintext} />
-        )}
+        {/* Image */}
         {recipe.featuredMedia.image && (
           <>
-            <meta property="og:image:type" content="image/jpeg" />
-            <meta property="og:image:width" content="800" />
-            <meta property="og:image:height" content="600" />
+            <meta
+              property="og:image:type"
+              content={recipe.featuredMedia.image.asset.mimeType}
+              key="ogImageType"
+            />
+            <meta property="og:image:width" content="800" key="ogImageWidth" />
+            <meta property="og:image:height" content="600" key="ogImageHeight" />
             <meta
               property="og:image"
               content={Sanity.ImageBuilder.image(recipe.featuredMedia.image)
                 .height(800)
                 .width(600)
                 .url()}
+              key="ogImage"
             />
-            <meta name="twitter:image:type" content="image/jpeg" />
-            <meta name="twitter:image:width" content="800" />
-            <meta name="twitter:image:height" content="600" />
+            <meta
+              name="twitter:image:type"
+              content={recipe.featuredMedia.image.asset.mimeType}
+              key="twitterImageType"
+            />
+            <meta name="twitter:image:width" content="800" key="twitterImageWidth" />
+            <meta name="twitter:image:height" content="600" key="twitterImageHeight" />
             <meta
               name="twitter:image"
               content={Sanity.ImageBuilder.image(recipe.featuredMedia.image)
                 .width(800)
                 .height(600)
                 .url()}
+              key="twitterImage"
             />
           </>
         )}

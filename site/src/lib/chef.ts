@@ -8,6 +8,7 @@ const IMAGE_QUERY = groq`
     asset -> {
       _id,
       _type,
+      mimeType,
       metadata {
         lqip,
         dimensions {
@@ -177,6 +178,7 @@ const COLLECTION_PREVIEW_QUERY = groq`
     title,
     "slug": slug.current,
     "description": description[] ${RICHTEXT_QUERY},
+    "descriptionPlaintext": pt::text(description),
     "featuredMedia": featuredMedia ${MEDIA_QUERY},
     color
   }

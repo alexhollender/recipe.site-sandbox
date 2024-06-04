@@ -12,7 +12,7 @@ const RecipesIndex: Next.NextPage<Next.InferGetStaticPropsType<typeof getStaticP
   return (
     <>
       <Head>
-        <title>Recipes • {site.title}</title>
+        <title>All Recipes • {site.title}</title>
       </Head>
       <Views.RecipesIndex site={site} />
     </>

@@ -26,30 +26,45 @@ const App: React.FC<NextApp.AppProps> = ({ Component, pageProps }) => {
     <>
       <Head>
         <title>{site.title}</title>
+        <meta name="description" content={site.aboutShortPlaintext} key="description" />
+        <meta name="author" content={site.authors[0].name} key="author" />
 
-        <meta name="description" content={site.aboutShortPlaintext} />
-        <meta property="og:title" content={site.title} />
-        <meta property="og:description" content={site.aboutShortPlaintext} />
-        <meta property="og:site_name" content={site.title} />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="600" />
+        <meta property="og:title" content={site.title} key="ogTitle" />
+        <meta property="og:description" content={site.aboutShortPlaintext} key="ogDescription" />
+        <meta property="og:site_name" content={site.title} key="siteName" />
+        <meta property="og:locale" content="en_US" key="locale" />
+        <meta property="og:type" content="website" key="ogType" />
+        <meta
+          property="og:image:type"
+          content={site.featuredImage.asset.mimeType}
+          key="ogImageType"
+        />
+        <meta property="og:image:width" content="800" key="ogImageWidth" />
+        <meta property="og:image:height" content="600" key="ogImageHeight" />
         <meta
           property="og:image"
           content={Sanity.ImageBuilder.image(site.featuredImage).width(800).height(600).url()}
+          key="ogImage"
         />
 
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={site.title} />
-        <meta name="twitter:description" content={site.aboutShortPlaintext} />
-        <meta name="twitter:image:type" content="image/jpeg" />
-        <meta name="twitter:image:width" content="800" />
-        <meta name="twitter:image:height" content="600" />
+        <meta name="twitter:card" content="summary_large_image" key="twitterCard" />
+        <meta name="twitter:title" content={site.title} key="twitterTitle" />
+        <meta
+          name="twitter:description"
+          content={site.aboutShortPlaintext}
+          key="twitterDescription"
+        />
+        <meta
+          name="twitter:image:type"
+          content={site.featuredImage.asset.mimeType}
+          key="twitterImageType"
+        />
+        <meta name="twitter:image:width" content="800" key="twitterImageWidth" />
+        <meta name="twitter:image:height" content="600" key="twitterImageHeight" />
         <meta
           name="twitter:image"
           content={Sanity.ImageBuilder.image(site.featuredImage).width(800).height(600).url()}
+          key="twitterImage"
         />
       </Head>
       {site.colorTheme && (

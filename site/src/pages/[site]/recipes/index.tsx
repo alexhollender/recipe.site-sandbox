@@ -13,6 +13,8 @@ const RecipesIndex: Next.NextPage<Next.InferGetStaticPropsType<typeof getStaticP
     <>
       <Head>
         <title>All Recipes • {site.title}</title>
+        <meta property="og:title" content={`All Recipes • ${site.title}`} key="ogTitle" />
+        <meta name="twitter:title" content={`All Recipes • ${site.title}`} key="twitterTitle" />
       </Head>
       <Views.RecipesIndex site={site} />
     </>

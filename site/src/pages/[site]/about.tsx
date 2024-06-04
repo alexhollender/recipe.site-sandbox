@@ -10,7 +10,9 @@ const About: Next.NextPage<Next.InferGetStaticPropsType<typeof getStaticProps>> 
   return (
     <>
       <Head>
-        <title>{`About • ${site.title}`}</title>
+        <title>About • {site.title}</title>
+        <meta property="og:title" content={`About • ${site.title}`} key="ogTitle" />
+        <meta name="twitter:title" content={`About • ${site.title}`} key="twitterTitle" />
       </Head>
       <Views.About site={site} />
     </>

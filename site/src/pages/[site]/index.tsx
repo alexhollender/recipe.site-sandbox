@@ -23,6 +23,7 @@ export const getStaticProps: Next.GetStaticProps<Props> = async (context) => {
     Chef.Recipes.searchBy({ siteSlug, limit: 6 }),
     Chef.SiteGlobals.get(siteSlug),
   ]);
+
   if (!site) return { notFound: true };
   return { props: { site, latestRecipes, globals } };
 };

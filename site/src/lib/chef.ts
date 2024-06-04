@@ -513,9 +513,12 @@ export const Sites = {
   },
 
   get(params: { slug: string }) {
-    return Sanity.Client.fetch<Types.Site | null>(`*[_type == "site"][0] ${SITE_QUERY}`, {
-      slug: params.slug,
-    });
+    return Sanity.Client.fetch<Types.Site | null>(
+      `*[_type == "site" && slug.current == $slug][0] ${SITE_QUERY}`,
+      {
+        slug: params.slug,
+      },
+    );
   },
 };
 

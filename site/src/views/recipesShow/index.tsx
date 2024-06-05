@@ -500,10 +500,19 @@ const Timing: React.FC<{ recipe: Types.Recipe }> = ({ recipe }) => {
   return (
     <Ui.Text.Label>
       <span>{recipe.ingredientUsageCount} ingredients</span>
-      {recipe.prepTimeMinutes && <span className="mx-1">•</span>}
-      {recipe.prepTimeMinutes && <span>Prep: {Utils.formatMinutes(recipe.prepTimeMinutes)}</span>}
-      {recipe.cookTimeMinutes && <span className="mx-1">•</span>}
-      {recipe.cookTimeMinutes && <span>Cook: {Utils.formatMinutes(recipe.cookTimeMinutes)}</span>}
+      {recipe.cookTimeMinutes === 0 ? (
+        <>
+          <span className="mx-1">•</span>
+          <span>Time: {Utils.formatMinutes(recipe.prepTimeMinutes)}</span>
+        </>
+      ) : (
+        <>
+          <span className="mx-1">•</span>
+          <span>Prep: {Utils.formatMinutes(recipe.prepTimeMinutes)}</span>
+          <span className="mx-1">•</span>
+          <span>Cook: {Utils.formatMinutes(recipe.cookTimeMinutes)}</span>
+        </>
+      )}
     </Ui.Text.Label>
   );
 };

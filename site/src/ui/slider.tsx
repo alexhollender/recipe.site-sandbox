@@ -246,7 +246,9 @@ export const Slider: React.FC<SliderProps> = ({
   const slider = useSlider(items);
 
   return (
-    <div className={Utils.cx([wrapperClasses])}>
+    <div className={`relative ${Utils.cx([wrapperClasses])}`}>
+      <div className="slider-gradient absolute top-0 bottom-0 left-0 bg-gradient-to-r from-background to-transparent w-16 z-10 transition-opacity pointer-events-none"></div>
+      <div className="slider-gradient absolute top-0 bottom-0 right-0 bg-gradient-to-r from-transparent to-background w-16 z-10 transition-opacity pointer-events-none"></div>
       {/* Controls - previous, next, progress indicators */}
       {controlType === 'overlay' && items > 1 && (
         <SliderControlsOverlay

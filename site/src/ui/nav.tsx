@@ -111,7 +111,7 @@ const MenuItems: React.FC<{ site: Types.Site }> = ({ site }) => {
       {site.linkList && (
         <li>
           <Link href="/links" className="hover:opacity-60 transition-opacity">
-            <Ui.Text.Label>My links</Ui.Text.Label>
+            <Ui.Text.Label>My Links</Ui.Text.Label>
           </Link>
         </li>
       )}

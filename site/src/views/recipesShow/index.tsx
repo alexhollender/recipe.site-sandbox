@@ -67,7 +67,6 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               <Ui.Slider.Slider
                 items={mediaArray.length}
                 controlType="overlay"
-                wrapperClasses="relative"
                 itemsContainerClasses="aspect-sd"
               >
                 {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>
@@ -372,7 +371,6 @@ const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.Instru
             <Ui.Slider.Slider
               items={media.length}
               controlType="overlay"
-              wrapperClasses="relative"
               itemsContainerClasses="aspect-sd"
             >
               {({ onPauseVideo, onPlayVideo, videoPlayStates }) =>

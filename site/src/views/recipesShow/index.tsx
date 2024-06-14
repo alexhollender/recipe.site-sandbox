@@ -100,9 +100,11 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
               </div>
             )}
           </div>
-          <div className="hidden lg:block col-start-10 col-span-3">
-            <Bio site={props.site} />
-          </div>
+          {!props.site.hideSidebarBio && (
+            <div className="hidden lg:block col-start-10 col-span-3">
+              <Bio site={props.site} />
+            </div>
+          )}
         </Ui.Grid>
       </Ui.Container>
       <Ui.Container>

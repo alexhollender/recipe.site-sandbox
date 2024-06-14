@@ -19,28 +19,28 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
     return new Fuse(props.site.recipes, {
       includeMatches: true,
       includeScore: true,
-      threshold: 0.2,
+      threshold: 0.3,
       keys: [
         {
           name: 'title',
-          weight: 0.5,
+          weight: 1,
         },
         {
           name: 'descriptionPlaintext',
-          weight: 0.3,
+          weight: 1,
         },
-        {
-          name: 'cuisines.title',
-          weight: 0.1,
-        },
-        {
-          name: 'categories.title',
-          weight: 0.1,
-        },
-        {
-          name: 'tags.title',
-          weight: 0.1,
-        },
+        // {
+        //   name: 'cuisines.title',
+        //   weight: 0.1,
+        // },
+        // {
+        //   name: 'categories.title',
+        //   weight: 0.1,
+        // },
+        // {
+        //   name: 'tags.title',
+        //   weight: 0.1,
+        // },
       ],
     });
   }, [props.site.recipes]);
@@ -51,22 +51,23 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
   };
 
   return (
-    <Ui.Container className="min-h-[75vh] mb-12">
-      {/* Search & filtering */}
-      <div className="flex space-x-3 mb-7">
-        <div className="relative py-2 px-2 space-x-2 flex bg-panel rounded-lg flex-1 focus-within:ring-1 focus-within:ring-outline">
-          <div className="w-7 h-7 text-text">
-            <Ui.Icons.Search />
+    <div className="min-h-[75vh] mb-12">
+      <Ui.Container>
+        {/* Search & filtering */}
+        <div className="flex space-x-3 mb-7">
+          <div className="relative py-2 px-2 space-x-2 flex bg-panel rounded-lg flex-1 focus-within:ring-1 focus-within:ring-outline">
+            <div className="w-7 h-7 text-text">
+              <Ui.Icons.Search />
+            </div>
+            <input
+              type="text"
+              placeholder="Search for chicken, dessert, tofu, vegan..."
+              className="flex-1 font-label text-md bg-transparent text-text focus:outline-none"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-          <input
-            type="text"
-            placeholder="Search for chicken, dessert, tofu, vegan..."
-            className="flex-1 font-label text-md bg-transparent text-text focus:outline-none"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        {/* <button
+          {/* <button
             type="button"
             className="flex items-center space-x-2 hover:bg-opacity-50 px-3 rounded-lg transition-colors"
             onClick={() => {
@@ -78,7 +79,8 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
             </div>
             <Ui.Text.Label as="span">Filters</Ui.Text.Label>
           </button> */}
-      </div>
+        </div>
+      </Ui.Container>
       {/* {isFilterPaneDisplayed && (
           <section className="border-y py-2 my-4">
             <Ui.Grid>
@@ -144,26 +146,35 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
 
       {/* Collections */}
       {props.site.collections && searchTerm.trim() === '' && (
-        <div className="mb-7 pb-7 border-b border-outline">
-          <div className="mb-3">
-            <h2 className="type-title text-text">Recipe collections</h2>
-          </div>
-          <Ui.Grid>
-            {props.site.collections.map((collection) => {
-              return (
-                <div className="col-span-12 sm:col-span-6 lg:col-span-4" key={collection._id}>
-                  <Ui.Cards.Collection collection={collection} />
+        <section>
+          <Ui.Slider.Slider
+            items={props.site.collections.length}
+            controlType="header"
+            heading="Recipe collections"
+            wrapperClasses="max-w-[120rem] mx-auto"
+          >
+            {() =>
+              props.site.collections.map((collection) => (
+                <div
+                  key={collection._id}
+                  className="flex-shrink-0 snap-start ps-4 slider-item-container"
+                >
+                  <div className="slider-item-inner">
+                    <div className="max-w-[80vw] w-[24rem]">
+                      <Ui.Cards.Collection collection={collection} />
+                    </div>
+                  </div>
                 </div>
-              );
-            })}
-          </Ui.Grid>
-        </div>
+              ))
+            }
+          </Ui.Slider.Slider>
+        </section>
       )}
 
       {/* All recipes */}
-      <div>
+      <Ui.Container>
         {props.site.collections && searchTerm.trim() === '' && (
-          <div className="mb-3">
+          <div className={`mb-3 ${props.site.collections && 'mt-7 pt-7 border-t border-outline'}`}>
             <h2 className="type-title text-text">All recipes</h2>
           </div>
         )}
@@ -181,8 +192,8 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
             );
           })}
         </Ui.Grid>
-      </div>
-    </Ui.Container>
+      </Ui.Container>
+    </div>
   );
 };
 

@@ -353,18 +353,18 @@ export default Sanity.defineType({
       group: 'about',
     },
     {
-      name: 'about',
-      title: 'About',
-      type: 'richtext',
-      group: 'about',
-      validation: (Rule) => Rule.required(),
-    },
-    {
       name: 'aboutHeading',
       title: 'About Heading',
       type: 'richtextSimple',
       description: 'The heading for the about section. Defaults to "About".',
       group: 'about',
+    },
+    {
+      name: 'about',
+      title: 'About',
+      type: 'richtext',
+      group: 'about',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'featuredImage',
@@ -407,6 +407,12 @@ export default Sanity.defineType({
       title: 'CSS Overrides',
       type: 'text',
       rows: 4,
+      group: 'theme',
+    },
+    {
+      title: 'Hide sidebar bio on Recipe page?',
+      name: 'hideSidebarBio',
+      type: 'boolean',
       group: 'theme',
     },
   ],

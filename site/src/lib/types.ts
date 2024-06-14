@@ -238,6 +238,22 @@ export type ProductLink = {
   href: string;
 };
 
+export type CustomHeaderLink = {
+  label: string;
+  href: string;
+  openInNewTab: boolean;
+  _key: string;
+};
+
+export type LinkListLink = {
+  title: string;
+  links: {
+    label: string;
+    href: string;
+    _key: string;
+  }[];
+};
+
 export type HexColor = string;
 
 export type Color = {
@@ -297,39 +313,26 @@ export type Site = {
   title: string;
   slug: string;
   authors: Author[];
-  recipes: Recipe[];
+  socialMediaLinks: SocialMediaLink[];
+  customHeaderLinks: null | CustomHeaderLink[];
+  defaultMeasurementSystem: MeasurementSystem;
+  defaultTemperatureSystem: TemperatureSystem;
+  googleAnalyticsId: string;
   featuredRecipes: Recipe[];
   collections: Collection[];
-  socialMediaLinks: SocialMediaLink[];
+  recipes: Recipe[];
+  productLinks: SanityArrayItem<ProductLink>[];
+  linkList: null | LinkListLink;
   aboutShort: PortableText;
   aboutShortPlaintext: string;
   aboutHeading: PortableText | null;
   about: PortableText;
   featuredImage: Image;
-  productLinks: SanityArrayItem<ProductLink>[];
   logo: Image | null;
   colorTheme: ColorTheme | null;
   typeTheme: TypeTheme | null;
   cssOverrides: string | null;
-  linkList: null | {
-    title: string;
-    links: {
-      label: string;
-      href: string;
-      _key: string;
-    }[];
-  };
-  customHeaderLinks:
-    | null
-    | {
-        label: string;
-        href: string;
-        openInNewTab: boolean;
-        _key: string;
-      }[];
-  defaultMeasurementSystem: MeasurementSystem;
-  defaultTemperatureSystem: TemperatureSystem;
-  googleAnalyticsId: string;
+  hideSidebarBio: boolean;
 };
 
 export type MeasurementSystem = 'imperial' | 'metric';

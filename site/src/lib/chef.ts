@@ -311,19 +311,23 @@ const SITE_QUERY = groq`
     title,
     "slug": slug.current,
     "authors": authors[] -> ${AUTHOR_QUERY},
-    "recipes": recipes[] -> ${RECIPE_PREVIEW_QUERY} | order(createdAt desc),
-    "featuredRecipes": featuredRecipes[] -> ${RECIPE_PREVIEW_QUERY},
     socialMediaLinks[] {
       _key,
       platform,
       url
     },
+    customHeaderLinks[] {
+      _key,
+      label,
+      href,
+      openInNewTab
+    },
+    defaultMeasurementSystem,
+    defaultTemperatureSystem,
+    googleAnalyticsId,
+    "featuredRecipes": featuredRecipes[] -> ${RECIPE_PREVIEW_QUERY},
     collections[] -> ${COLLECTION_QUERY},
-    aboutShort[] ${RICHTEXT_QUERY},
-    "aboutShortPlaintext": pt::text(aboutShort),
-    aboutHeading[] ${RICHTEXT_QUERY},
-    about[] ${RICHTEXT_QUERY},
-    featuredImage ${IMAGE_QUERY},
+    "recipes": recipes[] -> ${RECIPE_PREVIEW_QUERY} | order(createdAt desc),
     productLinks[] {
       _key,
       productTitle,
@@ -331,7 +335,6 @@ const SITE_QUERY = groq`
       productImage ${IMAGE_QUERY},
       href
     },
-    logo ${IMAGE_QUERY},
     linkList {
       title,
       links[] {
@@ -340,18 +343,16 @@ const SITE_QUERY = groq`
         href
       }
     },
-    customHeaderLinks[] {
-      _key,
-      label,
-      href,
-      openInNewTab
-    },
+    aboutShort[] ${RICHTEXT_QUERY},
+    "aboutShortPlaintext": pt::text(aboutShort),
+    aboutHeading[] ${RICHTEXT_QUERY},
+    about[] ${RICHTEXT_QUERY},
+    featuredImage ${IMAGE_QUERY},
+    logo ${IMAGE_QUERY},
     colorTheme -> ${COLOR_THEME_QUERY},
     typeTheme -> ${TYPE_THEME_QUERY},
     cssOverrides,
-    defaultMeasurementSystem,
-    defaultTemperatureSystem,
-    googleAnalyticsId
+    hideSidebarBio
   }
 `;
 

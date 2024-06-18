@@ -131,13 +131,15 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 >
                   <Ui.Icons.DownCarrot />
                 </div>
-                <Ui.Text.Title
-                  bold
-                  as="h2"
-                >{`Ingredients (${props.recipe.ingredientUsageCount})`}</Ui.Text.Title>
+                <div className="IngredientsHeading">
+                  <Ui.Text.Title
+                    bold
+                    as="h2"
+                  >{`Ingredients (${props.recipe.ingredientUsageCount})`}</Ui.Text.Title>
+                </div>
               </div>
 
-              <div className="hidden md:block text-text">
+              <div className="hidden md:block text-text IngredientsHeading">
                 <Ui.Text.Title
                   bold
                   as="h2"
@@ -181,7 +183,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
             </div>
           </div>
           <div className="col-span-12 md:col-span-7 instruction-counter">
-            <div className="mt-5 text-text">
+            <div className="mt-5 text-text InstructionsHeading">
               <Ui.Text.Title bold as="h2">
                 Instructions
               </Ui.Text.Title>

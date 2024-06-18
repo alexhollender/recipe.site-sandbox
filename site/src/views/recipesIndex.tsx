@@ -61,7 +61,7 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
             </div>
             <input
               type="text"
-              placeholder="Search for chicken, dessert, tofu, vegan..."
+              placeholder="Search recipes"
               className="flex-1 font-label text-md bg-transparent text-text focus:outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -174,7 +174,9 @@ const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
       {/* All recipes */}
       <Ui.Container>
         {props.site.collections && searchTerm.trim() === '' && (
-          <div className={`mb-3 ${props.site.collections && 'mt-7 pt-7 border-t border-outline'}`}>
+          <div
+            className={`mb-3 ${props.site.collections && 'mt-7 pt-7 border-t border-outline AllRecipesHeading'}`}
+          >
             <h2 className="type-title text-text">All recipes</h2>
           </div>
         )}

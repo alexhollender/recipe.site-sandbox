@@ -72,7 +72,7 @@ export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
   return (
     <Link href={`/collections/${collection.slug}`} className="group">
       <div
-        className="aspect-square relative rounded-lg overflow-hidden"
+        className="aspect-square relative rounded-lg overflow-hidden CollectionCard"
         onMouseOver={onMouseOver}
         onMouseOut={onMouseOut}
       >
@@ -96,7 +96,7 @@ export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
             className="object-cover absolute inset-0 hidden md:block z-0"
           />
         )}
-        <div className="absolute inset-0 z-10 bg-black opacity-30 pointer-events-none"></div>
+        <div className="absolute inset-0 z-10 bg-black opacity-25 pointer-events-none"></div>
         <div className="absolute inset-0 flex items-center justify-center z-20 text-secondary pointer-events-none">
           <Ui.Text.Lead className="px-6 text-shadow text-center text-white">
             {collection.title}

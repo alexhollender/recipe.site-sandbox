@@ -46,7 +46,7 @@ const Timer: React.FC<{ minutes: number }> = ({ minutes }) => {
       data-off={!seconds}
     >
       <span className="w-4 h-4">{icon}</span>
-      <div>{formatSeconds(seconds)}</div>
+      <div className="text-text">{formatSeconds(seconds)}</div>
     </button>
   );
 };

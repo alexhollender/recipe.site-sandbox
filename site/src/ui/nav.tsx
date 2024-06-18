@@ -40,24 +40,32 @@ export const Main: React.FC<{ site: Types.Site }> = ({ site }) => {
                 )}
               </Link>
 
-              <nav className="hidden md:block">
-                <ul className="flex space-x-4">
-                  <MenuItems site={site} />
-                </ul>
-              </nav>
-              <button
-                className="md:hidden"
-                type="button"
-                aria-label="Open Menu"
-                onClick={() => setIsMenuOpen((open) => !open)}
-              >
-                <div className="w-5 h-5">
-                  <Ui.Icons.Openface />
-                </div>
-              </button>
+              {/* legacy support for Jerumai's site (social media links instead of menu) */}
+              {site.slug !== 'jerumai' ? (
+                <>
+                  <nav className="hidden md:block">
+                    <ul className="flex space-x-4">
+                      <MenuItems site={site} />
+                    </ul>
+                  </nav>
+                  <button
+                    className="md:hidden"
+                    type="button"
+                    aria-label="Open Menu"
+                    onClick={() => setIsMenuOpen((open) => !open)}
+                  >
+                    <div className="w-5 h-5">
+                      <Ui.Icons.Openface />
+                    </div>
+                  </button>
+                </>
+              ) : (
+                <SocialMediaLinks site={site} />
+              )}
             </div>
           </Ui.Container>
         </div>
+        {/* Dropdown menu (mobile only) */}
         <div
           className={Utils.cx([
             'md:hidden absolute left-0 right-0 z-40',
@@ -136,5 +144,19 @@ const MenuItems: React.FC<{ site: Types.Site }> = ({ site }) => {
         </Link>
       </li>
     </>
+  );
+};
+
+const SocialMediaLinks: React.FC<{ site: Types.Site }> = ({ site }) => {
+  return (
+    <div className="flex gap-x-4">
+      {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
+        return (
+          <div key={socialMediaLink._key} className="w-6">
+            <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
+          </div>
+        );
+      })}
+    </div>
   );
 };

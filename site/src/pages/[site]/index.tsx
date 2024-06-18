@@ -10,7 +10,7 @@ const SitesShow: Next.NextPage<Next.InferGetStaticPropsType<typeof getStaticProp
   site,
   latestRecipes,
 }) => {
-  // legacy support for Jerumai's site, the homepage shows the Recipe index
+  // legacy support for Jerumai's site (uses Recipe index as homepage)
   if (site.slug === 'jerumai') {
     return <Views.RecipesIndex site={site} />;
   }

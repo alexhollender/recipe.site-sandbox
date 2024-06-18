@@ -329,6 +329,7 @@ export type Site = {
   about: PortableText;
   featuredImage: Image;
   logo: Image | null;
+  favicon: Image | null;
   colorTheme: ColorTheme | null;
   typeTheme: TypeTheme | null;
   cssOverrides: string | null;

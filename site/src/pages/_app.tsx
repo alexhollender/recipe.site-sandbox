@@ -28,7 +28,6 @@ const App: React.FC<NextApp.AppProps> = ({ Component, pageProps }) => {
         <title>{site.title}</title>
         <meta name="description" content={site.aboutShortPlaintext} key="description" />
         <meta name="author" content={site.authors[0].name} key="author" />
-
         <meta property="og:title" content={site.title} key="ogTitle" />
         <meta property="og:description" content={site.aboutShortPlaintext} key="ogDescription" />
         <meta property="og:site_name" content={site.title} key="siteName" />
@@ -66,6 +65,13 @@ const App: React.FC<NextApp.AppProps> = ({ Component, pageProps }) => {
           content={Sanity.ImageBuilder.image(site.featuredImage).width(800).height(600).url()}
           key="twitterImage"
         />
+        {site.favicon && (
+          <link
+            rel="icon"
+            type="image/x-icon"
+            href={Sanity.ImageBuilder.image(site.favicon).url()}
+          />
+        )}
       </Head>
       {site.colorTheme && (
         <style>{`

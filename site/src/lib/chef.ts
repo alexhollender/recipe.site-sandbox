@@ -349,6 +349,7 @@ const SITE_QUERY = groq`
     about[] ${RICHTEXT_QUERY},
     featuredImage ${IMAGE_QUERY},
     logo ${IMAGE_QUERY},
+    favicon ${IMAGE_QUERY},
     colorTheme -> ${COLOR_THEME_QUERY},
     typeTheme -> ${TYPE_THEME_QUERY},
     cssOverrides,

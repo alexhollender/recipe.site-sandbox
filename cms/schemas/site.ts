@@ -381,6 +381,14 @@ export default Sanity.defineType({
       group: 'theme',
     },
     {
+      name: 'favicon',
+      title: 'Favicon',
+      description: 'The icon used in the browser tab. Must be a 32x32px square.',
+      type: 'image',
+      group: 'theme',
+      // should add validation
+    },
+    {
       name: 'colorTheme',
       title: 'Color Theme',
       group: 'theme',

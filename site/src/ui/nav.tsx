@@ -2,7 +2,6 @@
 
 import * as Navigation from 'next/navigation';
 import * as React from 'react';
-import * as Site from '@/lib/site';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
 import * as Utils from '@/lib/utils';
@@ -150,13 +149,7 @@ const MenuItems: React.FC<{ site: Types.Site }> = ({ site }) => {
 const SocialMediaLinks: React.FC<{ site: Types.Site }> = ({ site }) => {
   return (
     <div className="flex gap-x-4">
-      {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-        return (
-          <div key={socialMediaLink._key} className="w-6">
-            <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-          </div>
-        );
-      })}
+      <Ui.SocialMediaLinks socialMediaLinks={site.socialMediaLinks} />
     </div>
   );
 };

@@ -25,14 +25,8 @@ const About: Next.NextPage<AboutProps> = (props) => {
           </div>
           <Ui.Richtext.Styled style="narrative" content={props.site.about} />
           {props.site.socialMediaLinks.length > 0 && (
-            <div className="mt-6 flex space-x-5 text-text">
-              {props.site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-                return (
-                  <div key={socialMediaLink._key} className="w-8">
-                    <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-                  </div>
-                );
-              })}
+            <div className="mt-6 flex gap-x-6">
+              <Ui.SocialMediaLinks socialMediaLinks={props.site.socialMediaLinks} />
             </div>
           )}
         </div>

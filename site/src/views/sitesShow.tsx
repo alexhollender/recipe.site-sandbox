@@ -148,14 +148,8 @@ const AboutSection = ({ site }: { site: Types.Site }) => {
             <Ui.Richtext.Styled style="narrative" content={site.about} />
 
             {site.socialMediaLinks.length > 0 && (
-              <div className="mt-6 flex space-x-5 text-text">
-                {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-                  return (
-                    <div key={socialMediaLink._key} className="w-8">
-                      <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-                    </div>
-                  );
-                })}
+              <div className="mt-6 flex gap-x-6">
+                <Ui.SocialMediaLinks socialMediaLinks={site.socialMediaLinks} />
               </div>
             )}
           </div>

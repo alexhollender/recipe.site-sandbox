@@ -267,14 +267,8 @@ const Bio = ({ site }: { site: Types.Site }) => {
       </div>
 
       {site.socialMediaLinks.length > 0 && (
-        <div className="mt-6 justify-center flex space-x-5 text-text">
-          {site.socialMediaLinks.slice(0, 3).map((socialMediaLink) => {
-            return (
-              <div key={socialMediaLink._key} className="w-6">
-                <Ui.SocialMediaLink socialMediaLink={socialMediaLink} />
-              </div>
-            );
-          })}
+        <div className="mt-6 justify-center flex gap-x-6">
+          <Ui.SocialMediaLinks socialMediaLinks={site.socialMediaLinks} />
         </div>
       )}
     </div>

@@ -37,4 +37,4 @@ export * as ToggleGroup from '@/ui/toggleGroup';
 
 export { default as Measurement } from '@/ui/measurement';
 export { default as IngredientUsageAmount } from '@/ui/ingredientUsageAmount';
-export { default as SocialMediaLink } from '@/ui/socialMediaLink';
+export { default as SocialMediaLinks } from '@/ui/socialMedia';

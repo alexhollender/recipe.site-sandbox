@@ -1,6 +1,5 @@
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
-import * as Icons from '@/ui/icons';
 
 import Link from 'next/link';
 
@@ -22,10 +21,30 @@ const SocialMediaLink: React.FC<SocialMediaLinkProps> = ({ socialMediaLink }) =>
   const Icon = IconMap[socialMediaLink.platform];
 
   return (
-    <Link href={socialMediaLink.url} className="hover:opacity-60 transition-opacity">
+    <Link
+      href={socialMediaLink.url}
+      target="_blank"
+      className="hover:opacity-60 transition-opacity"
+    >
       <Icon />
     </Link>
   );
 };
 
-export default SocialMediaLink;
+type SocialMediaLinkGroupProps = {
+  socialMediaLinks: Types.SocialMediaLink[];
+};
+
+const SocialMediaLinks: React.FC<SocialMediaLinkGroupProps> = ({ socialMediaLinks }) => {
+  return (
+    <>
+      {socialMediaLinks.slice(0, 3).map((socialMediaLink) => (
+        <div key={socialMediaLink._key} className="w-6">
+          <SocialMediaLink socialMediaLink={socialMediaLink} />
+        </div>
+      ))}
+    </>
+  );
+};
+
+export default SocialMediaLinks;

@@ -17,6 +17,8 @@ const DomainsToSanitySlugs: Record<string, string> = {
   'citrusandroots.com': 'citrusandroots',
   'chungeats.com': 'chungeats',
   'www.chungeats.com': 'chungeats',
+  'jerumai.com': 'jerumai',
+  'www.jerumai.com': 'jerumai',
 };
 
 export function middleware(request: Server.NextRequest) {

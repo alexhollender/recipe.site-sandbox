@@ -36,6 +36,8 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
     setIsNotesDisplayed((state) => !state);
   };
 
+  Utils.useWakeLock();
+
   return (
     <div className="RecipePage">
       <Script

@@ -1,3 +1,4 @@
+import * as React from 'react';
 export { default as pluralize } from 'pluralize';
 
 // export * from '@shared/utils';
@@ -128,4 +129,66 @@ export const toRoundedFraction = (number: number): string => {
   // Return the combined string of the whole part and the fraction symbol
   // using `\u00A0` instead of a space, because in Graphik font it was rendering a kind of ghost " instead of a space
   return `${Math.floor(number)}\u00A0${fractionSymbol || ''}`;
+};
+
+type WakeLockSentinel = {
+  release: () => Promise<void>;
+  addEventListener: (type: 'release', listener: () => void) => void;
+};
+
+export const useWakeLock = (): void => {
+  const wakeLockRef = React.useRef<WakeLockSentinel | null>(null);
+
+  const release = () => {
+    if (wakeLockRef.current !== null) {
+      wakeLockRef.current
+        .release()
+        .then(() => {
+          wakeLockRef.current = null;
+          console.log('Wake lock released');
+        })
+        .catch((err) => {
+          console.error(`Failed to release wake lock: ${(err as Error).message}`);
+        });
+    }
+  };
+
+  const handleReFocus = async () => {
+    if (document.visibilityState === 'visible') {
+      try {
+        const lock = await navigator.wakeLock.request('screen');
+        wakeLockRef.current = lock;
+        console.log('Handle refocus');
+      } catch (err) {
+        console.error(`Failed to re-request wake lock: ${(err as Error).message}`);
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    if ('wakeLock' in navigator) {
+      const requestWakeLock = async () => {
+        try {
+          const lock = await navigator.wakeLock.request('screen');
+          wakeLockRef.current = lock;
+
+          console.log('Wake lock on');
+        } catch (err) {
+          console.error(`Failed to request wake lock: ${(err as Error).message}`);
+        }
+      };
+
+      requestWakeLock();
+
+      document.addEventListener('visibilitychange', handleReFocus);
+
+      return () => {
+        if (wakeLockRef.current) {
+          release();
+        }
+
+        document.removeEventListener('visibilitychange', handleReFocus);
+      };
+    }
+  }, []);
 };

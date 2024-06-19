@@ -336,7 +336,10 @@ export default Sanity.defineType({
                   type: 'url',
                   title: 'URL',
                   validation: (Rule) =>
-                    Rule.uri({ allowRelative: false, scheme: ['http', 'https', 'mailto'] }),
+                    Rule.required().uri({
+                      allowRelative: false,
+                      scheme: ['http', 'https', 'mailto'],
+                    }),
                 },
               ],
             },

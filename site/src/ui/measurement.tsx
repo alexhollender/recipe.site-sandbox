@@ -9,7 +9,7 @@ const Measurement: React.FC<React.PropsWithChildren<{ unit: Types.Unit; quantity
   const siteContext = SiteContext.useContext();
 
   /*
-  If our unit isn't temperature, we don't currently support conversion.
+  If the unit isn't temperature, we don't currently support conversion.
   If the unit is in Fahrenheit and the site is in Fahrenheit, we don't convert.
   If the unit is in Celsius and the site is in Celsius, we don't convert.
   */
@@ -19,9 +19,10 @@ const Measurement: React.FC<React.PropsWithChildren<{ unit: Types.Unit; quantity
     (unit.slug === 'celsius' && siteContext.state.temperatureSystem === 'celsius')
   ) {
     return (
-      <span>
+      <span className="Measurement">
         {quantity}
-        {unit.title}
+        {unit.title !== '°F' && unit.title !== '°C' ? ' ' : ''}
+        {quantity > 1 ? (unit.pluralTitle ? unit.pluralTitle : unit.title) : unit.title}
       </span>
     );
   }

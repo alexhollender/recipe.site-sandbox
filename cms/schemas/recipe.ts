@@ -92,8 +92,8 @@ const Recipe = Sanity.defineType({
     },
     {
       name: 'description',
-      title: 'Description',
-      type: 'richtextRecipe',
+      title: 'Subtitle',
+      type: 'richtextSimple',
       group: 'intro',
     },
     {

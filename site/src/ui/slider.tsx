@@ -133,7 +133,7 @@ const SliderControlsOverlay: React.FC<SliderControlsProps> = ({
         <button
           type="button"
           onClick={onPreviousItem}
-          className="hidden sm:flex absolute top-1/2 transform -translate-y-1/2 left-0 p-4 md:pl-8 md:pr-16 md:h-full z-20 items-center justify-start group"
+          className="hidden sm:flex absolute top-1/2 transform -translate-y-1/2 left-0 p-4 md:pl-6 md:pr-12 md:h-full z-20 items-center justify-start group"
           aria-label="Previous Image"
         >
           <div className="h-6 md:h-9 w-6 md:w-9 text-white opacity-85 group-hover:opacity-100 transition-opacity filter drop-shadow-sm">
@@ -145,7 +145,7 @@ const SliderControlsOverlay: React.FC<SliderControlsProps> = ({
         <button
           type="button"
           onClick={onNextItem}
-          className="hidden sm:flex absolute top-1/2 transform -translate-y-1/2 right-0 p-4 md:pr-8 md:pl-16 md:h-full z-20 items-center justify-end group"
+          className="hidden sm:flex absolute top-1/2 transform -translate-y-1/2 right-0 p-4 md:pr-6 md:pl-12 md:h-full z-20 items-center justify-end group"
           aria-label="Next Image"
         >
           <div

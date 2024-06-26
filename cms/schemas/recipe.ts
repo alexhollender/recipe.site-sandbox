@@ -119,13 +119,13 @@ const Recipe = Sanity.defineType({
     },
     {
       name: 'storyExcerpt',
-      title: 'Story Excerpt',
+      title: 'Story/description',
       type: 'richtext',
       group: 'intro',
     },
     {
       name: 'storyMore',
-      title: 'Story More',
+      title: 'Story/description (hidden behind "Read more" button)',
       type: 'richtext',
       group: 'intro',
     },

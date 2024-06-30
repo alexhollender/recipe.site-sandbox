@@ -137,7 +137,7 @@ const AboutSection = ({ site }: { site: Types.Site }) => {
         <Ui.Grid>
           <div className="col-span-12 md:col-span-6 text-accent">
             <div className="mb-5">
-              <Ui.Text.Lead bold as="h2">
+              <Ui.Text.Lead as="h2">
                 {site.aboutHeading ? (
                   <Ui.Richtext.Inherited content={site.aboutHeading} />
                 ) : (

@@ -57,10 +57,10 @@ export const Highlight: TextComponent = (props) =>
     boldWeight: 'type-highlight-bold',
   });
 
-export const Tagline: TextComponent = (props) =>
+export const Body: TextComponent = (props) =>
   TextStyle(props, {
-    baseWeight: 'type-tagline',
-    boldWeight: 'type-tagline-bold',
+    baseWeight: 'type-body',
+    boldWeight: 'type-body-bold',
   });
 
 export const Label: TextComponent = (props) =>
@@ -69,14 +69,14 @@ export const Label: TextComponent = (props) =>
     boldWeight: 'type-label-bold',
   });
 
-export const Body: TextComponent = (props) =>
-  TextStyle(props, {
-    baseWeight: 'type-body',
-    boldWeight: 'type-body-bold',
-  });
+// export const BodySmall: TextComponent = (props) =>
+//   TextStyle(props, {
+//     baseWeight: 'type-body',
+//     boldWeight: 'type-body-bold',
+//   });
 
-export const Detail: TextComponent = (props) =>
-  TextStyle(props, {
-    baseWeight: 'type-detail',
-    boldWeight: 'type-detail-bold',
-  });
+// export const Detail: TextComponent = (props) =>
+//   TextStyle(props, {
+//     baseWeight: 'type-detail',
+//     boldWeight: 'type-detail-bold',
+//   });

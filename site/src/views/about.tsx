@@ -14,13 +14,11 @@ const About: Next.NextPage<AboutProps> = (props) => {
         <div className="col-span-12 md:col-span-6 text-accent">
           <div className="mb-3">
             {props.site.aboutHeading ? (
-              <Ui.Text.Lead bold as="h1">
+              <Ui.Text.Lead as="h1">
                 <Ui.Richtext.Inherited content={props.site.aboutHeading} />
               </Ui.Text.Lead>
             ) : (
-              <Ui.Text.Lead bold as="h1">
-                About
-              </Ui.Text.Lead>
+              <Ui.Text.Lead as="h1">About</Ui.Text.Lead>
             )}
           </div>
           <Ui.Richtext.Styled style="narrative" content={props.site.about} />

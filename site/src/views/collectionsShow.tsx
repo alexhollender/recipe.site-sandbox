@@ -14,14 +14,12 @@ const CollectionsShow: Next.NextPage<CollectionsShowProps> = (props) => {
   return (
     <Ui.Container>
       <div className="mb-3 text-accent">
-        <Ui.Text.Lead bold as="h1">
-          {props.collection.title}
-        </Ui.Text.Lead>
+        <Ui.Text.Lead as="h1">{props.collection.title}</Ui.Text.Lead>
       </div>
       <div className="mb-5 text-text">
-        <Ui.Text.Tagline>
+        <Ui.Text.Body>
           <Ui.Richtext.Inherited content={props.collection.description} />
-        </Ui.Text.Tagline>
+        </Ui.Text.Body>
       </div>
       <section>
         <Ui.Grid>

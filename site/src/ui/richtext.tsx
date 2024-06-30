@@ -101,7 +101,7 @@ export const Styled: React.FC<StyledRichtextProps> = ({ content, style }) => {
       className={Utils.cx([
         'space-y-3',
         {
-          'type-tagline': style === 'narrative',
+          'type-body': style === 'narrative',
           'type-label': style === 'interface',
         },
       ])}

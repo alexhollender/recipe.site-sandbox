@@ -57,9 +57,9 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                 </Ui.Text.Lead>
               </div>
               {props.recipe.description && (
-                <Ui.Text.Tagline className="text-subdued">
+                <Ui.Text.Body className="text-subdued">
                   <Ui.Richtext.Inherited content={props.recipe.description} />
-                </Ui.Text.Tagline>
+                </Ui.Text.Body>
               )}
               <div className="text-text">
                 <Timing recipe={props.recipe} />
@@ -254,9 +254,9 @@ const Bio = ({ site }: { site: Types.Site }) => {
       )}
       {site.aboutShort && (
         <div className="mt-6 text-subdued">
-          <Ui.Text.Tagline>
+          <Ui.Text.Body>
             <Ui.Richtext.Inherited content={site.aboutShort} />
-          </Ui.Text.Tagline>
+          </Ui.Text.Body>
         </div>
       )}
 

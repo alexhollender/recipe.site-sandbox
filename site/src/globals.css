@@ -12,9 +12,9 @@
   --color-emphasis: #8d8d8d;
   --color-outline: #d9d9d9;
 
-  --font-family-narrative: 'Times New Roman', 'serif';
-  --font-family-interface: 'Arial', 'sans-serif';
-  --font-family-display: var(--font-interface);
+  --font-family-narrative: 'Times New Roman', serif;
+  --font-family-interface: 'Arial', sans-serif;
+  --font-family-display: 'Courier New', monospace;
 
   --font-weight-narrative-normal: 400;
   --font-weight-narrative-bold: 700;
@@ -129,14 +129,14 @@ strong {
   line-height: 1.5rem;
 }
 
-.type-tagline {
+.type-body {
   font-family: var(--font-family-narrative);
   font-weight: var(--font-weight-narrative-normal);
   font-size: 1.125rem;
   line-height: 1.875rem;
 }
 
-.type-tagline-bold {
+.type-body-bold {
   font-family: var(--font-family-narrative);
   font-weight: var(--font-weight-narrative-bold);
   font-size: 1.125rem;
@@ -155,31 +155,31 @@ strong {
   font-size: 1rem;
 }
 
-.type-body {
+/* .type-tagline {
   font-family: var(--font-family-narrative);
   font-weight: var(--font-weight-narrative-normal);
   font-size: 1rem;
   line-height: 1.75rem;
-}
+} */
 
-.type-body-bold {
+/* .type-tagline-bold {
   font-family: var(--font-family-narrative);
   font-weight: var(--font-weight-narrative-bold);
   font-size: 1rem;
   line-height: 1.75rem;
-}
+} */
 
-.type-detail {
+/* .type-detail {
   font-family: var(--font-family-interface);
   font-weight: var(--font-weight-interface-normal);
   font-size: 0.75rem;
-}
+} */
 
-.type-detail-bold {
+/* .type-detail-bold {
   font-family: var(--font-family-interface);
   font-weight: var(--font-weight-interface-bold);
   font-size: 0.75rem;
-}
+} */
 
 .instruction-counter {
   counter-reset: instructions;

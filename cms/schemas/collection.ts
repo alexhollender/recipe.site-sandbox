@@ -50,7 +50,6 @@ export default Sanity.defineType({
       name: 'description',
       title: 'Description',
       type: 'richtextSimple',
-      validation: (Rule) => Rule.required(),
     },
     {
       name: 'featuredMedia',

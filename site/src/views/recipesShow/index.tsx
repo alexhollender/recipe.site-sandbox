@@ -185,7 +185,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
             </div>
           </div>
           <div className="col-span-12 md:col-span-7 instruction-counter">
-            <div className="mt-5 text-text InstructionsHeading">
+            <div className="md:mt-6 text-text InstructionsHeading">
               <Ui.Text.Title bold as="h2">
                 Instructions
               </Ui.Text.Title>

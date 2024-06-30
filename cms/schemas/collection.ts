@@ -61,7 +61,6 @@ export default Sanity.defineType({
       name: 'color',
       title: 'Color',
       type: 'color',
-      validation: (Rule) => Rule.required(),
     },
   ],
 });

@@ -12,6 +12,7 @@ export const FontFamilies = {
   'ivypresto-display': 'IvyPresto Display, Times New Roman, serif',
   moret: 'Moret, Times New Roman, serif',
   'itc-clearface': 'ITC Clearface, Times New Roman, serif',
+  'itc-garamond-condensed': 'ITC Garamond Condensed, Times New Roman, serif',
   family: 'Family, Times New Roman, serif',
   graphik: 'Graphik, Helvetica, sans-serif',
   'roboto-mono': 'Roboto Mono, Courier New, monospace',

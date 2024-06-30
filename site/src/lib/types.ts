@@ -282,6 +282,7 @@ export type FontFamily =
   | 'ivypresto-display'
   | 'moret'
   | 'itc-clearface'
+  | 'itc-garamond-condensed'
   | 'family'
   | 'graphik'
   | 'roboto-mono'

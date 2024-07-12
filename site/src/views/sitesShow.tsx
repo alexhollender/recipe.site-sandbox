@@ -78,7 +78,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       {props.site.productLinks && (
         <section className="mt-16 md:mt-28 first-of-type:mt-2 Products">
           <Ui.Slider.Slider
-            items={props.site.featuredRecipes.length}
+            items={props.site.productLinks.length}
             controlType="header"
             heading="My favorite products"
             wrapperClasses="max-w-[120rem] mx-auto"

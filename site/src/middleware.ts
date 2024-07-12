@@ -12,13 +12,16 @@ This maps from URL to Sanity site slug.
 For example 'www.bersumac.com' will map to 'bersumar' slug.
 */
 const DomainsToSanitySlugs: Record<string, string> = {
+  'jerumai.com': 'jerumai',
+  'www.jerumai.com': 'jerumai',
   'bersumac.com': 'bersumac',
   'www.bersumac.com': 'bersumac',
   'citrusandroots.com': 'citrusandroots',
+  'www.citrusandroots.com': 'citrusandroots',
   'chungeats.com': 'chungeats',
   'www.chungeats.com': 'chungeats',
-  'jerumai.com': 'jerumai',
-  'www.jerumai.com': 'jerumai',
+  'drmattcooks.com': 'drmattcooks',
+  'www.drmattcooks.com': 'drmattcooks',
 };
 
 export function middleware(request: Server.NextRequest) {

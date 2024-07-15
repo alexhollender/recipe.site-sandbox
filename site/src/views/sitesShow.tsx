@@ -45,6 +45,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.Slider>
         </section>
       )}
+      {/* Latest recipes (if there are no featured recipes) */}
+      {!props.site.featuredRecipes && <LatestRecipesSection latestRecipes={props.latestRecipes} />}
       {/* Collections */}
       {props.site.collections && (
         <section className="mt-14 md:mt-28 first-of-type:mt-2 Collections">
@@ -71,9 +73,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.Slider>
         </section>
       )}
-      {/* Show Conor */}
       {/* About 1 */}
-      {props.site.featuredRecipes && <AboutSection site={props.site} />}
+      <AboutSection site={props.site} />
       {/* Products */}
       {props.site.productLinks && (
         <section className="mt-16 md:mt-28 first-of-type:mt-2 Products">
@@ -101,34 +102,38 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
         </section>
       )}
       {/* Latest recipes */}
-      <section className="mt-20 md:mt-28 first-of-type:mt-2 LatestRecipes">
-        <Ui.Container>
-          <div className="mb-3 flex justify-between items-center text-text">
-            <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>
-            <Link href="/recipes">
-              <Ui.Text.Label bold className="hover:opacity-60 transition-opacity">
-                View all
-              </Ui.Text.Label>
-            </Link>
-          </div>
-          <Ui.Grid>
-            {props.latestRecipes.map((recipe) => {
-              return (
-                <div key={recipe._id} className="col-span-12 md:col-span-6 lg:col-span-4">
-                  <Ui.Cards.Recipe recipe={recipe} />
-                </div>
-              );
-            })}
-          </Ui.Grid>
-        </Ui.Container>
-      </section>
-      {/* About 2 */}
-      {!props.site.featuredRecipes && <AboutSection site={props.site} />}
+      {props.site.featuredRecipes && <LatestRecipesSection latestRecipes={props.latestRecipes} />}
     </div>
   );
 };
 
 export default SitesShow;
+
+const LatestRecipesSection = ({ latestRecipes }: { latestRecipes: Types.RecipePreview[] }) => {
+  return (
+    <section className="mt-20 md:mt-28 first-of-type:mt-2 LatestRecipes">
+      <Ui.Container>
+        <div className="mb-3 flex justify-between items-center text-text">
+          <Ui.Text.Title as="h2">Latest recipes</Ui.Text.Title>
+          <Link href="/recipes">
+            <Ui.Text.Label bold className="hover:opacity-60 transition-opacity">
+              View all
+            </Ui.Text.Label>
+          </Link>
+        </div>
+        <Ui.Grid>
+          {latestRecipes.map((recipe) => {
+            return (
+              <div key={recipe._id} className="col-span-12 md:col-span-6 lg:col-span-4">
+                <Ui.Cards.Recipe recipe={recipe} />
+              </div>
+            );
+          })}
+        </Ui.Grid>
+      </Ui.Container>
+    </section>
+  );
+};
 
 const AboutSection = ({ site }: { site: Types.Site }) => {
   return (

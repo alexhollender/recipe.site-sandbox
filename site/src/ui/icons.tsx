@@ -259,6 +259,22 @@ export const SocialMedia = {
       </svg>
     );
   },
+  Email: () => {
+    return (
+      <svg
+        width="100%"
+        height="auto"
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M34.4 5.6H5.6C3.62 5.6 2.018 7.22 2.018 9.2L2 30.8C2 32.78 3.62 34.4 5.6 34.4H34.4C36.38 34.4 38 32.78 38 30.8V9.2C38 7.22 36.38 5.6 34.4 5.6ZM34.4 12.8L20 21.8L5.6 12.8V9.2L20 18.2L34.4 9.2V12.8Z"
+          fill="black"
+        />
+      </svg>
+    );
+  },
   Facebook: () => {
     return (
       <svg

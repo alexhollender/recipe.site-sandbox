@@ -93,6 +93,7 @@ export default Sanity.defineType({
               options: {
                 list: [
                   { title: 'Discord', value: 'discord' },
+                  { title: 'Email', value: 'email' },
                   { title: 'Instagram', value: 'instagram' },
                   { title: 'Pinterest', value: 'pinterest' },
                   { title: 'Substack', value: 'substack' },

@@ -1,4 +1,4 @@
-export const Play = () => {
+export const PlayVideo = () => {
   return (
     <svg
       width="100"

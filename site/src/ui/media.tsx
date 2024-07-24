@@ -126,7 +126,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
           aria-label="Play Video"
           onClick={onPlay}
         >
-          <Icons.Play />
+          <Icons.PlayVideo />
         </button>
       )}
 
@@ -138,7 +138,7 @@ export const Video: React.FC<VideoProps> = ({ video, className, ...props }) => {
           onClick={onPause}
         >
           <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity">
-            <Icons.Pause />
+            <Icons.PauseVideo />
           </div>
         </button>
       )}

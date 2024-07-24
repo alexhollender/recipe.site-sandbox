@@ -32,7 +32,7 @@ export const Popover: React.FC<PopoverProps> = ({ trigger, position, children })
       {/* modal container */}
       <div
         className={Utils.cx([
-          'relative z-50',
+          `absolute z-50 -${position}-2`,
           {
             visible: isOpen,
             'invisible pointer-events-none': !isOpen,
@@ -55,7 +55,7 @@ export const Popover: React.FC<PopoverProps> = ({ trigger, position, children })
         {/* popover content */}
         <menu
           className={Utils.cx([
-            `absolute -${position}-2 rounded-lg bg-background shadow-xl border border-panel`,
+            `relative z-10 rounded-lg bg-background shadow-xl border border-panel`,
             {
               block: isOpen,
               hidden: !isOpen,

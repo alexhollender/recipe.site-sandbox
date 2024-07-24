@@ -73,7 +73,6 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.Slider>
         </section>
       )}
-      {/* About 1 */}
       <AboutSection site={props.site} />
       {/* Products */}
       {props.site.productLinks && (

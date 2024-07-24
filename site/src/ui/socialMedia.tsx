@@ -9,6 +9,7 @@ type SocialMediaLinkProps = {
 
 const IconMap: Record<Types.SocialMediaLink['platform'], React.FC> = {
   discord: Ui.Icons.SocialMedia.Discord,
+  email: Ui.Icons.SocialMedia.Email,
   instagram: Ui.Icons.SocialMedia.Instagram,
   pinterest: Ui.Icons.SocialMedia.Pinterest,
   substack: Ui.Icons.SocialMedia.Substack,

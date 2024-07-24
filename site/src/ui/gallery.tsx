@@ -10,7 +10,7 @@ type GalleryProps = {
 };
 
 const Gallery: React.FC<GalleryProps> = ({ media }) => {
-  const [activeMediaIndex, setActiveMediaIndex] = React.useState(0);
+  const [activeMediaIndex, setActiveMediaIndex] = React.useState<number>(0);
   const [videoPlayStates, setVideoPlayStates] = React.useState<('paused' | 'playing')[]>(
     media.map(() => 'paused'),
   );

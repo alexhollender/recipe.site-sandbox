@@ -13,7 +13,7 @@ type RecipeCardProps = {
 };
 
 export const Recipe: React.FC<RecipeCardProps> = ({ recipe }) => {
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState<boolean>(false);
   const onMouseOver = () => setIsHovered(true);
   const onMouseOut = () => setIsHovered(false);
 
@@ -65,7 +65,7 @@ type CollectionCardProps = {
 };
 
 export const Collection: React.FC<CollectionCardProps> = ({ collection }) => {
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState<boolean>(false);
   const onMouseOver = () => setIsHovered(true);
   const onMouseOut = () => setIsHovered(false);
 

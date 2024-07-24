@@ -10,7 +10,7 @@ type StoryProps = {
 };
 
 const Story: React.FC<StoryProps> = ({ storyExcerpt, storyMore }) => {
-  const [showMore, setShowMore] = React.useState(false);
+  const [showMore, setShowMore] = React.useState<boolean>(false);
 
   const onShowMore = () => setShowMore(true);
   const onShowLess = () => setShowMore(false);

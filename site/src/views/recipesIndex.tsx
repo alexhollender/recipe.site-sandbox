@@ -12,7 +12,7 @@ type RecipesIndexProps = {
 };
 
 const RecipesIndex: Next.NextPage<RecipesIndexProps> = (props) => {
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
   // const [isFilterPaneDisplayed, setIsFilterPaneDisplayed] = React.useState(false);
 
   const fuse = React.useMemo(() => {

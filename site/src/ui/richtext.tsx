@@ -54,7 +54,7 @@ const RichtextComponents: Partial<PortableTextReactComponents> = {
     },
     link: ({ children, value }) => {
       return (
-        <Link href={value.href} className="underline hover:opacity-50 transition-opacity">
+        <Link href={value.href} className="underline hover:opacity-60 transition-opacity">
           {children}
         </Link>
       );

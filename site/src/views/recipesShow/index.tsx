@@ -23,8 +23,8 @@ type RecipesShowProps = {
 };
 
 const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
-  const [isIngredientsDisplayed, setIsIngredientsDisplayed] = React.useState(true);
-  const [isNotesDisplayed, setIsNotesDisplayed] = React.useState(true);
+  const [isIngredientsDisplayed, setIsIngredientsDisplayed] = React.useState<boolean>(true);
+  const [isNotesDisplayed, setIsNotesDisplayed] = React.useState<boolean>(true);
 
   const mediaArray = [props.recipe.featuredMedia, ...(props.recipe.media || [])];
 
@@ -51,10 +51,13 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
         <Ui.Grid>
           <div className="col-span-12 lg:col-span-8">
             <header className="space-y-2 mb-3">
-              <div className="text-accent">
-                <Ui.Text.Lead as="h1" bold>
-                  {props.recipe.title}
-                </Ui.Text.Lead>
+              <div className="text-accent flex items-baseline">
+                <div className="grow">
+                  <Ui.Text.Lead as="h1" bold>
+                    {props.recipe.title}
+                  </Ui.Text.Lead>
+                </div>
+                <Ui.ShareMenu.ShareMenu />
               </div>
               {props.recipe.description && (
                 <Ui.Text.Body className="text-subdued">
@@ -280,7 +283,7 @@ const Bio = ({ site }: { site: Types.Site }) => {
 const InstructionGroup = ({ instructionGroup }: { instructionGroup: Types.InstructionGroup }) => {
   const recipeContext = RecipeContext.useContext();
 
-  const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const [isCollapsed, setIsCollapsed] = React.useState<boolean>(false);
 
   const onToggleIsCollapsed = () => {
     setIsCollapsed((state) => !state);

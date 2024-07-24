@@ -13,7 +13,7 @@ type MainNavProps = {
 };
 
 export const Main: React.FC<{ site: Types.Site }> = ({ site }) => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   const pathname = Navigation.usePathname();
 
   React.useEffect(() => {

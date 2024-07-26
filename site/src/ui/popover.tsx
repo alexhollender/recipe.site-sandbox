@@ -13,6 +13,7 @@ type PopoverProps = {
 export const Popover: React.FC<PopoverProps> = ({ trigger, position, children }) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const pathname = Navigation.usePathname();
+  const positionClass = `-${position}-2`;
 
   React.useEffect(() => {
     setIsOpen(false);
@@ -32,7 +33,8 @@ export const Popover: React.FC<PopoverProps> = ({ trigger, position, children })
       {/* modal container */}
       <div
         className={Utils.cx([
-          `absolute z-50 -${position}-2`,
+          `absolute z-50`,
+          positionClass,
           {
             visible: isOpen,
             'invisible pointer-events-none': !isOpen,

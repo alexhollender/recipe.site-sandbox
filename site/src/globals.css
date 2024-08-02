@@ -977,3 +977,59 @@ strong {
   font-weight: 600;
   font-style: italic;
 }
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Light.woff2);
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Regular.woff2);
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Regular\ Italic.woff2);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Semibold.woff2);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Semibold\ Italic.woff2);
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Bold\ Italic.woff2);
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Calluna;
+  src: url(../public/fonts/Calluna/Callula\ Black.woff2);
+  font-weight: 900;
+  font-style: normal;
+}

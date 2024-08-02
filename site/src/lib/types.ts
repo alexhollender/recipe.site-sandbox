@@ -296,6 +296,7 @@ export type FontFamily =
   | 'roboto-mono'
   // Narrative
   | 'ivypresto-text'
+  | 'calluna'
   // Interface
   | 'franklin-gothic'
   | 'helvetica'

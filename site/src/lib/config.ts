@@ -18,6 +18,7 @@ export const FontFamilies = {
   'roboto-mono': 'Roboto Mono, Courier New, monospace',
   // Narrative
   'ivypresto-text': 'IvyPresto Text, Times New Roman, serif',
+  calluna: 'Calluna, Times New Roman, serif',
   // Interface
   helvetica: 'Helvetica, sans-serif',
   'franklin-gothic': 'Franklin Gothic, Helvetica, sans-serif',

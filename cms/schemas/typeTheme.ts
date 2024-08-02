@@ -23,7 +23,7 @@ export const Font = Sanity.defineType({
           { title: 'Roboto Mono', value: 'roboto-mono' },
           // Narrative
           { title: 'Ivy Presto Text', value: 'ivypresto-text' },
-          { title: 'Calluma', value: 'calluna' },
+          { title: 'Calluna', value: 'calluna' },
           // Interface
           { title: 'Helvetica', value: 'helvetica' },
           { title: 'Franklin Gothic', value: 'franklin-gothic' },

@@ -158,9 +158,7 @@ const RecipesShow: Next.NextPage<RecipesShowProps> = (props) => {
                       <div key={ingredientUsageGroup.title}>
                         {ingredientUsageGroup.title && (
                           <div className="border-b border-outline mb-3 pb-0.5 text-text">
-                            <Ui.Text.Highlight as="h3">
-                              {ingredientUsageGroup.title}
-                            </Ui.Text.Highlight>
+                            <Ui.Text.Label as="h3">{ingredientUsageGroup.title}</Ui.Text.Label>
                           </div>
                         )}
                         <ol className="space-y-2">

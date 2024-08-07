@@ -9,17 +9,6 @@ export const Container: React.FC<React.PropsWithChildren<{ className?: string }>
   );
 };
 
-export const SouffléContainer: React.FC<React.PropsWithChildren<{ className?: string }>> = ({
-  children,
-  className,
-}) => {
-  return (
-    <div className={Utils.cx(['max-w-[120rem] mx-auto souffle-container', className])}>
-      {children}
-    </div>
-  );
-};
-
 export const Grid: React.FC<React.PropsWithChildren> = ({ children }) => {
   return <div className="grid gap-x-2 md:gap-x-10 gap-y-10 grid-cols-12">{children}</div>;
 };

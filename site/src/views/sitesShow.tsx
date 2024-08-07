@@ -5,6 +5,7 @@ import * as React from 'react';
 import * as Types from '@/lib/types';
 import * as Ui from '@/ui';
 import * as Utils from '@/lib/utils';
+import AliceSocialMedia from '@/legacy/aliceSocialMedia';
 
 import Link from 'next/link';
 
@@ -43,6 +44,15 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
           </Ui.Slider.Slider>
         </section>
       )}
+      {/* Legacy support for Alice's site, social media slide */}
+      {props.site.slug === 'alicesun' && (
+        <section className="mt-20 md:mt-28 About">
+          <Ui.Container>
+            <AliceSocialMedia socialMediaLinks={props.site.socialMediaLinks} />
+          </Ui.Container>
+        </section>
+      )}
+
       {/* Latest recipes (if there are no featured recipes) */}
       {!props.site.featuredRecipes && <LatestRecipesSection latestRecipes={props.latestRecipes} />}
       {/* Collections */}

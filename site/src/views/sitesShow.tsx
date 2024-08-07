@@ -21,7 +21,7 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
       </Ui.Text.Title>
       {/* Featured recipes */}
       {props.site.featuredRecipes && (
-        <section>
+        <section id="featuredRecipes">
           <Ui.Slider.Slider
             items={props.site.featuredRecipes.length}
             controlType="header"
@@ -34,10 +34,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
                   key={recipe._id}
                   className="flex-shrink-0 snap-start ps-4 slider-item-container"
                 >
-                  <div className="slider-item-inner">
-                    <div className="max-w-[80vw] w-[30rem]">
-                      <Ui.Cards.Recipe recipe={recipe} />
-                    </div>
+                  <div className="slider-item-inner max-w-[80vw] w-[30rem]">
+                    <Ui.Cards.Recipe recipe={recipe} />
                   </div>
                 </div>
               ))
@@ -62,10 +60,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
                   key={collection._id}
                   className="flex-shrink-0 snap-start ps-4 slider-item-container"
                 >
-                  <div className="slider-item-inner">
-                    <div className="max-w-[80vw] w-[24rem]">
-                      <Ui.Cards.Collection collection={collection} />
-                    </div>
+                  <div className="slider-item-inner max-w-[80vw] w-[24rem]">
+                    <Ui.Cards.Collection collection={collection} />
                   </div>
                 </div>
               ))
@@ -89,10 +85,8 @@ const SitesShow: Next.NextPage<SitesShowProps> = (props) => {
                   key={productLink._key}
                   className="flex-shrink-0 snap-start ps-4 slider-item-container"
                 >
-                  <div className="slider-item-inner">
-                    <div className="max-w-[80vw] w-[22rem]">
-                      <Ui.Cards.ProductLink productLink={productLink} />
-                    </div>
+                  <div className="slider-item-inner max-w-[80vw] w-[22rem]">
+                    <Ui.Cards.ProductLink productLink={productLink} />
                   </div>
                 </div>
               ))

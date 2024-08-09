@@ -21,6 +21,7 @@ export const Font = Sanity.defineType({
           { title: 'Family', value: 'family' },
           { title: 'Graphik', value: 'graphik' },
           { title: 'Roboto Mono', value: 'roboto-mono' },
+          { title: 'Minerva', value: 'minerva' },
           // Narrative
           { title: 'Ivy Presto Text', value: 'ivypresto-text' },
           { title: 'Calluna', value: 'calluna' },

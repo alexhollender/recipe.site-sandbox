@@ -290,6 +290,7 @@ export type FontFamily =
   | 'family'
   | 'graphik'
   | 'roboto-mono'
+  | 'minerva'
   // Narrative
   | 'ivypresto-text'
   | 'calluna'

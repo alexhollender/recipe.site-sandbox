@@ -16,6 +16,7 @@ export const FontFamilies = {
   family: 'Family, Times New Roman, serif',
   graphik: 'Graphik, Helvetica, sans-serif',
   'roboto-mono': 'Roboto Mono, Courier New, monospace',
+  minerva: 'Minerva, Times New Roman, serif',
   // Narrative
   'ivypresto-text': 'IvyPresto Text, Times New Roman, serif',
   calluna: 'Calluna, Times New Roman, serif',

@@ -1068,3 +1068,45 @@ strong {
   font-weight: 900;
   font-style: normal;
 }
+
+@font-face {
+  font-family: Minerva;
+  src: url(../public/fonts/Minerva/Minerva_Modern_book.woff2);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Minerva;
+  src: url(../public/fonts/Minerva/Minerva_Modern_book_italic.woff2);
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Minerva;
+  src: url(../public/fonts/Minerva/Minerva_Modern_bold.woff2);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Minerva;
+  src: url(../public/fonts/Minerva/Minerva_Modern_bold_italic.woff2);
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Minerva;
+  src: url(../public/fonts/Minerva/Minerva_Modern_black.woff2);
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Minerva;
+  src: url(../public/fonts/Minerva/Minerva_Modern_black_italic.woff2);
+  font-weight: 900;
+  font-style: italic;
+}

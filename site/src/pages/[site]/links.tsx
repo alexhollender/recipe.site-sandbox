@@ -19,7 +19,7 @@ const LinksIndex: Next.NextPage<Next.InferGetStaticPropsType<typeof getStaticPro
         <meta property="og:title" content={`My Links • ${site.title}`} key="ogTitle" />
         <meta name="twitter:title" content={`My Links • ${site.title}`} key="twitterTitle" />
       </Head>
-      <Views.LinksIndex site={site} linkList={linkList} />;
+      <Views.LinksIndex site={site} linkList={linkList} />
     </>
   );
 };

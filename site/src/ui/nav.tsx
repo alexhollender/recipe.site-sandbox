@@ -32,7 +32,7 @@ export const Main: React.FC<{ site: Types.Site }> = ({ site }) => {
                     image={site.logo}
                     alt={site.title}
                     placeholder="empty"
-                    className="h-9 w-auto"
+                    className="h-7 md:h-9 w-auto"
                   />
                 ) : (
                   <Ui.Text.Title>{site.title}</Ui.Text.Title>

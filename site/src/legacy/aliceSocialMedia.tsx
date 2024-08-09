@@ -15,7 +15,7 @@ const AliceSocialMedia: React.FC<AliceSocialMediaProps> = ({ socialMediaLinks })
     platforms.includes(item.platform),
   );
   return (
-    <div className="p-12 bg-[#8c8971] text-overlay flex flex-col gap-y-6 items-center">
+    <div className="max-w-[75rem] mx-auto py-12 px-4 bg-[#8c8971] text-overlay flex flex-col gap-y-6 items-center">
       <Ui.Text.Lead as="h2">Follow me</Ui.Text.Lead>
       <div className="grid grid-cols-2">
         {socialMediaLinksFiltered.map((link) => {

@@ -10,8 +10,12 @@ const config: Config = {
         display: 'var(--font-family-display)',
       },
       fontWeight: {
-        normal: 'var(--font-weight-normal)',
-        bold: 'var(--font-weight-bold)',
+        'narrative-normal': 'var(--font-weight-narrative-normal)',
+        'narrative-bold': 'var(--font-weight-narrative-bold)',
+        'interface-normal': 'var(--font-weight-interface-normal)',
+        'interface-bold': 'var(--font-weight-interface-bold)',
+        'display-normal': 'var(--font-weight-display-normal)',
+        'display-bold': 'var(--font-weight-display-bold)',
       },
       colors: {
         text: 'var(--color-text)',

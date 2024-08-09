@@ -189,6 +189,15 @@ export type RecipePreview = {
   collections: CollectionPreview[];
 };
 
+export type LegacyRecipeData = {
+  featuredImage: {
+    src: string;
+    width: number;
+    height: number;
+  };
+  content: string;
+} | null;
+
 export type Recipe = RecipePreview & {
   keywords: string[] | null;
   media: Media[] | null;
@@ -209,21 +218,8 @@ export type Recipe = RecipePreview & {
     | null;
   ingredientUsageGroups: IngredientUsageGroup[] | null;
   instructionGroups: InstructionGroup[] | null;
-} & (
-    | {
-        legacyRecipeData: null;
-      }
-    | {
-        legacyRecipeData: {
-          featuredImage: {
-            src: string;
-            width: number;
-            height: number;
-          };
-          content: string;
-        };
-      }
-  );
+  legacyRecipeData: LegacyRecipeData;
+};
 
 export type SocialMediaLink = {
   _key: string;

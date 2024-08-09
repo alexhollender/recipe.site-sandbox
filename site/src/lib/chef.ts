@@ -506,13 +506,13 @@ export const Units = {
 export const Sites = {
   list() {
     return Sanity.Client.fetch<Types.Site[]>(
-      `*[_type == "site" && slug.current != "alicesun" && slug.current != "alison-roman"] ${SITE_QUERY}`,
+      `*[_type == "site" && slug.current != "alison-roman"] ${SITE_QUERY}`,
     );
   },
 
   listSlugs() {
     return Sanity.Client.fetch<string[]>(
-      `*[_type == "site" && slug.current != "alicesun" && slug.current != "alison-roman"].slug.current`,
+      `*[_type == "site" && slug.current != "alison-roman"].slug.current`,
     );
   },
 

@@ -7,6 +7,7 @@ import * as Types from '@/lib/types';
 import * as Views from '@/views';
 
 import Head from 'next/head';
+import LegacyRecipesShow from '@/views/recipesShow/legacy';
 
 type Props = Types.PageProps<{ recipe: Types.Recipe }>;
 
@@ -14,70 +15,78 @@ const RecipesShow: Next.NextPage<Next.InferGetStaticPropsType<typeof getStaticPr
   site,
   recipe,
 }) => {
-  return (
-    <>
-      <Head>
-        {/* Title */}
-        <title>{`${recipe.title} • ${site.title}`}</title>
-        <meta property="og:title" content={`${recipe.title} • ${site.title}`} key="ogTitle" />
-        <meta name="twitter:title" content={`${recipe.title} • ${site.title}`} key="twitterTitle" />
-        {/* Description */}
-        {recipe.descriptionPlaintext && (
-          <>
-            <meta name="description" content={recipe.descriptionPlaintext} key="description" />
-            <meta
-              property="og:description"
-              content={recipe.descriptionPlaintext}
-              key="ogDescription"
-            />
-            <meta
-              name="twitter:description"
-              content={recipe.descriptionPlaintext}
-              key="twitterDescription"
-            />
-          </>
-        )}
-        {/* Image */}
-        {recipe.featuredMedia.image && (
-          <>
-            <meta
-              property="og:image:type"
-              content={recipe.featuredMedia.image.asset.mimeType}
-              key="ogImageType"
-            />
-            <meta property="og:image:width" content="800" key="ogImageWidth" />
-            <meta property="og:image:height" content="600" key="ogImageHeight" />
-            <meta
-              property="og:image"
-              content={Sanity.ImageBuilder.image(recipe.featuredMedia.image)
-                .height(800)
-                .width(600)
-                .url()}
-              key="ogImage"
-            />
-            <meta
-              name="twitter:image:type"
-              content={recipe.featuredMedia.image.asset.mimeType}
-              key="twitterImageType"
-            />
-            <meta name="twitter:image:width" content="800" key="twitterImageWidth" />
-            <meta name="twitter:image:height" content="600" key="twitterImageHeight" />
-            <meta
-              name="twitter:image"
-              content={Sanity.ImageBuilder.image(recipe.featuredMedia.image)
-                .width(800)
-                .height(600)
-                .url()}
-              key="twitterImage"
-            />
-          </>
-        )}
-      </Head>
-      <RecipeContext.Provider recipe={recipe}>
-        <Views.RecipesShow site={site} recipe={recipe} />
-      </RecipeContext.Provider>
-    </>
-  );
+  if (recipe.legacyRecipeData) {
+    return <LegacyRecipesShow site={site} legacyRecipe={recipe} />;
+  } else {
+    return (
+      <>
+        <Head>
+          {/* Title */}
+          <title>{`${recipe.title} • ${site.title}`}</title>
+          <meta property="og:title" content={`${recipe.title} • ${site.title}`} key="ogTitle" />
+          <meta
+            name="twitter:title"
+            content={`${recipe.title} • ${site.title}`}
+            key="twitterTitle"
+          />
+          {/* Description */}
+          {recipe.descriptionPlaintext && (
+            <>
+              <meta name="description" content={recipe.descriptionPlaintext} key="description" />
+              <meta
+                property="og:description"
+                content={recipe.descriptionPlaintext}
+                key="ogDescription"
+              />
+              <meta
+                name="twitter:description"
+                content={recipe.descriptionPlaintext}
+                key="twitterDescription"
+              />
+            </>
+          )}
+          {/* Image */}
+          {recipe.featuredMedia.image && (
+            <>
+              <meta
+                property="og:image:type"
+                content={recipe.featuredMedia.image.asset.mimeType}
+                key="ogImageType"
+              />
+              <meta property="og:image:width" content="800" key="ogImageWidth" />
+              <meta property="og:image:height" content="600" key="ogImageHeight" />
+              <meta
+                property="og:image"
+                content={Sanity.ImageBuilder.image(recipe.featuredMedia.image)
+                  .height(800)
+                  .width(600)
+                  .url()}
+                key="ogImage"
+              />
+              <meta
+                name="twitter:image:type"
+                content={recipe.featuredMedia.image.asset.mimeType}
+                key="twitterImageType"
+              />
+              <meta name="twitter:image:width" content="800" key="twitterImageWidth" />
+              <meta name="twitter:image:height" content="600" key="twitterImageHeight" />
+              <meta
+                name="twitter:image"
+                content={Sanity.ImageBuilder.image(recipe.featuredMedia.image)
+                  .width(800)
+                  .height(600)
+                  .url()}
+                key="twitterImage"
+              />
+            </>
+          )}
+        </Head>
+        <RecipeContext.Provider recipe={recipe}>
+          <Views.RecipesShow site={site} recipe={recipe} />
+        </RecipeContext.Provider>
+      </>
+    );
+  }
 };
 
 export default RecipesShow;
